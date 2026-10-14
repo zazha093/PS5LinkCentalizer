@@ -2,7 +2,6 @@
 @media (prefers-color-scheme: light) { :root { color-scheme:light; --bg:#fff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --link:#0969da; --tag:#ddf4ff; } }
 body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 system-ui, sans-serif; }
 main { max-width:1200px; margin:0 auto; padding:0 16px 24px; }
-/* Top block and table header stay visible while scrolling; --top = header height, set in JS */
 .top { position:sticky; top:0; z-index:2; background:var(--bg); padding-top:24px; }
 th { color:var(--muted); font-size:13px; font-weight:600; white-space:nowrap; }
 th { position:sticky; top:var(--top, 0); z-index:1; background:var(--bg); box-shadow:inset 0 -1px var(--line); }
@@ -34,11 +33,124 @@ th[aria-sort=descending] button::after { content:" ▼"; opacity:1; }
 footer { margin-top:24px; color:var(--muted); font-size:13px; }
 .date { display:block; color:var(--muted); font-size:12px; }
 .name .desc, .name .mcat { display:none; }
-@media (max-width:700px) {
-  th, td { padding:10px 4px; }
-  .col-desc, .cat { display:none; }
-  .name .desc { display:block; overflow-wrap:anywhere; }
-  .name .mcat { display:inline; }
-  .ver { white-space:normal; overflow-wrap:anywhere; min-width:5em; }
-  .name a { white-space:normal; overflow-wrap:anywhere; }
+
+/* ============================================================
+   📱 MOBILE CARD LAYOUT — ปรับใหม่ให้ดูดีบนมือถือ
+   ============================================================ */
+@media (max-width: 700px) {
+  /* ซ่อน table header เพราะเปลี่ยนเป็น card */
+  thead { display: none; }
+  
+  /* table และ tbody กลายเป็น block */
+  table, tbody, tr, td { display: block; width: 100%; }
+  
+  /* แต่ละแถว = card */
+  tr {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px #0004;
+    transition: border-color .2s, transform .1s;
+    position: relative;
+  }
+  
+  tr:active {
+    transform: scale(0.99);
+    border-color: var(--link);
+  }
+  
+  /* ซ่อน td ที่ไม่ต้องแสดง */
+  td.col-desc, td.cat { display: none !important; }
+  
+  /* ชื่อโปรเจกต์ — แสดงเต็มบรรทัด */
+  td.name {
+    padding: 0 0 8px;
+    border: none;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  td.name a {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-weight: 600;
+  }
+  
+  /* คำอธิบาย + หมวดหมู่ (mobile-only) */
+  td.name .desc {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  td.name .mcat {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: var(--tag);
+    color: var(--link);
+  }
+  
+  /* Stars */
+  td.stars {
+    text-align: left;
+    padding: 6px 0;
+    border: none;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  td.stars::before {
+    content: "⭐ ";
+    color: #e3b341;
+  }
+  
+  /* Version — แสดงเป็นแถว ป้ายกำกับ */
+  td.ver {
+    padding: 6px 0;
+    border: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  td.ver::before {
+    content: "📦 Stable: ";
+    color: var(--muted);
+    font-weight: 600;
+  }
+  td.ver .date {
+    display: inline;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  
+  /* Pre-release */
+  td.pre {
+    padding: 6px 0;
+    border: none;
+    font-size: 13px;
+  }
+  td.pre:empty::before {
+    content: "🧪 Beta: —";
+    color: var(--muted);
+    font-weight: 600;
+  }
+  td.pre:not(:empty)::before {
+    content: "🧪 Beta: ";
+    color: var(--muted);
+    font-weight: 600;
+  }
+  
+  /* ปรับ top, main ให้พอดีจอ */
+  .top { padding-top: 16px; }
+  main { padding: 0 12px 24px; }
+  h1 { font-size: 20px; }
+  p { font-size: 13px; }
+  
+  /* ปุ่ม totop เล็กลงนิด */
+  #totop { width: 40px; height: 40px; font-size: 18px; right: 12px; bottom: 12px; }
 }
