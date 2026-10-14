@@ -30,7 +30,7 @@
       "date": "2026-10-07"
     },
     "updated": "2026-10-07",
-    "stars": 403,
+    "stars": 405,
     "archived": false
   },
   {
@@ -45,7 +45,7 @@
       "date": "2026-10-14"
     },
     "updated": "2026-10-14",
-    "stars": 669,
+    "stars": 670,
     "archived": false
   },
   {
@@ -60,7 +60,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 118,
+    "stars": 119,
     "archived": false
   },
   {
@@ -109,7 +109,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 399,
+    "stars": 400,
     "archived": false
   },
   {
@@ -124,7 +124,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-10",
-    "stars": 926,
+    "stars": 927,
     "archived": false
   },
   {
@@ -139,7 +139,7 @@
     },
     "pre": null,
     "updated": "2026-09-23",
-    "stars": 723,
+    "stars": 725,
     "archived": false
   },
   {
@@ -178,13 +178,13 @@
     "description": "A modern, web-based dashboard to easily manage, import, and automatically load payloads on your PS5.",
     "category": "Payload",
     "stable": {
-      "tag": "v0.6.0",
-      "url": "https://github.com/itsPLK/ps5-payload-manager/releases/tag/v0.6.0",
-      "date": "2026-10-13"
+      "tag": "v0.6.1",
+      "url": "https://github.com/itsPLK/ps5-payload-manager/releases/tag/v0.6.1",
+      "date": "2026-10-14"
     },
     "pre": null,
-    "updated": "2026-10-13",
-    "stars": 529,
+    "updated": "2026-10-14",
+    "stars": 530,
     "archived": false
   },
   {
@@ -199,7 +199,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 195,
+    "stars": 198,
     "archived": false
   },
   {
@@ -214,7 +214,7 @@
     },
     "pre": null,
     "updated": "2026-10-08",
-    "stars": 1033,
+    "stars": 1040,
     "archived": false
   },
   {
@@ -229,7 +229,7 @@
     },
     "pre": null,
     "updated": "2026-08-21",
-    "stars": 265,
+    "stars": 266,
     "archived": false
   },
   {
@@ -244,7 +244,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 8306,
+    "stars": 8344,
     "archived": false
   },
   {
@@ -259,7 +259,7 @@
       "date": "2026-10-08"
     },
     "updated": "2026-10-10",
-    "stars": 313,
+    "stars": 314,
     "archived": false
   },
   {
@@ -284,7 +284,7 @@
     },
     "pre": null,
     "updated": "2026-09-28",
-    "stars": 176,
+    "stars": 180,
     "archived": false
   },
   {
@@ -299,7 +299,7 @@
     },
     "pre": null,
     "updated": "2026-10-11",
-    "stars": 135,
+    "stars": 137,
     "archived": false
   },
   {
@@ -314,7 +314,7 @@
     },
     "pre": null,
     "updated": "2026-10-09",
-    "stars": 358,
+    "stars": 360,
     "archived": false
   },
   {
@@ -333,7 +333,7 @@
       "date": "2026-10-12"
     },
     "updated": "2026-10-12",
-    "stars": 695,
+    "stars": 696,
     "archived": false
   },
   {
@@ -408,7 +408,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 1233,
+    "stars": 1238,
     "archived": false
   },
   {
@@ -438,7 +438,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 314,
+    "stars": 319,
     "archived": false
   },
   {
@@ -468,7 +468,7 @@
     },
     "pre": null,
     "updated": "2026-10-11",
-    "stars": 142,
+    "stars": 143,
     "archived": false
   },
   {
@@ -483,7 +483,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 264,
+    "stars": 266,
     "archived": false
   },
   {
@@ -513,7 +513,7 @@
     },
     "pre": null,
     "updated": "2026-09-19",
-    "stars": 85,
+    "stars": 86,
     "archived": false
   },
   {
@@ -573,7 +573,7 @@
     },
     "pre": null,
     "updated": "2026-10-13",
-    "stars": 808,
+    "stars": 818,
     "archived": false
   },
   {
@@ -617,12 +617,12 @@
       "date": "2026-05-01"
     },
     "pre": {
-      "tag": "v1.0.1-0866fb4",
-      "url": "https://github.com/itsPLK/ps5-y2jb-autoloader/releases/tag/v1.0.1-0866fb4",
-      "date": "2026-10-13"
+      "tag": "v1.0.2-dev-ff3826a",
+      "url": "https://github.com/itsPLK/ps5-y2jb-autoloader/releases/tag/v1.0.2-dev-ff3826a",
+      "date": "2026-10-14"
     },
-    "updated": "2026-10-13",
-    "stars": 817,
+    "updated": "2026-10-14",
+    "stars": 822,
     "archived": false
   },
   {
@@ -631,13 +631,13 @@
     "description": "LZ4 compression for games, done entirely on the PS5",
     "category": "Payload",
     "stable": {
-      "tag": "v1.4.3",
-      "url": "https://github.com/theghostonline/PS5-LZ4-Compression/releases/tag/v1.4.3",
+      "tag": "v1.5.0",
+      "url": "https://github.com/theghostonline/PS5-LZ4-Compression/releases/tag/v1.5.0",
       "date": "2026-10-14"
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 89,
+    "stars": 92,
     "archived": false
   },
   {
@@ -682,7 +682,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 121,
+    "stars": 132,
     "archived": false
   },
   {
@@ -712,7 +712,7 @@
     },
     "pre": null,
     "updated": "2026-10-11",
-    "stars": 23,
+    "stars": 24,
     "archived": false
   },
   {
@@ -742,7 +742,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 133,
+    "stars": 136,
     "archived": false
   },
   {
@@ -757,7 +757,7 @@
     },
     "pre": null,
     "updated": "2026-10-04",
-    "stars": 558,
+    "stars": 559,
     "archived": false
   },
   {
@@ -787,7 +787,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 105,
+    "stars": 106,
     "archived": false
   },
   {
@@ -802,7 +802,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 189,
+    "stars": 190,
     "archived": false
   },
   {
@@ -832,7 +832,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 437,
+    "stars": 451,
     "archived": false
   },
   {
@@ -842,7 +842,7 @@
     "category": "Cheats",
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 245,
+    "stars": 246,
     "archived": false
   },
   {
@@ -872,7 +872,7 @@
     },
     "pre": null,
     "updated": "2026-10-06",
-    "stars": 190,
+    "stars": 191,
     "archived": false
   },
   {
@@ -901,7 +901,7 @@
       "date": "2026-10-13"
     },
     "pre": null,
-    "updated": "2026-10-13",
+    "updated": "2026-10-14",
     "stars": 6,
     "archived": false
   },
