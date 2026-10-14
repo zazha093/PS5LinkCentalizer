@@ -59,7 +59,7 @@
       "date": "2026-10-12"
     },
     "pre": null,
-    "updated": "2026-10-13",
+    "updated": "2026-10-14",
     "stars": 118,
     "archived": false
   },
@@ -214,7 +214,7 @@
     },
     "pre": null,
     "updated": "2026-10-08",
-    "stars": 1034,
+    "stars": 1033,
     "archived": false
   },
   {
@@ -244,7 +244,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 8298,
+    "stars": 8305,
     "archived": false
   },
   {
@@ -259,7 +259,7 @@
       "date": "2026-10-08"
     },
     "updated": "2026-10-10",
-    "stars": 312,
+    "stars": 313,
     "archived": false
   },
   {
@@ -408,7 +408,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 1231,
+    "stars": 1233,
     "archived": false
   },
   {
@@ -438,7 +438,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 313,
+    "stars": 314,
     "archived": false
   },
   {
@@ -483,7 +483,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 263,
+    "stars": 264,
     "archived": false
   },
   {
@@ -573,7 +573,7 @@
     },
     "pre": null,
     "updated": "2026-10-13",
-    "stars": 804,
+    "stars": 806,
     "archived": false
   },
   {
@@ -631,13 +631,13 @@
     "description": "LZ4 compression for games, done entirely on the PS5",
     "category": "Payload",
     "stable": {
-      "tag": "v1.4.2",
-      "url": "https://github.com/theghostonline/PS5-LZ4-Compression/releases/tag/v1.4.2",
-      "date": "2026-10-11"
+      "tag": "v1.4.3",
+      "url": "https://github.com/theghostonline/PS5-LZ4-Compression/releases/tag/v1.4.3",
+      "date": "2026-10-14"
     },
     "pre": null,
-    "updated": "2026-10-11",
-    "stars": 88,
+    "updated": "2026-10-14",
+    "stars": 89,
     "archived": false
   },
   {
@@ -653,6 +653,286 @@
     "pre": null,
     "updated": "2026-09-30",
     "stars": 181,
+    "archived": false
+  },
+  {
+    "name": "kodi-ps5-overdrive",
+    "url": "https://github.com/terrafirma2021/kodi-ps5-overdrive",
+    "description": "Unofficial native Kodi 22 for PS5 with integrated Overdrive catalog browsing",
+    "category": "Media",
+    "stable": null,
+    "pre": {
+      "tag": "v0.1.0-preview.1",
+      "url": "https://github.com/terrafirma2021/kodi-ps5-overdrive/releases/tag/v0.1.0-preview.1",
+      "date": "2026-10-14"
+    },
+    "updated": "2026-10-14",
+    "stars": 2,
+    "archived": false
+  },
+  {
+    "name": "HYPERHEN",
+    "url": "https://github.com/Michele-M-Media/HYPERHEN",
+    "description": "",
+    "category": "HEN",
+    "stable": {
+      "tag": "HYPERHEN_V0_9_2",
+      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/tag/HYPERHEN_V0_9_2",
+      "date": "2026-10-14"
+    },
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 121,
+    "archived": false
+  },
+  {
+    "name": "exfat2ampr",
+    "url": "https://github.com/exFAT2AMPR/exfat2ampr",
+    "description": "Convert PS5 game dumps to AMPR LZ4, right on the console. Made by V-10, LZ4 format by DLPSGAME.",
+    "category": "Payload",
+    "stable": {
+      "tag": "v1.104",
+      "url": "https://github.com/exFAT2AMPR/exfat2ampr/releases/tag/v1.104",
+      "date": "2026-10-14"
+    },
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 24,
+    "archived": false
+  },
+  {
+    "name": "ps5shopappkg",
+    "url": "https://github.com/ps5xploit/ps5shopappkg",
+    "description": "ps5shopappkg",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "DPIv2",
+      "url": "https://github.com/ps5xploit/ps5shopappkg/releases/tag/DPIv2",
+      "date": "2026-10-11"
+    },
+    "pre": null,
+    "updated": "2026-10-11",
+    "stars": 23,
+    "archived": false
+  },
+  {
+    "name": "PS5Library",
+    "url": "https://github.com/rdiol12/PS5Library",
+    "description": "Native PS5Library console storefront. Frontend source and automated ELF builds.",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "v0.2.91",
+      "url": "https://github.com/rdiol12/PS5Library/releases/tag/v0.2.91",
+      "date": "2026-10-14"
+    },
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 46,
+    "archived": false
+  },
+  {
+    "name": "ps5-library",
+    "url": "https://github.com/deox1111/ps5-library",
+    "description": "Game library for jailbroken PS5: pick a game, it downloads, installs and appears on your home screen.",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "v0.7.28",
+      "url": "https://github.com/deox1111/ps5-library/releases/tag/v0.7.28",
+      "date": "2026-10-12"
+    },
+    "pre": null,
+    "updated": "2026-10-12",
+    "stars": 133,
+    "archived": false
+  },
+  {
+    "name": "Spectrum-Library",
+    "url": "https://github.com/Phoenixx1202/Spectrum-Library",
+    "description": "",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "1.4.9",
+      "url": "https://github.com/Phoenixx1202/Spectrum-Library/releases/tag/1.4.9",
+      "date": "2026-10-04"
+    },
+    "pre": null,
+    "updated": "2026-10-04",
+    "stars": 558,
+    "archived": false
+  },
+  {
+    "name": "direct-stream-ps5",
+    "url": "https://github.com/ChillQuant/direct-stream-ps5",
+    "description": "High-speed parallel stream engine & local web dashboard for streaming HTTP/HTTPS downloads directly to PlayStation 5 FTP storage. Pure Python standard library, zero pip packages, macOS & Windows.",
+    "category": "Network",
+    "stable": {
+      "tag": "v2.9.1",
+      "url": "https://github.com/ChillQuant/direct-stream-ps5/releases/tag/v2.9.1",
+      "date": "2026-10-10"
+    },
+    "pre": null,
+    "updated": "2026-10-11",
+    "stars": 67,
+    "archived": false
+  },
+  {
+    "name": "ps4mount",
+    "url": "https://github.com/gasb07/ps4mount",
+    "description": "Allows for PKG games on USB external devices to mount on jailbroken PS5s without installing on internal storage or PS5 formatted USB storage",
+    "category": "Payload",
+    "stable": {
+      "tag": "v0.5.0",
+      "url": "https://github.com/gasb07/ps4mount/releases/tag/v0.5.0",
+      "date": "2026-10-14"
+    },
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 105,
+    "archived": false
+  },
+  {
+    "name": "prospero-win",
+    "url": "https://github.com/mpereiraesaa/prospero-win",
+    "description": "Windows compatibility runtime for native PlayStation 5 homebrew.",
+    "category": "PC Tool",
+    "stable": {
+      "tag": "v0.2.0",
+      "url": "https://github.com/mpereiraesaa/prospero-win/releases/tag/v0.2.0",
+      "date": "2026-10-10"
+    },
+    "pre": null,
+    "updated": "2026-10-10",
+    "stars": 189,
+    "archived": false
+  },
+  {
+    "name": "ps5-theme",
+    "url": "https://github.com/Blaze414/ps5-theme",
+    "description": "Custom home-screen themes for jailbroken PS5 consoles (etaHEN plugin or standalone payload): backgrounds, icons, sounds, fonts and home music as read-only overlays.",
+    "category": "Customization",
+    "stable": {
+      "tag": "v1.60",
+      "url": "https://github.com/Blaze414/ps5-theme/releases/tag/v1.60",
+      "date": "2026-10-14"
+    },
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 33,
+    "archived": false
+  },
+  {
+    "name": "blackbox",
+    "url": "https://github.com/D3ATHLY/blackbox",
+    "description": "BB",
+    "category": "PC Tool",
+    "stable": {
+      "tag": "1.0.9",
+      "url": "https://github.com/D3ATHLY/blackbox/releases/tag/1.0.9",
+      "date": "2026-10-14"
+    },
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 436,
+    "archived": false
+  },
+  {
+    "name": "HEN-Cheats-Collection",
+    "url": "https://github.com/TeeKay87/HEN-Cheats-Collection",
+    "description": "The most complete cheats collection for the PS4 and PS5 with interactive cheats index",
+    "category": "Cheats",
+    "pre": null,
+    "updated": "2026-10-14",
+    "stars": 245,
+    "archived": false
+  },
+  {
+    "name": "ps5-web-file-manager",
+    "url": "https://github.com/LisherSong/ps5-web-file-manager",
+    "description": "Browser-based file manager for jailbroken PS5 (x86_64-sie-ps5). Upload, browse, edit, delete; extract ZIP / RAR with safe defaults (2 TiB / 512 GiB / 500:1) and an opt-in large profile (4 TiB / 1 TiB / 1000:1); install .pkg. Single self-contained ELF (~497 KiB), no external services, no telemetry. v1.8.2.",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "v1.9.3M",
+      "url": "https://github.com/LisherSong/ps5-web-file-manager/releases/tag/v1.9.3M",
+      "date": "2026-09-24"
+    },
+    "pre": null,
+    "updated": "2026-09-29",
+    "stars": 2,
+    "archived": false
+  },
+  {
+    "name": "ps5-web-file-manager",
+    "url": "https://github.com/owendswang/ps5-web-file-manager",
+    "description": "A file manager for PS5 with a web UI.",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "v1.10",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/tag/v1.10",
+      "date": "2026-10-05"
+    },
+    "pre": null,
+    "updated": "2026-10-06",
+    "stars": 190,
+    "archived": false
+  },
+  {
+    "name": "VLC",
+    "url": "https://github.com/ZiZc3/VLC",
+    "description": "VLC for PS5.",
+    "category": "Media",
+    "stable": {
+      "tag": "v0.4",
+      "url": "https://github.com/ZiZc3/VLC/releases/tag/v0.4",
+      "date": "2026-10-10"
+    },
+    "pre": null,
+    "updated": "2026-10-10",
+    "stars": 59,
+    "archived": false
+  },
+  {
+    "name": "ps5-cooling-system-center-pro",
+    "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro",
+    "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
+    "category": "Homebrew",
+    "stable": {
+      "tag": "v1.65.0",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/tag/v1.65.0",
+      "date": "2026-10-13"
+    },
+    "pre": null,
+    "updated": "2026-10-13",
+    "stars": 6,
+    "archived": false
+  },
+  {
+    "name": "ProsperoPlayer",
+    "url": "https://github.com/KINGDKAK/ProsperoPlayer",
+    "description": "ProsperoPlayer 1.0 — jailbroken PS5 media player. Media home tile, HEVC/H.264, USB, subs, music.",
+    "category": "Media",
+    "stable": {
+      "tag": "v1.0",
+      "url": "https://github.com/KINGDKAK/ProsperoPlayer/releases/tag/v1.0",
+      "date": "2026-08-08"
+    },
+    "pre": null,
+    "updated": "2026-08-08",
+    "stars": 21,
+    "archived": false
+  },
+  {
+    "name": "EVO-PLAYER-PS5",
+    "url": "https://github.com/sainsaji/EVO-PLAYER-PS5",
+    "description": "",
+    "category": "Media",
+    "stable": {
+      "tag": "v0.12.0",
+      "url": "https://github.com/sainsaji/EVO-PLAYER-PS5/releases/tag/v0.12.0",
+      "date": "2026-10-09"
+    },
+    "pre": null,
+    "updated": "2026-10-09",
+    "stars": 41,
     "archived": false
   },
   {
