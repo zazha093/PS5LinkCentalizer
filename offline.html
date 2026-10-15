@@ -6,36 +6,63 @@
 <meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
 <title>PS5 Links · Offline</title>
-<link rel="stylesheet" href="style.css">
+<script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css?v=4">
 <base target="_blank">
 </head>
 <body>
-<main class="wrap" style="padding-top:max(20px, env(safe-area-inset-top))">
-  <h1 class="title">Offline projects</h1>
-  <p style="color:var(--muted);margin:6px 0 16px">Repositories that were listed here but no longer exist on GitHub. Kept for reference.</p>
-  <section id="rows" class="cards"><div class="empty">Loading…</div></section>
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="./" target="_self" aria-label="PS5 Links home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--accent)" stroke="none"/><path d="M9 22V10h6a4 4 0 0 1 0 8H9M18 22h5" stroke="#fff" stroke-width="2.6"/></svg>
+      <span class="brand-name">PS5 Links</span>
+    </a>
+    <span style="flex:1"></span>
+    <a class="btn small" href="./" target="_self" id="back">← Projects</a>
+  </div>
+</header>
+
+<main class="wrap" style="padding-top:18px">
+  <h1 class="title" id="h" style="display:block">Offline projects</h1>
+  <p id="p" style="color:var(--muted);margin:6px 0 16px">Repositories that were listed here but no longer exist on GitHub. Kept for reference.</p>
+  <section id="rows" class="cards grid"><div class="card skel"></div></section>
   <footer>
-    <p><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project. All belong to their respective authors and are used at your own risk.</p>
-    <p><a href="https://github.com/pedrohti/PS5LinkCentalizer#disclaimer">Full disclaimer</a></p>
+    <p id="d"><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project. All belong to their respective authors and are used at your own risk.</p>
   </footer>
 </main>
+
 <nav class="tabs" aria-label="Sections"><div class="wrap">
-  <a class="tab" href="./" target="_self"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Projects</a>
-  <a class="tab" href="./#pinned" target="_self"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Pinned</a>
-  <a class="tab" href="./#latest" target="_self"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Latest</a>
-  <a class="tab" href="offline.html" aria-current="page" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg>Offline</a>
+  <a class="tab" href="./" target="_self"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span class="l">Projects</span></a>
+  <a class="tab" href="./#pinned" target="_self"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span class="l">Pinned</span></a>
+  <a class="tab" href="./#latest" target="_self"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="l">Latest</span></a>
+  <a class="tab" href="offline.html" aria-current="page" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg><span class="l">Offline</span></a>
 </div></nav>
 
 <script>
-const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
-fetch("offline.json").then(r => r.json()).then(list => {
-  list.sort((a, b) => b.offlineSince.localeCompare(a.offlineSince));
+"use strict";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+// Use the same language the main page saved
+let lang = "en"; try { lang = JSON.parse(localStorage.getItem("ps5l.lang")) || ((navigator.language || "").startsWith("th") ? "th" : "en"); } catch {}
+const TH = lang === "th";
+if (TH) {
+  document.documentElement.lang = "th";
+  document.getElementById("h").textContent = "โปรเจกต์ที่ออฟไลน์";
+  document.getElementById("p").textContent = "Repository ที่เคยอยู่ในรายการแต่ไม่มีบน GitHub แล้ว เก็บไว้เพื่ออ้างอิง";
+  document.getElementById("d").innerHTML = "<strong>ข้อจำกัดความรับผิดชอบ:</strong> เว็บนี้เป็นเพียงดัชนีลิงก์ ไม่มีส่วนเกี่ยวข้องและไม่รับผิดชอบต่อโปรเจกต์ใดที่แสดงไว้ ใช้งานด้วยความเสี่ยงของคุณเอง";
+  document.getElementById("back").textContent = "← โปรเจกต์";
+  ["โปรเจกต์", "ปักหมุด", "ล่าสุด", "ออฟไลน์"].forEach((l, i) => (document.querySelectorAll(".tab .l")[i].textContent = l));
+}
+fetch("offline.json", { cache: "no-cache" }).then(r => r.json()).then(list => {
+  list.sort((a, b) => String(b.offlineSince).localeCompare(String(a.offlineSince)));
   document.getElementById("rows").innerHTML = list.map(p => `<article class="card">
-    <div class="head"><div class="id"><span class="name">${esc(p.name)}</span><span class="author">${esc((p.repo || "").split("/")[0])}</span></div><div class="badges"><span class="badge old">Offline</span></div></div>
+    <div class="head"><div class="id"><span class="av ph" style="--cc:var(--muted)">${esc((p.repo || "?")[0].toUpperCase())}</span>
+      <div class="id-t"><span class="name">${esc(p.name)}</span><span class="author">${esc((p.repo || "").split("/")[0])}</span></div></div></div>
+    <div class="badges"><span class="badge old">Offline</span>${p.lastVersion ? `<span class="badge old">${esc(p.lastVersion)}</span>` : ""}</div>
     ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
-    <div class="foot"><span class="stat">${esc(p.category || "Other")}</span><span class="stat">Last ${esc(p.lastVersion || "n/a")} · gone ${esc(p.offlineSince)}</span></div>
-  </article>`).join("") || `<div class="empty">No offline projects.</div>`;
-}).catch(() => document.getElementById("rows").innerHTML = `<div class="empty">Could not load offline.json.</div>`);
+    <div class="foot"><span class="stat">${esc(p.category || "Other")}</span><span class="stat">${TH ? "หายไปตั้งแต่" : "gone since"} ${esc(p.offlineSince)}</span></div>
+  </article>`).join("") || `<div class="empty">${TH ? "ไม่มีโปรเจกต์ออฟไลน์" : "No offline projects."}</div>`;
+}).catch(() => (document.getElementById("rows").innerHTML = `<div class="empty">Could not load offline.json.</div>`));
 </script>
 </body>
 </html>
