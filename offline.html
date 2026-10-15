@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+<title>PS5 Links · Offline</title>
+<link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+<main class="wrap" style="padding-top:max(20px, env(safe-area-inset-top))">
+  <h1 class="title">Offline projects</h1>
+  <p style="color:var(--muted);margin:6px 0 16px">Repositories that were listed here but no longer exist on GitHub. Kept for reference.</p>
+  <section id="rows" class="cards"><div class="empty">Loading…</div></section>
+  <footer>
+    <p><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project. All belong to their respective authors and are used at your own risk.</p>
+    <p><a href="https://github.com/pedrohti/PS5LinkCentalizer#disclaimer">Full disclaimer</a></p>
+  </footer>
+</main>
+<nav class="tabs" aria-label="Sections"><div class="wrap">
+  <a class="tab" href="./" target="_self"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Projects</a>
+  <a class="tab" href="./#latest" target="_self"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Latest</a>
+  <a class="tab" href="offline.html" aria-current="page" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg>Offline</a>
+</div></nav>
+
+<script>
+const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+fetch("offline.json").then(r => r.json()).then(list => {
+  list.sort((a, b) => b.offlineSince.localeCompare(a.offlineSince));
+  document.getElementById("rows").innerHTML = list.map(p => `<article class="card">
+    <div class="head"><div class="id"><span class="name">${esc(p.name)}</span><span class="author">${esc((p.repo || "").split("/")[0])}</span></div><div class="badges"><span class="badge old">Offline</span></div></div>
+    ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
+    <div class="foot"><span class="stat">${esc(p.category || "Other")}</span><span class="stat">Last ${esc(p.lastVersion || "n/a")} · gone ${esc(p.offlineSince)}</span></div>
+  </article>`).join("") || `<div class="empty">No offline projects.</div>`;
+}).catch(() => document.getElementById("rows").innerHTML = `<div class="empty">Could not load offline.json.</div>`);
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+<title>PS5 Links</title>
+<link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="ibtn" href="https://github.com/pedrohti/PS5LinkCentalizer#add-a-project" aria-label="Add a project on GitHub"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></a>
+  <select class="field" id="cat" aria-label="Category"></select>
+  <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="q" type="search" placeholder="Search projects, authors, tags" aria-label="Search" enterkeyhint="search"></label>
+</div></header>
+
+<main class="wrap">
+  <div class="meta"><h1 class="title" id="title">PS5 Links</h1>
+    <select id="sort" aria-label="Sort"><option value="name">Name A–Z</option><option value="stars">Most starred</option><option value="category">Category</option></select>
+  </div>
+  <p class="sr" id="count" aria-live="polite"></p>
+  <section id="rows" class="cards"><div class="empty">Loading…</div></section>
+  <footer>
+    <p><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project. All belong to their respective authors and are used at your own risk.</p>
+    <p><a href="https://github.com/pedrohti/PS5LinkCentalizer#disclaimer">Full disclaimer</a></p>
+  </footer>
+</main>
+<nav class="tabs" aria-label="Sections"><div class="wrap">
+  <button class="tab" id="t-projects" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Projects</button>
+  <button class="tab" id="t-latest" aria-current="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Latest</button>
+  <a class="tab" href="offline.html" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg>Offline</a>
+</div></nav>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+const cmp = new Intl.Collator("en", { numeric: true, sensitivity: "base" }).compare;
+const owner = p => p.url.split("/")[3] || "";
+const latest = p => [p.stable, p.pre].filter(Boolean).sort((a, b) => b.date.localeCompare(a.date))[0];
+const days = d => (Date.now() - new Date(d)) / 864e5;
+const ago = d => { const n = Math.floor(days(d));
+  return n <= 0 ? "today" : n === 1 ? "yesterday" : n < 14 ? `${n} days ago` : n < 60 ? `${Math.floor(n / 7)} weeks ago` : n < 730 ? `${Math.floor(n / 30)} months ago` : `${Math.floor(n / 365)} years ago`; };
+const btn = (v, k, l) => v ? `<a class="act ${k}" href="${esc(v.url)}">${l} ${esc(v.tag)}</a>` : "";
+
+const card = (p, showWhen) => {
+  const l = latest(p), fresh = l && days(l.date) <= 7;
+  return `<article class="card">
+  <div class="head"><div class="id"><a class="name" href="${esc(p.url)}">${esc(p.name)}</a><span class="author">${esc(owner(p))}</span></div>
+    <div class="badges">${fresh ? '<span class="badge new">New</span>' : ""}${p.archived ? '<span class="badge old">Archived</span>' : ""}</div></div>
+  ${showWhen && l ? `<p class="when ${l === p.stable ? "stable" : "beta"}"><i></i>${l === p.stable ? "Stable" : "Beta"} ${esc(l.tag)} · ${ago(l.date)}</p>` : ""}
+  ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
+  <div class="foot"><span class="stat"><b>★</b> ${p.stars ?? 0}${p.category ? ` · ${esc(p.category)}` : ""}</span>
+    <span class="acts">${btn(p.stable, "stable", "Stable")}${btn(p.pre, "beta", "Beta")}<a class="act repo" href="${esc(p.url)}">Repo</a></span></div>
+</article>`;
+};
+
+let data = [], tab = location.hash === "#latest" ? "latest" : "projects";
+
+function drawCats() {
+  const cats = [...new Set(data.map(p => p.category || "Other"))].sort(cmp);
+  $("cat").innerHTML = `<option value="">All categories (${data.length})</option>` +
+    cats.map(c => `<option value="${esc(c)}">${esc(c)} (${data.filter(p => (p.category || "Other") === c).length})</option>`).join("");
+}
+
+function render() {
+  const s = $("q").value.trim().toLowerCase(), c = $("cat").value, latestTab = tab === "latest";
+  let list = data.filter(p => (!c || (p.category || "Other") === c) &&
+    [p.name, owner(p), p.category, p.description, p.stable?.tag, p.pre?.tag].join(" ").toLowerCase().includes(s));
+  if (latestTab) list = list.filter(latest).sort((a, b) => latest(b).date.localeCompare(latest(a).date));
+  else {
+    const k = $("sort").value;
+    list.sort((a, b) => k === "stars" ? (b.stars ?? 0) - (a.stars ?? 0) : k === "category" ? cmp(a.category || "", b.category || "") || cmp(a.name, b.name) : cmp(a.name, b.name));
+  }
+  $("title").textContent = latestTab ? "Latest releases" : "PS5 Links";
+  $("sort").hidden = latestTab;
+  for (const t of ["projects", "latest"]) $("t-" + t).setAttribute("aria-current", t === tab ? "page" : "false");
+  $("count").textContent = `${list.length} projects`;
+  $("rows").innerHTML = list.length ? list.map(p => card(p, latestTab)).join("")
+    : `<div class="empty"><p>No projects match.</p><button id="reset">Clear filters</button></div>`;
+  if (!list.length) $("reset").onclick = () => { $("q").value = ""; $("cat").value = ""; render(); };
+}
+
+$("q").oninput = $("cat").onchange = $("sort").onchange = render;
+for (const t of ["projects", "latest"]) $("t-" + t).onclick = () => {
+  if (tab === t) return scrollTo({ top: 0, behavior: "smooth" });
+  tab = t; history.replaceState(null, "", t === "latest" ? "#latest" : location.pathname); render(); scrollTo(0, 0);
+};
+fetch("data.json").then(r => r.json()).then(d => { data = d; drawCats(); render(); })
+  .catch(() => $("rows").innerHTML = `<div class="empty">Could not load data.json. Check your connection and reload.</div>`);
+</script>
+</body>
+</html>
