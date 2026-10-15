@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
-<meta name="description" content="Index of PS5 homebrew projects with their latest stable and beta releases.">
 <title>PS5 Links</title>
-<!-- Apply the saved theme before the CSS paints, so the page never flashes the wrong colours -->
 <script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 <base target="_blank">
 </head>
 <body>
 
-<!-- Top bar: add button, search, theme toggle + swipeable category chips -->
 <header class="top">
   <div class="wrap topbar">
     <button class="ibtn" id="open-add" aria-label="Add a project"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
@@ -37,19 +34,15 @@
   <p class="summary" id="summary"></p>
   <p class="sr" id="count" aria-live="polite"></p>
 
-  <!-- Skeleton cards shown while data.json loads -->
   <section id="rows" class="cards">
-    <span class="sr">Loading…</span>
-    <div class="card skel"></div><div class="card skel"></div><div class="card skel"></div><div class="card skel"></div>
+    <div class="card skel"></div><div class="card skel"></div><div class="card skel"></div>
   </section>
 
   <footer>
-    <p><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project. All belong to their respective authors and are used at your own risk.</p>
-    <p><a href="https://github.com/pedrohti/PS5LinkCentalizer#disclaimer">Full disclaimer</a></p>
+    <p><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project.</p>
   </footer>
 </main>
 
-<!-- Bottom tab bar -->
 <nav class="tabs" aria-label="Sections"><div class="wrap">
   <button class="tab" id="t-projects" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Projects</button>
   <button class="tab" id="t-pinned" aria-current="false"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Pinned<span class="count" id="pc" hidden></span></button>
@@ -57,20 +50,31 @@
   <a class="tab" href="offline.html" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg>Offline</a>
 </div></nav>
 
-<!-- Add-a-project bottom sheet -->
+<!-- Add / Edit Dialog -->
 <dialog id="add"><div class="sheet">
-  <h2>Add a project</h2>
+  <h2 id="dlg-title">Add a project</h2>
   <input id="repo" type="text" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="github.com/owner/name" aria-label="GitHub link">
   <select class="field" id="add-cat" aria-label="Category"></select>
   <p class="msg" id="msg" aria-live="polite"></p>
   <button class="btn primary" id="do-add">Add to my list</button>
   <button class="btn" id="do-share">Submit to the shared list</button>
-  <p class="hint">My list checks GitHub live and is saved on this device only. The shared list opens a public GitHub issue; after you tap Submit, the bot adds it for everyone.</p>
+  <p class="hint">My list checks GitHub live and is saved on this device only.</p>
 </div></dialog>
 
-<!-- Small pop-up message ("Link copied", "Theme: dark") -->
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<!-- Generic Modal for README, Assets, Commits -->
+<dialog id="modal-reader"><div class="sheet reader-sheet">
+  <div class="reader-head">
+    <h3 id="reader-title">Viewer</h3>
+    <div class="reader-acts">
+      <button class="ibtn small" id="reader-copy" aria-label="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      <a class="ibtn small" id="reader-ext" aria-label="Open external" target="_blank"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
+      <button class="ibtn small" id="reader-close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  <div id="reader-body" class="reader-body">Loading…</div>
+</div></dialog>
 
-<script src="app.js?v=2"></script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=3"></script>
 </body>
 </html>
