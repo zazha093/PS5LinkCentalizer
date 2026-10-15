@@ -45,6 +45,9 @@ const I18N = {
     resetQ: "Delete your list, pins and settings on this device?", themeIs: "Theme: {t}", downloads: "downloads", download: "Download",
     notes: "Release notes", noRelease: "No release yet", openGithub: "Open on GitHub", colProject: "Project", colCategory: "Category",
     colRelease: "Release", colReleased: "Released", colUpdated: "Last push", colStars: "Stars", shareHint: "Opens a GitHub issue for the site owner to review.",
+    fRepo: "GitHub link", fName: "Display name", fNamePh: "Leave empty to use the GitHub name", fDesc: "Description", fDescPh: "Leave empty to use the GitHub description", fCat: "Category",
+    revert: "Restore original", reverted: "Restored original", edited: "Edited", editHintShared: "Changes are saved on this device only. The shared list is not changed.",
+    sDownloads: "Most downloaded", colDownloads: "Downloads", colLang: "Language", statDownloads: "Total downloads", forks: "forks", issues: "issues", website: "Website",
   },
   th: {
     searchPh: "ค้นหาโปรเจกต์ ผู้สร้าง หรือหมวด", whatsNew: "อัปเดตใหม่", theme: "ธีม", settings: "ตั้งค่า", add: "เพิ่ม",
@@ -69,6 +72,9 @@ const I18N = {
     resetQ: "ลบรายการ ปักหมุด และการตั้งค่าทั้งหมดในเครื่องนี้ใช่ไหม?", themeIs: "ธีม: {t}", downloads: "ดาวน์โหลด", download: "ดาวน์โหลด",
     notes: "รายละเอียดรีลีส", noRelease: "ยังไม่มีรีลีส", openGithub: "เปิดใน GitHub", colProject: "โปรเจกต์", colCategory: "หมวด",
     colRelease: "รีลีส", colReleased: "วันที่รีลีส", colUpdated: "push ล่าสุด", colStars: "ดาว", shareHint: "จะเปิด GitHub issue ให้เจ้าของเว็บตรวจสอบ",
+    fRepo: "ลิงก์ GitHub", fName: "ชื่อที่แสดง", fNamePh: "เว้นว่างเพื่อใช้ชื่อจาก GitHub", fDesc: "คำอธิบาย", fDescPh: "เว้นว่างเพื่อใช้คำอธิบายจาก GitHub", fCat: "หมวดหมู่",
+    revert: "คืนค่าเดิม", reverted: "คืนค่าเดิมแล้ว", edited: "แก้ไขแล้ว", editHintShared: "การแก้ไขจะบันทึกในเครื่องนี้เท่านั้น ไม่กระทบรายการกลาง",
+    sDownloads: "ดาวน์โหลดมากสุด", colDownloads: "ดาวน์โหลด", colLang: "ภาษา", statDownloads: "ยอดดาวน์โหลดรวม", forks: "fork", issues: "issue", website: "เว็บไซต์",
   },
 };
 let lang = store.get("lang", (navigator.language || "").toLowerCase().startsWith("th") ? "th" : "en");
@@ -89,6 +95,7 @@ const ICON = {
   book: '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
   box: '<svg viewBox="0 0 24 24"><path d="m21 8-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/></svg>',
   link: '<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
+  pen: '<svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
   dl: '<svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>',
   auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
   dark: '<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
@@ -126,6 +133,9 @@ function ago(d) {
   if (n < 60) return t("weeksAgo", { n: Math.floor(n / 7) });
   return t("monthsAgo", { n: Math.floor(n / 30) });
 }
+const fmtNum = n => new Intl.NumberFormat(lang === "th" ? "th-TH" : "en", { notation: "compact", maximumFractionDigits: 1 }).format(Number(n) || 0);
+const LANG_COLORS = { C: "#555555", "C++": "#f34b7d", "C#": "#178600", JavaScript: "#f1e05a", TypeScript: "#3178c6", Python: "#3572A5", Rust: "#dea584", Go: "#00ADD8", HTML: "#e34c26", CSS: "#563d7c", Shell: "#89e051", Assembly: "#6E4C13", Java: "#b07219", Kotlin: "#A97BFF", Lua: "#000080", Makefile: "#427819", Batchfile: "#C1F12E", PowerShell: "#012456", Dart: "#00B4AB", Swift: "#F05138" };
+const langColor = l => LANG_COLORS[l] || "var(--muted)";
 const fmtDate = d => (isDate(d) ? new Date(d).toLocaleDateString(lang === "th" ? "th-TH" : "en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—");
 
 const SORTS = {
@@ -134,10 +144,13 @@ const SORTS = {
   release: (a, b) => (latest(b)?.date || "").localeCompare(latest(a)?.date || "") || cmp(a.name, b.name),
   updated: (a, b) => (b.updated || "").localeCompare(a.updated || "") || cmp(a.name, b.name),
   category: (a, b) => cmp(catOf(a), catOf(b)) || cmp(a.name, b.name),
+  downloads: (a, b) => (b.downloads ?? 0) - (a.downloads ?? 0) || cmp(a.name, b.name),
 };
 
 /* ---------- State (persisted per device) ---------- */
 let data = [], mine = store.get("mine", []), pins = store.get("pins", []);
+// Local edits to shared projects: { repoKey: { name?, description?, category? } } — this device only
+let over = store.get("over", {});
 let seen = store.get("seen2", null);              // { repoKey: lastSeenTag } — null means first visit
 let theme = store.get("theme", "auto");
 let avatars = store.get("avatars", true);
@@ -149,7 +162,9 @@ let tab = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "proj
 let editingKey = null;
 
 const saveView = () => store.set("view", { cat, sort, view });
-const all = () => [...data, ...mine.filter(m => !data.some(d => key(d) === key(m)))];
+// Shared project + this device's edits on top (original kept in _orig for "Restore original")
+const withEdits = p => (over[key(p)] ? { ...p, ...over[key(p)], _orig: p, _edited: true } : p);
+const all = () => [...data.map(withEdits), ...mine.filter(m => !data.some(d => key(d) === key(m)))];
 const isMine = p => !data.some(d => key(d) === key(p)) && mine.some(m => key(m) === key(p));
 const isPinned = p => pins.includes(key(p));
 // "Unseen" = the newest tag differs from the one this device last saw (or the project is new to the list)
@@ -203,16 +218,18 @@ function badges(p) {
   else if (isActive(p)) b.push(`<span class="badge upd">${esc(t("updated"))}</span>`);
   if (p.archived) b.push(`<span class="badge arch">${esc(t("archived"))}</span>`);
   if (isMine(p)) b.push(`<span class="badge mine">${esc(t("mine"))}</span>`);
+  else if (p._edited) b.push(`<span class="badge mine">${ICON.pen}${esc(t("edited"))}</span>`);
   return b.length ? `<div class="badges">${b.join("")}</div>` : "";
 }
 
 function actions(p, compact) {
   return `<span class="acts">
     <button class="act readme" data-a="readme">${compact ? ICON.book : ICON.book + esc(t("readme"))}</button>
-    <button class="act assets" data-a="assets">${compact ? ICON.box : ICON.box + esc(t("assets"))}</button>
+    <button class="act assets" data-a="assets">${compact ? ICON.box : ICON.box + esc(t("assets"))}${!compact && latest(p)?.assets ? `<span class="act-n">${latest(p).assets}</span>` : ""}</button>
     <button class="act commits" data-a="commits" aria-label="${esc(t("commits"))}" title="${esc(t("commits"))}">${ICON.commit}</button>
     <button class="act copy" data-a="copy" aria-label="${esc(t("copyLink"))}" title="${esc(t("copyLink"))}">${ICON.link}</button>
-    ${isMine(p) ? `<button class="act edit" data-a="edit">${esc(t("edit"))}</button><button class="act rm" data-a="rm">${esc(t("remove"))}</button>` : ""}
+    ${compact ? `<button class="act copy" data-a="edit" aria-label="${esc(t("edit"))}" title="${esc(t("edit"))}">${ICON.pen}</button>` : ""}
+    ${isMine(p) ? `<button class="act rm" data-a="rm">${esc(t("remove"))}</button>` : ""}
   </span>`;
 }
 
@@ -222,12 +239,25 @@ function card(p) {
   <div class="head"><div class="id">${avatar(p)}<div class="id-t">
       <a class="name" href="${esc(safeUrl(p.url))}" title="${esc(p.name)}">${esc(p.name)}</a>
       <span class="author">${esc(owner(p))}${l ? ` · ${esc(ago(l.date))}` : ""}</span></div></div>
-    <button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></div>
+    <span class="head-acts"><button class="pin edit-ic" data-a="edit" aria-label="${esc(t("edit"))}" title="${esc(t("edit"))}">${ICON.pen}</button><button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></span></div>
   ${badges(p)}
   ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
-  <div class="foot"><span class="stat"><span class="tag" style="--cc:${esc(catColor(c))}">${esc(c)}</span><span><b>★</b> ${Number(p.stars) || 0}</span></span>
+  ${tab === "latest" && l?.notes ? `<div class="notes-pv"><strong>${esc(l.title || l.tag)}</strong><p>${esc(l.notes)}</p></div>` : ""}
+  ${metaLine(p)}
+  <div class="foot"><span class="stat"><span class="tag" style="--cc:${esc(catColor(c))}">${esc(c)}</span><span title="${esc(t("colStars"))}"><b>★</b> ${fmtNum(p.stars)}</span>${p.downloads ? `<span title="${esc(t("colDownloads"))}">↓ ${fmtNum(p.downloads)}</span>` : ""}</span>
     ${actions(p, false)}</div>
 </article>`;
+}
+
+// Language · license · forks · topics (only shown when update.mjs provided them)
+function metaLine(p) {
+  const bits = [];
+  if (p.language) bits.push(`<span class="lang" style="--lc:${esc(langColor(p.language))}">${esc(p.language)}</span>`);
+  if (p.license) bits.push(`<span>${esc(p.license)}</span>`);
+  if (p.forks) bits.push(`<span>${fmtNum(p.forks)} ${esc(t("forks"))}</span>`);
+  if (p.homepage) bits.push(`<a class="hp" href="${esc(safeUrl(p.homepage))}">${esc(t("website"))} ↗</a>`);
+  const topics = (p.topics || []).slice(0, 4).map(x => `<button class="topic" data-a="topic" data-topic="${esc(x)}">#${esc(x)}</button>`).join("");
+  return bits.length || topics ? `<div class="meta-line">${bits.join("")}${topics}</div>` : "";
 }
 
 function table(list) {
@@ -239,13 +269,15 @@ function table(list) {
       <td>${badges(p) || `<span class="num">${esc(t("noRelease"))}</span>`}</td>
       <td class="num">${l ? esc(ago(l.date)) : "—"}</td>
       <td class="num">${esc(ago(p.updated))}</td>
-      <td class="num">★ ${Number(p.stars) || 0}</td>
+      <td class="num">${p.language ? `<span class="lang" style="--lc:${esc(langColor(p.language))}">${esc(p.language)}</span>` : "—"}</td>
+      <td class="num">★ ${fmtNum(p.stars)}</td>
+      <td class="num">${p.downloads ? "↓ " + fmtNum(p.downloads) : "—"}</td>
       <td><button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></td>
       <td>${actions(p, true)}</td></tr>`;
   }).join("");
   return `<div class="tbl-wrap"><table class="tbl"><thead><tr>
     <th>${esc(t("colProject"))}</th><th>${esc(t("colCategory"))}</th><th>${esc(t("colRelease"))}</th><th>${esc(t("colReleased"))}</th>
-    <th>${esc(t("colUpdated"))}</th><th>${esc(t("colStars"))}</th><th></th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    <th>${esc(t("colUpdated"))}</th><th>${esc(t("colLang"))}</th><th>${esc(t("colStars"))}</th><th>${esc(t("colDownloads"))}</th><th></th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 /* ---------- Rendering: categories, stats, list ---------- */
@@ -271,6 +303,9 @@ function drawStats() {
     { k: "statActive", v: list.filter(isActive).length, go: "updated", c: "var(--accent)" },
     { k: "statNew", v: un, go: "latest", c: "var(--beta)" },
   ];
+  const dl = list.reduce((n, p) => n + (Number(p.downloads) || 0), 0);
+  if (dl) s.push({ k: "statDownloads", v: fmtNum(dl), go: "downloads", c: "var(--star)" });
+  $("stats").style.setProperty("--n", s.length);
   $("stats").innerHTML = s.map(x => `<button class="stat-card" data-go="${x.go}" ${x.c ? `style="--sc:${x.c}"` : ""}><p>${esc(t(x.k))}</p><b>${x.v}</b></button>`).join("");
   // Badges on bell + tabs
   const pc = pins.length;
@@ -279,7 +314,7 @@ function drawStats() {
 }
 
 const matches = (p, words) => {
-  const hay = [p.name, owner(p), p.category, p.description, p.stable?.tag, p.pre?.tag].join(" ").toLowerCase();
+  const hay = [p.name, owner(p), p.category, p.description, p.stable?.tag, p.pre?.tag, p.language, ...(p.topics || [])].join(" ").toLowerCase();
   return words.every(w => hay.includes(w));
 };
 
@@ -405,7 +440,7 @@ async function showReadme(p) {
   // raw.githubusercontent.com does not use the API quota; HEAD = default branch
   let text = null;
   for (const f of ["README.md", "readme.md", "Readme.md", "README.MD", "README"]) {
-    try { const r = await fetch(`https://raw.githubusercontent.com/${pr.o}/${pr.r}/HEAD/${f}`); if (r.ok) { text = await r.text(); break; } } catch {}
+    try { const r = await fetch(`https://raw.githubusercontent.com/${pr.o}/${pr.r}/${encodeURIComponent(p.branch || "HEAD")}/${f}`); if (r.ok) { text = await r.text(); break; } } catch {}
   }
   if (text == null) { $("reader-body").innerHTML = failBox(t("noReadme")); return; }
   copyText = text; // copy button copies the markdown
@@ -457,6 +492,7 @@ $("reader-body").addEventListener("click", e => { const b = e.target.closest("[d
 $("rows").addEventListener("click", e => {
   const btn = e.target.closest("[data-a]"); if (!btn) return;
   if (btn.dataset.a === "clear") { $("q").value = ""; cat = ""; saveView(); markCats(); render(); return; }
+  if (btn.dataset.a === "topic") { $("q").value = btn.dataset.topic; render(); scrollTo(0, 0); return; }
   const el = btn.closest("[data-k]"); if (!el) return;
   const p = all().find(x => key(x) === el.dataset.k); if (!p) return;
   switch (btn.dataset.a) {
@@ -494,7 +530,7 @@ $$("button[data-tab]").forEach(b => (b.onclick = () => setTab(b.dataset.tab)));
 $("bell").onclick = () => setTab("latest");
 $("stats").addEventListener("click", e => {
   const b = e.target.closest("[data-go]"); if (!b) return;
-  if (b.dataset.go === "updated") { sort = "updated"; $("sort").value = sort; saveView(); setTab("projects"); }
+  if (b.dataset.go === "updated" || b.dataset.go === "downloads") { sort = b.dataset.go; $("sort").value = sort; saveView(); setTab("projects"); }
   else setTab(b.dataset.go);
 });
 $("seen").onclick = () => { markSeen(data); refresh(); };
@@ -517,40 +553,82 @@ const parseRepo = s => {
 };
 async function fetchRepo(o, r) {
   const j = await gh(`/repos/${o}/${r}`);
-  return { name: j.name, url: j.html_url, description: j.description || "", stars: j.stargazers_count, updated: (j.pushed_at || "").slice(0, 10), archived: !!j.archived, fetched: Date.now() };
+  return {
+    name: j.name, ghName: j.name, url: j.html_url, description: j.description || "", ghDesc: j.description || "",
+    stars: j.stargazers_count, updated: (j.pushed_at || "").slice(0, 10), archived: !!j.archived,
+    language: j.language || "", topics: (j.topics || []).slice(0, 6), branch: j.default_branch || "", fetched: Date.now(),
+  };
 }
 const dlg = $("add");
 const say = (text, err) => { $("msg").textContent = text; $("msg").className = "msg" + (err ? " err" : ""); };
+const clip = (s, n) => String(s || "").trim().slice(0, n);
+let editing = null; // null = adding; otherwise { k, shared, p }
 
-$("open-add").onclick = () => {
-  editingKey = null;
-  $("dlg-title").textContent = t("addTitle"); $("do-add").textContent = t("addMine");
-  $("repo").value = ""; say(""); dlg.showModal(); $("repo").focus();
-};
-function openEditDialog(p) {
-  editingKey = key(p);
-  $("dlg-title").textContent = `${t("editTitle")}: ${p.name}`; $("do-add").textContent = t("saveChanges");
-  $("repo").value = p.url; $("add-cat").value = catOf(p);
-  say(""); dlg.showModal(); $("repo").focus();
+function openDialog(mode, p) {
+  editing = mode === "add" ? null : { k: key(p), shared: !isMine(p), p };
+  const shared = !!editing?.shared;
+  $("dlg-title").textContent = editing ? `${t("editTitle")}: ${p.name}` : t("addTitle");
+  $("do-add").textContent = editing ? t("saveChanges") : t("addMine");
+  // Pre-fill with the current values so nothing has to be retyped
+  $("repo").value = editing ? p.url : "";
+  $("repo").readOnly = shared;                 // a shared project's link comes from projects.json
+  $("f-name").value = editing ? p.name : "";
+  $("f-desc").value = editing ? p.description || "" : "";
+  $("add-cat").value = editing ? catOf(p) : "Other";
+  $("do-share").hidden = shared;
+  $("do-revert").hidden = !(shared && p._edited);
+  say(shared ? t("editHintShared") : "");
+  dlg.showModal();
+  const f = editing ? $("f-name") : $("repo");
+  f.focus(); if (editing) f.select();
 }
+$("open-add").onclick = () => openDialog("add");
+const openEditDialog = p => openDialog("edit", p);
+
 $("do-add").onclick = async () => {
+  const name = clip($("f-name").value, 80), description = clip($("f-desc").value, 400);
+  const category = $("add-cat").value || "Other";
+
+  // 1) Shared project → store only what differs from the original, on this device
+  if (editing?.shared) {
+    const orig = data.find(d => key(d) === editing.k); if (!orig) return dlg.close();
+    const o = {};
+    if (name && name !== orig.name) o.name = name;
+    if (description !== (orig.description || "") && description) o.description = description;
+    if (category !== catOf(orig)) o.category = category;
+    if (Object.keys(o).length) over[editing.k] = o; else delete over[editing.k];
+    store.set("over", over); drawCats(); refresh(); dlg.close(); toast(t("updatedOk"));
+    return;
+  }
+
+  // 2) My own list → add new, or edit (re-fetch from GitHub only if the link changed)
   const pr = parseRepo($("repo").value);
   if (!pr) return say(t("validLink"), true);
-  $("do-add").disabled = true; say(t("fetching"));
+  const old = editing ? mine.find(m => key(m) === editing.k) : null;
+  const sameRepo = old && parseRepo(old.url)?.o.toLowerCase() === pr.o.toLowerCase() && parseRepo(old.url)?.r.toLowerCase() === pr.r.toLowerCase();
+  $("do-add").disabled = true;
   try {
-    const info = await fetchRepo(pr.o, pr.r);
-    const category = $("add-cat").value || "Other";
-    if (editingKey) {
-      mine = mine.map(m => (key(m) === editingKey ? { ...m, ...info, category } : m));
+    let info = old;
+    if (!sameRepo) { say(t("fetching")); info = await fetchRepo(pr.o, pr.r); }
+    if (!editing || !sameRepo) { if (all().some(p => key(p) === key(info) && key(p) !== editing?.k)) throw new Error(t("exists")); }
+    const ghName = info.ghName || info.name, ghDesc = info.ghDesc ?? info.description ?? "";
+    // Typed name wins; empty → GitHub name. If the link changed but the name was left as before, use the new repo's name.
+    const keepOldName = editing && !sameRepo && name === old.name;
+    const item = { ...info, ghName, ghDesc, category,
+      name: name && !keepOldName ? name : ghName,
+      description: description && !(editing && !sameRepo && description === old.description) ? description : ghDesc };
+    if (editing) {
+      mine = mine.map(m => (key(m) === editing.k ? item : m));
+      if (editing.k !== key(item)) pins = pins.map(k => (k === editing.k ? key(item) : k));
       toast(t("updatedOk"));
-    } else {
-      if (all().some(p => key(p) === key(info))) throw new Error(t("exists"));
-      mine.push({ ...info, category });
-      toast(t("addedOk"));
-    }
-    store.set("mine", mine); drawCats(); refresh(); dlg.close();
+    } else { mine.push(item); toast(t("addedOk")); }
+    store.set("mine", mine); store.set("pins", pins); drawCats(); refresh(); dlg.close();
   } catch (err) { say(err.message, true); }
   $("do-add").disabled = false;
+};
+$("do-revert").onclick = () => {
+  if (!editing) return;
+  delete over[editing.k]; store.set("over", over); drawCats(); refresh(); dlg.close(); toast(t("reverted"));
 };
 // FIX: the GitHub workflow only reacts to titles starting with "Add project:" and
 // reads "repo:" / "category:" lines from the body — the old "Add: ..." title never matched.
@@ -575,7 +653,7 @@ $("set-theme").onclick = e => { const b = e.target.closest("[data-th]"); if (!b)
 $("set-av").onclick = e => { const b = e.target.closest("[data-av]"); if (!b) return; avatars = b.dataset.av === "1"; store.set("avatars", avatars); syncSettings(); render(); };
 
 $("do-export").onclick = () => {
-  const blob = new Blob([JSON.stringify({ app: "ps5links", v: 1, mine, pins }, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify({ app: "ps5links", v: 2, mine, pins, over }, null, 2)], { type: "application/json" });
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "ps5links-backup.json", target: "_self" });
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
@@ -586,9 +664,19 @@ $("do-import").onchange = async e => {
     if (j.app !== "ps5links" || !Array.isArray(j.mine) || !Array.isArray(j.pins)) throw 0;
     // Keep only well-formed GitHub entries from the file (never trust imported data)
     mine = j.mine.filter(m => m && typeof m.name === "string" && /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/i.test(m.url || ""))
-      .map(m => ({ name: m.name, url: m.url, description: String(m.description || ""), category: String(m.category || "Other"), stars: Number(m.stars) || 0, updated: String(m.updated || "") }));
+      .map(m => ({ name: clip(m.name, 80), ghName: clip(m.ghName || m.name, 100), url: m.url, description: clip(m.description, 400), ghDesc: clip(m.ghDesc ?? m.description, 400), category: clip(m.category || "Other", 30) || "Other", stars: Number(m.stars) || 0, updated: String(m.updated || "").slice(0, 10) }));
     pins = j.pins.filter(k => typeof k === "string");
-    store.set("mine", mine); store.set("pins", pins); drawCats(); refresh(); toast(t("imported"));
+    // Local edits: keep only text fields, trimmed to sane lengths
+    over = {};
+    for (const [k, v] of Object.entries(j.over && typeof j.over === "object" ? j.over : {})) {
+      if (!/^https:\/\/github\.com\//.test(k) || !v || typeof v !== "object") continue;
+      const o = {};
+      if (typeof v.name === "string" && v.name.trim()) o.name = clip(v.name, 80);
+      if (typeof v.description === "string" && v.description.trim()) o.description = clip(v.description, 400);
+      if (typeof v.category === "string" && v.category.trim()) o.category = clip(v.category, 30);
+      if (Object.keys(o).length) over[k] = o;
+    }
+    store.set("mine", mine); store.set("pins", pins); store.set("over", over); drawCats(); refresh(); toast(t("imported"));
   } catch { toast(t("importFail")); }
 };
 $("do-reset").onclick = () => {
@@ -596,6 +684,10 @@ $("do-reset").onclick = () => {
   Object.keys(localStorage).filter(k => k.startsWith("ps5l.")).forEach(k => localStorage.removeItem(k));
   location.reload();
 };
+
+/* ---------- Back to top ---------- */
+addEventListener("scroll", () => { $("totop").hidden = scrollY < 700; }, { passive: true });
+$("totop").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
 
 /* ---------- Init ---------- */
 applyI18n(); applyTheme();
