@@ -26,7 +26,7 @@
     },
     "pre": null,
     "updated": "2026-10-15",
-    "stars": 406,
+    "stars": 408,
     "archived": false
   },
   {
@@ -41,7 +41,7 @@
       "date": "2026-10-14"
     },
     "updated": "2026-10-15",
-    "stars": 680,
+    "stars": 682,
     "archived": false
   },
   {
@@ -56,7 +56,7 @@
     },
     "pre": null,
     "updated": "2026-10-15",
-    "stars": 119,
+    "stars": 120,
     "archived": false
   },
   {
@@ -90,7 +90,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-13",
-    "stars": 57,
+    "stars": 58,
     "archived": false
   },
   {
@@ -105,7 +105,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 402,
+    "stars": 406,
     "archived": false
   },
   {
@@ -120,7 +120,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-10",
-    "stars": 937,
+    "stars": 945,
     "archived": false
   },
   {
@@ -135,7 +135,7 @@
     },
     "pre": null,
     "updated": "2026-09-23",
-    "stars": 726,
+    "stars": 729,
     "archived": false
   },
   {
@@ -165,7 +165,7 @@
     },
     "pre": null,
     "updated": "2026-10-05",
-    "stars": 81,
+    "stars": 82,
     "archived": false
   },
   {
@@ -180,7 +180,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 543,
+    "stars": 548,
     "archived": false
   },
   {
@@ -210,7 +210,7 @@
     },
     "pre": null,
     "updated": "2026-10-08",
-    "stars": 1047,
+    "stars": 1052,
     "archived": false
   },
   {
@@ -240,7 +240,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 8420,
+    "stars": 8445,
     "archived": false
   },
   {
@@ -255,7 +255,7 @@
       "date": "2026-10-15"
     },
     "updated": "2026-10-15",
-    "stars": 320,
+    "stars": 321,
     "archived": false
   },
   {
@@ -280,7 +280,7 @@
     },
     "pre": null,
     "updated": "2026-09-28",
-    "stars": 188,
+    "stars": 189,
     "archived": false
   },
   {
@@ -310,7 +310,7 @@
     },
     "pre": null,
     "updated": "2026-10-09",
-    "stars": 362,
+    "stars": 364,
     "archived": false
   },
   {
@@ -319,17 +319,13 @@
     "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
     "category": "PC Tool",
     "stable": {
-      "tag": "v7.0.22",
-      "url": "https://github.com/phantomptr/ps5upload/releases/tag/v7.0.22",
-      "date": "2026-10-12"
-    },
-    "pre": {
       "tag": "v7.0.23",
       "url": "https://github.com/phantomptr/ps5upload/releases/tag/v7.0.23",
       "date": "2026-10-15"
     },
+    "pre": null,
     "updated": "2026-10-15",
-    "stars": 700,
+    "stars": 701,
     "archived": false
   },
   {
@@ -404,7 +400,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 1246,
+    "stars": 1250,
     "archived": false
   },
   {
@@ -464,7 +460,7 @@
     },
     "pre": null,
     "updated": "2026-10-11",
-    "stars": 143,
+    "stars": 144,
     "archived": false
   },
   {
@@ -479,7 +475,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 271,
+    "stars": 277,
     "archived": false
   },
   {
@@ -569,7 +565,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 849,
+    "stars": 857,
     "archived": false
   },
   {
@@ -618,7 +614,7 @@
       "date": "2026-10-14"
     },
     "updated": "2026-10-14",
-    "stars": 836,
+    "stars": 844,
     "archived": false
   },
   {
@@ -648,7 +644,7 @@
     },
     "pre": null,
     "updated": "2026-09-30",
-    "stars": 181,
+    "stars": 182,
     "archived": false
   },
   {
@@ -678,7 +674,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 153,
+    "stars": 157,
     "archived": false
   },
   {
@@ -738,7 +734,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 145,
+    "stars": 147,
     "archived": false
   },
   {
@@ -753,7 +749,7 @@
     },
     "pre": null,
     "updated": "2026-10-04",
-    "stars": 560,
+    "stars": 561,
     "archived": false
   },
   {
@@ -798,7 +794,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 192,
+    "stars": 191,
     "archived": false
   },
   {
@@ -828,7 +824,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 480,
+    "stars": 484,
     "archived": false
   },
   {
@@ -837,7 +833,7 @@
     "description": "The most complete cheats collection for the PS4 and PS5 with interactive cheats index",
     "category": "Cheats",
     "pre": null,
-    "updated": "2026-10-14",
+    "updated": "2026-10-15",
     "stars": 247,
     "archived": false
   },
@@ -868,7 +864,7 @@
     },
     "pre": null,
     "updated": "2026-10-06",
-    "stars": 193,
+    "stars": 194,
     "archived": false
   },
   {
