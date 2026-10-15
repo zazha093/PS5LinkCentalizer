@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+<title>PS5 Links</title>
+<link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <button class="ibtn" id="open-add" aria-label="Add a project"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  <select class="field" id="cat" aria-label="Category"></select>
+  <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="q" type="search" placeholder="Search projects, authors, tags" aria-label="Search" enterkeyhint="search"></label>
+</div></header>
+
+<main class="wrap">
+  <div class="meta"><h1 class="title" id="title">PS5 Links</h1>
+    <select id="sort" aria-label="Sort"><option value="name">Name A–Z</option><option value="stars">Most starred</option><option value="category">Category</option></select>
+    <button class="btn small" id="seen" hidden>Mark all seen</button>
+  </div>
+  <p class="sr" id="count" aria-live="polite"></p>
+  <section id="rows" class="cards"><div class="empty">Loading…</div></section>
+  <footer>
+    <p><strong>Disclaimer:</strong> this is only a link index. Not affiliated with, and not responsible for, any listed project. All belong to their respective authors and are used at your own risk.</p>
+    <p><a href="https://github.com/pedrohti/PS5LinkCentalizer#disclaimer">Full disclaimer</a></p>
+  </footer>
+</main>
+
+<nav class="tabs" aria-label="Sections"><div class="wrap">
+  <button class="tab" id="t-projects" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Projects</button>
+  <button class="tab" id="t-pinned" aria-current="false"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Pinned<span class="count" id="pc" hidden></span></button>
+  <button class="tab" id="t-latest" aria-current="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Latest</button>
+  <a class="tab" href="offline.html" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg>Offline</a>
+</div></nav>
+
+<dialog id="add"><div class="sheet">
+  <h2>Add a project</h2>
+  <input id="repo" type="text" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="github.com/owner/name" aria-label="GitHub link">
+  <select class="field" id="add-cat" aria-label="Category"></select>
+  <p class="msg" id="msg" aria-live="polite"></p>
+  <button class="btn primary" id="do-add">Add to my list</button>
+  <button class="btn" id="do-share">Submit to the shared list</button>
+  <p class="hint">My list checks GitHub live and is saved on this device only. The shared list opens a GitHub issue; after you tap Submit, the bot adds it for everyone.</p>
+</div></dialog>
+
+<dialog id="edit"><div class="sheet">
+  <h2>Edit project</h2>
+  <input id="e-name" type="text" autocomplete="off" aria-label="Name">
+  <input id="e-icon" type="text" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="Icon: image link or emoji (optional)" aria-label="Icon">
+  <p class="msg err" id="e-msg" aria-live="polite"></p>
+  <button class="btn primary" id="e-save">Save</button>
+  <button class="btn" id="e-reset">Reset to original</button>
+  <p class="hint">Saved on this device only. With no icon set, the author's GitHub picture is used. To rename for everyone, add a "name" field to the entry in projects.json.</p>
+</div></dialog>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+const cmp = new Intl.Collator("en", { numeric: true, sensitivity: "base" }).compare;
+const REPO = "zazha093/PS5LinkCentalizer";
+const STAR = '<svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>';
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem("ps5l." + k)) ?? d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("ps5l." + k, JSON.stringify(v)); } catch {} },
+};
+
+const owner = p => p.url.split("/")[3] || "";
+const key = p => p.url.toLowerCase();
+const latest = p => [p.stable, p.pre].filter(Boolean).sort((a, b) => b.date.localeCompare(a.date))[0];
+const relKey = p => { const l = latest(p); return l ? `${l.tag}|${l.date}` : ""; };
+const days = d => (Date.now() - new Date(d)) / 864e5;
+const ago = d => { const n = Math.floor(days(d));
+  return n <= 0 ? "today" : n === 1 ? "yesterday" : n < 14 ? `${n} days ago` : n < 60 ? `${Math.floor(n / 7)} weeks ago` : n < 730 ? `${Math.floor(n / 30)} months ago` : `${Math.floor(n / 365)} years ago`; };
+const btn = (v, k, l) => v ? `<a class="act ${k}" href="${esc(v.url)}">${l} ${esc(v.tag)}</a>` : "";
+
+const edits = store.get("edits", {});
+const dname = p => edits[key(p)]?.name || p.name;
+const hue = t => Math.abs([...t].reduce((a, c) => (a * 31 + c.charCodeAt(0)) | 0, 7)) % 360;
+const logo = p => {
+  const ic = edits[key(p)]?.icon, o = owner(p) || p.name;
+  const ph = `<span class="logo ph" style="--h:${hue(o)}">${esc([...dname(p)][0]?.toUpperCase() || "?")}</span>`;
+  if (ic && !/^https?:\/\//i.test(ic)) return `<span class="logo">${esc([...ic].slice(0, 2).join(""))}</span>`;
+  const src = ic || `https://github.com/${encodeURIComponent(o)}.png?size=96`;
+  return `<img class="logo" src="${esc(src)}" alt="" loading="lazy" referrerpolicy="no-referrer" data-ph="${esc(ph)}">`;
+};
+const EDIT = '<button class="act ed" aria-label="Edit name and icon"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></svg></button>';
+let data = [], mine = store.get("mine", []), pins = store.get("pins", []), seen = store.get("seen", {});
+let tab = ["pinned", "latest"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "projects";
+
+const all = () => [...data, ...mine.filter(m => !data.some(d => key(d) === key(m)))];
+const isMine = p => !data.some(d => key(d) === key(p)) && mine.some(m => key(m) === key(p));
+const isPinned = p => pins.includes(key(p));
+const unseen = p => isPinned(p) && relKey(p) !== "" && seen[key(p)] !== relKey(p);
+const markSeen = p => { if (isPinned(p)) { seen[key(p)] = relKey(p); store.set("seen", seen); } };
+const pin = p => { if (!isPinned(p)) { pins.push(key(p)); seen[key(p)] = relKey(p); } store.set("pins", pins); store.set("seen", seen); };
+const unpin = p => { pins = pins.filter(k => k !== key(p)); delete seen[key(p)]; store.set("pins", pins); store.set("seen", seen); };
+
+const card = (p, when) => {
+  const l = latest(p), fresh = l && days(l.date) <= 7, up = unseen(p);
+  return `<article class="card${up ? " upd" : ""}" data-k="${esc(key(p))}">
+  <div class="head">${logo(p)}<div class="id"><a class="name" href="${esc(p.url)}">${esc(dname(p))}</a>
+    <span class="sub"><span class="author">${esc(owner(p))}</span>${up ? '<span class="badge upd">Updated</span>' : fresh ? '<span class="badge new">New</span>' : ""}${p.archived ? '<span class="badge old">Archived</span>' : ""}${isMine(p) ? '<span class="badge mine">Mine</span>' : ""}</span></div>
+    <button class="pin" aria-pressed="${isPinned(p)}" aria-label="${isPinned(p) ? "Unpin" : "Pin"} ${esc(dname(p))}">${STAR}</button></div>
+  ${when && l ? `<p class="when ${l === p.stable ? "stable" : "beta"}"><i></i>${l === p.stable ? "Stable" : "Beta"} ${esc(l.tag)} · ${ago(l.date)}</p>` : ""}
+  ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
+  <div class="foot"><span class="stat"><b>★</b> ${p.stars ?? 0}${p.category ? ` · ${esc(p.category)}` : ""}</span>
+    <span class="acts">${btn(p.stable, "stable", "Stable")}${btn(p.pre, "beta", "Beta")}<a class="act repo" href="${esc(p.url)}">Repo</a>${EDIT}${isMine(p) ? '<button class="act rm">Remove</button>' : ""}</span></div>
+</article>`;
+};
+
+function drawCats() {
+  const cats = [...new Set(all().map(p => p.category || "Other"))].sort(cmp), cur = $("cat").value;
+  $("cat").innerHTML = `<option value="">All categories (${all().length})</option>` +
+    cats.map(c => `<option value="${esc(c)}">${esc(c)} (${all().filter(p => (p.category || "Other") === c).length})</option>`).join("");
+  $("cat").value = cats.includes(cur) ? cur : "";
+  $("add-cat").innerHTML = [...new Set([...cats, "Other"])].map(c => `<option>${esc(c)}</option>`).join("");
+  $("add-cat").value = "Other";
+}
+
+function render() {
+  const s = $("q").value.trim().toLowerCase(), c = $("cat").value;
+  const n = all().filter(unseen).length;
+  $("pc").hidden = !n; $("pc").textContent = n;
+  document.title = (n ? `(${n}) ` : "") + "PS5 Links";
+  let list = all().filter(p => (!c || (p.category || "Other") === c) &&
+    [p.name, dname(p), owner(p), p.category, p.description, p.stable?.tag, p.pre?.tag].join(" ").toLowerCase().includes(s));
+  if (tab === "latest") list = list.filter(latest).sort((a, b) => latest(b).date.localeCompare(latest(a).date));
+  else if (tab === "pinned") list = list.filter(isPinned).sort((a, b) => unseen(b) - unseen(a) || cmp(dname(a), dname(b)));
+  else {
+    const k = $("sort").value;
+    list.sort((a, b) => k === "stars" ? (b.stars ?? 0) - (a.stars ?? 0) : k === "category" ? cmp(a.category || "", b.category || "") || cmp(dname(a), dname(b)) : cmp(dname(a), dname(b)));
+  }
+  $("title").textContent = { projects: "PS5 Links", pinned: "Pinned", latest: "Latest releases" }[tab];
+  $("sort").hidden = tab !== "projects";
+  $("seen").hidden = !(tab === "pinned" && n);
+  for (const t of ["projects", "pinned", "latest"]) $("t-" + t).setAttribute("aria-current", t === tab ? "page" : "false");
+  $("count").textContent = `${list.length} projects`;
+  $("rows").innerHTML = list.length ? list.map(p => card(p, tab !== "projects")).join("")
+    : tab === "pinned" && !pins.length ? `<div class="empty"><p>Nothing pinned yet.<br>Tap the star on a project to follow its releases.</p></div>`
+    : `<div class="empty"><p>No projects match.</p><button id="reset">Clear filters</button></div>`;
+  if ($("reset")) $("reset").onclick = () => { $("q").value = ""; $("cat").value = ""; render(); };
+}
+
+// ---- card actions (pin, remove, mark seen when opening a release) ----
+$("rows").addEventListener("click", e => {
+  const art = e.target.closest(".card"); if (!art) return;
+  const p = all().find(x => key(x) === art.dataset.k); if (!p) return;
+  if (e.target.closest(".pin")) { isPinned(p) ? unpin(p) : pin(p); render(); }
+  else if (e.target.closest(".ed")) openEdit(p);
+  else if (e.target.closest(".rm")) {
+    if (confirm(`Remove ${dname(p)} from your list?`)) { mine = mine.filter(m => key(m) !== key(p)); store.set("mine", mine); unpin(p); drawCats(); render(); }
+  } else if (e.target.closest("a") && unseen(p)) { markSeen(p); setTimeout(render, 300); }
+});
+$("seen").onclick = () => { all().filter(unseen).forEach(markSeen); render(); };
+
+// ---- tabs and filters ----
+$("q").oninput = $("cat").onchange = $("sort").onchange = render;
+for (const t of ["projects", "pinned", "latest"]) $("t-" + t).onclick = () => {
+  if (tab === t) return scrollTo({ top: 0, behavior: "smooth" });
+  tab = t; history.replaceState(null, "", t === "projects" ? location.pathname : "#" + t); render(); scrollTo(0, 0);
+};
+
+// ---- edit name / icon ----
+$("rows").addEventListener("error", e => { if (e.target.matches?.("img.logo")) e.target.outerHTML = e.target.dataset.ph; }, true);
+let editing = null;
+const dlgE = $("edit"), emsg = t => $("e-msg").textContent = t;
+function openEdit(p) {
+  editing = p; emsg("");
+  $("e-name").value = edits[key(p)]?.name || ""; $("e-name").placeholder = p.name;
+  $("e-icon").value = edits[key(p)]?.icon || "";
+  dlgE.showModal(); $("e-name").focus();
+}
+const saveEdits = () => { store.set("edits", edits); dlgE.close(); render(); };
+$("e-save").onclick = () => {
+  const name = $("e-name").value.trim().slice(0, 60), icon = $("e-icon").value.trim().slice(0, 300);
+  if (icon && !/^https?:\/\//i.test(icon) && [...icon].length > 4) return emsg("Icon must be a link starting with https:// or a single emoji.");
+  const k = key(editing);
+  if (!name && !icon) delete edits[k]; else edits[k] = { ...(name && { name }), ...(icon && { icon }) };
+  saveEdits();
+};
+$("e-reset").onclick = () => { delete edits[key(editing)]; saveEdits(); };
+dlgE.onclick = e => { if (e.target === dlgE) dlgE.close(); };
+
+// ---- add a project ----
+const parseRepo = s => {
+  const m = s.trim().replace(/^https?:\/\//, "").replace(/^(www\.)?github\.com\//, "").match(/^([\w.-]+)\/([\w.-]+)/);
+  return m ? { o: m[1], r: m[2].replace(/\.git$/, "") } : null;
+};
+async function fetchRepo(o, r) {
+  const gh = u => fetch("https://api.github.com/" + u, { headers: { Accept: "application/vnd.github+json" } });
+  const res = await gh(`repos/${o}/${r}`);
+  if (res.status === 404) throw new Error("Repository not found. Check the link.");
+  if (res.status === 403 || res.status === 429) throw new Error("GitHub rate limit reached. Try again in a few minutes.");
+  if (!res.ok) throw new Error(`GitHub error ${res.status}.`);
+  const j = await res.json(), rr = await gh(`repos/${j.full_name}/releases?per_page=15`);
+  const rels = (rr.ok ? await rr.json() : []).filter(x => !x.draft);
+  const f = x => x && { tag: x.tag_name, url: x.html_url, date: (x.published_at || x.created_at || "").slice(0, 10) };
+  const stable = f(rels.find(x => !x.prerelease)) || null, pre0 = f(rels.find(x => x.prerelease));
+  return { name: j.name, url: j.html_url, description: j.description || "", stars: j.stargazers_count, archived: j.archived,
+    stable, pre: pre0 && (!stable || pre0.date > stable.date) ? pre0 : null, fetched: Date.now() };
+}
+const say = (t, err) => { $("msg").textContent = t; $("msg").className = "msg" + (err ? " err" : ""); };
+const dlg = $("add");
+$("open-add").onclick = () => { say(""); dlg.showModal(); $("repo").focus(); };
+dlg.onclick = e => { if (e.target === dlg) dlg.close(); };
+
+$("do-add").onclick = async () => {
+  const pr = parseRepo($("repo").value);
+  if (!pr) return say("Paste a GitHub link, like github.com/owner/name.", true);
+  const url = `https://github.com/${pr.o}/${pr.r}`.toLowerCase(), have = all().find(p => key(p) === url);
+  if (have) { pin(have); drawCats(); render(); dlg.close(); return; }
+  $("do-add").disabled = true; say("Checking GitHub…");
+  try {
+    mine.push({ ...(await fetchRepo(pr.o, pr.r)), category: $("add-cat").value || "Other" });
+    store.set("mine", mine); pin(mine[mine.length - 1]);
+    $("repo").value = ""; drawCats(); render(); dlg.close();
+  } catch (err) { say(err.message || "Could not reach GitHub.", true); }
+  $("do-add").disabled = false;
+};
+$("do-share").onclick = () => {
+  const pr = parseRepo($("repo").value);
+  if (!pr) return say("Paste a GitHub link, like github.com/owner/name.", true);
+  const name = `${pr.o}/${pr.r}`;
+  open(`https://github.com/${REPO}/issues/new?title=${encodeURIComponent("Add project: " + name)}&body=${encodeURIComponent(`repo: ${name}\ncategory: ${$("add-cat").value}`)}`);
+  say("GitHub opened. Tap “Submit new issue” to finish.");
+};
+
+// keep my own repos fresh (at most every 3 hours each)
+async function refreshMine() {
+  const stale = mine.filter(m => Date.now() - (m.fetched || 0) > 3 * 36e5).slice(0, 10);
+  if (!stale.length) return;
+  await Promise.all(stale.map(async m => { try { const [, , , o, r] = m.url.split("/"); Object.assign(m, await fetchRepo(o, r), { category: m.category }); } catch {} }));
+  store.set("mine", mine); render();
+}
+
+fetch("data.json").then(r => r.json()).then(d => { data = d; drawCats(); render(); refreshMine(); })
+  .catch(() => $("rows").innerHTML = `<div class="empty">Could not load data.json. Check your connection and reload.</div>`);
+</script>
+</body>
+</html>
