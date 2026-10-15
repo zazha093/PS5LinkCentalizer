@@ -86,7 +86,7 @@ footer p { margin:0 0 6px; } footer a { color:var(--accent); }
 .tab svg { font-size:23px; }
 .tab[aria-current=page] { color:var(--accent); }
 
-@media (min-width:720px) { .cards { grid-template-columns:1fr 1fr; } .top .wrap { grid-template-columns:48px 260px 1fr; } .search { grid-column:auto; } }
+@media (min-width:720px) { .cards { grid-template-columns:1fr 1fr; } .top .wrap { grid-template-columns:48px 48px 260px 1fr; } .search { grid-column:auto; } }
 @media (hover:hover) { .act:hover, .ibtn:hover { filter:brightness(1.2); } .name:hover { color:var(--accent); } }
 
 /* ---- Pins, update alerts, add sheet ---- */
