@@ -1,4 +1,6 @@
 // Reads projects.json, fetches repo info + latest stable/pre-release from GitHub, writes data.json.
+// v4: also stores language, topics, license, forks, issues, homepage, default branch,
+//     download counts, asset counts and a short release-notes preview (no extra API calls).
 // Repos that return 404 are moved from projects.json to offline.json (shown on offline.html).
 // Usage: node scripts/update.mjs   (set GITHUB_TOKEN to avoid the 60 req/h anonymous limit)
 import { readFile, writeFile } from "node:fs/promises";
@@ -20,11 +22,36 @@ async function gh(path) {
 const PRE = /alpha|beta|(?<![a-z])(rc|pre|dev|test)|nightly|canary|experimental|-[0-9a-f]{7,}$/i;
 const byVersionDesc = new Intl.Collator("en", { numeric: true }).compare;
 
+// Plain-text preview of release notes for the "Latest" view (Markdown/HTML stripped, ~280 chars)
+function excerpt(md = "", max = 280) {
+  const t = md
+    .replace(/```[\s\S]*?```/g, " ")            // code blocks
+    .replace(/<[^>]+>/g, " ")                     // HTML tags
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")         // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")       // links -> text
+    .replace(/^\s{0,3}(#{1,6}|>|[-*+]|\d+\.)\s+/gm, "") // headings, quotes, list markers
+    .replace(/[*_`~]+/g, "")                      // emphasis
+    .replace(/\s+/g, " ").trim();
+  return t.length > max ? t.slice(0, max - 1).trimEnd() + "…" : t;
+}
+// Notes often start by repeating the release title — drop it so the preview isn't redundant
+function dropLead(text, heads) {
+  for (const h of heads) if (h && text.toLowerCase().startsWith(h.toLowerCase())) return text.slice(h.length).replace(/^[\s:–—-]+/, "");
+  return text;
+}
+const sumDownloads = r => (r.assets ?? []).reduce((n, a) => n + (a.download_count ?? 0), 0);
+
 function fromReleases(releases) {
   let stable = null, pre = null;
   for (const r of releases) {
     if (r.draft) continue;
-    const v = { tag: r.tag_name, url: r.html_url, date: (r.published_at ?? "").slice(0, 10) };
+    const v = {
+      tag: r.tag_name, url: r.html_url, date: (r.published_at ?? "").slice(0, 10),
+      title: r.name && r.name !== r.tag_name ? r.name : "",
+      assets: r.assets?.length ?? 0,
+      downloads: sumDownloads(r),
+      notes: dropLead(excerpt(r.body ?? ""), [r.name, r.tag_name]),
+    };
     if (r.prerelease || PRE.test(r.tag_name)) pre ??= v;
     else stable ??= v;
   }
@@ -68,6 +95,8 @@ for (const p of projects) {
   if (!repo) { console.warn(`dead (404): ${p.repo}`); dead.push(p.repo); continue; }
   const releases = await gh(`/repos/${p.repo}/releases?per_page=30`);
   const { stable, pre } = releases?.length ? fromReleases(releases) : fromTags(repo.html_url);
+  // Downloads across the fetched releases (up to 30 newest)
+  const downloads = (releases ?? []).filter(r => !r.draft).reduce((n, r) => n + sumDownloads(r), 0);
   out.push({
     name: p.name ?? repo.name,
     url: repo.html_url,
@@ -78,6 +107,15 @@ for (const p of projects) {
     updated: repo.pushed_at.slice(0, 10),
     stars: repo.stargazers_count,
     archived: repo.archived,
+    // Extra fields (added in v4; the site works without them)
+    language: repo.language ?? "",
+    topics: (repo.topics ?? []).slice(0, 6),
+    license: repo.license?.spdx_id && repo.license.spdx_id !== "NOASSERTION" ? repo.license.spdx_id : "",
+    forks: repo.forks_count ?? 0,
+    issues: repo.open_issues_count ?? 0,
+    homepage: /^https:\/\//i.test(repo.homepage ?? "") ? repo.homepage : "",
+    branch: repo.default_branch ?? "",
+    downloads,
   });
   console.log(`${p.repo} -> ${stable?.tag ?? "-"} | ${pre?.tag ?? "-"}`);
 }
