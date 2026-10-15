@@ -10,7 +10,7 @@
       "date": "2026-03-31",
       "title": "",
       "assets": 5,
-      "downloads": 25449,
+      "downloads": 25451,
       "notes": "Special April 1st Release"
     },
     "pre": null,
@@ -24,7 +24,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 29312
+    "downloads": 29314
   },
   {
     "name": "onionHEN",
@@ -65,7 +65,7 @@
       "date": "2026-10-14",
       "title": "ProsperoEden v1.002.000",
       "assets": 2,
-      "downloads": 10374,
+      "downloads": 10375,
       "notes": "More free memory for demanding games. The console's memory is one pool shared by the emulated console, the emulator itself and the graphics, and part of it was held without being used. The emulated console's memory, the code caches and a reserve on the system's side now take mem…"
     },
     "updated": "2026-10-15",
@@ -78,7 +78,7 @@
     "issues": 54,
     "homepage": "",
     "branch": "main",
-    "downloads": 100105
+    "downloads": 100106
   },
   {
     "name": "ProsperoLight",
@@ -91,7 +91,7 @@
       "date": "2026-10-15",
       "title": "ProsperoLight 01.000.110",
       "assets": 2,
-      "downloads": 42,
+      "downloads": 44,
       "notes": "Stable: Punktfunk hosts, more box art, no wait before the stream New Punktfunk hosts: the decoder now reserves six pictures by default, so Punktfunk's GameStream stream (five reference frames) decodes on a release build. Before, it showed no picture. Streams from other hosts are…"
     },
     "pre": null,
@@ -105,7 +105,7 @@
     "issues": 2,
     "homepage": "",
     "branch": "main",
-    "downloads": 8067
+    "downloads": 8071
   },
   {
     "name": "ps5-fsr4",
@@ -180,7 +180,7 @@
       "date": "2026-08-04",
       "title": "nanoDNS 0.4",
       "assets": 2,
-      "downloads": 47120,
+      "downloads": 47122,
       "notes": "IPv6 support Quiet mode Yandex.DNS fix (remove old nanodns.ini) FW PS5 1.00-13.60, PS4 1.00-13.52"
     },
     "pre": null,
@@ -194,7 +194,7 @@
     "issues": 2,
     "homepage": "",
     "branch": "main",
-    "downloads": 101822
+    "downloads": 101824
   },
   {
     "name": "ShadowMountPlus",
@@ -221,7 +221,7 @@
     "issues": 17,
     "homepage": "https://discord.gg/x2Ppvzwjhm",
     "branch": "1.7",
-    "downloads": 274082
+    "downloads": 274084
   },
   {
     "name": "kstuff-lite",
@@ -451,7 +451,7 @@
     "issues": 799,
     "homepage": "",
     "branch": "main",
-    "downloads": 89686
+    "downloads": 89703
   },
   {
     "name": "PS5_RetroArch",
@@ -563,7 +563,7 @@
       "date": "2026-10-09",
       "title": "Pegasus DL 1.11.0",
       "assets": 1,
-      "downloads": 5512,
+      "downloads": 5516,
       "notes": "Parallel downloads now use persistent connections and write ranges directly into the temporary file, avoiding a final segment-copy pass. New configurations default to 16 connections, with a single-stream fallback for incompatible hosts. RAR/RAR5 and 7z archive cache downloads us…"
     },
     "pre": null,
@@ -577,7 +577,7 @@
     "issues": 33,
     "homepage": "",
     "branch": "main",
-    "downloads": 39071
+    "downloads": 39075
   },
   {
     "name": "ps5upload",
@@ -590,7 +590,7 @@
       "date": "2026-10-15",
       "title": "",
       "assets": 21,
-      "downloads": 6289,
+      "downloads": 6293,
       "notes": "Payload Manager 0.6 works again (#458). 0.6 refuses changes without its request marker and wants POST for launch and delete, and keeps payloads in slots. The fallback launch, storing, deleting and \"Load at boot\" now work with 0.6.1 as well as 0.5.2. Games is smooth with a big li…"
     },
     "pre": null,
@@ -608,7 +608,7 @@
     "issues": 7,
     "homepage": "https://discord.gg/fzK3xddtrM",
     "branch": "main",
-    "downloads": 172643
+    "downloads": 172647
   },
   {
     "name": "poopicker",
@@ -621,7 +621,7 @@
       "date": "2026-08-29",
       "title": "poopicker-host 2026.08.29",
       "assets": 3,
-      "downloads": 10127,
+      "downloads": 10129,
       "notes": "poopicker-host.exe - the offline DNS + HTTP/HTTPS host, one file, no install. Run it elevated, point the console's DNS at the PC, open any address in the console browser. Any unknown hostname serves the poopicker page, so a stale bookmark lands on the index instead of an error.…"
     },
     "pre": null,
@@ -635,7 +635,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 10127
+    "downloads": 10129
   },
   {
     "name": "PS-DiscordPresence",
@@ -648,7 +648,7 @@
       "date": "2026-07-17",
       "title": "",
       "assets": 1,
-      "downloads": 770,
+      "downloads": 771,
       "notes": "Initial release."
     },
     "pre": null,
@@ -662,7 +662,7 @@
     "issues": 3,
     "homepage": "",
     "branch": "main",
-    "downloads": 770
+    "downloads": 771
   },
   {
     "name": "Prospero-Explorer",
@@ -675,7 +675,7 @@
       "date": "2026-09-12",
       "title": "Prospero Explorer v1.0",
       "assets": 1,
-      "downloads": 7601,
+      "downloads": 7605,
       "notes": "What is Prospero Explorer Prospero Explorer is a file explorer for the PS5 console, built on the SharpProspero SDK. It browses and manages the file system, unpacks and builds archives, plays audio and video, views and edits text, views and converts picture…"
     },
     "pre": null,
@@ -694,7 +694,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 7601
+    "downloads": 7605
   },
   {
     "name": "Prospero-Multi-Tools",
@@ -754,7 +754,7 @@
     "issues": 50,
     "homepage": "",
     "branch": "main",
-    "downloads": 128349
+    "downloads": 128354
   },
   {
     "name": "ps5-tailscale",
@@ -815,7 +815,7 @@
     "issues": 3,
     "homepage": "",
     "branch": "PS5-Cemu",
-    "downloads": 6611
+    "downloads": 6614
   },
   {
     "name": "PoorDS4",
@@ -829,7 +829,7 @@
       "date": "2026-09-30",
       "title": "PoorDS4 v0.1.0-rc51",
       "assets": 4,
-      "downloads": 6659,
+      "downloads": 6662,
       "notes": "PoorDS4 RC51 brings concurrent multi-controller streaming (up to 4 controllers), full support for modular PRX input engines (Control, Forza Horizon 5), UE5 crash and ghost handle fixes (Stellar Blade, Poppy Playtime, Kena, TEKKEN 8), and automatic stale gateway recovery. What Ch…"
     },
     "updated": "2026-09-30",
@@ -849,7 +849,7 @@
     "issues": 33,
     "homepage": "",
     "branch": "main",
-    "downloads": 17043
+    "downloads": 17046
   },
   {
     "name": "ps-patch-system",
@@ -1062,7 +1062,7 @@
       "date": "2026-10-14",
       "title": "Orbit Store 1.3.5 (Beta)",
       "assets": 17,
-      "downloads": 14287,
+      "downloads": 14289,
       "notes": "Archive.org sign-in comes to Orbit. Archive.org sign-in. Connect your account in the native PS5 app, browser or Orbit Zero to access downloads that require signing in. 225 unavailable Archive.org links removed, and 3 games also had to go. Links that require an Archive.org accoun…"
     },
     "pre": null,
@@ -1082,7 +1082,7 @@
     "issues": 47,
     "homepage": "",
     "branch": "main",
-    "downloads": 172563
+    "downloads": 172569
   },
   {
     "name": "PSSwanStation",
@@ -1095,7 +1095,7 @@
       "date": "2026-10-14",
       "title": "PSSwanStation build 22",
       "assets": 19,
-      "downloads": 516,
+      "downloads": 519,
       "notes": "A PlayStation (PS1) emulator as a PS5 homebrew title: SwanStation, the libretro fork of DuckStation, with a controller interface of its own, drawing with Vulkan (the RADV driver, linked into the title). It needs a jailbroken console with kstuff running. [!…"
     },
     "pre": null,
@@ -1109,7 +1109,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 2063
+    "downloads": 2066
   },
   {
     "name": "PShare",
@@ -1171,7 +1171,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 259393
+    "downloads": 259394
   },
   {
     "name": "PS5-LZ4-Compression",
@@ -1211,7 +1211,7 @@
       "date": "2026-08-20",
       "title": "",
       "assets": 3,
-      "downloads": 28846,
+      "downloads": 28848,
       "notes": ""
     },
     "pre": null,
@@ -1225,7 +1225,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "master",
-    "downloads": 94765
+    "downloads": 94767
   },
   {
     "name": "kodi-ps5-overdrive",
@@ -1272,7 +1272,7 @@
       "date": "2026-10-14",
       "title": "HyperHEN v0.9.2",
       "assets": 2,
-      "downloads": 1991,
+      "downloads": 1992,
       "notes": "HyperHEN has evolved into a single, firmware-aware PS5 homebrew stack. This release brings the firmware engines, HyperCore, Automount, Toolbox, plugins, network services, and optional boot tools together behind one entry ELF and one strict startup pipeline. What'…"
     },
     "pre": null,
@@ -1286,7 +1286,7 @@
     "issues": 5,
     "homepage": "",
     "branch": "main",
-    "downloads": 5205
+    "downloads": 5207
   },
   {
     "name": "exfat2ampr",
@@ -1353,7 +1353,7 @@
       "date": "2026-10-14",
       "title": "PS5Library v0.2.91",
       "assets": 4,
-      "downloads": 89,
+      "downloads": 90,
       "notes": "Full Changelog: https://github.com/rdiol12/PS5Library/compare/v0.2.70...v0.2.91"
     },
     "pre": null,
@@ -1367,7 +1367,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 3491
+    "downloads": 3492
   },
   {
     "name": "ps5-library",
@@ -1375,13 +1375,13 @@
     "description": "Game library for jailbroken PS5: pick a game, it downloads, installs and appears on your home screen.",
     "category": "Homebrew",
     "stable": {
-      "tag": "v0.7.29",
-      "url": "https://github.com/deox1111/ps5-library/releases/tag/v0.7.29",
+      "tag": "v0.7.30",
+      "url": "https://github.com/deox1111/ps5-library/releases/tag/v0.7.30",
       "date": "2026-10-15",
-      "title": "PS5 Library 0.7.29",
+      "title": "PS5 Library 0.7.30",
       "assets": 2,
-      "downloads": 124,
-      "notes": "[!WARNING] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking, even with USB power set to Always. Changes Download and unpack in Rest Mode on internal storage. The library keeps the cons…"
+      "downloads": 0,
+      "notes": "[!NOTE] Rest Mode still works only on internal storage; USB support is in progress (unchanged from 0.7.29). Changes A catalog that doesn't answer no longer holds up the others (#17). Catalogs were read one after another, and a server that accepted the connection but sent nothing…"
     },
     "pre": null,
     "updated": "2026-10-15",
@@ -1394,7 +1394,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 7693
+    "downloads": 6199
   },
   {
     "name": "Spectrum-Library",
@@ -1421,7 +1421,7 @@
     "issues": 27,
     "homepage": "",
     "branch": "main",
-    "downloads": 58807
+    "downloads": 58808
   },
   {
     "name": "direct-stream-ps5",
@@ -1468,12 +1468,12 @@
       "date": "2026-10-15",
       "title": "PS4Mount 0.5.1",
       "assets": 2,
-      "downloads": 292,
+      "downloads": 295,
       "notes": "Changes Improvements Log: the date and time at the start of every line Every line of /data/ps4mount/log.txt, and of the log in the panel, now starts with the console's local date and time: Documentation and repository Screenshots of the 0.5.0 panel for the release notes Full Cha…"
     },
     "pre": null,
     "updated": "2026-10-15",
-    "stars": 113,
+    "stars": 114,
     "archived": false,
     "language": "C",
     "topics": [],
@@ -1482,7 +1482,7 @@
     "issues": 6,
     "homepage": "",
     "branch": "main",
-    "downloads": 4623
+    "downloads": 4628
   },
   {
     "name": "prospero-win",
@@ -1495,7 +1495,7 @@
       "date": "2026-10-10",
       "title": "prospero-win v0.2.0",
       "assets": 2,
-      "downloads": 2454,
+      "downloads": 2458,
       "notes": "is the biggest update since the first release. 32-bit Windows games now run directly on the PS5's CPU instead of through the translator, Vulkan traffic is batched so DXVK games keep their frame rate, OpenGL games draw through Mesa's Zink, and Windows programs…"
     },
     "pre": null,
@@ -1509,7 +1509,7 @@
     "issues": 13,
     "homepage": "",
     "branch": "main",
-    "downloads": 5352
+    "downloads": 5356
   },
   {
     "name": "ps5-theme",
@@ -1633,7 +1633,7 @@
       "date": "2026-10-05",
       "title": "Added samba support & Other improvements",
       "assets": 2,
-      "downloads": 11186,
+      "downloads": 11187,
       "notes": "Change logs: Added samba support. Connection info except password is stored in /data/wfm/config/smb.conf. Password is stored in LocalStorage of the web browser. Added meta-data for PKG install. And it supports installing PKG from samba shares. Improved multiple transfer speed in…"
     },
     "pre": null,
@@ -1647,7 +1647,7 @@
     "issues": 10,
     "homepage": "",
     "branch": "main",
-    "downloads": 29798
+    "downloads": 29799
   },
   {
     "name": "VLC",
@@ -1726,7 +1726,7 @@
       "date": "2026-08-08",
       "title": "ProsperoPlayer 1.0",
       "assets": 1,
-      "downloads": 1942,
+      "downloads": 1943,
       "notes": "Install Jailbreak Inject ProsperoPlayerMediaLauncher.elf (autoload recommended) Wait for toast: ProsperoPlayer ready / Open from Media Home → Media → ProsperoPlayer 1.0 Note A brief not supported flash when opening the tile is normal if the player still opens."
     },
     "pre": null,
@@ -1740,7 +1740,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 1942
+    "downloads": 1943
   },
   {
     "name": "EVO-PLAYER-PS5",
@@ -1753,7 +1753,7 @@
       "date": "2026-10-09",
       "title": "EVO Player v0.12.0",
       "assets": 3,
-      "downloads": 1948,
+      "downloads": 1950,
       "notes": "Your receiver decodes it, and your phone does the typing. 0.12.0 sends Dolby and DTS audio to a soundbar or AV receiver untouched, lets you type server addresses and addon links from a phone browser instead of the pad, and adds removal to the Stremio addons screen. Download PPSA…"
     },
     "pre": null,
@@ -1767,7 +1767,7 @@
     "issues": 30,
     "homepage": "",
     "branch": "main",
-    "downloads": 9219
+    "downloads": 9221
   },
   {
     "name": "Prospero.Eden-Encore",
