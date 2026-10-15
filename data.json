@@ -44,8 +44,8 @@
       "url": "https://github.com/blackbearreloaded/ProsperoEden/releases/tag/v1.002.000",
       "date": "2026-10-14"
     },
-    "updated": "2026-10-14",
-    "stars": 670,
+    "updated": "2026-10-15",
+    "stars": 676,
     "archived": false
   },
   {
@@ -59,7 +59,7 @@
       "date": "2026-10-12"
     },
     "pre": null,
-    "updated": "2026-10-14",
+    "updated": "2026-10-15",
     "stars": 119,
     "archived": false
   },
@@ -94,7 +94,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-13",
-    "stars": 53,
+    "stars": 54,
     "archived": false
   },
   {
@@ -109,7 +109,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 400,
+    "stars": 401,
     "archived": false
   },
   {
@@ -124,7 +124,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-10",
-    "stars": 927,
+    "stars": 931,
     "archived": false
   },
   {
@@ -184,7 +184,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 530,
+    "stars": 537,
     "archived": false
   },
   {
@@ -199,7 +199,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 198,
+    "stars": 199,
     "archived": false
   },
   {
@@ -214,7 +214,7 @@
     },
     "pre": null,
     "updated": "2026-10-08",
-    "stars": 1040,
+    "stars": 1043,
     "archived": false
   },
   {
@@ -244,7 +244,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 8344,
+    "stars": 8383,
     "archived": false
   },
   {
@@ -254,12 +254,12 @@
     "category": "Emulator",
     "stable": null,
     "pre": {
-      "tag": "v1.0.0-beta.1",
-      "url": "https://github.com/mihawk-99/PS5_RetroArch/releases/tag/v1.0.0-beta.1",
-      "date": "2026-10-08"
+      "tag": "v2.0.0-beta-2",
+      "url": "https://github.com/mihawk-99/PS5_RetroArch/releases/tag/v2.0.0-beta-2",
+      "date": "2026-10-15"
     },
-    "updated": "2026-10-10",
-    "stars": 314,
+    "updated": "2026-10-15",
+    "stars": 316,
     "archived": false
   },
   {
@@ -284,7 +284,7 @@
     },
     "pre": null,
     "updated": "2026-09-28",
-    "stars": 180,
+    "stars": 185,
     "archived": false
   },
   {
@@ -299,7 +299,7 @@
     },
     "pre": null,
     "updated": "2026-10-11",
-    "stars": 137,
+    "stars": 140,
     "archived": false
   },
   {
@@ -314,7 +314,7 @@
     },
     "pre": null,
     "updated": "2026-10-09",
-    "stars": 360,
+    "stars": 361,
     "archived": false
   },
   {
@@ -333,7 +333,7 @@
       "date": "2026-10-12"
     },
     "updated": "2026-10-12",
-    "stars": 696,
+    "stars": 699,
     "archived": false
   },
   {
@@ -408,7 +408,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 1238,
+    "stars": 1243,
     "archived": false
   },
   {
@@ -437,8 +437,8 @@
       "date": "2026-10-14"
     },
     "pre": null,
-    "updated": "2026-10-14",
-    "stars": 319,
+    "updated": "2026-10-15",
+    "stars": 323,
     "archived": false
   },
   {
@@ -453,7 +453,7 @@
       "date": "2026-09-30"
     },
     "updated": "2026-09-30",
-    "stars": 109,
+    "stars": 111,
     "archived": false
   },
   {
@@ -483,7 +483,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 266,
+    "stars": 268,
     "archived": false
   },
   {
@@ -558,7 +558,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 149,
+    "stars": 150,
     "archived": false
   },
   {
@@ -567,13 +567,13 @@
     "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
     "category": "Homebrew",
     "stable": {
-      "tag": "v1.3.0",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/tag/v1.3.0",
-      "date": "2026-10-13"
+      "tag": "v1.3.5",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/tag/v1.3.5",
+      "date": "2026-10-14"
     },
     "pre": null,
-    "updated": "2026-10-13",
-    "stars": 818,
+    "updated": "2026-10-14",
+    "stars": 837,
     "archived": false
   },
   {
@@ -588,7 +588,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 25,
+    "stars": 26,
     "archived": false
   },
   {
@@ -617,12 +617,12 @@
       "date": "2026-05-01"
     },
     "pre": {
-      "tag": "v1.0.2-dev-ff3826a",
-      "url": "https://github.com/itsPLK/ps5-y2jb-autoloader/releases/tag/v1.0.2-dev-ff3826a",
+      "tag": "v1.0.2-254c85f",
+      "url": "https://github.com/itsPLK/ps5-y2jb-autoloader/releases/tag/v1.0.2-254c85f",
       "date": "2026-10-14"
     },
     "updated": "2026-10-14",
-    "stars": 822,
+    "stars": 829,
     "archived": false
   },
   {
@@ -637,7 +637,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 92,
+    "stars": 94,
     "archived": false
   },
   {
@@ -667,7 +667,7 @@
       "date": "2026-10-14"
     },
     "updated": "2026-10-14",
-    "stars": 2,
+    "stars": 3,
     "archived": false
   },
   {
@@ -682,7 +682,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 132,
+    "stars": 141,
     "archived": false
   },
   {
@@ -697,7 +697,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 24,
+    "stars": 25,
     "archived": false
   },
   {
@@ -742,7 +742,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 136,
+    "stars": 138,
     "archived": false
   },
   {
@@ -772,7 +772,7 @@
     },
     "pre": null,
     "updated": "2026-10-11",
-    "stars": 67,
+    "stars": 68,
     "archived": false
   },
   {
@@ -781,13 +781,13 @@
     "description": "Allows for PKG games on USB external devices to mount on jailbroken PS5s without installing on internal storage or PS5 formatted USB storage",
     "category": "Payload",
     "stable": {
-      "tag": "v0.5.0",
-      "url": "https://github.com/gasb07/ps4mount/releases/tag/v0.5.0",
-      "date": "2026-10-14"
+      "tag": "v0.5.1",
+      "url": "https://github.com/gasb07/ps4mount/releases/tag/v0.5.1",
+      "date": "2026-10-15"
     },
     "pre": null,
-    "updated": "2026-10-14",
-    "stars": 106,
+    "updated": "2026-10-15",
+    "stars": 110,
     "archived": false
   },
   {
@@ -802,7 +802,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 190,
+    "stars": 191,
     "archived": false
   },
   {
@@ -816,8 +816,8 @@
       "date": "2026-10-14"
     },
     "pre": null,
-    "updated": "2026-10-14",
-    "stars": 33,
+    "updated": "2026-10-15",
+    "stars": 34,
     "archived": false
   },
   {
@@ -832,7 +832,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 451,
+    "stars": 472,
     "archived": false
   },
   {
@@ -872,7 +872,7 @@
     },
     "pre": null,
     "updated": "2026-10-06",
-    "stars": 191,
+    "stars": 192,
     "archived": false
   },
   {
@@ -896,13 +896,13 @@
     "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
     "category": "Homebrew",
     "stable": {
-      "tag": "v1.65.0",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/tag/v1.65.0",
-      "date": "2026-10-13"
+      "tag": "v1.67.0",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/tag/v1.67.0",
+      "date": "2026-10-14"
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 6,
+    "stars": 7,
     "archived": false
   },
   {
@@ -946,7 +946,7 @@
       "url": "https://github.com/niakw/Prospero.Eden-Encore/releases/tag/encore-R1-49b86e5",
       "date": "2026-10-06"
     },
-    "updated": "2026-10-14",
+    "updated": "2026-10-15",
     "stars": 2,
     "archived": false
   },
