@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <title>PS5 Links</title>
 <link rel="stylesheet" href="style.css">
 <base target="_blank">
@@ -12,15 +14,17 @@
   <header class="top">
     <h1>PS5 Links</h1>
     <p>PS5 scene projects · Updated automatically · <a href="https://github.com/pedrohti/PS5LinkCentalizer#add-a-project">Add a project</a> · <a href="offline.html" target="_self">Offline</a></p>
-    <input id="q" type="search" placeholder="Search projects, categories, descriptions..." aria-label="Search">
   </header>
+  <div class="searchbar">
+    <input id="q" type="search" placeholder="Search projects, categories..." aria-label="Search" enterkeyhint="search">
+  </div>
 
   <!-- Stats Bar -->
   <section class="stats" id="stats">
     <div class="stat"><span class="stat-num" id="stat-total">—</span><span class="stat-label">Projects</span></div>
     <div class="stat"><span class="stat-num" id="stat-cats">—</span><span class="stat-label">Categories</span></div>
-    <div class="stat"><span class="stat-num" id="stat-stable">—</span><span class="stat-label">With Stable</span></div>
-    <div class="stat"><span class="stat-num" id="stat-pre">—</span><span class="stat-label">With Beta</span></div>
+    <div class="stat"><span class="stat-num" id="stat-stable">—</span><span class="stat-label">Stable</span></div>
+    <div class="stat"><span class="stat-num" id="stat-pre">—</span><span class="stat-label">Beta</span></div>
   </section>
 
   <!-- Sort Bar -->
@@ -30,157 +34,3 @@
     <button class="sortbtn" data-key="stars">Stars ↕</button>
     <button class="sortbtn" data-key="category">Category ↕</button>
     <button class="sortbtn" data-key="stable">Stable ↕</button>
-    <button class="sortbtn" data-key="pre">Beta ↕</button>
-  </section>
-
-  <!-- Cards Container -->
-  <section id="rows" class="cards"><div class="empty">Loading…</div></section>
-
-  <nav id="pager" aria-label="Pagination">
-    <label>Show <select id="size"><option>15</option><option>30</option><option>50</option><option value="0">All</option></select></label>
-    <span class="nav"><button id="prev" aria-label="Previous page">‹ Prev</button><span id="info"></span><button id="next" aria-label="Next page">Next ›</button></span>
-  </nav>
-
-  <footer>
-    Disclaimer: this is only a link index. Not affiliated with, and not responsible for, any listed project — all belong to their respective authors and are used at your own risk.
-    <a href="https://github.com/pedrohti/PS5LinkCentalizer#disclaimer">Full disclaimer</a>
-  </footer>
-
-  <button id="totop" hidden aria-label="Back to top" title="Back to top">↑</button>
-</main>
-
-<script>
-const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
-const rows = document.getElementById("rows");
-const q = document.getElementById("q");
-const ver = v => v ? `<a href="${esc(v.url)}">${esc(v.tag)}</a><span class="date">${esc(v.date)}</span>` : "";
-const sortValue = (p, key) => key === "stable" || key === "pre" ? p[key]?.date ?? "" : String(p[key] ?? "");
-const cmp = new Intl.Collator("en", { numeric: true, sensitivity: "base" }).compare;
-const topBar = document.querySelector(".top");
-new ResizeObserver(() => document.documentElement.style.setProperty("--top", topBar.offsetHeight + "px")).observe(topBar);
-const [size, prev, next, info] = ["size", "prev", "next", "info"].map(id => document.getElementById(id));
-let data = [], page = 1, sortKey = "name", sortDir = "ascending";
-
-// ---- Card template ----
-const card = p => `<article class="card" data-cat="${esc(p.category || 'Other')}">
-  <header class="card-head">
-    <a class="card-name" href="${esc(p.url)}">${esc(p.name)}</a>
-    ${p.archived ? '<span class="tag tag-archived">archived</span>' : ''}
-  </header>
-  <div class="card-tags">
-    ${p.category ? `<span class="tag tag-cat">${esc(p.category)}</span>` : ''}
-    <span class="tag tag-stars">★ ${p.stars ?? 0}</span>
-  </div>
-  ${p.description ? `<p class="card-desc">${esc(p.description)}</p>` : ''}
-  <div class="card-vers">
-    ${p.stable ? `<div class="v-row"><span class="v-label v-stable">Stable</span><span class="v-val">${ver(p.stable)}</span></div>` : ''}
-    ${p.pre ? `<div class="v-row"><span class="v-label v-pre">Beta</span><span class="v-val">${ver(p.pre)}</span></div>` : ''}
-    ${!p.stable && !p.pre ? `<div class="v-row"><span class="v-label v-none">No releases</span></div>` : ''}
-  </div>
-</article>`;
-
-// ---- Category group header ----
-const groupHeader = (cat, count) => `<div class="group-head" id="grp-${esc(cat).replace(/\W/g,'_')}">
-  <span class="group-title">${esc(cat)}</span>
-  <span class="group-count">${count}</span>
-</div>`;
-
-// ---- Stats ----
-function updateStats(list) {
-  const cats = new Set();
-  let stable = 0, pre = 0;
-  for (const p of list) {
-    if (p.category) cats.add(p.category);
-    if (p.stable) stable++;
-    if (p.pre) pre++;
-  }
-  document.getElementById("stat-total").textContent = list.length;
-  document.getElementById("stat-cats").textContent = cats.size;
-  document.getElementById("stat-stable").textContent = stable;
-  document.getElementById("stat-pre").textContent = pre;
-}
-
-// ---- Render ----
-function render() {
-  const s = q.value.toLowerCase();
-  const filtered = data.filter(p => [p.name, p.category, p.description, p.stable?.tag, p.pre?.tag].join(" ").toLowerCase().includes(s));
-  
-  // Sort
-  const sign = sortDir === "ascending" ? 1 : -1;
-  const sorted = [...filtered].sort((a, b) => {
-    const x = sortValue(a, sortKey), y = sortValue(b, sortKey);
-    if (!x !== !y) return x ? -1 : 1;
-    return sign * cmp(x, y);
-  });
-
-  // Pagination
-  const per = +size.value || sorted.length || 1;
-  const pages = Math.max(1, Math.ceil(sorted.length / per));
-  page = Math.min(page, pages);
-  const pageItems = sorted.slice((page - 1) * per, page * per);
-
-  // Group by category (only if no search + sort = name or category)
-  const grouped = q.value === "" && (sortKey === "name" || sortKey === "category");
-  
-  if (pageItems.length === 0) {
-    rows.innerHTML = `<div class="empty">No results</div>`;
-  } else if (grouped) {
-    // Group items
-    const groups = {};
-    for (const p of pageItems) {
-      const cat = p.category || "Other";
-      (groups[cat] = groups[cat] || []).push(p);
-    }
-    const catKeys = Object.keys(groups).sort((a, b) => cmp(a, b));
-    let html = "";
-    for (const cat of catKeys) {
-      html += groupHeader(cat, groups[cat].length);
-      html += `<div class="group-grid">${groups[cat].map(card).join("")}</div>`;
-    }
-    rows.innerHTML = html;
-  } else {
-    rows.innerHTML = `<div class="group-grid">${pageItems.map(card).join("")}</div>`;
-  }
-
-  info.textContent = `Page ${page} of ${pages} · ${sorted.length} projects`;
-  prev.disabled = page === 1;
-  next.disabled = page === pages;
-  updateStats(data);
-}
-
-// ---- Sort buttons ----
-for (const btn of document.querySelectorAll(".sortbtn")) {
-  btn.onclick = () => {
-    const key = btn.dataset.key;
-    const first = ["stable", "pre", "stars"].includes(key) ? "descending" : "ascending";
-    if (sortKey === key) {
-      sortDir = sortDir === first ? (first === "ascending" ? "descending" : "ascending") : first;
-    } else {
-      sortKey = key;
-      sortDir = first;
-    }
-    document.querySelectorAll(".sortbtn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active", sortDir);
-    btn.textContent = btn.textContent.replace(/[↕▲▼]/g, "") + (sortDir === "ascending" ? " ▲" : " ▼");
-    page = 1;
-    render();
-  };
-}
-
-q.oninput = size.onchange = () => { page = 1; render(); };
-const toTop = () => scrollTo({ top: 0, behavior: "smooth" });
-prev.onclick = () => { page--; render(); toTop(); };
-next.onclick = () => { page++; render(); toTop(); };
-const totop = document.getElementById("totop");
-totop.onclick = toTop;
-addEventListener("scroll", () => totop.hidden = scrollY < innerHeight / 2, { passive: true });
-
-fetch("data.json").then(r => r.json()).then(d => {
-  data = d;
-  document.querySelector('.sortbtn[data-key="name"]').classList.add("active", "ascending");
-  document.querySelector('.sortbtn[data-key="name"]').textContent = "Name ▲";
-  render();
-}).catch(() => rows.innerHTML = `<div class="empty">Failed to load data.json</div>`);
-</script>
-</body>
-</html>
