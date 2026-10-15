@@ -50,7 +50,7 @@ svg { width:1em; height:1em; fill:none; stroke:currentColor; stroke-width:2; str
 .btn:disabled { opacity:.6; cursor:wait; }
 
 /* ---------- Top bar ---------- */
-.top { position:sticky; top:0; z-index:10; background:var(--bar); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-t[...]
+.top { position:sticky; top:0; z-index:10; background:var(--bar); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); padding-top:env(safe-area-ins[...]
 .topbar { display:flex; align-items:center; gap:10px; padding-top:10px; padding-bottom:10px; }
 .brand { display:flex; align-items:center; gap:10px; flex:none; font-weight:800; font-size:18px; letter-spacing:-.01em; }
 .logo { width:34px; height:34px; }
@@ -75,7 +75,7 @@ svg { width:1em; height:1em; fill:none; stroke:currentColor; stroke-width:2; str
 /* ---------- Category chips (mobile) ---------- */
 .chips { display:flex; gap:8px; overflow-x:auto; padding-bottom:10px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .chips::-webkit-scrollbar { display:none; }
-.chip { flex:none; display:inline-flex; align-items:center; gap:7px; height:34px; padding:0 13px; font-size:13.5px; font-weight:600; white-space:nowrap; background:var(--card); border:1px solid var(--[...]
+.chip { flex:none; display:inline-flex; align-items:center; gap:7px; height:34px; padding:0 13px; font-size:13.5px; font-weight:600; white-space:nowrap; background:var(--card); border:1px solid va[...]
 .chip::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--cc); }
 .chip span { color:var(--muted); font-size:12px; font-weight:700; }
 .chip[aria-pressed=true] { border-color:var(--cc); background:color-mix(in srgb, var(--cc) 20%, var(--card)); }
@@ -308,7 +308,7 @@ select.field { width: 100%; height: 46px; padding: 0 14px; font-size: 15px; font
 .reader-head h3 { margin:0; font-size:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .reader-head p { margin:0; font-size:12.5px; color:var(--muted); }
 .reader-acts { display:flex; gap:6px; flex:none; }
-.reader-body { padding:16px 18px calc(20px + env(safe-area-inset-bottom)); font-size:14.5px; line-height:1.65; overflow-y:auto; word-break:break-word; }
+.reader-body { padding:16px 18px calc(20px + env(safe-area-inset-bottom)); font-size:14.5px; line-height:1.65; overflow-y:auto; word-break:break-word; word-wrap:break-word; }
 .reader-body .loading { color:var(--muted); }
 .reader-body .err { color:var(--danger); }
 .asset-item, .commit-item { display:flex; flex-direction:column; gap:4px; padding:11px 12px; background:var(--bg); border:1px solid var(--line); border-radius:12px; margin-bottom:8px; }
@@ -336,8 +336,24 @@ details.notes summary { cursor:pointer; font-size:13px; font-weight:600; color:v
 .md hr { border:0; border-top:1px solid var(--line); }
 .md [align=center] { text-align:center; }
 
+/* Prevent long unbroken strings from expanding dialog width */
+/* Apply only inside dialogs/sheets/reader to avoid changing table behaviour globally */
+dialog, .sheet, .reader-body, .md, .md h1, .md h2, .md h3, .reader-head h3 {
+  max-width: 100%;
+  overflow-wrap: anywhere; /* allow breaks within long words */
+  word-break: break-word;
+  hyphens: auto;
+  box-sizing: border-box;
+}
+
+/* Safety: ensure any element inside a dialog can't exceed its container */
+dialog * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 /* ---------- Back to top ---------- */
-.totop { position:fixed; right:max(16px, env(safe-area-inset-right)); bottom:calc(84px + env(safe-area-inset-bottom)); z-index:15; width:44px; height:44px; display:grid; place-items:center; font:[...]}
+.totop { position:fixed; right:max(16px, env(safe-area-inset-right)); bottom:calc(84px + env(safe-area-inset-bottom)); z-index:15; width:44px; height:44px; display:grid; place-items:center; font:[...]
 @media (min-width:1024px) { .totop { bottom:28px; } }
 
 /* ---------- Toast / skeleton ---------- */
