@@ -41,7 +41,7 @@
       "date": "2026-10-14"
     },
     "updated": "2026-10-15",
-    "stars": 682,
+    "stars": 684,
     "archived": false
   },
   {
@@ -90,7 +90,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-13",
-    "stars": 58,
+    "stars": 59,
     "archived": false
   },
   {
@@ -120,7 +120,7 @@
       "date": "2026-10-10"
     },
     "updated": "2026-10-10",
-    "stars": 946,
+    "stars": 948,
     "archived": false
   },
   {
@@ -135,7 +135,7 @@
     },
     "pre": null,
     "updated": "2026-09-23",
-    "stars": 729,
+    "stars": 730,
     "archived": false
   },
   {
@@ -180,7 +180,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 548,
+    "stars": 549,
     "archived": false
   },
   {
@@ -210,7 +210,7 @@
     },
     "pre": null,
     "updated": "2026-10-08",
-    "stars": 1052,
+    "stars": 1053,
     "archived": false
   },
   {
@@ -240,7 +240,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 8451,
+    "stars": 8463,
     "archived": false
   },
   {
@@ -255,7 +255,7 @@
       "date": "2026-10-15"
     },
     "updated": "2026-10-15",
-    "stars": 321,
+    "stars": 323,
     "archived": false
   },
   {
@@ -280,7 +280,7 @@
     },
     "pre": null,
     "updated": "2026-09-28",
-    "stars": 189,
+    "stars": 191,
     "archived": false
   },
   {
@@ -310,7 +310,7 @@
     },
     "pre": null,
     "updated": "2026-10-09",
-    "stars": 364,
+    "stars": 365,
     "archived": false
   },
   {
@@ -400,7 +400,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 1251,
+    "stars": 1253,
     "archived": false
   },
   {
@@ -475,7 +475,7 @@
       "date": "2026-10-13"
     },
     "updated": "2026-10-13",
-    "stars": 277,
+    "stars": 278,
     "archived": false
   },
   {
@@ -565,7 +565,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 858,
+    "stars": 862,
     "archived": false
   },
   {
@@ -580,7 +580,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 28,
+    "stars": 29,
     "archived": false
   },
   {
@@ -614,7 +614,7 @@
       "date": "2026-10-14"
     },
     "updated": "2026-10-14",
-    "stars": 844,
+    "stars": 845,
     "archived": false
   },
   {
@@ -674,7 +674,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 157,
+    "stars": 160,
     "archived": false
   },
   {
@@ -728,13 +728,13 @@
     "description": "Game library for jailbroken PS5: pick a game, it downloads, installs and appears on your home screen.",
     "category": "Homebrew",
     "stable": {
-      "tag": "v0.7.28",
-      "url": "https://github.com/deox1111/ps5-library/releases/tag/v0.7.28",
-      "date": "2026-10-12"
+      "tag": "v0.7.29",
+      "url": "https://github.com/deox1111/ps5-library/releases/tag/v0.7.29",
+      "date": "2026-10-15"
     },
     "pre": null,
-    "updated": "2026-10-12",
-    "stars": 148,
+    "updated": "2026-10-15",
+    "stars": 150,
     "archived": false
   },
   {
@@ -824,7 +824,7 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 484,
+    "stars": 485,
     "archived": false
   },
   {
