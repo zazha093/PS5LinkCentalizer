@@ -95,6 +95,19 @@ try:
     except OSError:
         print("SKIP  run test (port 9021 is busy on this computer)")
 
+    # --- delete (POST /api/rm)
+    call("PUT", "/api/upload?path=/data/homebrew/rmtest/a.txt&offset=0", b"a")
+    call("PUT", "/api/upload?path=/data/homebrew/rmtest/sub/b.txt&offset=0", b"b")
+    s, _, _ = call("POST", "/api/rm?path=/data/homebrew/rmtest"); check("rm on a folder without recursive -> 400", s == 400, s)
+    s, _, _ = call("POST", "/api/rm?path=/data"); check("rm refuses a top folder", s == 403, s)
+    s, _, _ = call("POST", "/api/rm?path=/data/nope&recursive=1"); check("rm on a missing path -> 404", s == 404, s)
+    s, _, _ = call("POST", "/api/rm?path=/data/homebrew/rmtest/a.txt"); check("rm deletes a single file", s == 200 and not os.path.exists(root + "/data/homebrew/rmtest/a.txt"), s)
+    s, b, _ = call("POST", "/api/rm?path=/data/homebrew/rmtest&recursive=1")
+    check("rm -r deletes the folder and its contents", s == 200 and not os.path.exists(root + "/data/homebrew/rmtest"), (s, b))
+    s, _, _ = call("POST", "/api/rm?path=/data/homebrew/dang")
+    check("rm unlinks the file symlink, not its target", s == 200 and not os.path.lexists(root + "/data/homebrew/dang") and os.path.isdir(outside), s)
+    s, _, _ = call("POST", "/api/rm?path=/data/link&recursive=1"); check("rm through a folder symlink is refused", s == 403 and os.path.isdir(outside), s)
+
     # --- CORS / origin
     s, _, h = call("GET", "/api/info", pin=None, origin=SITE);  check("site origin gets its own origin echoed", s == 200 and h.get("access-control-allow-origin") == SITE, h)
     s, _, h = call("GET", "/api/info", pin=None, origin="https://evil.example"); check("other website -> 403, no CORS header", s == 403 and "access-control-allow-origin" not in h, (s, h))

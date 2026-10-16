@@ -10,6 +10,8 @@
  *   PUT  /api/upload?path=...&offset=N     write the request body into a file at byte N
  *                                          (offset=0 creates/truncates; chunked uploads + resume)
  *   POST /api/run?path=/data/.../x.elf     send that ELF to the ELF loader on port 9021
+ *   POST /api/rm?path=/data/homebrew/App&recursive=1
+ *                                          delete a file or a whole folder
  *
  * Every /api call except /api/info needs the header  X-Agent-Pin: <6 digits>.
  * The PIN is random, saved in /data/ps5links-agent/pin.txt and shown as a PS5
@@ -48,7 +50,7 @@
 #endif
 
 #ifndef AGENT_VERSION
-#define AGENT_VERSION "0.1.0"
+#define AGENT_VERSION "0.2.0"
 #endif
 #define DEFAULT_PORT 8686
 #define ELFLDR_PORT  9021
@@ -321,7 +323,7 @@ static int send_all(int fd, const void *data, size_t len) {
 static void reply(int fd, int status, const char *ctype, const char *body, size_t blen) {
   const char *text = status == 200 ? "OK" : status == 204 ? "No Content" : status == 400 ? "Bad Request" :
                      status == 401 ? "Unauthorized" : status == 403 ? "Forbidden" : status == 404 ? "Not Found" :
-                     status == 409 ? "Conflict" : status == 429 ? "Too Many Requests" : status == 413 ? "Payload Too Large" : status == 502 ? "Bad Gateway" : "Error";
+                     status == 409 ? "Conflict" : status == 429 ? "Too Many Requests" : status == 413 ? "Payload Too Large" : status == 500 ? "Internal Server Error" : status == 502 ? "Bad Gateway" : "Error";
   char hdr[1024], cors[220] = "";
   const char *ao = g_acao[fd % ACAO_SLOTS];
   if (ao[0]) snprintf(cors, sizeof cors, "Access-Control-Allow-Origin: %s\r\nVary: Origin\r\n", ao);
@@ -635,6 +637,56 @@ static void h_run_direct(int fd, const request_t *r, int target_port, const char
   reply_json(fd, 200, j);
 }
 
+/* ---------------------------------------------------------------- delete */
+/* Delete `real` recursively. Symlinks are unlinked, never followed, so a link inside
+ * /data cannot be used to remove something outside it. *n counts what was removed. */
+static int rm_rf(const char *real, int *n) {
+  struct stat st;
+  if (lstat(real, &st)) return -1;
+  if (!S_ISDIR(st.st_mode)) { if (unlink(real)) return -1; (*n)++; return 0; }
+  DIR *d = opendir(real);
+  if (!d) return -1;
+  int rc = 0;
+  struct dirent *e;
+  while ((e = readdir(d))) {
+    if (!strcmp(e->d_name, ".") || !strcmp(e->d_name, "..")) continue;
+    char child[PATH_MAX_LEN + 600];
+    snprintf(child, sizeof child, "%s/%s", real, e->d_name);
+    if (rm_rf(child, n)) rc = -1;
+  }
+  closedir(d);
+  if (rmdir(real)) rc = -1; else (*n)++;
+  return rc;
+}
+
+/* POST /api/rm?path=/data/homebrew/App&recursive=1
+ * The site asks for the project name first (see the Installed list in ps5.js); the path
+ * guards in the dispatcher already keep this inside /data, /mnt/usbN or /mnt/extN. */
+static void h_rm(int fd, const char *path, int recursive) {
+  /* A top folder itself (/data, /mnt/usb0, ...) is never deleted */
+  char top[PATH_MAX_LEN];
+  size_t tl = 5;
+  if (strncmp(path, "/data", 5)) {
+    const char *e = strchr(path + 5, '/');
+    tl = e ? (size_t)(e - path) : strlen(path);
+  }
+  snprintf(top, sizeof top, "%.*s", (int)tl, path);
+  if (!strcmp(path, top)) { reply_err(fd, 403, "refusing to delete a top folder"); return; }
+
+  char real[PATH_MAX_LEN + 256];
+  real_path(path, real, sizeof real);
+  struct stat st;
+  if (lstat(real, &st)) { reply_err(fd, 404, strerror(errno)); return; }
+  if (S_ISDIR(st.st_mode) && !recursive) { reply_err(fd, 400, "this is a folder: add recursive=1"); return; }
+
+  int n = 0;
+  if (rm_rf(real, &n)) { reply_err(fd, 500, strerror(errno)); return; }
+  notify("PS5Links Agent: deleted %s (%d)", path, n);
+  char j[96];
+  snprintf(j, sizeof j, "{\"ok\":true,\"removed\":%d}", n);
+  reply_json(fd, 200, j);
+}
+
 /* ---------------------------------------------------------------- dispatch */
 typedef struct { int fd; char ip[48]; } conn_t;
 
@@ -700,6 +752,11 @@ static void *client_thread(void *arg) {
     long long o = atoll(off);
     if (o < 0) reply_err(fd, 400, "bad offset");
     else h_upload(fd, &r, path, o);
+  }
+  else if (!strcmp(r.path, "/api/rm") && !strcmp(r.method, "POST")) {
+    char rec[8] = "0";
+    query_get(r.query, "recursive", rec, sizeof rec);
+    h_rm(fd, path, atoi(rec) == 1);
   }
   else if (!strcmp(r.path, "/api/run") && !strcmp(r.method, "POST")) {
     char port_s[16] = "";
