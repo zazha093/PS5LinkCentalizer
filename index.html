@@ -10,7 +10,7 @@
 <!-- Apply saved theme before CSS paints, so there is no light/dark flash -->
 <script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 <base target="_blank">
 </head>
 <body>
@@ -27,6 +27,8 @@
       <kbd class="kbd">/</kbd>
     </label>
     <div class="top-acts">
+      <!-- PS5 Remote (ps5.js): the dot is green when websrv on the PS5 answers -->
+      <button class="ibtn" id="open-ps5" data-i18n-al="ps5Title" aria-label="Connect to PS5"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 11v3M6 12.5h3"/><circle cx="16" cy="11.3" r=".6" fill="currentColor"/><circle cx="17.6" cy="13.6" r=".6" fill="currentColor"/></svg><span class="ps5-dot" id="ps5-dot"></span></button>
       <button class="ibtn" id="bell" data-i18n-al="whatsNew" aria-label="What's new"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="dot-count" id="bell-n" hidden></span></button>
       <button class="ibtn" id="theme" data-i18n-al="theme" aria-label="Theme"></button>
       <button class="ibtn" id="open-settings" data-i18n-al="settings" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
@@ -132,6 +134,76 @@
   <p class="hint" data-i18n="privacy">Everything is stored in your browser only. GitHub receives requests when you open README, Assets, Commits or avatars.</p>
 </div></dialog>
 
+<!-- ========== PS5 Remote dialog (ps5.js) ========== -->
+<dialog id="ps5"><div class="sheet">
+  <div class="sheet-head"><h2><span data-i18n="ps5Title">Connect to PS5</span> <span class="badge beta" data-i18n="ps5Beta">Beta</span></h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div class="ps5-row">
+    <label class="fld"><span data-i18n="ps5Ip">PS5 IP address</span>
+      <input id="ps5-ip" type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="192.168.1.50"></label>
+    <label class="fld port"><span data-i18n="ps5Port">websrv port</span>
+      <input id="ps5-port" type="text" inputmode="numeric" autocomplete="off" placeholder="8080"></label>
+  </div>
+  <button class="btn primary" id="ps5-test" data-i18n="ps5Test">Save &amp; test</button>
+  <p class="msg" id="ps5-msg" aria-live="polite"></p>
+  <p class="hint ios" id="ps5-ios" hidden data-i18n="ps5Ios">iPhone / iPad: Safari blocks this page from talking to the PS5.</p>
+
+  <p class="set-h" data-i18n="ps5RunH">Run a payload</p>
+  <div class="fld"><label for="ps5-url" data-i18n="ps5RunUrl">Link to an .elf file (the PS5 downloads it)</label>
+    <div class="ps5-row"><input id="ps5-url" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://github.com/…/payload.elf">
+      <button class="btn" id="ps5-run-url" type="button" data-i18n="ps5RunUrlBtn">Run link</button></div></div>
+  <div class="row2">
+    <label class="btn"><span data-i18n="ps5RunFile">Send an .elf from this device</span><input id="ps5-file" type="file" accept=".elf,.bin,application/octet-stream" hidden></label>
+    <button class="btn" id="ps5-browse" data-i18n="ps5Browse">Pick an .elf on the PS5</button>
+  </div>
+  <div class="fs-box" id="ps5-fs" hidden></div>
+
+  <!-- Upload into a folder: needs PS5Links Agent (agent/ in this repo) running on the PS5 -->
+  <p class="set-h" data-i18n="agH">Upload to a folder (PS5Links Agent)</p>
+  <div class="ps5-row three">
+    <label class="fld"><span data-i18n="agPin">PIN shown on the PS5</span>
+      <input id="ag-pin" type="text" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="123456"></label>
+    <label class="fld port"><span data-i18n="agPort">Agent port</span>
+      <input id="ag-port" type="text" inputmode="numeric" autocomplete="off" placeholder="8686"></label>
+    <button class="btn" id="ag-pair" type="button" data-i18n="agPair">Pair</button>
+  </div>
+  <p class="msg" id="ag-msg" aria-live="polite"></p>
+  <div class="fld"><label for="ag-dest" data-i18n="agDest">Folder on the PS5</label>
+    <div class="ps5-row"><input id="ag-dest" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="/data/homebrew">
+      <button class="btn" id="ag-browse" type="button" data-i18n="agPickDir">Choose</button></div></div>
+  <div class="fs-box" id="ag-fs" hidden></div>
+  <label class="check"><input type="checkbox" id="ag-unzip" checked> <span data-i18n="agUnzip">Extract .zip files while sending</span></label>
+  <label class="btn primary"><span data-i18n="agSend">Choose files and send</span><input id="ag-files" type="file" multiple hidden></label>
+  <div class="ag-prog" id="ag-prog" hidden>
+    <progress id="ag-bar" max="1" value="0"></progress>
+    <p class="hint" id="ag-ptext"></p>
+    <button class="btn small" id="ag-cancel" type="button" data-i18n="ps5Cancel">Cancel</button>
+  </div>
+  <div class="ag-done" id="ag-done" hidden></div>
+
+  <p class="set-h" data-i18n="ps5PmH">Payload Manager catalog</p>
+  <div class="ps5-row"><code class="cat-url" id="ps5-cat"></code><button class="btn small" id="ps5-copy-cat" data-i18n="copyLink">Copy link</button></div>
+  <p class="hint" data-i18n="ps5PmHint">Add this URL as a source in Payload Manager.</p>
+
+  <p class="set-h" data-i18n="ps5Tools">Open pages on the PS5</p>
+  <div class="tools">
+    <a class="tool disabled" id="ps5-l-websrv" target="_blank" rel="noopener">websrv<small>—</small></a>
+    <a class="tool disabled" id="ps5-l-elfldr" target="_blank" rel="noopener">websrv · ELF loader<small>—</small></a>
+    <a class="tool disabled" id="ps5-l-pm" target="_blank" rel="noopener">Payload Manager<small>—</small></a>
+    <a class="tool disabled" id="ps5-l-wfm" target="_blank" rel="noopener">Web File Manager<small>—</small></a>
+  </div>
+  <p class="hint" data-i18n="ps5UploadHint">To upload into a folder, use the PS5Links Agent section above.</p>
+</div></dialog>
+
+<!-- Confirmation before running anything on the console -->
+<dialog id="runq"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="ps5Run">Run on PS5</h2><button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p id="runq-t"></p>
+  <div id="runq-files" class="runq-list"></div>
+  <p class="hint warn" data-i18n="ps5RunWarn">Only run payloads you trust.</p>
+  <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="runq-go" data-i18n="ps5Go">Run</button></div>
+</div></dialog>
+
 <!-- ========== Reader dialog: README / Assets / Commits ========== -->
 <dialog id="modal-reader" class="wide"><div class="sheet reader-sheet">
   <div class="reader-head">
@@ -147,6 +219,7 @@
 
 <button class="totop" id="totop" aria-label="Back to top" hidden><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=8"></script>
+<script src="ps5.js?v=8"></script>
 </body>
 </html>

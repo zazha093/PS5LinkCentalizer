@@ -96,6 +96,7 @@ const ICON = {
   box: '<svg viewBox="0 0 24 24"><path d="m21 8-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8"/></svg>',
   link: '<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>',
   pen: '<svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+  play: '<svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>',
   dl: '<svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>',
   auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
   dark: '<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
@@ -228,6 +229,7 @@ function actions(p, compact) {
     <button class="act assets" data-a="assets">${compact ? ICON.box : ICON.box + esc(t("assets"))}${!compact && latest(p)?.assets ? `<span class="act-n">${latest(p).assets}</span>` : ""}</button>
     <button class="act commits" data-a="commits" aria-label="${esc(t("commits"))}" title="${esc(t("commits"))}">${ICON.commit}</button>
     <button class="act copy" data-a="copy" aria-label="${esc(t("copyLink"))}" title="${esc(t("copyLink"))}">${ICON.link}</button>
+    ${latest(p)?.files?.length ? `<button class="act run" data-a="run" aria-label="${esc(t("ps5Run"))}" title="${esc(t("ps5Run"))}">${ICON.play}</button>` : ""}
     ${compact ? `<button class="act copy" data-a="edit" aria-label="${esc(t("edit"))}" title="${esc(t("edit"))}">${ICON.pen}</button>` : ""}
     ${isMine(p) ? `<button class="act rm" data-a="rm">${esc(t("remove"))}</button>` : ""}
   </span>`;
@@ -464,6 +466,7 @@ async function showAssets(p) {
       for (const a of r.assets || []) {
         html += `<div class="asset-item"><div class="asset-row"><strong>${esc(a.name)}</strong>
           <span class="acts"><button class="act copy" data-copy="${esc(a.browser_download_url)}" aria-label="${esc(t("copyLink"))}">${ICON.link}</button>
+          ${/\.(elf|bin)$/i.test(a.name) ? `<button class="act run" data-run-url="${esc(a.browser_download_url)}" data-run-name="${esc(a.name)}" aria-label="${esc(t("ps5Run"))}" title="${esc(t("ps5Run"))}">${ICON.play}</button>` : ""}
           <a class="act assets" href="${esc(safeUrl(a.browser_download_url))}">${ICON.dl}${esc(t("download"))}</a></span></div>
           <span class="asset-meta">${(a.size / 1048576).toFixed(1)} MB · ${Number(a.download_count).toLocaleString()} ${esc(t("downloads"))}</span></div>`;
       }
@@ -486,7 +489,12 @@ async function showCommits(p) {
   } catch (e) { $("reader-body").innerHTML = failBox(e.message || t("failCommits")); }
 }
 // Copy buttons inside the reader (asset download links)
-$("reader-body").addEventListener("click", e => { const b = e.target.closest("[data-copy]"); if (b) copy(b.dataset.copy); });
+$("reader-body").addEventListener("click", e => {
+  const b = e.target.closest("[data-copy]"); if (b) return copy(b.dataset.copy);
+  // "Run on PS5" next to .elf/.bin downloads (handled in ps5.js)
+  const r = e.target.closest("[data-run-url]");
+  if (r) window.askRun?.([{ name: r.dataset.runName, url: r.dataset.runUrl, size: Number(r.dataset.runSize) || 0 }], r.dataset.runName);
+});
 
 /* ---------- Events: cards, filters, tabs, view ---------- */
 $("rows").addEventListener("click", e => {
@@ -503,6 +511,7 @@ $("rows").addEventListener("click", e => {
     case "assets": showAssets(p); break;
     case "commits": showCommits(p); break;
     case "copy": copy(p.url); break;
+    case "run": { const l = latest(p); window.askRun?.(l.files, `${p.name} ${l.tag}`); break; } // ps5.js
     case "edit": openEditDialog(p); break;
     case "rm":
       if (confirm(t("removeQ", { n: p.name }))) { mine = mine.filter(m => key(m) !== key(p)); store.set("mine", mine); drawCats(); refresh(); }
