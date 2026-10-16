@@ -18,11 +18,12 @@ Everything below is front-end only: the page talks straight to the console over 
 
 - **Run a payload** — pick a release file from the Assets list, a link, a file from your phone/PC, or a `.elf` already on the console.
 - **Check SHA-256 before running** (Settings) — the payload is downloaded in the browser first and compared with the hash GitHub published, so the bytes you verified are the bytes the console runs. Turn it off to let the PS5 download the link itself.
-- **File browser** — every file and folder under `/data`, `/mnt/usb*` and `/mnt/ext*`, with run / edit / download per file.
+- **File browser** — every file and folder under `/data`, `/mnt/usb*` and `/mnt/ext*`: run / edit / download / delete per entry, the free space and the size of the folder you are in, plus "new folder" and "upload here". Deleting and creating need the agent paired.
 - **Text editor** — edit `.txt`, `.json`, `.ini`, `.cfg`, `.conf`, `.lua`, `.sh`, `.md`, `.xml`, `.yml` and friends on the console. JSON gets a format/validate button. Saving needs the agent paired (PIN); reading and downloading need only websrv.
-- **Payload library** (IndexedDB) — keep payloads on this device and send them again without downloading them from GitHub a second time.
+- **Payload library** (IndexedDB) — keep payloads on this device and send them again without downloading them from GitHub a second time, mark favourites, and re-run anything from the recent-runs list.
 - **Run queue** — send several payloads in order with a pause between them, and save the order as a preset ("boot set", "game set").
-- **Install homebrew** — a project with a release `.zip` gets an Install button: the archive is downloaded here, extracted (fflate), and every file is sent to a folder on the PS5 (default `/data/homebrew`, editable) with a download → extract → send → done status and SHA-256 checking. The PS5 itself needs no download/unzip code.
+- **Install or download a release archive** — a project with a release `.zip` gets an action button. In **Install** mode the archive is extracted here (fflate) and every file is sent to a folder on the PS5 (default `/data/homebrew`); in **Save** mode the `.zip` itself is written to another folder (default `/data/downloads`), which is what desktop builds and source bundles want. Archives are labelled *PS5 app* or *Other*, the dialog shows the free space and warns when the destination already has content, and the SHA-256 is checked on the bytes actually sent.
+- **Installed homebrew** — the Installed list reads the folder back from the console, shows the version recorded at install time (`.ps5links.json`), tells you when GitHub has a newer release, updates in place, and deletes safely after you type the folder name (agent 0.2.0+).
 
 > Writing through the agent replaces the file in place, so keep a backup of anything vital before saving.
 
@@ -33,7 +34,7 @@ Everything below is front-end only: the page talks straight to the console over 
    ```json
    { "repo": "owner/repository", "category": "Payload" }
    ```
-   Optional fields: `name` and `description` (override the GitHub ones), `category`, and `install` — an object `{ "dir": "subfolder", "zip": "name-fragment" }` that picks the destination subfolder under `/data/homebrew` and, when a release has several zips, which one to install.
+   Optional fields: `name` and `description` (override the GitHub ones), `category`, and `install` — an object that refines the archive button: `{ "zip": "name-fragment" }` picks one archive when a release carries several, `{ "dir": "subfolder" }` forces the folder name under the destination, and `{ "kind": "app" | "other" }` overrides the automatic "PS5 app vs desktop build" classification.
 3. Open a Pull Request. A bot checks it (valid JSON, `owner/name` format, known fields, duplicates, repo exists) and replies in a comment with what to fix; the comment updates on every push.
 
 Don't edit `data.json`, `offline.json` or `payloads.json`, they are generated automatically.
@@ -63,6 +64,7 @@ The console button in the header opens **Connect to PS5**. It talks to [websrv](
 | Read or download a file | `GET /fs/<path>` |
 | Save an edited text file (needs the agent) | `PUT /api/upload?path=…&offset=0` |
 | Send a payload straight to the ELF loader (needs the agent) | `POST /api/run-direct?port=9021` |
+| Delete a file or a folder (needs agent 0.2.0+) | `POST /api/rm?path=…&recursive=1` |
 
 - Works in Chrome/Edge 142+ (desktop and Android). The browser asks once for permission to access devices on your local network. Safari on iPhone/iPad blocks it; use the "Open pages on the PS5" links instead.
 - Only home-network addresses (192.168.x.x, 10.x.x.x, 172.16–31.x.x, 127.x, *.local) are accepted, and every run asks for confirmation.

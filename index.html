@@ -10,7 +10,7 @@
 <!-- Apply saved theme before CSS paints, so there is no light/dark flash -->
 <script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 <base target="_blank">
 </head>
 <body>
@@ -183,7 +183,9 @@
     <button class="btn" id="ps5-browse" data-i18n="ps5Browse">Pick an .elf on the PS5</button>
   </div>
   <div class="fs-box" id="ps5-fs" hidden></div>
+  <input id="fs-files" type="file" multiple hidden>
   <button class="btn" id="open-lib" data-i18n="libTitle">Payload library &amp; run queue</button>
+  <button class="btn" id="open-inst" data-i18n="v10H">Installed homebrew</button>
 
   <!-- Upload into a folder: needs PS5Links Agent (agent/ in this repo) running on the PS5 -->
   <p class="set-h" data-i18n="agH">Upload to a folder (PS5Links Agent)</p>
@@ -308,17 +310,28 @@
     <button class="btn" id="lib-add" data-i18n="libAdd">Save</button>
   </div>
   <div class="lib-list" id="lib-list"></div>
+  <p class="set-h" data-i18n="histH">Recent runs</p>
+  <div class="lib-list" id="hist-list"></div>
+  <button class="btn small" id="hist-clear" data-i18n="histClear">Clear history</button>
   <p class="hint" data-i18n="libHint">Payloads are kept in this browser only. Nothing is uploaded anywhere.</p>
 </div></dialog>
 
-<!-- ========== Install homebrew (ps5.js): release ZIP → extract → upload ========== -->
+<!-- ========== Install / download a release archive (ps5.js) ========== -->
 <dialog id="install"><div class="sheet">
-  <div class="sheet-head"><h2 id="in-title" data-i18n="inH">Install homebrew</h2>
+  <div class="sheet-head"><h2 id="in-title" data-i18n="inH">Install or download</h2>
     <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
   <p class="hint" id="in-sub"></p>
+  <p class="set-h" data-i18n="inMode">Action</p>
+  <div class="seg wide" id="in-mode">
+    <button data-inmode="app" data-i18n="inModeApp">Install (extract)</button>
+    <button data-inmode="file" data-i18n="inModeFile">Save the .zip</button>
+  </div>
+  <p class="hint" id="in-hint"></p>
+  <div id="in-zips" class="runq-list"></div>
   <label class="fld"><span data-i18n="agDest">Folder on the PS5</span>
     <input id="in-dest" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="/data/homebrew"></label>
-  <div id="in-zips" class="runq-list"></div>
+  <p class="hint" id="in-free"></p>
+  <p class="hint warn" id="in-warn" hidden></p>
   <p class="msg" id="in-msg" aria-live="polite"></p>
   <div class="ag-prog" id="in-prog" hidden>
     <progress id="in-bar" max="1" value="0"></progress>
@@ -326,12 +339,26 @@
     <button class="btn small" id="in-cancel" type="button" data-i18n="ps5Cancel">Cancel</button>
   </div>
   <div class="ag-done" id="in-done" hidden></div>
-  <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="in-go" data-i18n="install">Install</button></div>
+  <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="in-go">Install</button></div>
+</div></dialog>
+
+<!-- ========== v10 · Installed homebrew manager (ps5.js) ========== -->
+<dialog id="installed"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="v10H">Installed homebrew</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p class="hint" data-i18n="v10Open">Folders under the install destination on the PS5.</p>
+  <div class="row2">
+    <button class="btn small" id="inst-refresh" data-i18n="v10Refresh">Refresh</button>
+    <button class="btn small" id="inst-forget" data-i18n="v10Forget">Forget extra folders</button>
+  </div>
+  <div class="lib-list" id="inst-list"></div>
+  <p class="msg" id="inst-msg" aria-live="polite"></p>
+  <p class="hint" data-i18n="v10Hint">Deleting asks for the folder name first. It needs ps5links-agent.elf 0.2.0 or newer.</p>
 </div></dialog>
 
 <button class="totop" id="totop" aria-label="Back to top" hidden><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=10"></script>
-<script src="ps5.js?v=10"></script>
+<script src="app.js?v=11"></script>
+<script src="ps5.js?v=11"></script>
 </body>
 </html>

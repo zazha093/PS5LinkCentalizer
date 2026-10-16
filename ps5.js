@@ -220,16 +220,26 @@ async function ps5Browse(path = fsPath) {
       .filter(x => x && x.name !== "." && x.name !== "..")
       .sort((a, b) => (a.mode === "d" ? 0 : 1) - (b.mode === "d" ? 0 : 1) || cmp(a.name, b.name));
     const parent = path.replace(/\/[^/]+\/?$/, "") || "/";
-    let html = `<div class="fs-bar"><code class="fs-path">${esc(path)}</code>${path !== "/" ? `<button class="btn small" data-fs="${esc(parent)}">↑ ${esc(t("ps5Up"))}</button>` : ""}</div>`;
+    const files = items.filter(x => x.mode !== "d");
+    const bytes = files.reduce((s, x) => s + (Number(x.size) || 0), 0);
+    let free = "";
+    try { const j = await agent("/api/info", {}, 5000); if (j?.free) free = t("fsFree", { n: fmtSize(j.free) }); } catch {}
+    let html = `<div class="fs-bar"><code class="fs-path">${esc(path)}</code>
+      <span class="fs-meta">${esc(t("fsTotal", { n: files.length, s: fmtSize(bytes) }))}${free ? " · " + esc(free) : ""}</span>
+      ${path !== "/" ? `<button class="btn small" data-fs="${esc(parent)}">↑ ${esc(t("ps5Up"))}</button>` : ""}
+      <button class="btn small" data-fs-mk type="button">${esc(t("fsNewFolder"))}</button>
+      <button class="btn small" data-fs-up type="button">${esc(t("fsUpload"))}</button></div>`;
     html += items.length ? items.map(x => {
       const full = (path === "/" ? "" : path.replace(/\/$/, "")) + "/" + x.name;
-      if (x.mode === "d") return `<button class="fs-i" data-fs="${esc(full)}">${FOLDER} ${esc(x.name)}</button>`;
       const size = Number(x.size) || 0;
+      const del = `<button class="act rm" data-fs-del="${esc(full)}" data-fs-name="${esc(x.name)}">${esc(t("fsDelete"))}</button>`;
+      if (x.mode === "d") return `<div class="fs-row">${FOLDER}<button class="fs-name as-link" data-fs="${esc(full)}" type="button">${esc(x.name)}</button><span class="fs-size">${esc(t("fsDir"))}</span><span class="fs-acts">${del}</span></div>`;
       return `<div class="fs-row">${fileIcon(x.name)}<span class="fs-name">${esc(x.name)}</span><span class="fs-size">${esc(fmtSize(size))}</span>
         <span class="fs-acts">
         ${/\.(elf|bin)$/i.test(x.name) ? `<button class="act run" data-fs-run="${esc(full)}" data-size="${size}" title="${esc(t("ps5Run"))}" aria-label="${esc(t("ps5Run"))}">${ICON.play}</button>` : ""}
         ${TEXT_EXT.test(x.name) ? `<button class="act copy" data-fs-edit="${esc(full)}" data-size="${size}" title="${esc(t("fileEdit"))}" aria-label="${esc(t("fileEdit"))}">${ICON.pen}</button>` : ""}
         <button class="act copy" data-fs-dl="${esc(full)}" title="${esc(t("fileDownload"))}" aria-label="${esc(t("fileDownload"))}">${ICON.dl}</button>
+        ${del}
         </span></div>`;
     }).join("") : `<p class="hint">${esc(t("ps5Empty"))}</p>`;
     box.innerHTML = html;
@@ -279,12 +289,20 @@ $("ps5-file").onchange = e => {
   }
 };
 $("ps5-fs").addEventListener("click", e => {
+  const del = e.target.closest("[data-fs-del]"); if (del) return void fsRemove(del.dataset.fsDel, del.dataset.fsName);
+  const up = e.target.closest("[data-fs-up]"); if (up) return void $("fs-files").click();
+  const mk = e.target.closest("[data-fs-mk]"); if (mk) return void fsMkdir();
   const d = e.target.closest("[data-fs]"); if (d) return ps5Browse(d.dataset.fs);
   const ed = e.target.closest("[data-fs-edit]"); if (ed) return void openEditor(ed.dataset.fsEdit, Number(ed.dataset.size) || 0);
   const dl = e.target.closest("[data-fs-dl]"); if (dl) return void downloadFromPs5(dl.dataset.fsDl);
   const f = e.target.closest("[data-fs-run]");
   if (f) askRun([{ name: f.dataset.fsRun.split("/").pop(), size: Number(f.dataset.size), path: f.dataset.fsRun }], f.dataset.fsRun);
 });
+// Files picked with "Upload here" go into the folder that is currently browsed
+$("fs-files").onchange = e => {
+  const files = [...e.target.files]; e.target.value = "";
+  if (files.length) agentSend(files, fsPath);
+};
 $("ps5-copy-cat").onclick = () => copy(CATALOG_URL);
 $$("#ps5 a.disabled, #ps5 .tool").forEach(a => a.addEventListener("click", e => { if (a.classList.contains("disabled")) e.preventDefault(); }));
 
@@ -393,7 +411,7 @@ const cleanParts = name => {
 };
 const unzipAsync = (fflate, bytes) => new Promise((ok, no) => fflate.unzip(bytes, (err, out) => (err ? no(err) : ok(out))));
 
-async function buildPlan(files, dest, unzip) {
+async function buildPlan(files, dest, unzip, opts = {}) {
   const items = [], dirs = [];
   for (const f of files) {
     if (!(unzip && /\.zip$/i.test(f.name))) { items.push({ path: `${dest}/${f.name}`, data: f, size: f.size }); continue; }
@@ -404,13 +422,19 @@ async function buildPlan(files, dest, unzip) {
       entries = await unzipAsync(fflate, new Uint8Array(await f.arrayBuffer()));
     } catch { throw new Error(t("agBadZip", { f: f.name })); }
     const names = Object.keys(entries).map(n => ({ n, parts: cleanParts(n) })).filter(x => x.parts.length);
-    // A zip with one top folder ("MyApp/...") goes straight into dest; otherwise into dest/<zip name>
-    const tops = new Set(names.map(x => x.parts[0]));
+    // A zip with one wrapper folder ("MyApp/...") keeps that name and lands in dest/MyApp;
+    // a flat zip lands in dest/<zip name> so two archives never mix in the same folder.
+    const tops = [...new Set(names.map(x => x.parts[0]))];
     const isDir = x => x.n.endsWith("/");
-    const oneTop = tops.size === 1 && names.every(x => isDir(x) || x.parts.length > 1);
-    const root = oneTop ? dest : `${dest}/${f.name.replace(/\.zip$/i, "")}`;
+    const oneTop = tops.length === 1 && names.every(x => isDir(x) || x.parts.length > 1);
+    // opts.root = an explicit app folder (projects.json "install.dir"); the wrapper folder is
+    // then dropped so the files do not end up one level too deep.
+    const root = opts.root || (oneTop ? dest : `${dest}/${f.name.replace(/\.zip$/i, "")}`);
+    const drop = opts.root && oneTop ? 1 : 0;
     for (const x of names) {
-      const path = `${root}/${x.parts.join("/")}`;
+      const parts = drop ? x.parts.slice(drop) : x.parts;
+      if (!parts.length) continue;
+      const path = `${root}/${parts.join("/")}`;
       if (isDir(x)) dirs.push(path);
       else items.push({ path, data: entries[x.n], size: entries[x.n].length });
     }
@@ -442,10 +466,10 @@ async function putFile(item, onBytes) {
   } while (offset < item.size);
 }
 
-async function agentSend(files) {
+async function agentSend(files, destOverride) {
   if (!saveAgent()) return;
   if (!ps5.pin) { sayAg(t("agNeedPair"), "err"); return; }
-  const dest = $("ag-dest").value.trim().replace(/\/+$/, "");
+  const dest = String(destOverride || $("ag-dest").value).trim().replace(/\/+$/, "");
   const prog = $("ag-prog"), bar = $("ag-bar"), txt = $("ag-ptext");
   $("ag-done").hidden = true;
   prog.hidden = false; bar.value = 0; agCancel = false;
@@ -484,7 +508,7 @@ function showDone(items, dest) {
 async function agentRun(path) {
   if (!confirm(t("agRunQ", { f: path }) + "\n\n" + t("ps5RunWarn"))) return;
   const port = ps5.ldrPort || 9021;
-  try { await agent(`/api/run${qp(path)}&port=${port}`, { method: "POST" }, 30000); toast(t("ps5Sent")); }
+  try { await agent(`/api/run${qp(path)}&port=${port}`, { method: "POST" }, 30000); toast(t("ps5Sent")); addHist(path.split("/").pop() || path, "console", { path }); }
   catch (e) { alert(t("ps5RunFail", { s: e.status ? e.message : "network" })); }
 }
 
@@ -500,6 +524,7 @@ async function agentRunDirect(file, targetPort = ps5.ldrPort || 9021) {
       body: file
     }, 60000);
     toast(t("agDirectSent", { port: targetPort }));
+    addHist(file.name || "payload.elf", "stream");
     return true;
   } catch (e) {
     const s = e.status === 401 ? t("agBadPin") : e.status ? e.message : (e.name === "AbortError" ? "timeout" : "network");
@@ -617,7 +642,7 @@ async function sendBlob(blob, name) {
     try {
       await agent(`/api/run-direct?port=${ps5.ldrPort || 9021}&name=${encodeURIComponent(label)}`,
         { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob }, 300000);
-      toast(t("ps5Sent")); return true;
+      toast(t("ps5Sent")); addHist(label, "stream"); return true;
     } catch (e) {
       if (e.status) { alert(t("ps5RunFail", { s: e.status === 401 ? t("agBadPin") : e.message })); return false; }
       // agent not reachable -> fall through to websrv
@@ -803,8 +828,10 @@ function drawPresets() {
     : "";
 }
 async function drawLib() {
-  const list = (await libAll()).sort((a, b) => cmp(a.name || "", b.name || ""));
+  const isFav = k => favs.includes(k);
+  const list = (await libAll()).sort((a, b) => (isFav(b.key) ? 1 : 0) - (isFav(a.key) ? 1 : 0) || cmp(a.name || "", b.name || ""));
   $("lib-list").innerHTML = list.length ? list.map(r => `<div class="lib-i">
+      <button class="act star${isFav(r.key) ? " on" : ""}" data-lib-fav="${esc(r.key)}" title="${esc(t(isFav(r.key) ? "favDel" : "favAdd"))}" aria-label="${esc(t(isFav(r.key) ? "favDel" : "favAdd"))}">${ICON.star}</button>
       <span class="lib-n"><b>${esc(r.name)}</b><span class="asset-meta">${esc(fmtSize(r.size))}${r.sha256 ? ` · sha256 ${esc(String(r.sha256).slice(0, 10))}…` : ""}</span></span>
       <span class="acts">
         <button class="act run" data-lib-run="${esc(r.key)}" title="${esc(t("ps5Run"))}" aria-label="${esc(t("ps5Run"))}">${ICON.play}</button>
@@ -812,7 +839,7 @@ async function drawLib() {
         <button class="act copy" data-lib-dl="${esc(r.key)}" title="${esc(t("libDl"))}" aria-label="${esc(t("libDl"))}">${ICON.dl}</button>
         <button class="act rm" data-lib-del="${esc(r.key)}">${esc(t("remove"))}</button>
       </span></div>`).join("") : `<p class="hint">${esc(t("libEmpty"))}</p>`;
-  drawQueue(); drawPresets();
+  drawQueue(); drawPresets(); drawHist();
 }
 
 // Send every item in order, reusing the local copy when there is one
@@ -883,6 +910,8 @@ $("library").addEventListener("click", async e => {
   }
   const dl = e.target.closest("[data-lib-dl]");
   if (dl) { const r = await libGet(dl.dataset.libDl); if (r) saveBlobToDevice(r.blob, r.name); return; }
+  const fav = e.target.closest("[data-lib-fav]");
+  if (fav) { toggleFav(fav.dataset.libFav); drawLib(); return; }
   const del = e.target.closest("[data-lib-del]");
   if (del) { await libDel(del.dataset.libDel); toast(t("libRemoved")); drawLib(); return; }
   const up = e.target.closest("[data-q-up]");
@@ -915,70 +944,133 @@ $("set-verify").onclick = e => {
 };
 
 /* =========================================================
-   v10 · Install homebrew — one click downloads a release .zip
-   here, extracts it (fflate) and sends each file to a folder on
-   the PS5 through the existing agent endpoints. The PS5 needs no
-   download/unzip code, and SHA-256 is checked on the bytes we send.
+   v10 · Install a release archive, or save it as a file
+   Everything runs in this browser: the .zip is downloaded from
+   GitHub, its SHA-256 is checked, and the bytes are then either
+   extracted into a folder on the PS5 (Install) or written as a
+   plain file (Save). The console needs no download/unzip code.
    ========================================================= */
 Object.assign(I18N.en, {
-  inH: "Install homebrew", inZips: "Choose a release archive",
-  inNoZip: "This project has no installable .zip release yet.",
+  inH: "Install or download", inZips: "Release archive", inMode: "Action",
+  inModeApp: "Install (extract)", inModeFile: "Save the .zip", inSaveBtn: "Save",
+  inNoZip: "This project has no .zip release yet.",
   inDownload: "Downloading {f}…", inExtract: "Extracting {f}…", inMkdir: "Creating folders…",
-  inDone: "Installed: {n} file(s) in {d}", inFail: "Install failed: {e}",
+  inSave: "Saving {f}…", inDone: "Installed {n} file(s) in {d}", inSaved: "Saved {f}",
+  inFail: "Failed: {e}", inFree: "{n} free on the console",
+  inDestUsed: "“{d}” already holds {n} folder(s). Files with the same name are replaced.",
+  inKindApp: "PS5 app", inKindOther: "Other",
+  inOtherHint: "Desktop builds and source bundles do not belong in /data/homebrew — save them as a file instead.",
+  inOpenDir: "Open the folder",
 });
 Object.assign(I18N.th, {
-  inH: "ติดตั้ง homebrew", inZips: "เลือกไฟล์เก็บถาวรของรีลีส",
-  inNoZip: "โปรเจกต์นี้ยังไม่มีรีลีส .zip ที่ติดตั้งได้",
+  inH: "ติดตั้งหรือดาวน์โหลด", inZips: "ไฟล์เก็บถาวรของรีลีส", inMode: "จะทำอะไร",
+  inModeApp: "ติดตั้ง (แตกไฟล์)", inModeFile: "บันทึกเป็นไฟล์ .zip", inSaveBtn: "บันทึก",
+  inNoZip: "โปรเจกต์นี้ยังไม่มีรีลีส .zip",
   inDownload: "กำลังดาวน์โหลด {f}…", inExtract: "กำลังแตกไฟล์ {f}…", inMkdir: "กำลังสร้างโฟลเดอร์…",
-  inDone: "ติดตั้งแล้ว: {n} ไฟล์ ใน {d}", inFail: "ติดตั้งล้มเหลว: {e}",
+  inSave: "กำลังบันทึก {f}…", inDone: "ติดตั้ง {n} ไฟล์ ใน {d}", inSaved: "บันทึก {f} แล้ว",
+  inFail: "ไม่สำเร็จ: {e}", inFree: "ว่างบนเครื่อง {n}",
+  inDestUsed: "“{d}” มีโฟลเดอร์อยู่แล้ว {n} โฟลเดอร์ ไฟล์ชื่อซ้ำจะถูกแทนที่",
+  inKindApp: "แอป PS5", inKindOther: "อื่นๆ",
+  inOtherHint: "ไฟล์สำหรับ PC หรือซอร์สโค้ดไม่ควรอยู่ใน /data/homebrew — บันทึกเป็นไฟล์แทน",
+  inOpenDir: "เปิดโฟลเดอร์",
 });
 applyI18n();
 
-const IN_DEST_KEY = "inDest";
-let inZips = [], inZip = null, inCancel = false;
+const IN_DEST = "inDest", IN_DL = "inDestFile";
+let inZips = [], inZip = null, inProj = null, inCancel = false, inMode = "app";
 const sayIn = (text, kind = "") => { const el = $("in-msg"); el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); };
 const inStep = (key, vars = {}) => { $("in-step").textContent = t(key, vars); };
+const hasApp = () => inZips.some(z => z.kind === "app");
 
-// The zip to install; projects.json "install.zip" names one asset when a release has several
-function pickZip(p) {
-  const zips = (latest(p)?.zips || []).filter(z => /^https:\/\//i.test(z.url));
+/* Every zip the newest releases carry (newest first), apps before desktop/source builds */
+function allZips(p) {
+  const seen = new Set(), out = [];
+  for (const r of [latest(p), p.stable, p.pre].filter(Boolean)) {
+    for (const z of r.zips || []) {
+      if (!/^https:\/\//i.test(z.url) || seen.has(z.url)) continue;
+      seen.add(z.url);
+      out.push({ ...z, kind: p.install?.kind || z.kind || "app", tag: r.tag });
+    }
+  }
+  return out.sort((a, b) => (a.kind === b.kind ? 0 : a.kind === "app" ? -1 : 1));
+}
+// "install.zip" from projects.json picks one archive when a release carries several
+function pickZip(p, zips) {
+  if (!zips.length) return null;
   const pref = (p.install?.zip || "").toLowerCase();
-  const hits = pref ? zips.filter(z => z.name.toLowerCase().includes(pref)) : [];
-  return hits[0] || zips[0] || null;
+  return (pref && zips.find(z => z.name.toLowerCase().includes(pref))) || zips.find(z => z.kind === "app") || zips[0];
+}
+// Archive name without extension and version tail: "App-1.2.3.zip" -> "App"
+const zipBase = n => n.replace(/\.zip$/i, "").replace(/[-_. ]?v?\d+(?:[._]\d+)*.*$/i, "").replace(/[-_. ]+$/, "") || n.replace(/\.zip$/i, "");
+const cleanDir = s => String(s).replace(/[^\w.-]+/g, "-").replace(/^[-.]+|[-.]+$/g, "");
+
+// Folder that really received the files: buildPlan keeps the archive's own wrapper folder
+function appRootOf(items, dest) {
+  const rel = items.map(x => x.path.slice(dest.length + 1));
+  const firsts = [...new Set(rel.map(r => r.split("/")[0]))];
+  return firsts.length === 1 && rel.some(r => r.includes("/")) ? `${dest}/${firsts[0]}` : dest;
 }
 
-// Destination: remembered default (or /data/homebrew) plus a per-project subfolder if set
-function installDest(p) {
-  const base = (store.get(IN_DEST_KEY) || "/data/homebrew").replace(/\/+$/, "");
-  const sub = p.install?.dir ? "/" + String(p.install.dir).replace(/^\/+|\/+$/g, "") : "";
-  return base + sub;
+// Destination for the current mode (remembered per mode)
+function inDestValue() {
+  const fallback = inMode === "app" ? "/data/homebrew" : "/data/downloads";
+  return store.get(inMode === "app" ? IN_DEST : IN_DL) || fallback;
+}
+function inApplyMode() {
+  if (inMode === "app" && !hasApp()) inMode = "file";
+  $("in-mode").hidden = !hasApp();
+  $$("#in-mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.inmode === inMode)));
+  $("in-dest").value = inDestValue();
+  for (const r of $$("#in-zips input[name=inz]")) r.closest("label").classList.toggle("dim", inMode === "app" && inZips[Number(r.value)]?.kind !== "app");
+  $("in-hint").textContent = inMode === "app" ? "" : t("inOtherHint");
+  $("in-go").textContent = t(inMode === "app" ? "install" : "inSaveBtn");
+}
+async function inRefreshFree() {
+  try { const j = await agent("/api/info", {}, 5000); $("in-free").textContent = j?.free ? t("inFree", { n: fmtSize(j.free) }) : ""; }
+  catch { $("in-free").textContent = ""; }
+}
+// Warn when the destination folder already has content (files with the same name get replaced)
+async function inCheckDest() {
+  const warn = $("in-warn");
+  warn.hidden = true;
+  if (inMode !== "app") return;
+  const dest = inDestValue().replace(/\/+$/, "");
+  try {
+    const list = await agent("/api/ls" + qp(dest), {}, 6000);
+    if (list.length) { warn.textContent = t("inDestUsed", { d: dest, n: list.filter(x => x.dir).length }); warn.hidden = false; }
+  } catch { /* the folder does not exist yet */ }
 }
 
 async function installProject(p) {
   if (!ps5Ready()) { openPs5(); say5(t("ps5Need"), "err"); return; }
   if (!ps5.pin) { openPs5(); sayAg(t("agNeedPair"), "err"); return; }
-  inZips = (latest(p)?.zips || []).filter(z => /^https:\/\//i.test(z.url));
+  inProj = p;
+  inZips = allZips(p);
   if (!inZips.length) return toast(t("inNoZip"));
-  inZip = pickZip(p);
+  inZip = pickZip(p, inZips);
+  inMode = inZip.kind === "app" ? "app" : "file";
   $("in-title").textContent = `${t("inH")}: ${p.name}`;
   $("in-sub").textContent = `${inZip.name} · ${fmtSize(inZip.size || 0)}${inZip.sha256 ? ` · sha256 ${inZip.sha256.slice(0, 12)}…` : ""}`;
-  $("in-dest").value = installDest(p);
-  $("in-zips").innerHTML = inZips.length > 1
-    ? `<p class="set-h">${esc(t("inZips"))}</p>` + inZips.map((z, i) => `<label class="runq-f"><input type="radio" name="inz" value="${i}"${z.url === inZip.url ? " checked" : ""}><span><strong>${esc(z.name)}</strong><br><code>${esc(fmtSize(z.size || 0))}${z.sha256 ? ` · sha256 ${esc(z.sha256.slice(0, 10))}…` : ""}</code></span></label>`).join("")
-    : "";
+  $("in-zips").innerHTML = `<p class="set-h">${esc(t("inZips"))}</p>` + inZips.map((z, i) =>
+    `<label class="runq-f"><input type="radio" name="inz" value="${i}"${z.url === inZip.url ? " checked" : ""}>
+      <span><strong>${esc(z.name)}</strong> <span class="kind kind-${z.kind}">${esc(t(z.kind === "app" ? "inKindApp" : "inKindOther"))}</span>
+      <br><code>${esc(fmtSize(z.size || 0))}${z.tag ? ` · ${esc(z.tag)}` : ""}${z.sha256 ? ` · sha256 ${esc(z.sha256.slice(0, 10))}…` : ""}</code></span></label>`).join("");
   sayIn(""); $("in-step").textContent = ""; $("in-prog").hidden = true; $("in-done").hidden = true;
+  inApplyMode();
   $("install").showModal();
+  inRefreshFree();
+  inCheckDest().catch(() => {});
 }
 
 async function doInstall() {
   if (!ps5.pin) return sayIn(t("agNeedPair"), "err");
-  const dest = $("in-dest").value.trim().replace(/\/+$/, "") || "/data/homebrew";
   const sel = $("in-zips").querySelector("input[name=inz]:checked");
   if (sel) inZip = inZips[Number(sel.value)] || inZip;
   if (!inZip) return sayIn(t("inNoZip"), "err");
-  store.set(IN_DEST_KEY, dest);
+  const dest = $("in-dest").value.trim().replace(/\/+$/, "") || (inMode === "app" ? "/data/homebrew" : "/data/downloads");
+  store.set(inMode === "app" ? IN_DEST : IN_DL, dest);
   inCancel = false; sayIn("");
-  $("in-prog").hidden = false; $("in-bar").value = 0; $("in-done").hidden = true;
+  $("in-prog").hidden = false; $("in-bar").value = 0; $("in-done").hidden = true; $("in-warn").hidden = true;
   $("in-go").disabled = true;
   try {
     inStep("inDownload", { f: inZip.name });
@@ -987,14 +1079,22 @@ async function doInstall() {
     catch (e) { throw new Error(/^HTTP/.test(e.message || "") ? e.message : "network"); }
     if (inZip.sha256 && ps5.verify !== false) {
       const got = await sha256Hex(blob);
-      if (got && got !== String(inZip.sha256).toLowerCase()) {
-        if (!confirm(t("verifyAsk", { n: inZip.name, g: got.slice(0, 16), e: String(inZip.sha256).slice(0, 16) }))) {
-          sayIn(t("agCancelled")); $("in-prog").hidden = true; return;
-        }
+      if (got && got !== String(inZip.sha256).toLowerCase() &&
+          !confirm(t("verifyAsk", { n: inZip.name, g: got.slice(0, 16), e: String(inZip.sha256).slice(0, 16) }))) {
+        sayIn(t("agCancelled")); $("in-prog").hidden = true; return;
       }
     }
+    if (inMode === "file") {                        // keep the archive exactly as published
+      inStep("inSave", { f: inZip.name });
+      await agent(`/api/upload${qp(dest + "/" + inZip.name)}&offset=0`, { method: "PUT", body: blob }, 300000);
+      $("in-bar").value = 1; $("in-prog").hidden = true;
+      inDoneBox(`<p class="msg ok">${esc(t("inSaved", { f: inZip.name }))} · ${esc(dest)}</p>`, dest);
+      toast(t("inSaved", { f: inZip.name }));
+      return;
+    }
     inStep("inExtract", { f: inZip.name });
-    const plan = await buildPlan([new File([blob], inZip.name)], dest, true);
+    const dir = inProj?.install?.dir ? cleanDir(inProj.install.dir) : "";
+    const plan = await buildPlan([new File([blob], inZip.name)], dest, true, dir ? { root: `${dest}/${dir}` } : {});
     inStep("inMkdir");
     for (const d of plan.dirs) await agent("/api/mkdir" + qp(d), { method: "POST" });
     const total = plan.items.reduce((s, x) => s + x.size, 0);
@@ -1004,8 +1104,21 @@ async function doInstall() {
       show();
       await putFile(item, n => { sent += n; show(); });
     }
+    const root = appRootOf(plan.items, dest);
+    rememberRoot(dest);
+    // A small manifest beside the files: the Installed list reads it back from the console
+    try {
+      const m = {
+        app: "ps5links", name: inProj?.name || root.split("/").pop(), repo: inProj?.url || "",
+        tag: inZip.tag || "", zip: inZip.name, sha256: inZip.sha256 || "",
+        files: plan.items.length, bytes: total, at: new Date().toISOString(),
+      };
+      await agent(`/api/upload${qp(root + "/.ps5links.json")}&offset=0`,
+        { method: "PUT", body: new TextEncoder().encode(JSON.stringify(m, null, 2)) }, 30000);
+    } catch { /* not fatal: the files themselves are in place */ }
     $("in-bar").value = 1; $("in-prog").hidden = true;
-    showInstallDone(plan.items, dest);
+    inDoneBox(`<p class="msg ok">${esc(t("inDone", { n: plan.items.length, d: root }))}</p>`, root, plan.items);
+    toast(t("inDone", { n: plan.items.length, d: root }));
   } catch (e) {
     $("in-prog").hidden = true;
     if (inCancel) sayIn(t("agCancelled"));
@@ -1018,20 +1131,284 @@ async function doInstall() {
   }
 }
 
-// After install: summary + "run" buttons for any .elf that landed in the folder
-function showInstallDone(items, dest) {
+// Summary + shortcuts for whatever landed on the console
+function inDoneBox(html, dest, items = []) {
   const box = $("in-done");
   const elfs = items.filter(x => /\.elf$/i.test(x.path));
-  box.innerHTML = `<p class="msg ok">${esc(t("inDone", { n: items.length, d: dest }))}</p>` +
+  box.innerHTML = html +
+    `<button class="btn small" data-in-open="${esc(dest)}">${esc(t("inOpenDir"))}</button>` +
     elfs.map(x => `<button class="fs-i file" data-in-run="${esc(x.path)}">${ICON.play} ${esc(x.path.replace(dest + "/", ""))}</button>`).join("");
   box.hidden = false;
-  toast(t("inDone", { n: items.length, d: dest }));
 }
 
 $("in-go").onclick = () => doInstall();
 $("in-cancel").onclick = () => { inCancel = true; };
+$("in-mode").addEventListener("click", e => {
+  const b = e.target.closest("[data-inmode]");
+  if (!b) return;
+  inMode = b.dataset.inmode;
+  inApplyMode();
+  inCheckDest().catch(() => {});
+});
+$("in-zips").addEventListener("change", e => {
+  const r = e.target.closest("input[name=inz]");
+  if (!r) return;
+  inZip = inZips[Number(r.value)] || inZip;
+  if (inZip.kind !== "app" && inMode === "app") inMode = "file";
+  $("in-sub").textContent = `${inZip.name} · ${fmtSize(inZip.size || 0)}${inZip.sha256 ? ` · sha256 ${inZip.sha256.slice(0, 12)}…` : ""}`;
+  inApplyMode();
+  inCheckDest().catch(() => {});
+});
+$("in-dest").addEventListener("change", () => inCheckDest().catch(() => {}));
 $("in-done").addEventListener("click", e => {
-  const b = e.target.closest("[data-in-run]");
-  if (b) agentRun(b.dataset.inRun);
+  const run = e.target.closest("[data-in-run]");
+  if (run) return agentRun(run.dataset.inRun);
+  const open = e.target.closest("[data-in-open]");
+  if (open) { $("install").close(); openPs5(); ps5Browse(open.dataset.inOpen); }
 });
 window.installProject = installProject;
+
+/* =========================================================
+   v10 · Installed homebrew manager
+   Lists the folders under the install destination through the agent,
+   reads back the .ps5links.json written at install time, says when
+   GitHub has a newer release, and can delete a folder again — the
+   delete asks for the folder name first and needs POST /api/rm
+   (ps5links-agent.elf 0.2.0 or newer).
+   ========================================================= */
+Object.assign(I18N.en, {
+  v10H: "Installed homebrew", v10Open: "Folders under the install destination on the PS5.",
+  v10Empty: "Nothing found yet. Use the Install button on a project card.",
+  v10Unmanaged: "not installed by PS5 Links", v10Checking: "Reading the console…",
+  v10UpToDate: "up to date", v10Update: "Update", v10Newer: "newer release: {t}",
+  v10Delete: "Delete", v10Refresh: "Refresh", v10OpenDir: "Open folder",
+  v10Forget: "Forget extra folders", v10Forgot: "Removed the remembered folders",
+  v10Hint: "Deleting asks for the folder name first. It needs ps5links-agent.elf 0.2.0 or newer.",
+  v10TypeName: "Type the folder name “{n}” to delete it for good:",
+  v10NameMismatch: "The name did not match — nothing was deleted.",
+  v10RmOld: "this agent has no delete command. Update ps5links-agent.elf to 0.2.0 or newer.",
+  v10RmFail: "Could not delete: {e}", v10NoPair: "Pair with the agent first (PIN).",
+  v10Bytes: "{n} installed", v10At: "installed {d}", v10Repo: "project",
+  v10Deleted: "Deleted {d}", v10UpdateQ: "Update {n} on the PS5 now?",
+  v10NeedsPin: "Pair with the agent (PIN) to manage installed homebrew.",
+});
+Object.assign(I18N.th, {
+  v10H: "จัดการสิ่งที่ติดตั้งไว้", v10Open: "โฟลเดอร์ใต้ปลายทางที่ติดตั้งบน PS5",
+  v10Empty: "ยังไม่พบอะไร ใช้ปุ่มติดตั้งบนการ์ดโปรเจกต์ได้เลย",
+  v10Unmanaged: "ไม่ได้ติดตั้งผ่าน PS5 Links", v10Checking: "กำลังอ่านข้อมูลจากเครื่อง…",
+  v10UpToDate: "เป็นเวอร์ชันล่าสุด", v10Update: "อัปเดต", v10Newer: "มีรีลีสใหม่: {t}",
+  v10Delete: "ลบ", v10Refresh: "รีเฟรช", v10OpenDir: "เปิดโฟลเดอร์",
+  v10Forget: "ลืมโฟลเดอร์ที่จำไว้", v10Forgot: "ลบโฟลเดอร์ที่จำไว้แล้ว",
+  v10Hint: "การลบจะให้พิมพ์ชื่อโฟลเดอร์ก่อน และต้องใช้ ps5links-agent.elf 0.2.0 ขึ้นไป",
+  v10TypeName: "พิมพ์ชื่อโฟลเดอร์ “{n}” เพื่อยืนยันการลบถาวร:",
+  v10NameMismatch: "ชื่อไม่ตรง — ยังไม่ได้ลบอะไร",
+  v10RmOld: "agent รุ่นนี้ยังไม่มีคำสั่งลบ ให้อัปเดต ps5links-agent.elf เป็น 0.2.0 ขึ้นไป",
+  v10RmFail: "ลบไม่ได้: {e}", v10NoPair: "จับคู่กับ agent ก่อน (ใส่ PIN)",
+  v10Bytes: "ติดตั้งไว้ {n}", v10At: "ติดตั้ง {d}", v10Repo: "โปรเจกต์",
+  v10Deleted: "ลบ {d} แล้ว", v10UpdateQ: "อัปเดต {n} บน PS5 เดี๋ยวนี้ไหม?",
+  v10NeedsPin: "จับคู่กับ agent (PIN) ก่อนจึงจะจัดการรายการติดตั้งได้",
+});
+applyI18n();
+
+const INST_EXTRA = "instRoots";
+// Destinations we ever installed into: the current one plus the ones remembered here
+const instRoots = () => [...new Set([store.get(IN_DEST) || "/data/homebrew", ...(store.get(INST_EXTRA, []) || [])])];
+function rememberRoot(dest) {
+  const d = String(dest || "").replace(/\/+$/, "");
+  if (!d || d === "/data/homebrew") return;
+  store.set(INST_EXTRA, [...new Set([...(store.get(INST_EXTRA, []) || []), d])]);
+}
+const sayInst = (text, kind = "") => { const el = $("inst-msg"); el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); };
+
+// One /api/ls per root, then the .ps5links.json we wrote at install time (websrv /fs)
+async function scanInstalled() {
+  const out = [];
+  for (const root of instRoots()) {
+    let list;
+    try { list = await agent("/api/ls" + qp(root), {}, 9000); } catch { continue; }
+    for (const d of list.filter(x => x.dir)) {
+      const path = `${root}/${d.name}`;
+      let man = null;
+      try {
+        const r = await ps5Fetch("/fs" + fsEnc(path + "/.ps5links.json"), {}, 8000);
+        if (r.ok) man = JSON.parse((await r.text()).replace(/^\uFEFF/, ""));
+      } catch { /* no manifest: an unmanaged folder */ }
+      out.push({ root, path, name: d.name, man, mtime: d.mtime });
+    }
+  }
+  return out;
+}
+
+async function drawInstalled() {
+  if (!ps5.pin) return sayInst(t("v10NeedsPin"), "err");
+  const box = $("inst-list");
+  box.innerHTML = `<p class="loading">${esc(t("v10Checking"))}</p>`;
+  sayInst("");
+  let list;
+  try { list = await scanInstalled(); }
+  catch (e) { box.innerHTML = `<p class="msg err">${esc(e.status === 401 ? t("agBadPin") : t("agNoAgent"))}</p>`; return; }
+  if (!list.length) { box.innerHTML = `<p class="hint">${esc(t("v10Empty"))}</p>`; return; }
+  box.innerHTML = list.sort((a, b) => cmp(a.name, b.name)).map(x => {
+    const p = x.man?.repo ? data.find(d => key(d) === String(x.man.repo).toLowerCase()) : null;
+    const tag = p ? latest(p)?.tag || "" : "";
+    const newer = !!(tag && x.man?.tag && tag !== x.man.tag);
+    const bits = [x.man?.tag ? `v ${x.man.tag}` : "", x.man?.bytes ? t("v10Bytes", { n: fmtSize(x.man.bytes) }) : "",
+      x.man?.at ? t("v10At", { d: String(x.man.at).slice(0, 10) }) : ""].filter(Boolean).map(esc).join(" · ");
+    return `<div class="lib-i inst-i">
+      <span class="lib-n"><b>${esc(x.man?.name || x.name)}</b>
+        <span class="asset-meta">${esc(x.path)}</span>
+        <span class="asset-meta">${x.man ? bits : esc(t("v10Unmanaged"))}</span>
+        <span class="asset-meta">${newer ? esc(t("v10Newer", { t: tag })) : x.man ? esc(t("v10UpToDate")) : ""}</span>
+        ${x.man?.repo ? `<a class="hp" href="${esc(safeUrl(x.man.repo))}">${esc(t("v10Repo"))} ↗</a>` : ""}</span>
+      <span class="acts">
+        ${newer ? `<button class="act install" data-inst-up="${esc(x.path)}" data-inst-repo="${esc(x.man.repo)}" title="${esc(t("v10Update"))}" aria-label="${esc(t("v10Update"))}">${ICON.install}</button>` : ""}
+        <button class="act copy" data-inst-open="${esc(x.path)}" title="${esc(t("v10OpenDir"))}" aria-label="${esc(t("v10OpenDir"))}">${FOLDER}</button>
+        <button class="act rm" data-inst-del="${esc(x.path)}" data-inst-name="${esc(x.name)}">${esc(t("v10Delete"))}</button>
+      </span></div>`;
+  }).join("");
+}
+
+// Delete with a typed confirmation: the folder name has to be entered exactly
+async function removeInstalled(path, name) {
+  const typed = prompt(t("v10TypeName", { n: name }), "");
+  if (typed === null) return;
+  if (typed.trim() !== name) return toast(t("v10NameMismatch"));
+  sayInst(t("loading"));
+  try {
+    await agent(`/api/rm${qp(path)}&recursive=1`, { method: "POST" }, 120000);
+    toast(t("v10Deleted", { d: path }));
+    drawInstalled();
+  } catch (e) {
+    sayInst(t("v10RmFail", { e: e.status === 404 ? t("v10RmOld") : e.status ? e.message : "network" }), "err");
+  }
+}
+
+// Update in place: the archive is written into the folder that is already there
+async function updateInstalled(path, repo) {
+  const p = data.find(d => key(d) === String(repo).toLowerCase());
+  if (!p) return sayInst(t("inNoZip"), "err");
+  inProj = p; inZips = allZips(p); inZip = pickZip(p, inZips);
+  if (!inZip) return sayInst(t("inNoZip"), "err");
+  if (!confirm(t("v10UpdateQ", { n: p.name }))) return;
+  $("inst-list").innerHTML = `<p class="loading">${esc(t("v10Checking"))}</p>`;
+  try {
+    sayInst(t("inDownload", { f: inZip.name }));
+    let blob;
+    try { blob = await fetchBlob(inZip.url); }
+    catch (e) { throw new Error(/^HTTP/.test(e.message || "") ? e.message : "network"); }
+    if (inZip.sha256 && ps5.verify !== false) {
+      const got = await sha256Hex(blob);
+      if (got && got !== String(inZip.sha256).toLowerCase() &&
+          !confirm(t("verifyAsk", { n: inZip.name, g: got.slice(0, 16), e: String(inZip.sha256).slice(0, 16) })))
+        return sayInst(t("agCancelled"));
+    }
+    sayInst(t("inExtract", { f: inZip.name }));
+    const plan = await buildPlan([new File([blob], inZip.name)], path, true, { root: path });
+    for (const d of plan.dirs) await agent("/api/mkdir" + qp(d), { method: "POST" });
+    const total = plan.items.reduce((s, x) => s + x.size, 0);
+    let sent = 0;
+    for (const [i, item] of plan.items.entries()) {
+      sayInst(t("agSending", { i: i + 1, n: plan.items.length, f: item.path.split("/").pop(), p: total ? Math.round(sent / total * 100) : 100 }));
+      await putFile(item, n => { sent += n; });
+    }
+    const m = { app: "ps5links", name: p.name, repo: p.url, tag: inZip.tag || "", zip: inZip.name, sha256: inZip.sha256 || "", files: plan.items.length, bytes: total, at: new Date().toISOString() };
+    try { await agent(`/api/upload${qp(path + "/.ps5links.json")}&offset=0`, { method: "PUT", body: new TextEncoder().encode(JSON.stringify(m, null, 2)) }, 30000); } catch {}
+    toast(t("inDone", { n: plan.items.length, d: path }));
+    drawInstalled();
+  } catch (e) {
+    sayInst(t("inFail", { e: e.status === 401 ? t("agBadPin") : e.status ? e.message : "network" }), "err");
+  }
+}
+
+$("open-inst").onclick = () => { sayInst(""); $("installed").showModal(); drawInstalled(); };
+$("inst-refresh").onclick = () => drawInstalled();
+$("inst-forget").onclick = () => { store.set(INST_EXTRA, []); toast(t("v10Forgot")); drawInstalled(); };
+$("inst-list").addEventListener("click", async e => {
+  const del = e.target.closest("[data-inst-del]");
+  if (del) return void await removeInstalled(del.dataset.instDel, del.dataset.instName);
+  const open = e.target.closest("[data-inst-open]");
+  if (open) { $("installed").close(); openPs5(); ps5Browse(open.dataset.instOpen); return; }
+  const up = e.target.closest("[data-inst-up]");
+  if (up) await updateInstalled(up.dataset.instUp, up.dataset.instRepo);
+});
+window.openInstalled = () => { sayInst(""); $("installed").showModal(); drawInstalled(); };
+
+/* =========================================================
+   v11 · File manager extras + payload manager
+   Free space and folder size in the PS5 folder browser, deleting and
+   creating folders (needs agent 0.2.0), uploading straight into the
+   folder being browsed, and favourites + a run history for payloads.
+   ========================================================= */
+Object.assign(I18N.en, {
+  fsTotal: "{n} file(s) · {s}", fsFree: "{n} free", fsDir: "folder",
+  fsUpload: "Upload here", fsNewFolder: "New folder", fsMade: "Folder created",
+  fsDelete: "Delete", fsNeedName: "Enter a folder name (letters, digits, . _ -)",
+  favAdd: "Add to favourites", favDel: "Remove from favourites",
+  histH: "Recent runs", histEmpty: "Nothing run from this browser yet.",
+  histClear: "Clear history", histAgain: "Run again", histNoData: "No payload kept for this entry — save it in the library first.",
+});
+Object.assign(I18N.th, {
+  fsTotal: "{n} ไฟล์ · {s}", fsFree: "ว่าง {n}", fsDir: "โฟลเดอร์",
+  fsUpload: "อัปโหลดที่นี่", fsNewFolder: "สร้างโฟลเดอร์", fsMade: "สร้างโฟลเดอร์แล้ว",
+  fsDelete: "ลบ", fsNeedName: "ใส่ชื่อโฟลเดอร์ (ตัวอักษร ตัวเลข . _ -)",
+  favAdd: "เพิ่มในรายการโปรด", favDel: "เอาออกจากรายการโปรด",
+  histH: "รันล่าสุด", histEmpty: "ยังไม่เคยรันจากเบราว์เซอร์นี้",
+  histClear: "ล้างประวัติ", histAgain: "รันอีกครั้ง", histNoData: "ยังไม่มีข้อมูล payload ของรายการนี้ — เก็บไว้ในคลังก่อน",
+});
+applyI18n();
+
+let favs = store.get("favs", []);
+let hist = store.get("hist", []);
+const toggleFav = k => { favs = favs.includes(k) ? favs.filter(x => x !== k) : [...favs, k]; store.set("favs", favs); };
+// Keep the 20 most recent runs, one line per payload name
+function addHist(name, how = "run", opts = {}) {
+  hist = [{ name, how, path: opts.path || "", url: opts.url || "", key: opts.key || "", at: Date.now() }, ...hist.filter(h => h.name !== name)].slice(0, 20);
+  store.set("hist", hist);
+}
+function drawHist() {
+  const box = $("hist-list");
+  if (!box) return;
+  box.innerHTML = hist.length ? hist.map((h, i) => `<div class="lib-i">
+      <span class="lib-n"><b>${esc(h.name)}</b><span class="asset-meta">${esc(ago(new Date(h.at).toISOString().slice(0, 10)))} · ${esc(h.how)}</span></span>
+      <span class="acts"><button class="act run" data-hist-run="${i}" title="${esc(t("histAgain"))}" aria-label="${esc(t("histAgain"))}">${ICON.play}</button></span></div>`).join("")
+    : `<p class="hint">${esc(t("histEmpty"))}</p>`;
+}
+async function histRun(i) {
+  const h = hist[i];
+  if (!h) return;
+  if (h.key) { const r = await libGet(h.key); if (r) return askRun([{ name: r.name, size: r.size, file: r.blob }], r.name, ps5.pin ? (ps5.ldrPort === 9020 ? "agent-9020" : "agent-9021") : "websrv"); }
+  if (h.path) return askRun([{ name: h.name, path: h.path }], h.path);
+  if (h.url) return askRun([{ name: h.name, url: h.url }], h.name);
+  toast(t("histNoData"));
+}
+
+/* ---------- Folder actions (need the agent) ---------- */
+async function fsMkdir() {
+  if (!ps5.pin) return toast(t("v10NeedsPin"));
+  const name = prompt(t("fsNewFolder"), "");
+  if (name === null) return;
+  const clean = name.trim().replace(/[^\w.-]+/g, "-").replace(/^[-.]+|[-.]+$/g, "");
+  if (!clean) return toast(t("fsNeedName"));
+  try {
+    await agent("/api/mkdir" + qp(`${fsPath.replace(/\/$/, "")}/${clean}`), { method: "POST" }, 15000);
+    toast(t("fsMade"));
+    ps5Browse(fsPath);
+  } catch (e) { alert(t("v10RmFail", { e: e.status === 401 ? t("agBadPin") : e.status ? e.message : "network" })); }
+}
+async function fsRemove(path, name) {
+  if (!ps5.pin) return toast(t("v10NeedsPin"));
+  const typed = prompt(t("v10TypeName", { n: name }), "");
+  if (typed === null) return;
+  if (typed.trim() !== name) return toast(t("v10NameMismatch"));
+  try {
+    await agent(`/api/rm${qp(path)}&recursive=1`, { method: "POST" }, 120000);
+    toast(t("v10Deleted", { d: path }));
+    ps5Browse(fsPath);
+  } catch (e) { alert(t("v10RmFail", { e: e.status === 404 ? t("v10RmOld") : e.status ? e.message : "network" })); }
+}
+
+$("hist-list").addEventListener("click", e => {
+  const b = e.target.closest("[data-hist-run]");
+  if (b) histRun(Number(b.dataset.histRun));
+});
+$("hist-clear").onclick = () => { hist = []; store.set("hist", hist); drawHist(); };
