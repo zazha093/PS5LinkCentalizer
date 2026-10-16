@@ -53,18 +53,24 @@ const payloadFiles = r => (r.assets ?? [])
     size: a.size ?? 0,
     sha256: /^sha256:[0-9a-f]{64}$/i.test(a.digest ?? "") ? a.digest.slice(7).toLowerCase() : "",
   }));
-// Installable archives (.zip) a release carries — what "Install homebrew" downloads and
-// extracts in the browser before sending each file to /data/homebrew (see ps5.js).
+// Release archives (.zip). "kind" tells the site what the archive is good for:
+//   app   → an app/homebrew tree we can extract into /data/homebrew (Install)
+//   other → a desktop build, source bundle or SDK: better saved as a file to another folder
+// Desktop/source markers win over any "ps5" hint, because "PS5GX-windows.zip" is still a PC build.
 const ZIP_EXT = /\.zip$/i;
+const OTHER_ZIP = /(^|[^a-z0-9])(mac|macos|osx|darwin|win|windows|win32|win64|linux|ubuntu|x64|x86|amd64|arm64|aarch64|source|sourcecode|src|sdk|debug|symbols|pdb|dsym)([^a-z0-9]|$)/i;
+const zipKind = name => (OTHER_ZIP.test(name) ? "other" : "app");
 const zipFiles = r => (r.assets ?? [])
   .filter(a => ZIP_EXT.test(a.name) && (a.state ?? "uploaded") === "uploaded")
-  .slice(0, 6)
+  .slice(0, 8)
   .map(a => ({
     name: a.name,
     url: a.browser_download_url,
     size: a.size ?? 0,
     sha256: /^sha256:[0-9a-f]{64}$/i.test(a.digest ?? "") ? a.digest.slice(7).toLowerCase() : "",
-  }));
+    kind: zipKind(a.name),
+  }))
+  .sort((a, b) => (a.kind === b.kind ? 0 : a.kind === "app" ? -1 : 1)); // apps first: the site picks [0]
 const sumDownloads = r => (r.assets ?? []).reduce((n, a) => n + (a.download_count ?? 0), 0);
 
 function fromReleases(releases) {
@@ -145,8 +151,15 @@ for (const p of projects) {
     branch: repo.default_branch ?? "",
     downloads,
     // Optional per-project install hints (projects.json "install"): a subfolder under
-    // /data/homebrew ("dir") and a name fragment to pick one of several release zips ("zip").
-    install: (p.install && typeof p.install === "object") ? { dir: String(p.install.dir ?? ""), zip: String(p.install.zip ?? "") } : null,
+    // /data/homebrew ("dir"), a name fragment picking one of several zips ("zip"), and an
+    // explicit "kind" ("app" | "other") that overrides the automatic classification above.
+    install: (p.install && typeof p.install === "object")
+      ? {
+          dir: String(p.install.dir ?? ""),
+          zip: String(p.install.zip ?? ""),
+          kind: p.install.kind === "app" || p.install.kind === "other" ? p.install.kind : "",
+        }
+      : null,
   });
   console.log(`${p.repo} -> ${stable?.tag ?? "-"} | ${pre?.tag ?? "-"}`);
 }
