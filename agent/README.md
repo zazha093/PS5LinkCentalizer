@@ -31,5 +31,10 @@ All calls except `/api/info` need the header `X-Agent-Pin`. Paths must be under 
 
 ## Security
 
+- **PIN lock-out:** 5 wrong PINs in a row lock that address out for 60 s (HTTP 429), so guessing the 6 digits is no longer practical. The PIN is compared in constant time.
+- **Only the site may talk to it:** requests from a web page must come from `https://zazha093.github.io` (or `http://localhost` / `http://127.0.0.1` for a local copy); others get 403 and no CORS headers. To allow another address, put it on its own line in `/data/ps5links-agent/origins.txt`.
+- **Symlinks:** the target folder is resolved on disk and must stay inside `/data`, `/mnt/usbN` or `/mnt/extN`; the last part of a path is opened with `O_NOFOLLOW`.
+- At most 24 connections at once.
+
 - Anyone on your Wi-Fi who knows the PIN can write files under `/data` and start ELFs. Use it on a home network only, and stop it (reboot) when you are done.
 - The connection is plain HTTP inside your network (no encryption), like FTP and websrv.

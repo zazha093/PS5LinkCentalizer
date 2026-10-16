@@ -187,6 +187,125 @@ static void buf_add(char **buf, size_t *len, size_t *cap, const char *fmt, ...) 
   }
 }
 
+/* ---------------------------------------------------------------- security */
+#ifndef SITE_ORIGIN
+#define SITE_ORIGIN "https://zazha093.github.io" /* the only website allowed to use the agent (CORS) */
+#endif
+#define MAX_FAILS   5   /* wrong PINs from one address before it is locked out */
+#define LOCK_SECS   60  /* ... for this long */
+#define MAX_TRACKED 32
+#define MAX_CONN    24  /* open client connections at once */
+#define ACAO_SLOTS  512
+#define MAX_ORIGINS 8
+
+typedef struct { char ip[48]; int fails; time_t until, last; } guard_t;
+static guard_t g_guard[MAX_TRACKED];
+static pthread_mutex_t g_guard_mu = PTHREAD_MUTEX_INITIALIZER;
+static char g_origins[MAX_ORIGINS][160];
+static int g_norig;
+static char g_acao[ACAO_SLOTS][160]; /* per connection (indexed by fd): Origin to echo in CORS headers, "" = none */
+static volatile int g_active;        /* open client connections */
+
+/* Constant-time compare: the answer time does not reveal how many digits matched */
+static int pin_equal(const char *a, const char *b) {
+  size_t la = strlen(a), lb = strlen(b);
+  unsigned char d = (unsigned char)(la != lb);
+  for (size_t i = 0; i < lb; i++) d |= (unsigned char)((i < la ? a[i] : 0) ^ b[i]);
+  return d == 0;
+}
+
+/* Find (or create, evicting the least recently failing entry) the record for an address.
+ * Caller holds g_guard_mu. */
+static guard_t *guard_get(const char *ip) {
+  guard_t *old = &g_guard[0];
+  for (int i = 0; i < MAX_TRACKED; i++) {
+    if (!strcmp(g_guard[i].ip, ip)) return &g_guard[i];
+    if (g_guard[i].last < old->last) old = &g_guard[i];
+  }
+  memset(old, 0, sizeof *old);
+  snprintf(old->ip, sizeof old->ip, "%s", ip);
+  return old;
+}
+
+/* 1 = right PIN, 0 = wrong or missing PIN, -1 = this address is locked out (*wait = seconds left).
+ * MAX_FAILS wrong PINs in a row lock the address out for LOCK_SECS, so guessing 1,000,000 PINs
+ * takes months instead of minutes. A request without any PIN is not counted as a guess. */
+static int pin_check(const char *ip, const char *pin, int *wait) {
+  int res;
+  time_t now = time(NULL);
+  pthread_mutex_lock(&g_guard_mu);
+  guard_t *g = guard_get(ip);
+  if (g->until > now) { *wait = (int)(g->until - now); res = -1; }
+  else if (!pin[0]) res = 0;
+  else if (pin_equal(pin, g_pin)) { g->fails = 0; res = 1; }
+  else {
+    g->last = now;
+    if (++g->fails >= MAX_FAILS) { g->until = now + LOCK_SECS; g->fails = 0; }
+    res = 0;
+  }
+  pthread_mutex_unlock(&g_guard_mu);
+  return res;
+}
+
+/* Allowed websites: SITE_ORIGIN, extra lines of /data/ps5links-agent/origins.txt, and a copy of the
+ * site served from this device (http://localhost / http://127.0.0.1) while developing. */
+static void load_origins(void) {
+  snprintf(g_origins[0], sizeof g_origins[0], "%s", SITE_ORIGIN);
+  g_norig = 1;
+  char file[PATH_MAX_LEN + 300], line[160];
+  real_path("/data/ps5links-agent/origins.txt", file, sizeof file);
+  FILE *f = fopen(file, "r");
+  if (!f) return;
+  while (g_norig < MAX_ORIGINS && fgets(line, sizeof line, f)) {
+    line[strcspn(line, "\r\n")] = 0;
+    if (!strncmp(line, "http", 4)) snprintf(g_origins[g_norig++], sizeof g_origins[0], "%s", line);
+  }
+  fclose(f);
+}
+
+static int origin_ok(const char *o) {
+  for (int i = 0; i < g_norig; i++)
+    if (!strcmp(o, g_origins[i])) return 1;
+  static const char *const loc[2] = { "http://localhost", "http://127.0.0.1" };
+  for (int i = 0; i < 2; i++) {
+    size_t n = strlen(loc[i]);
+    if (!strncmp(o, loc[i], n) && (o[n] == 0 || o[n] == ':')) return 1;
+  }
+  return 0;
+}
+
+/* Symlinks: path_ok() only looks at the text. Here the deepest existing part of the path is
+ * resolved on disk and must still be inside the same top folder (/data, /mnt/usbN, /mnt/extN). */
+static int inside_top(const char *path) {
+  size_t tl = 5; /* "/data" */
+  if (strncmp(path, "/data", 5)) {
+    const char *e = strchr(path + 5, '/'); /* "/mnt/usb0" */
+    tl = e ? (size_t)(e - path) : strlen(path);
+  }
+  char top[PATH_MAX_LEN], a[PATH_MAX_LEN + 256], b[PATH_MAX_LEN + 256];
+  snprintf(top, sizeof top, "%.*s", (int)tl, path);
+  real_path(top, a, sizeof a);
+  char *rt = realpath(a, NULL);
+  if (!rt) return 0;
+  real_path(path, b, sizeof b);
+  char *rp;
+  for (;;) {
+    rp = realpath(b, NULL);
+    if (rp || errno != ENOENT) break;
+    char *sl = strrchr(b, '/');
+    if (!sl || sl == b) break;
+    *sl = 0;
+  }
+  int ok = 0;
+  if (rp) {
+    size_t n = strlen(rt);
+    ok = !strncmp(rp, rt, n) && (rp[n] == 0 || rp[n] == '/');
+  }
+  free(rt);
+  free(rp);
+  return ok;
+}
+
 /* ---------------------------------------------------------------- HTTP */
 static int send_all(int fd, const void *data, size_t len) {
   const char *p = data;
@@ -202,20 +321,22 @@ static int send_all(int fd, const void *data, size_t len) {
 static void reply(int fd, int status, const char *ctype, const char *body, size_t blen) {
   const char *text = status == 200 ? "OK" : status == 204 ? "No Content" : status == 400 ? "Bad Request" :
                      status == 401 ? "Unauthorized" : status == 403 ? "Forbidden" : status == 404 ? "Not Found" :
-                     status == 409 ? "Conflict" : status == 413 ? "Payload Too Large" : status == 502 ? "Bad Gateway" : "Error";
-  char hdr[1024];
+                     status == 409 ? "Conflict" : status == 429 ? "Too Many Requests" : status == 413 ? "Payload Too Large" : status == 502 ? "Bad Gateway" : "Error";
+  char hdr[1024], cors[220] = "";
+  const char *ao = g_acao[fd % ACAO_SLOTS];
+  if (ao[0]) snprintf(cors, sizeof cors, "Access-Control-Allow-Origin: %s\r\nVary: Origin\r\n", ao);
   int n = snprintf(hdr, sizeof hdr,
     "HTTP/1.1 %d %s\r\n"
     "Content-Type: %s\r\n"
     "Content-Length: %zu\r\n"
-    "Access-Control-Allow-Origin: *\r\n"
+    "%s"
     "Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS\r\n"
     "Access-Control-Allow-Headers: Content-Type, X-Agent-Pin\r\n"
     "Access-Control-Allow-Private-Network: true\r\n"
     "Access-Control-Max-Age: 600\r\n"
     "Cache-Control: no-store\r\n"
     "Connection: close\r\n\r\n",
-    status, text, ctype, blen);
+    status, text, ctype, blen, cors);
   send_all(fd, hdr, (size_t)n);
   if (blen) send_all(fd, body, blen);
 }
@@ -236,6 +357,8 @@ typedef struct {
   char path[256];       /* "/api/upload" */
   char query[2048];     /* "path=...&offset=..." */
   char pin[16];         /* X-Agent-Pin header */
+  char origin[160];     /* Origin header (browsers always send it on cross-site requests) */
+  char ip[48];          /* client address */
   long long clen;       /* Content-Length, -1 if absent */
   char *extra;          /* body bytes already read together with the headers */
   size_t extra_len;
@@ -277,6 +400,12 @@ static int read_request(int fd, char *buf, request_t *r) {
       size_t k = 0;
       while (v[k] && v[k] != '\r' && k < sizeof r->pin - 1) { r->pin[k] = v[k]; k++; }
       r->pin[k] = 0;
+    } else if (!strncasecmp(line, "Origin:", 7)) {
+      char *v = line + 7;
+      while (*v == ' ') v++;
+      size_t k = 0;
+      while (v[k] && v[k] != '\r' && k < sizeof r->origin - 1) { r->origin[k] = v[k]; k++; }
+      r->origin[k] = 0;
     }
   }
   return 0;
@@ -285,6 +414,8 @@ static int read_request(int fd, char *buf, request_t *r) {
 /* ---------------------------------------------------------------- handlers */
 static void h_info(int fd, const request_t *r) {
   char json[512];
+  int wait = 0, pc = pin_check(r->ip, r->pin, &wait);
+  if (pc < 0) { char m[80]; snprintf(m, sizeof m, "too many wrong PINs, try again in %d s", wait); reply_err(fd, 429, m); return; }
   unsigned long long freeb = 0;
   struct statfs sf;
   char real[PATH_MAX_LEN + 256];
@@ -292,7 +423,7 @@ static void h_info(int fd, const request_t *r) {
   if (!statfs(real, &sf)) freeb = (unsigned long long)sf.f_bavail * (unsigned long long)sf.f_bsize;
   snprintf(json, sizeof json,
            "{\"name\":\"PS5Links Agent\",\"version\":\"%s\",\"auth\":%s,\"free\":%llu,\"elfldr\":%d}",
-           AGENT_VERSION, (r->pin[0] && !strcmp(r->pin, g_pin)) ? "true" : "false", freeb, ELFLDR_PORT);
+           AGENT_VERSION, pc == 1 ? "true" : "false", freeb, ELFLDR_PORT);
   reply_json(fd, 200, json);
 }
 
@@ -344,7 +475,7 @@ static void h_upload(int fd, const request_t *r, const char *path, long long off
   char *slash = strrchr(dir, '/');
   if (slash && slash != dir) { *slash = 0; if (mkdir_p(dir)) { reply_err(fd, 500, strerror(errno)); return; } }
 
-  int out = open(real, O_WRONLY | O_CREAT | (offset == 0 ? O_TRUNC : 0), 0666);
+  int out = open(real, O_WRONLY | O_CREAT | O_NOFOLLOW | (offset == 0 ? O_TRUNC : 0), 0666);
   if (out < 0) { reply_err(fd, 500, strerror(errno)); return; }
   struct stat st;
   fstat(out, &st);
@@ -384,7 +515,7 @@ static void h_upload(int fd, const request_t *r, const char *path, long long off
 static void h_run(int fd, const char *path) {
   char real[PATH_MAX_LEN + 256];
   real_path(path, real, sizeof real);
-  int in = open(real, O_RDONLY);
+  int in = open(real, O_RDONLY | O_NOFOLLOW);
   if (in < 0) { reply_err(fd, 404, strerror(errno)); return; }
   unsigned char magic[4] = {0};
   if (read(in, magic, 4) != 4 || memcmp(magic, "\x7f" "ELF", 4)) {
@@ -420,8 +551,11 @@ static void h_run(int fd, const char *path) {
 }
 
 /* ---------------------------------------------------------------- dispatch */
+typedef struct { int fd; char ip[48]; } conn_t;
+
 static void *client_thread(void *arg) {
-  int fd = (int)(intptr_t)arg;
+  conn_t *cn = arg;
+  int fd = cn->fd;
   struct timeval tv = {60, 0};
   setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof tv);
   setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof tv);
@@ -429,6 +563,11 @@ static void *client_thread(void *arg) {
   char *buf = malloc(HDR_MAX);
   request_t r;
   if (read_request(fd, buf, &r)) goto done;
+  snprintf(r.ip, sizeof r.ip, "%s", cn->ip);
+  if (r.origin[0]) { /* a web page: only the PS5 Links site (and local copies) may talk to the agent */
+    if (!origin_ok(r.origin)) { reply_err(fd, 403, "origin not allowed"); goto done; }
+    snprintf(g_acao[fd % ACAO_SLOTS], sizeof g_acao[0], "%s", r.origin);
+  }
 
   if (!strcmp(r.method, "OPTIONS")) { reply(fd, 204, "text/plain", "", 0); goto done; } /* CORS preflight */
   if (!strcmp(r.path, "/api/info")) { h_info(fd, &r); goto done; }
@@ -438,7 +577,16 @@ static void *client_thread(void *arg) {
     goto done;
   }
   if (strncmp(r.path, "/api/", 5)) { reply_err(fd, 404, "unknown endpoint"); goto done; }
-  if (!r.pin[0] || strcmp(r.pin, g_pin)) { reply_err(fd, 401, "wrong or missing PIN"); goto done; }
+  {
+    int wait = 0, pc = pin_check(r.ip, r.pin, &wait);
+    if (pc < 0) {
+      char m[80];
+      snprintf(m, sizeof m, "too many wrong PINs, try again in %d s", wait);
+      reply_err(fd, 429, m);
+      goto done;
+    }
+    if (pc == 0) { reply_err(fd, 401, "wrong or missing PIN"); goto done; }
+  }
 
   char path[PATH_MAX_LEN];
   if (!query_get(r.query, "path", path, sizeof path) || !path_ok(path)) {
@@ -447,6 +595,7 @@ static void *client_thread(void *arg) {
   }
   size_t pl = strlen(path);
   if (pl > 1 && path[pl - 1] == '/') path[pl - 1] = 0;
+  if (!inside_top(path)) { reply_err(fd, 403, "path leaves the allowed folders (symlink?)"); goto done; }
 
   if (!strcmp(r.path, "/api/ls") && !strcmp(r.method, "GET")) h_ls(fd, path);
   else if (!strcmp(r.path, "/api/mkdir") && !strcmp(r.method, "POST")) h_mkdir(fd, path);
@@ -461,8 +610,24 @@ static void *client_thread(void *arg) {
   else reply_err(fd, 404, "unknown endpoint");
 
 done:
+  g_acao[fd % ACAO_SLOTS][0] = 0;
   free(buf);
+  /* After an early answer (409, 403, 429 ...) the client may still be sending its body. Close our
+   * sending side first, then read and drop that body for a few seconds; closing right away would
+   * reset the connection and the browser would never see our answer. */
+  shutdown(fd, SHUT_WR);
+  {
+    struct timeval dt = {2, 0};
+    char sink[4096];
+    long long drained = 0;
+    time_t deadline = time(NULL) + 5;
+    ssize_t k;
+    setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &dt, sizeof dt);
+    while (drained < (16LL << 20) && time(NULL) < deadline && (k = recv(fd, sink, sizeof sink, 0)) > 0) drained += k;
+  }
   close(fd);
+  free(cn);
+  __sync_sub_and_fetch(&g_active, 1);
   return NULL;
 }
 
@@ -507,6 +672,7 @@ int main(int argc, char **argv) {
   if (getenv("AGENT_ROOT")) g_root = getenv("AGENT_ROOT");
   signal(SIGPIPE, SIG_IGN);
   load_pin();
+  load_origins();
 
   int srv = socket(AF_INET, SOCK_STREAM, 0);
   int one = 1;
@@ -526,10 +692,21 @@ int main(int argc, char **argv) {
   notify("PS5Links Agent %s\n%s:%d  PIN %s", AGENT_VERSION, ip, port, g_pin);
 
   for (;;) {
-    int c = accept(srv, NULL, NULL);
+    struct sockaddr_in ca;
+    socklen_t cl = sizeof ca;
+    int c = accept(srv, (struct sockaddr *)&ca, &cl);
     if (c < 0) { if (errno == EINTR) continue; sleep(1); continue; }
+    conn_t *cn = calloc(1, sizeof *cn);
+    if (!cn || __sync_add_and_fetch(&g_active, 1) > MAX_CONN) {
+      if (cn) __sync_sub_and_fetch(&g_active, 1);
+      free(cn);
+      close(c);
+      continue;
+    }
+    cn->fd = c;
+    inet_ntop(AF_INET, &ca.sin_addr, cn->ip, sizeof cn->ip);
     pthread_t th;
-    if (pthread_create(&th, NULL, client_thread, (void *)(intptr_t)c)) { close(c); continue; }
+    if (pthread_create(&th, NULL, client_thread, cn)) { close(c); free(cn); __sync_sub_and_fetch(&g_active, 1); continue; }
     pthread_detach(th);
   }
   return 0;
