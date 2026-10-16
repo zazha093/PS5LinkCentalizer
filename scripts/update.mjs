@@ -53,6 +53,18 @@ const payloadFiles = r => (r.assets ?? [])
     size: a.size ?? 0,
     sha256: /^sha256:[0-9a-f]{64}$/i.test(a.digest ?? "") ? a.digest.slice(7).toLowerCase() : "",
   }));
+// Installable archives (.zip) a release carries — what "Install homebrew" downloads and
+// extracts in the browser before sending each file to /data/homebrew (see ps5.js).
+const ZIP_EXT = /\.zip$/i;
+const zipFiles = r => (r.assets ?? [])
+  .filter(a => ZIP_EXT.test(a.name) && (a.state ?? "uploaded") === "uploaded")
+  .slice(0, 6)
+  .map(a => ({
+    name: a.name,
+    url: a.browser_download_url,
+    size: a.size ?? 0,
+    sha256: /^sha256:[0-9a-f]{64}$/i.test(a.digest ?? "") ? a.digest.slice(7).toLowerCase() : "",
+  }));
 const sumDownloads = r => (r.assets ?? []).reduce((n, a) => n + (a.download_count ?? 0), 0);
 
 function fromReleases(releases) {
@@ -66,6 +78,7 @@ function fromReleases(releases) {
       downloads: sumDownloads(r),
       notes: dropLead(excerpt(r.body ?? ""), [r.name, r.tag_name]),
       files: payloadFiles(r),
+      zips: zipFiles(r),
     };
     if (r.prerelease || PRE.test(r.tag_name)) pre ??= v;
     else stable ??= v;
@@ -131,6 +144,9 @@ for (const p of projects) {
     homepage: /^https:\/\//i.test(repo.homepage ?? "") ? repo.homepage : "",
     branch: repo.default_branch ?? "",
     downloads,
+    // Optional per-project install hints (projects.json "install"): a subfolder under
+    // /data/homebrew ("dir") and a name fragment to pick one of several release zips ("zip").
+    install: (p.install && typeof p.install === "object") ? { dir: String(p.install.dir ?? ""), zip: String(p.install.zip ?? "") } : null,
   });
   console.log(`${p.repo} -> ${stable?.tag ?? "-"} | ${pre?.tag ?? "-"}`);
 }
