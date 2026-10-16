@@ -1,6 +1,8 @@
 // Reads projects.json, fetches repo info + latest stable/pre-release from GitHub, writes data.json.
 // v4: also stores language, topics, license, forks, issues, homepage, default branch,
 //     download counts, asset counts and a short release-notes preview (no extra API calls).
+// v7: lists the .elf/.bin files of each release (with SHA-256 from GitHub) and writes
+//     payloads.json, a catalog that PS5 Payload Manager can add as a custom source.
 // Repos that return 404 are moved from projects.json to offline.json (shown on offline.html).
 // Usage: node scripts/update.mjs   (set GITHUB_TOKEN to avoid the 60 req/h anonymous limit)
 import { readFile, writeFile } from "node:fs/promises";
@@ -39,6 +41,18 @@ function dropLead(text, heads) {
   for (const h of heads) if (h && text.toLowerCase().startsWith(h.toLowerCase())) return text.slice(h.length).replace(/^[\s:–—-]+/, "");
   return text;
 }
+// Payload files attached to a release (.elf / .bin), with the SHA-256 GitHub computes for each asset
+const PAYLOAD_EXT = /\.(elf|bin)$/i;
+const payloadFiles = r => (r.assets ?? [])
+  .filter(a => PAYLOAD_EXT.test(a.name) && (a.state ?? "uploaded") === "uploaded")
+  .filter(a => !/ps4/i.test(a.name) || /ps5/i.test(a.name)) // PS4-only builds would fail (or worse) on a PS5
+  .slice(0, 8)
+  .map(a => ({
+    name: a.name,
+    url: a.browser_download_url,
+    size: a.size ?? 0,
+    sha256: /^sha256:[0-9a-f]{64}$/i.test(a.digest ?? "") ? a.digest.slice(7).toLowerCase() : "",
+  }));
 const sumDownloads = r => (r.assets ?? []).reduce((n, a) => n + (a.download_count ?? 0), 0);
 
 function fromReleases(releases) {
@@ -51,6 +65,7 @@ function fromReleases(releases) {
       assets: r.assets?.length ?? 0,
       downloads: sumDownloads(r),
       notes: dropLead(excerpt(r.body ?? ""), [r.name, r.tag_name]),
+      files: payloadFiles(r),
     };
     if (r.prerelease || PRE.test(r.tag_name)) pre ??= v;
     else stable ??= v;
@@ -121,6 +136,47 @@ for (const p of projects) {
 }
 
 await writeFile("data.json", JSON.stringify(out, null, 2) + "\n");
+
+// ---- payloads.json: catalog for PS5 Payload Manager (Settings → Sources → add URL) ----
+// Format: https://github.com/itsPLK/ps5-payload-manager/blob/main/CUSTOM_REPOSITORIES.md
+// The PS5 downloads the files straight from GitHub; the SHA-256 lets it verify each download.
+const slug = s => String(s).toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || "payload";
+// "ftpsrv-ps5_v0.21.elf" -> "ftpsrv-ps5" (drop extension and version-looking tails)
+const fileBase = f => f.replace(PAYLOAD_EXT, "").replace(/[-_. ]?v?\d+(?:[._]\d+)+[\w.-]*$/i, "").replace(/[-_. ]+$/, "") || f;
+const utf8Cut = (str, bytes) => { // Payload Manager keeps release notes up to 2047 UTF-8 bytes
+  const b = Buffer.from(str, "utf8"); if (b.length <= bytes) return str;
+  return b.subarray(0, bytes - 3).toString("utf8").replace(/\uFFFD+$/, "") + "…";
+};
+const catalog = [];
+for (const p of out) {
+  const owner = p.url.split("/")[3], repoName = p.url.split("/")[4];
+  for (const [rel, beta] of [[p.stable, false], [p.pre, true]]) {
+    if (!rel?.files?.length) continue;
+    for (const f of rel.files) {
+      const many = rel.files.length > 1;
+      const id = slug(many ? `${repoName}-${fileBase(f.name)}` : repoName) + (beta ? "-beta" : "");
+      if (catalog.some(c => c.id === id)) continue;
+      catalog.push({
+        id,
+        name: (many ? `${p.name} · ${fileBase(f.name)}` : p.name) + (beta ? " (beta)" : ""),
+        filename: f.name,
+        url: f.url,
+        version: rel.tag,
+        ...(rel.date && { last_update: rel.date }),
+        description: p.description || "",
+        category: p.category || "Other",
+        ...(f.sha256 && { checksum: f.sha256 }),
+        author: owner,
+        source: `${p.url}/releases`,
+        ...(p.branch && { details_url: `https://raw.githubusercontent.com/${owner}/${repoName}/${p.branch}/README.md` }),
+        ...(rel.notes && { release_notes: utf8Cut(rel.notes, 2047) }),
+      });
+    }
+  }
+}
+catalog.sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+await writeFile("payloads.json", JSON.stringify({ name: "PS5 Links", payloads: catalog }, null, 2) + "\n");
+console.log(`payloads.json: ${catalog.length} payload files`);
 
 // A repo listed again in projects.json and alive is no longer offline
 const alive = new Set(projects.filter(p => !dead.includes(p.repo)).map(p => key(p.repo)));

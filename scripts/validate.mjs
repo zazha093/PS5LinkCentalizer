@@ -18,7 +18,8 @@ function report() {
   if (!errors.length) out.push(`### ✅ \`projects.json\` looks good`);
   else out.push(`### ❌ \`projects.json\` has ${errors.length} problem${errors.length > 1 ? "s" : ""}`, "", ...errors.map(e => `- ${e}`));
   if (warnings.length) out.push("", "**Warnings** (won't block the PR, but please check):", "", ...warnings.map(w => `- ${w}`));
-  out.push("", "<sub>See [Add a project](https://github.com/pedrohti/PS5LinkCentalizer#add-a-project). This comment updates on every push.</sub>");
+  const home = `https://github.com/${process.env.GITHUB_REPOSITORY || "zazha093/PS5LinkCentalizer"}`; // this repo, wherever it lives
+  out.push("", `<sub>See [Add a project](${home}#add-a-project). This comment updates on every push.</sub>`);
   console.log(out.join("\n"));
   process.exit(errors.length ? 1 : 0);
 }
