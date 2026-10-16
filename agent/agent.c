@@ -511,8 +511,9 @@ static void h_upload(int fd, const request_t *r, const char *path, long long off
   reply_json(fd, 200, j);
 }
 
-/* Hand an ELF file to the console's ELF loader (127.0.0.1:9021), like "nc ps5 9021 < x.elf" */
-static void h_run(int fd, const char *path) {
+/* Hand an ELF file to the console's ELF loader (127.0.0.1:<target_port>), like "nc ps5 <target_port> < x.elf" */
+static void h_run(int fd, const char *path, int target_port) {
+  if (target_port <= 0 || target_port > 65535) target_port = ELFLDR_PORT;
   char real[PATH_MAX_LEN + 256];
   real_path(path, real, sizeof real);
   int in = open(real, O_RDONLY | O_NOFOLLOW);
@@ -529,12 +530,14 @@ static void h_run(int fd, const char *path) {
   struct sockaddr_in sa;
   memset(&sa, 0, sizeof sa);
   sa.sin_family = AF_INET;
-  sa.sin_port = htons(ELFLDR_PORT);
+  sa.sin_port = htons((uint16_t)target_port);
   sa.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
   if (ldr < 0 || connect(ldr, (struct sockaddr *)&sa, sizeof sa)) {
     if (ldr >= 0) close(ldr);
     close(in);
-    reply_err(fd, 502, "ELF loader (port 9021) is not running");
+    char err_msg[128];
+    snprintf(err_msg, sizeof err_msg, "ELF loader (port %d) is not running", target_port);
+    reply_err(fd, 502, err_msg);
     return;
   }
   char *io = malloc(IO_BUF);
@@ -546,8 +549,90 @@ static void h_run(int fd, const char *path) {
   close(in);
   close(ldr);
   if (failed) { reply_err(fd, 502, "ELF loader closed the connection"); return; }
-  notify("PS5Links Agent: started %s", path);
-  reply_json(fd, 200, "{\"ok\":true}");
+  notify("PS5Links Agent: started %s on port %d", path, target_port);
+  char j[128];
+  snprintf(j, sizeof j, "{\"ok\":true,\"port\":%d}", target_port);
+  reply_json(fd, 200, j);
+}
+
+/* Stream an uploaded ELF body directly into the console's ELF loader (127.0.0.1:<target_port>) without saving to disk */
+static void h_run_direct(int fd, const request_t *r, int target_port, const char *name) {
+  if (r->clen < 4) { reply_err(fd, 400, "body too small or Content-Length required"); return; }
+  if (target_port <= 0 || target_port > 65535) target_port = ELFLDR_PORT;
+
+  /* Check ELF magic from the already received buffer or first 4 bytes of body */
+  unsigned char magic[4] = {0};
+  size_t mlen = 0;
+  if (r->extra_len >= 4) {
+    memcpy(magic, r->extra, 4);
+    mlen = 4;
+  } else {
+    if (r->extra_len > 0) {
+      memcpy(magic, r->extra, r->extra_len);
+      mlen = r->extra_len;
+    }
+    while (mlen < 4) {
+      ssize_t n = recv(fd, magic + mlen, 4 - mlen, 0);
+      if (n <= 0) {
+        if (n < 0 && errno == EINTR) continue;
+        reply_err(fd, 400, "failed reading payload header");
+        return;
+      }
+      mlen += (size_t)n;
+    }
+  }
+
+  if (memcmp(magic, "\x7f" "ELF", 4)) {
+    reply_err(fd, 400, "not an ELF file");
+    return;
+  }
+
+  int ldr = socket(AF_INET, SOCK_STREAM, 0);
+  struct sockaddr_in sa;
+  memset(&sa, 0, sizeof sa);
+  sa.sin_family = AF_INET;
+  sa.sin_port = htons((uint16_t)target_port);
+  sa.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+  if (ldr < 0 || connect(ldr, (struct sockaddr *)&sa, sizeof sa)) {
+    if (ldr >= 0) close(ldr);
+    char err_msg[128];
+    snprintf(err_msg, sizeof err_msg, "ELF loader (port %d) is not running", target_port);
+    reply_err(fd, 502, err_msg);
+    return;
+  }
+
+  int failed = 0;
+  if (send_all(ldr, magic, 4)) failed = 1;
+
+  long long left = r->clen - 4;
+  if (!failed && r->extra_len > 4) {
+    size_t extra_rest = (size_t)left < (r->extra_len - 4) ? (size_t)left : (r->extra_len - 4);
+    if (send_all(ldr, r->extra + 4, extra_rest)) failed = 1;
+    left -= (long long)extra_rest;
+  }
+
+  char *io = malloc(IO_BUF);
+  while (!failed && left > 0) {
+    ssize_t n = recv(fd, io, left < IO_BUF ? (size_t)left : IO_BUF, 0);
+    if (n <= 0) {
+      if (n < 0 && errno == EINTR) continue;
+      failed = 2;
+      break;
+    }
+    if (send_all(ldr, io, (size_t)n)) { failed = 1; break; }
+    left -= n;
+  }
+  free(io);
+  close(ldr);
+
+  if (failed == 1) { reply_err(fd, 502, "ELF loader closed the connection while sending"); return; }
+  if (failed == 2) return;
+
+  const char *shown = (name && *name) ? name : "payload.elf";
+  notify("PS5Links Agent: started %s on port %d", shown, target_port);
+  char j[128];
+  snprintf(j, sizeof j, "{\"ok\":true,\"port\":%d}", target_port);
+  reply_json(fd, 200, j);
 }
 
 /* ---------------------------------------------------------------- dispatch */
@@ -588,6 +673,16 @@ static void *client_thread(void *arg) {
     if (pc == 0) { reply_err(fd, 401, "wrong or missing PIN"); goto done; }
   }
 
+  if (!strcmp(r.path, "/api/run-direct") && !strcmp(r.method, "POST")) {
+    char port_s[16] = "", name[128] = "";
+    query_get(r.query, "port", port_s, sizeof port_s);
+    query_get(r.query, "name", name, sizeof name);
+    int p = atoi(port_s);
+    if (p <= 0 || p > 65535) p = ELFLDR_PORT;
+    h_run_direct(fd, &r, p, name);
+    goto done;
+  }
+
   char path[PATH_MAX_LEN];
   if (!query_get(r.query, "path", path, sizeof path) || !path_ok(path)) {
     reply_err(fd, 403, "path must be under /data/, /mnt/usbN/ or /mnt/extN/ without ..");
@@ -606,7 +701,13 @@ static void *client_thread(void *arg) {
     if (o < 0) reply_err(fd, 400, "bad offset");
     else h_upload(fd, &r, path, o);
   }
-  else if (!strcmp(r.path, "/api/run") && !strcmp(r.method, "POST")) h_run(fd, path);
+  else if (!strcmp(r.path, "/api/run") && !strcmp(r.method, "POST")) {
+    char port_s[16] = "";
+    query_get(r.query, "port", port_s, sizeof port_s);
+    int p = atoi(port_s);
+    if (p <= 0 || p > 65535) p = ELFLDR_PORT;
+    h_run(fd, path, p);
+  }
   else reply_err(fd, 404, "unknown endpoint");
 
 done:

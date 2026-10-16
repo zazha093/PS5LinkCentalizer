@@ -85,6 +85,13 @@ try:
         call("PUT", "/api/upload?path=/data/homebrew/x.elf&offset=0", elf)
         s, b, _ = call("POST", "/api/run?path=/data/homebrew/x.elf"); t.join(3)
         check("run sends the identical ELF to port 9021", s == 200 and got and got[0] == elf)
+
+        # --- run-direct (stream directly into loader)
+        s, b, _ = call("POST", "/api/run-direct?port=9021&name=bad.bin", b"not-an-elf"); check("run-direct refuses non-ELF", s == 400)
+        got.clear()
+        t = threading.Thread(target=loader, daemon=True); t.start()
+        s, b, _ = call("POST", "/api/run-direct?port=9021&name=direct.elf", elf); t.join(3)
+        check("run-direct streams identical ELF directly to loader", s == 200 and got and got[0] == elf)
     except OSError:
         print("SKIP  run test (port 9021 is busy on this computer)")
 

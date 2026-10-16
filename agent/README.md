@@ -18,9 +18,10 @@ The PIN is saved in `/data/ps5links-agent/pin.txt`. Delete that file to get a ne
 | `GET /api/ls?path=/data/homebrew` | list a folder |
 | `POST /api/mkdir?path=...` | create a folder (and parents) |
 | `PUT /api/upload?path=...&offset=N` | write the body at byte N. `offset=0` creates/truncates. Wrong offset → `409 {"size": current}` so the client can resume |
-| `POST /api/run?path=...elf` | send that ELF to `127.0.0.1:9021` |
+| `POST /api/run?path=...elf&port=9021` | send that ELF to the ELF loader (port 9021 or 9020) |
+| `POST /api/run-direct?port=9021&name=...` | stream an uploaded ELF directly to the ELF loader (port 9021 or 9020) without saving to disk |
 
-All calls except `/api/info` need the header `X-Agent-Pin`. Paths must be under `/data/`, `/mnt/usbN/` or `/mnt/extN/`; `..` is rejected. Answers carry CORS and `Access-Control-Allow-Private-Network` headers so Chrome's local network access works from the https site.
+All calls except `/api/info` need the header `X-Agent-Pin`. Paths for file operations must be under `/data/`, `/mnt/usbN/` or `/mnt/extN/`; `..` is rejected. Answers carry CORS and `Access-Control-Allow-Private-Network` headers so Chrome's local network access works from the https site.
 
 ## Build
 
