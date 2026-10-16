@@ -402,3 +402,65 @@ dialog { max-height:calc(100vh - 16px); max-height:calc(100dvh - 16px); overflow
 .ag-done { display:grid; gap:6px; padding:10px 12px; border:1px solid color-mix(in srgb, var(--stable) 45%, var(--line)); border-radius:12px; overflow-wrap:anywhere; }
 .ag-done .fs-i { border-color:var(--line); }
 label.btn.primary { cursor:pointer; }
+.ag-direct { padding:10px 12px; background:var(--raised); border:1px solid var(--line); border-radius:12px; }
+.ag-direct .ps5-row { margin:0; }
+.runq-opt { margin-top:8px; }
+
+/* =========================================================
+   v9 · Fuzzy search, filters, watching, file editor, payload library
+   ========================================================= */
+
+/* Highlighted search hits (built in app.js hl()) */
+mark { padding:0 2px; color:inherit; background:color-mix(in srgb, var(--beta) 38%, transparent); border-radius:4px; }
+
+/* Collapsible extra-filter panel */
+.filters { display:grid; grid-template-columns:repeat(auto-fit, minmax(148px, 1fr)); gap:10px; align-items:end; margin:0 0 14px; padding:12px 14px; background:var(--card); border:1px solid var(--line); border-radius:16px; }
+.filters .fld > span { font-size:11.5px; }
+.filters select.field { height:40px; font-size:14px; }
+.filters .check { font-size:13.5px; min-height:40px; }
+.filters .btn { justify-self:start; }
+@media (max-width:560px) { .filters { grid-template-columns:1fr 1fr; } }
+
+/* Watch (bell) button on cards and in the table */
+.pin.watch-ic { font-size:19px; margin-right:-6px; }
+.pin.watch-ic[aria-pressed=true] { color:var(--accent); }
+.pin.watch-ic[aria-pressed=true] svg { fill:color-mix(in srgb, var(--accent) 30%, transparent); }
+.tbl .head-acts { gap:2px; }
+
+/* File rows in the PS5 folder browser (folders still use .fs-i buttons) */
+.fs-row { display:flex; align-items:center; gap:8px; min-height:40px; padding:4px 6px 4px 10px; border:1px solid transparent; border-radius:9px; }
+.fs-row:hover { background:var(--card); border-color:var(--line); }
+.fs-row > svg { flex:none; font-size:14px; color:var(--muted); }
+.fs-name { min-width:0; flex:1; font-size:14px; overflow-wrap:anywhere; }
+.fs-size { flex:none; font:12px ui-monospace, monospace; color:var(--muted); }
+.fs-acts { display:flex; flex:none; gap:4px; }
+.fs-acts .act { height:30px; }
+
+/* Payload library + run queue rows */
+.lib-list { display:grid; gap:4px; }
+.lib-list:empty { display:none; }
+.lib-i { display:flex; align-items:center; gap:8px; padding:7px 8px 7px 11px; background:var(--bg); border:1px solid var(--line); border-radius:11px; }
+.lib-n { display:grid; min-width:0; flex:1; }
+.lib-n b { font-size:13.5px; overflow-wrap:anywhere; }
+.lib-n .asset-meta { overflow-wrap:anywhere; }
+.lib-i .acts { flex:none; }
+.lib-i .act { height:30px; padding:0 9px; }
+.lib-i .act.copy { width:30px; padding:0; }
+
+/* Text editor: the textarea fills the dialog and scrolls on its own */
+.ed-body { display:grid; gap:8px; align-content:start; padding:14px 16px calc(16px + env(safe-area-inset-bottom)); overflow-y:auto; }
+#ed-text { width:100%; min-height:46vh; padding:12px 14px; font:13px/1.55 ui-monospace, "SF Mono", Menlo, monospace; tab-size:2; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:12px; resize:vertical; white-space:pre; overflow-wrap:normal; overflow-x:auto; }
+#ed-text:focus { outline:none; border-color:var(--accent); }
+
+/* Phones: five bottom tabs need a little less room each */
+@media (max-width:719px) {
+  .tab { font-size:11px; }
+  .tab svg { font-size:20px; }
+}
+
+/* =========================================================
+   v10 · Install homebrew action + dialog
+   ========================================================= */
+.act.install { color:var(--stable); border-color:color-mix(in srgb, var(--stable) 45%, transparent); background:color-mix(in srgb, var(--stable) 10%, transparent); width:34px; padding:0; justify-content:center; }
+#in-sub { overflow-wrap:anywhere; }
+

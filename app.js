@@ -48,6 +48,13 @@ const I18N = {
     fRepo: "GitHub link", fName: "Display name", fNamePh: "Leave empty to use the GitHub name", fDesc: "Description", fDescPh: "Leave empty to use the GitHub description", fCat: "Category",
     revert: "Restore original", reverted: "Restored original", edited: "Edited", editHintShared: "Changes are saved on this device only. The shared list is not changed.",
     sDownloads: "Most downloaded", colDownloads: "Downloads", colLang: "Language", statDownloads: "Total downloads", forks: "forks", issues: "issues", website: "Website",
+    watch: "Watching", statWatching: "Watching", watchEmpty: "Tap the bell on a project to watch it — new releases show up here.",
+    unwatch: "Stop watching", watchOn: "Watching", watchAdded: "Now watching {n}", watchRemoved: "Stopped watching {n}",
+    sRelevance: "Best match", filters: "Filters", fLang: "Language", fLicense: "License", fStars: "Minimum stars", fUpdated: "Last push",
+    fHasElf: "Has .elf payload", fHideArch: "Hide archived", any: "Any", days7: "7 days", days30: "30 days", days90: "90 days", year1: "1 year",
+    filtersOn: "{n} filter(s) on", notifH: "New-release notifications", notifHint: "Only for projects you watch. The browser asks for permission once.",
+    notifTitle: "New release: {n}", notifBody: "{t}", notifDenied: "The browser blocked notifications — allow them in site settings.",
+    install: "Install",
   },
   th: {
     searchPh: "ค้นหาโปรเจกต์ ผู้สร้าง หรือหมวด", whatsNew: "อัปเดตใหม่", theme: "ธีม", settings: "ตั้งค่า", add: "เพิ่ม",
@@ -75,6 +82,13 @@ const I18N = {
     fRepo: "ลิงก์ GitHub", fName: "ชื่อที่แสดง", fNamePh: "เว้นว่างเพื่อใช้ชื่อจาก GitHub", fDesc: "คำอธิบาย", fDescPh: "เว้นว่างเพื่อใช้คำอธิบายจาก GitHub", fCat: "หมวดหมู่",
     revert: "คืนค่าเดิม", reverted: "คืนค่าเดิมแล้ว", edited: "แก้ไขแล้ว", editHintShared: "การแก้ไขจะบันทึกในเครื่องนี้เท่านั้น ไม่กระทบรายการกลาง",
     sDownloads: "ดาวน์โหลดมากสุด", colDownloads: "ดาวน์โหลด", colLang: "ภาษา", statDownloads: "ยอดดาวน์โหลดรวม", forks: "fork", issues: "issue", website: "เว็บไซต์",
+    watch: "ติดตาม", statWatching: "กำลังติดตาม", watchEmpty: "กดรูปกระดิ่งที่โปรเจกต์เพื่อติดตาม แล้วรีลีสใหม่จะมาโผล่ที่นี่",
+    unwatch: "เลิกติดตาม", watchOn: "ติดตามอยู่", watchAdded: "ติดตาม {n} แล้ว", watchRemoved: "เลิกติดตาม {n} แล้ว",
+    sRelevance: "ตรงที่สุด", filters: "ตัวกรอง", fLang: "ภาษา", fLicense: "สัญญาอนุญาต", fStars: "ดาวขั้นต่ำ", fUpdated: "push ล่าสุด",
+    fHasElf: "มีไฟล์ .elf", fHideArch: "ซ่อนที่เก็บถาวร", any: "ทั้งหมด", days7: "7 วัน", days30: "30 วัน", days90: "90 วัน", year1: "1 ปี",
+    filtersOn: "เปิด {n} ตัวกรอง", notifH: "แจ้งเตือนรีลีสใหม่", notifHint: "แจ้งเฉพาะโปรเจกต์ที่คุณติดตาม เบราว์เซอร์จะถามสิทธิ์ครั้งเดียว",
+    notifTitle: "รีลีสใหม่: {n}", notifBody: "{t}", notifDenied: "เบราว์เซอร์บล็อกการแจ้งเตือน — ไปอนุญาตในการตั้งค่าเว็บไซต์",
+    install: "ติดตั้ง",
   },
 };
 let lang = store.get("lang", (navigator.language || "").toLowerCase().startsWith("th") ? "th" : "en");
@@ -101,6 +115,8 @@ const ICON = {
   auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
   dark: '<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
   light: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+  bell: '<svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>',
+  install: '<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M12 9v7M9 13l3 3 3-3"/></svg>',
 };
 
 /* ---------- Category colours ---------- */
@@ -146,19 +162,29 @@ const SORTS = {
   updated: (a, b) => (b.updated || "").localeCompare(a.updated || "") || cmp(a.name, b.name),
   category: (a, b) => cmp(catOf(a), catOf(b)) || cmp(a.name, b.name),
   downloads: (a, b) => (b.downloads ?? 0) - (a.downloads ?? 0) || cmp(a.name, b.name),
+  // "relevance" is not a comparison: render() orders by the search score it computes
+  relevance: () => 0,
 };
 
 /* ---------- State (persisted per device) ---------- */
 let data = [], mine = store.get("mine", []), pins = store.get("pins", []);
+// Projects this device follows: new releases get a badge and (optionally) a desktop notification
+let watch = store.get("watch", []);
+let notifOn = store.get("notif", false);
+let notified = store.get("notified", {});         // repoKey -> tag already announced, so it is not repeated
 // Local edits to shared projects: { repoKey: { name?, description?, category? } } — this device only
 let over = store.get("over", {});
 let seen = store.get("seen2", null);              // { repoKey: lastSeenTag } — null means first visit
 let theme = store.get("theme", "auto");
 let avatars = store.get("avatars", true);
 let { cat = "", sort = "name", view = "grid" } = store.get("view", {});
+// Extra filters (language, license, stars, ...). Empty object = everything shown.
+let filters = Object.assign({ lang: "", lic: "", stars: "", updated: "", hasElf: false, hideArch: false }, store.get("filters", {}));
+const FILTER_KEYS = ["lang", "lic", "stars", "updated", "hasElf", "hideArch"];
+const filtersOn = () => FILTER_KEYS.filter(k => filters[k] !== "" && filters[k] !== false).length;
 if (!SORTS[sort]) sort = "name";
 if (!["grid", "list", "table"].includes(view)) view = "grid";
-const TABS = ["projects", "pinned", "latest"];
+const TABS = ["projects", "pinned", "latest", "watch"];
 let tab = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "projects";
 let editingKey = null;
 
@@ -168,13 +194,55 @@ const withEdits = p => (over[key(p)] ? { ...p, ...over[key(p)], _orig: p, _edite
 const all = () => [...data.map(withEdits), ...mine.filter(m => !data.some(d => key(d) === key(m)))];
 const isMine = p => !data.some(d => key(d) === key(p)) && mine.some(m => key(m) === key(p));
 const isPinned = p => pins.includes(key(p));
+const isWatched = p => watch.includes(key(p));
 // "Unseen" = the newest tag differs from the one this device last saw (or the project is new to the list)
 const isUnseen = p => !!seen && !isMine(p) && !!latest(p) && seen[key(p)] !== latest(p).tag;
 const unseenList = () => data.filter(isUnseen);
+// Watched projects with a release this device has not seen yet
+const watchNews = () => data.filter(p => isWatched(p) && isUnseen(p));
 function markSeen(list) {
   seen = seen || {};
   for (const p of list) if (latest(p)) seen[key(p)] = latest(p).tag;
   store.set("seen2", seen);
+}
+
+/* ---------- Watch: toggle + optional desktop notification ---------- */
+function toggleWatch(p) {
+  watch = isWatched(p) ? watch.filter(k => k !== key(p)) : [...watch, key(p)];
+  store.set("watch", watch);
+  if (!isWatched(p)) delete notified[key(p)];
+  refresh();
+  toast(t(isWatched(p) ? "watchAdded" : "watchRemoved", { n: p.name }));
+}
+// Ask for permission only from a click (some browsers require a user gesture)
+async function askNotif(on) {
+  if (!on) { notifOn = false; store.set("notif", false); return; }
+  if (!("Notification" in window)) return toast(t("notifDenied"));
+  let perm = Notification.permission;
+  if (perm === "default") { try { perm = await Notification.requestPermission(); } catch {} }
+  notifOn = perm === "granted";
+  store.set("notif", notifOn);
+  if (!notifOn) toast(t("notifDenied"));
+}
+// Called once after data.json loads: announce watched releases not seen before
+function notifyWatch() {
+  const fresh = watchNews().filter(p => notified[key(p)] !== latest(p).tag);
+  if (!fresh.length) return;
+  if (notifOn && "Notification" in window && Notification.permission === "granted") {
+    for (const p of fresh.slice(0, 5)) {
+      const l = latest(p);
+      try {
+        const n = new Notification(t("notifTitle", { n: p.name }), {
+          body: t("notifBody", { t: `${l.tag} · ${l.title || l.notes || t("notes")}` }),
+          icon: `https://github.com/${encodeURIComponent(owner(p))}.png?size=128`,
+          tag: key(p),      // one notification per project instead of a stack
+        });
+        n.onclick = () => { window.focus(); setTab("watch"); n.close(); };
+      } catch {}
+    }
+  }
+  for (const p of fresh) notified[key(p)] = latest(p).tag;
+  store.set("notified", notified);
 }
 
 /* ---------- Toast + clipboard ---------- */
@@ -229,6 +297,7 @@ function actions(p, compact) {
     <button class="act assets" data-a="assets">${compact ? ICON.box : ICON.box + esc(t("assets"))}${!compact && latest(p)?.assets ? `<span class="act-n">${latest(p).assets}</span>` : ""}</button>
     <button class="act commits" data-a="commits" aria-label="${esc(t("commits"))}" title="${esc(t("commits"))}">${ICON.commit}</button>
     <button class="act copy" data-a="copy" aria-label="${esc(t("copyLink"))}" title="${esc(t("copyLink"))}">${ICON.link}</button>
+    ${latest(p)?.zips?.length ? `<button class="act install" data-a="install" aria-label="${esc(t("install"))}" title="${esc(t("install"))}">${ICON.install}</button>` : ""}
     ${latest(p)?.files?.length ? `<button class="act run" data-a="run" aria-label="${esc(t("ps5Run"))}" title="${esc(t("ps5Run"))}">${ICON.play}</button>` : ""}
     ${compact ? `<button class="act copy" data-a="edit" aria-label="${esc(t("edit"))}" title="${esc(t("edit"))}">${ICON.pen}</button>` : ""}
     ${isMine(p) ? `<button class="act rm" data-a="rm">${esc(t("remove"))}</button>` : ""}
@@ -239,11 +308,11 @@ function card(p) {
   const c = catOf(p), l = latest(p);
   return `<article class="card${isUnseen(p) ? " unseen" : ""}" data-k="${esc(key(p))}">
   <div class="head"><div class="id">${avatar(p)}<div class="id-t">
-      <a class="name" href="${esc(safeUrl(p.url))}" title="${esc(p.name)}">${esc(p.name)}</a>
+      <a class="name" href="${esc(safeUrl(p.url))}" title="${esc(p.name)}">${hl(p.name)}</a>
       <span class="author">${esc(owner(p))}${l ? ` · ${esc(ago(l.date))}` : ""}</span></div></div>
-    <span class="head-acts"><button class="pin edit-ic" data-a="edit" aria-label="${esc(t("edit"))}" title="${esc(t("edit"))}">${ICON.pen}</button><button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></span></div>
+    <span class="head-acts"><button class="pin edit-ic" data-a="edit" aria-label="${esc(t("edit"))}" title="${esc(t("edit"))}">${ICON.pen}</button><button class="pin watch-ic" data-a="watch" aria-pressed="${isWatched(p)}" aria-label="${esc(t(isWatched(p) ? "unwatch" : "watch"))}" title="${esc(t(isWatched(p) ? "unwatch" : "watch"))}">${ICON.bell}</button><button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></span></div>
   ${badges(p)}
-  ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
+  ${p.description ? `<p class="desc">${hl(p.description)}</p>` : ""}
   ${tab === "latest" && l?.notes ? `<div class="notes-pv"><strong>${esc(l.title || l.tag)}</strong><p>${esc(l.notes)}</p></div>` : ""}
   ${metaLine(p)}
   <div class="foot"><span class="stat"><span class="tag" style="--cc:${esc(catColor(c))}">${esc(c)}</span><span title="${esc(t("colStars"))}"><b>★</b> ${fmtNum(p.stars)}</span>${p.downloads ? `<span title="${esc(t("colDownloads"))}">↓ ${fmtNum(p.downloads)}</span>` : ""}</span>
@@ -266,7 +335,7 @@ function table(list) {
   const rows = list.map(p => {
     const c = catOf(p), l = latest(p);
     return `<tr data-k="${esc(key(p))}">
-      <td><div class="id">${avatar(p)}<div class="id-t"><a class="name" href="${esc(safeUrl(p.url))}">${esc(p.name)}</a><span class="author">${esc(owner(p))}</span></div></div></td>
+      <td><div class="id">${avatar(p)}<div class="id-t"><a class="name" href="${esc(safeUrl(p.url))}">${hl(p.name)}</a><span class="author">${esc(owner(p))}</span></div></div></td>
       <td><span class="tag" style="--cc:${esc(catColor(c))}">${esc(c)}</span></td>
       <td>${badges(p) || `<span class="num">${esc(t("noRelease"))}</span>`}</td>
       <td class="num">${l ? esc(ago(l.date)) : "—"}</td>
@@ -274,7 +343,7 @@ function table(list) {
       <td class="num">${p.language ? `<span class="lang" style="--lc:${esc(langColor(p.language))}">${esc(p.language)}</span>` : "—"}</td>
       <td class="num">★ ${fmtNum(p.stars)}</td>
       <td class="num">${p.downloads ? "↓ " + fmtNum(p.downloads) : "—"}</td>
-      <td><button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></td>
+      <td><span class="head-acts"><button class="pin watch-ic" data-a="watch" aria-pressed="${isWatched(p)}" aria-label="${esc(t(isWatched(p) ? "unwatch" : "watch"))}" title="${esc(t(isWatched(p) ? "unwatch" : "watch"))}">${ICON.bell}</button><button class="pin" data-a="pin" aria-pressed="${isPinned(p)}" aria-label="${esc(t("pinned"))}">${ICON.star}</button></span></td>
       <td>${actions(p, true)}</td></tr>`;
   }).join("");
   return `<div class="tbl-wrap"><table class="tbl"><thead><tr>
@@ -307,31 +376,157 @@ function drawStats() {
   ];
   const dl = list.reduce((n, p) => n + (Number(p.downloads) || 0), 0);
   if (dl) s.push({ k: "statDownloads", v: fmtNum(dl), go: "downloads", c: "var(--star)" });
+  const wcAll = list.filter(isWatched).length;
+  if (wcAll) s.push({ k: "statWatching", v: wcAll, go: "watch", c: "var(--accent)" });
   $("stats").style.setProperty("--n", s.length);
   $("stats").innerHTML = s.map(x => `<button class="stat-card" data-go="${x.go}" ${x.c ? `style="--sc:${x.c}"` : ""}><p>${esc(t(x.k))}</p><b>${x.v}</b></button>`).join("");
-  // Badges on bell + tabs
-  const pc = pins.length;
-  for (const [id, n] of [["pc", pc], ["lc", un], ["bell-n", un]]) { $(id).textContent = n; $(id).hidden = !n; }
-  $("pc2").textContent = pc || ""; $("lc2").textContent = un || "";
+  // Badges on bell + tabs; the watch tab counts only watched projects with news
+  const pc = pins.length, wc = watchNews().length;
+  for (const [id, n] of [["pc", pc], ["lc", un], ["wc", wc], ["bell-n", un]]) { $(id).textContent = n; $(id).hidden = !n; }
+  $("pc2").textContent = pc || ""; $("lc2").textContent = un || ""; $("wc2").textContent = wc || "";
 }
 
-const matches = (p, words) => {
-  const hay = [p.name, owner(p), p.category, p.description, p.stable?.tag, p.pre?.tag, p.language, ...(p.topics || [])].join(" ").toLowerCase();
-  return words.every(w => hay.includes(w));
-};
+/* ---------- Search: fuzzy matching ----------
+   Every query word must hit somewhere, but not necessarily exactly:
+   the name starting with it beats a substring, which beats the letters
+   appearing in order ("ftp" finds "ftpsrv"), which beats a small typo
+   ("ftpserv" finds "ftpsrv") and a hit in a weaker field. Lower score =
+   better match; -1 means the project is hidden. */
+function editDistance(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return -1;
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    let best = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+      if (cur[j] < best) best = cur[j];
+    }
+    prev = cur;
+    if (best > max) return -1;   // give up early: too far apart to matter
+  }
+  return prev[b.length] <= max ? prev[b.length] : -1;
+}
+function wordScore(hay, w) {
+  if (!hay) return -1;
+  const i = hay.indexOf(w);
+  if (i === 0) return 0;
+  if (i > 0) return 1 + Math.min(i, 30) / 100;
+  let k = 0, gaps = 0, last = -1;
+  for (let j = 0; j < hay.length && k < w.length; j++) {
+    if (hay[j] !== w[k]) continue;
+    if (last >= 0 && j - last > 1) gaps++;
+    last = j; k++;
+  }
+  if (k === w.length) return 4 + Math.min(gaps, 10) / 10;
+  if (w.length >= 4) {
+    const max = w.length >= 7 ? 2 : 1;
+    for (const tok of hay.split(/[^a-z0-9+#]+/)) {
+      if (!tok || Math.abs(tok.length - w.length) > max) continue;
+      const d = editDistance(tok, w, max);
+      if (d >= 0) return 8 + d;
+    }
+  }
+  return -1;
+}
+const qWords = () => $("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+function projectScore(p, words) {
+  if (!words.length) return 0;
+  const fields = [
+    [(p.name || "").toLowerCase(), 0],                                   // name matters most
+    [owner(p).toLowerCase(), 2],
+    [[p.category, p.language, ...(p.topics || []), p.stable?.tag, p.pre?.tag, p.description]
+      .filter(Boolean).join(" ").toLowerCase(), 6],
+  ];
+  let total = 0;
+  for (const w of words) {
+    let best = -1;
+    for (const [hay, weight] of fields) {
+      const s = wordScore(hay, w);
+      if (s >= 0 && (best < 0 || s + weight < best)) best = s + weight;
+    }
+    if (best < 0) return -1;
+    total += best;
+  }
+  return total;
+}
+// Wrap matched parts in <mark>. Only exact substrings are highlighted, and the text is
+// escaped piece by piece, so a repo name can never inject HTML.
+function hl(text) {
+  const s = String(text ?? "");
+  const words = qWords().filter(w => w.length >= 2);
+  if (!words.length) return esc(s);
+  const low = s.toLowerCase();
+  const ranges = [];
+  for (const w of words) for (let i = low.indexOf(w); i >= 0; i = low.indexOf(w, i + w.length)) ranges.push([i, i + w.length]);
+  if (!ranges.length) return esc(s);
+  ranges.sort((a, b) => a[0] - b[0]);
+  const merged = [];
+  for (const r of ranges) {
+    const last = merged[merged.length - 1];
+    if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]);
+    else merged.push([r[0], r[1]]);
+  }
+  let out = "", pos = 0;
+  for (const [a, b] of merged) { out += esc(s.slice(pos, a)) + "<mark>" + esc(s.slice(a, b)) + "</mark>"; pos = b; }
+  return out + esc(s.slice(pos));
+}
+
+/* ---------- Extra filters ---------- */
+function passFilters(p) {
+  if (filters.lang && p.language !== filters.lang) return false;
+  if (filters.lic && p.license !== filters.lic) return false;
+  if (filters.stars && (p.stars ?? 0) < Number(filters.stars)) return false;
+  if (filters.updated && (!isDate(p.updated) || days(p.updated) > Number(filters.updated))) return false;
+  if (filters.hasElf && !latest(p)?.files?.length) return false;
+  if (filters.hideArch && p.archived) return false;
+  return true;
+}
+function drawFilters() {
+  const list = all();
+  const opts = (v, set, label) => `<option value="${esc(v)}"${v === set ? " selected" : ""}>${esc(label)}</option>`;
+  const langs = [...new Set(list.map(p => p.language).filter(Boolean))].sort(cmp);
+  const lics = [...new Set(list.map(p => p.license).filter(Boolean))].sort(cmp);
+  $("f-lang").innerHTML = opts("", filters.lang, t("any")) + langs.map(l => opts(l, filters.lang, l)).join("");
+  $("f-lic").innerHTML = opts("", filters.lic, t("any")) + lics.map(l => opts(l, filters.lic, l)).join("");
+  $("f-stars").value = filters.stars;
+  $("f-updated").value = filters.updated;
+  $("f-elf").checked = !!filters.hasElf;
+  $("f-arch").checked = !!filters.hideArch;
+  const n = filtersOn();
+  $("filter-n").textContent = n || "";
+  $("filter-n").hidden = !n;
+  $("filter-btn").setAttribute("aria-expanded", String(!$("filterbar").hidden));
+}
+const saveFilters = () => store.set("filters", filters);
 
 function render() {
-  const words = $("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
-  let list = all().filter(p => (!cat || catOf(p) === cat) && matches(p, words));
+  const words = qWords();
+  // Score once per project: this filters out non-matches and orders "Best match"
+  const scoreOf = new Map();
+  const kept = [];
+  for (const p of all()) {
+    if (cat && catOf(p) !== cat) continue;
+    const s = projectScore(p, words);
+    if (s < 0 || !passFilters(p)) continue;
+    scoreOf.set(p, s);
+    kept.push(p);
+  }
+  const byScore = (a, b) => (scoreOf.get(a) ?? 0) - (scoreOf.get(b) ?? 0) || cmp(a.name, b.name);
+  const sortFn = SORTS[sort] || SORTS.name;
+  const useScore = sort === "relevance" && words.length > 0;
+  let list = kept;
 
   if (tab === "latest") list = list.filter(latest).sort(SORTS.release);
-  else if (tab === "pinned") list = list.filter(isPinned).sort(SORTS[sort]);
-  else list.sort(SORTS[sort]);
+  else if (tab === "pinned") list = list.filter(isPinned).sort(useScore ? byScore : sortFn);
+  else if (tab === "watch") list = list.filter(isWatched).sort(useScore ? byScore : sortFn);
+  else list.sort(useScore ? byScore : sortFn);
 
   // Toolbar state
-  $("title").textContent = { projects: "PS5 Links", pinned: t("pinned"), latest: t("latestTitle") }[tab];
+  $("title").textContent = { projects: "PS5 Links", pinned: t("pinned"), latest: t("latestTitle"), watch: t("watch") }[tab];
   $("sort").hidden = tab === "latest";
-  $("seen").hidden = !(tab === "latest" && unseenList().length);
+  $("seen").hidden = !((tab === "latest" || tab === "watch") && unseenList().length);
   $$("[data-tab]").forEach(b => {
     b.setAttribute("aria-current", b.dataset.tab === tab ? "page" : "false");
     b.setAttribute("aria-pressed", b.dataset.tab === tab);
@@ -342,8 +537,10 @@ function render() {
   const rows = $("rows");
   rows.className = "cards " + (view === "table" ? "list" : view);
   if (!list.length) {
-    const msg = tab === "pinned" && !words.length && !cat ? t("pinnedEmpty") : t("noMatch");
-    const btn = words.length || cat ? `<button class="btn primary" data-a="clear">${esc(t("clearFilters"))}</button>` : "";
+    const clean = !words.length && !cat && !filtersOn();
+    const msg = tab === "watch" && !watch.length ? t("watchEmpty")
+      : tab === "pinned" && clean ? t("pinnedEmpty") : t("noMatch");
+    const btn = !clean ? `<button class="btn primary" data-a="clear">${esc(t("clearFilters"))}</button>` : "";
     rows.innerHTML = `<div class="empty"><p>${esc(msg)}</p>${btn}</div>`;
     return;
   }
@@ -366,7 +563,7 @@ function render() {
   }
   rows.innerHTML = html;
 }
-const refresh = () => { drawStats(); render(); };
+const refresh = () => { drawStats(); drawFilters(); render(); };
 
 /* ---------- GitHub API with a small session cache ----------
    Anonymous GitHub API = 60 requests/hour per IP. Caching for
@@ -466,7 +663,8 @@ async function showAssets(p) {
       for (const a of r.assets || []) {
         html += `<div class="asset-item"><div class="asset-row"><strong>${esc(a.name)}</strong>
           <span class="acts"><button class="act copy" data-copy="${esc(a.browser_download_url)}" aria-label="${esc(t("copyLink"))}">${ICON.link}</button>
-          ${/\.(elf|bin)$/i.test(a.name) ? `<button class="act run" data-run-url="${esc(a.browser_download_url)}" data-run-name="${esc(a.name)}" aria-label="${esc(t("ps5Run"))}" title="${esc(t("ps5Run"))}">${ICON.play}</button>` : ""}
+          ${/\.(elf|bin)$/i.test(a.name) ? `<button class="act run" data-run-url="${esc(a.browser_download_url)}" data-run-name="${esc(a.name)}" data-run-size="${Number(a.size) || 0}" data-run-sha="${esc((a.digest || "").replace(/^sha256:/i, ""))}" aria-label="${esc(t("ps5Run"))}" title="${esc(t("ps5Run"))}">${ICON.play}</button>
+          <button class="act copy" data-save-url="${esc(a.browser_download_url)}" data-save-name="${esc(a.name)}" data-save-size="${Number(a.size) || 0}" data-save-sha="${esc((a.digest || "").replace(/^sha256:/i, ""))}" aria-label="${esc(t("libAdd"))}" title="${esc(t("libAdd"))}">${ICON.dl}</button>` : ""}
           <a class="act assets" href="${esc(safeUrl(a.browser_download_url))}">${ICON.dl}${esc(t("download"))}</a></span></div>
           <span class="asset-meta">${(a.size / 1048576).toFixed(1)} MB · ${Number(a.download_count).toLocaleString()} ${esc(t("downloads"))}</span></div>`;
       }
@@ -491,15 +689,22 @@ async function showCommits(p) {
 // Copy buttons inside the reader (asset download links)
 $("reader-body").addEventListener("click", e => {
   const b = e.target.closest("[data-copy]"); if (b) return copy(b.dataset.copy);
+  // Keep a release asset in the on-device payload library (handled in ps5.js)
+  const sv = e.target.closest("[data-save-url]");
+  if (sv) return window.savePayload?.({ url: sv.dataset.saveUrl, name: sv.dataset.saveName, size: Number(sv.dataset.saveSize) || 0, sha256: sv.dataset.saveSha || "" });
   // "Run on PS5" next to .elf/.bin downloads (handled in ps5.js)
   const r = e.target.closest("[data-run-url]");
-  if (r) window.askRun?.([{ name: r.dataset.runName, url: r.dataset.runUrl, size: Number(r.dataset.runSize) || 0 }], r.dataset.runName);
+  if (r) window.askRun?.([{ name: r.dataset.runName, url: r.dataset.runUrl, size: Number(r.dataset.runSize) || 0, sha256: r.dataset.runSha || "" }], r.dataset.runName);
 });
 
 /* ---------- Events: cards, filters, tabs, view ---------- */
 $("rows").addEventListener("click", e => {
   const btn = e.target.closest("[data-a]"); if (!btn) return;
-  if (btn.dataset.a === "clear") { $("q").value = ""; cat = ""; saveView(); markCats(); render(); return; }
+  if (btn.dataset.a === "clear") {
+    $("q").value = ""; cat = "";
+    filters = Object.assign({}, filters, { lang: "", lic: "", stars: "", updated: "", hasElf: false, hideArch: false });
+    saveFilters(); saveView(); markCats(); refresh(); return;
+  }
   if (btn.dataset.a === "topic") { $("q").value = btn.dataset.topic; render(); scrollTo(0, 0); return; }
   const el = btn.closest("[data-k]"); if (!el) return;
   const p = all().find(x => key(x) === el.dataset.k); if (!p) return;
@@ -507,11 +712,13 @@ $("rows").addEventListener("click", e => {
     case "pin":
       pins = isPinned(p) ? pins.filter(k => k !== key(p)) : [...pins, key(p)];
       store.set("pins", pins); refresh(); break;
+    case "watch": toggleWatch(p); break;
     case "readme": showReadme(p); break;
     case "assets": showAssets(p); break;
     case "commits": showCommits(p); break;
     case "copy": copy(p.url); break;
     case "run": { const l = latest(p); window.askRun?.(l.files, `${p.name} ${l.tag}`); break; } // ps5.js
+    case "install": window.installProject?.(p); break; // ps5.js: release ZIP → /data/homebrew
     case "edit": openEditDialog(p); break;
     case "rm":
       if (confirm(t("removeQ", { n: p.name }))) { mine = mine.filter(m => key(m) !== key(p)); store.set("mine", mine); drawCats(); refresh(); }
@@ -526,9 +733,39 @@ $("rows").addEventListener("error", e => {
 const pickCat = e => { const b = e.target.closest("[data-c]"); if (!b) return; cat = b.dataset.c; saveView(); markCats(); render(); };
 $("chips").addEventListener("click", pickCat);
 $("side-cats").addEventListener("click", pickCat);
-$("q").oninput = render;
+// Search is debounced, and typing switches to "Best match" ordering — but only from the
+// default sort, so an explicit choice such as "Most starred" is left alone.
+let qTimer;
+$("q").oninput = () => {
+  clearTimeout(qTimer);
+  qTimer = setTimeout(() => {
+    const has = qWords().length > 0;
+    if (has && sort === "name") { sort = "relevance"; $("sort").value = sort; saveView(); }
+    else if (!has && sort === "relevance") { sort = "name"; $("sort").value = sort; saveView(); }
+    render();
+  }, 130);
+};
 $("sort").onchange = () => { sort = $("sort").value; saveView(); render(); };
 $$("[data-view]").forEach(b => (b.onclick = () => { view = b.dataset.view; saveView(); render(); }));
+
+/* ---------- Extra filters: collapsible panel, remembered per device ---------- */
+$("filter-btn").onclick = () => {
+  $("filterbar").hidden = !$("filterbar").hidden;
+  $("filter-btn").setAttribute("aria-expanded", String(!$("filterbar").hidden));
+};
+function onFilterChange() {
+  saveFilters(); drawFilters(); render();
+}
+$("f-lang").onchange = () => { filters.lang = $("f-lang").value; onFilterChange(); };
+$("f-lic").onchange = () => { filters.lic = $("f-lic").value; onFilterChange(); };
+$("f-stars").onchange = () => { filters.stars = $("f-stars").value; onFilterChange(); };
+$("f-updated").onchange = () => { filters.updated = $("f-updated").value; onFilterChange(); };
+$("f-elf").onchange = () => { filters.hasElf = $("f-elf").checked; onFilterChange(); };
+$("f-arch").onchange = () => { filters.hideArch = $("f-arch").checked; onFilterChange(); };
+$("f-clear").onclick = () => {
+  filters = { lang: "", lic: "", stars: "", updated: "", hasElf: false, hideArch: false };
+  saveFilters(); drawFilters(); render();
+};
 
 function setTab(next) {
   tab = next;
@@ -655,14 +892,21 @@ $("open-settings").onclick = () => { syncSettings(); $("settings").showModal(); 
 function syncSettings() {
   $$("#set-lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
   $$("#set-av button").forEach(b => b.setAttribute("aria-pressed", String(avatars) === (b.dataset.av === "1" ? "true" : "false")));
+  $$("#set-notif button").forEach(b => b.setAttribute("aria-pressed", String(notifOn) === (b.dataset.notif === "1" ? "true" : "false")));
   applyTheme();
+  window.syncPs5Settings?.();   // the SHA-256 toggle lives in ps5.js
 }
 $("set-lang").onclick = e => { const b = e.target.closest("[data-lang]"); if (!b) return; lang = b.dataset.lang; store.set("lang", lang); applyI18n(); drawCats(); refresh(); syncSettings(); };
 $("set-theme").onclick = e => { const b = e.target.closest("[data-th]"); if (!b) return; theme = b.dataset.th; store.set("theme", theme); applyTheme(); };
 $("set-av").onclick = e => { const b = e.target.closest("[data-av]"); if (!b) return; avatars = b.dataset.av === "1"; store.set("avatars", avatars); syncSettings(); render(); };
+$("set-notif").onclick = async e => {
+  const b = e.target.closest("[data-notif]"); if (!b) return;
+  await askNotif(b.dataset.notif === "1");
+  syncSettings();
+};
 
 $("do-export").onclick = () => {
-  const blob = new Blob([JSON.stringify({ app: "ps5links", v: 2, mine, pins, over }, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify({ app: "ps5links", v: 3, mine, pins, watch, over }, null, 2)], { type: "application/json" });
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "ps5links-backup.json", target: "_self" });
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 };
@@ -675,6 +919,8 @@ $("do-import").onchange = async e => {
     mine = j.mine.filter(m => m && typeof m.name === "string" && /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/i.test(m.url || ""))
       .map(m => ({ name: clip(m.name, 80), ghName: clip(m.ghName || m.name, 100), url: m.url, description: clip(m.description, 400), ghDesc: clip(m.ghDesc ?? m.description, 400), category: clip(m.category || "Other", 30) || "Other", stars: Number(m.stars) || 0, updated: String(m.updated || "").slice(0, 10) }));
     pins = j.pins.filter(k => typeof k === "string");
+    // Watched projects (added in backup v3; older backups simply have none)
+    watch = (Array.isArray(j.watch) ? j.watch : []).filter(k => typeof k === "string" && /^https:\/\/github\.com\//i.test(k));
     // Local edits: keep only text fields, trimmed to sane lengths
     over = {};
     for (const [k, v] of Object.entries(j.over && typeof j.over === "object" ? j.over : {})) {
@@ -685,7 +931,7 @@ $("do-import").onchange = async e => {
       if (typeof v.category === "string" && v.category.trim()) o.category = clip(v.category, 30);
       if (Object.keys(o).length) over[k] = o;
     }
-    store.set("mine", mine); store.set("pins", pins); store.set("over", over); drawCats(); refresh(); toast(t("imported"));
+    store.set("mine", mine); store.set("pins", pins); store.set("watch", watch); store.set("over", over); drawCats(); refresh(); toast(t("imported"));
   } catch { toast(t("importFail")); }
 };
 $("do-reset").onclick = () => {
@@ -701,11 +947,12 @@ $("totop").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
 /* ---------- Init ---------- */
 applyI18n(); applyTheme();
 $("sort").value = sort;
+drawFilters();
 fetch("data.json", { cache: "no-cache" })
   .then(r => { const lm = r.headers.get("last-modified"); if (lm) $("updated-at").textContent = t("dataUpdated", { t: ago(lm) }); return r.json(); })
   .then(d => {
     data = Array.isArray(d) ? d : [];
     if (!seen) markSeen(data); // first visit: nothing counts as "new for you" yet
-    drawCats(); refresh();
+    drawCats(); refresh(); notifyWatch();
   })
   .catch(() => ($("rows").innerHTML = `<div class="empty">${esc(t("loadFail"))}</div>`));

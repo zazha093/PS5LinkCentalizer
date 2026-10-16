@@ -10,7 +10,7 @@
 <!-- Apply saved theme before CSS paints, so there is no light/dark flash -->
 <script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=10">
 <base target="_blank">
 </head>
 <body>
@@ -56,11 +56,14 @@
         <button data-tab="projects" data-i18n="projects">Projects</button>
         <button data-tab="pinned"><span data-i18n="pinned">Pinned</span> <span class="seg-n" id="pc2"></span></button>
         <button data-tab="latest"><span data-i18n="latest">Latest</span> <span class="seg-n warn" id="lc2"></span></button>
+        <button data-tab="watch"><span data-i18n="watch">Watching</span> <span class="seg-n warn" id="wc2"></span></button>
       </div>
       <h1 class="title" id="title">PS5 Links</h1>
       <div class="meta-r">
         <button class="btn small" id="seen" hidden data-i18n="markSeen">Mark all seen</button>
+        <button class="btn small" id="filter-btn" aria-expanded="false" aria-controls="filterbar" data-i18n-al="filters" aria-label="Filters"><svg viewBox="0 0 24 24"><path d="M3 5h18M6 12h12M10 19h4"/></svg><span data-i18n="filters">Filters</span><span class="act-n" id="filter-n" hidden></span></button>
         <select id="sort" aria-label="Sort">
+          <option value="relevance" data-i18n="sRelevance">Best match</option>
           <option value="name" data-i18n="sName">Name A–Z</option>
           <option value="stars" data-i18n="sStars">Most starred</option>
           <option value="release" data-i18n="sRelease">Latest release</option>
@@ -76,6 +79,22 @@
       </div>
     </div>
     <p class="sr" id="count" aria-live="polite"></p>
+
+    <!-- Extra filters (collapsible). Values are remembered per device. -->
+    <section class="filters" id="filterbar" hidden aria-label="Filters">
+      <label class="fld"><span data-i18n="fLang">Language</span><select class="field" id="f-lang"></select></label>
+      <label class="fld"><span data-i18n="fLicense">License</span><select class="field" id="f-lic"></select></label>
+      <label class="fld"><span data-i18n="fStars">Minimum stars</span><select class="field" id="f-stars">
+        <option value="">—</option><option value="10">10+</option><option value="50">50+</option>
+        <option value="100">100+</option><option value="500">500+</option><option value="1000">1000+</option></select></label>
+      <label class="fld"><span data-i18n="fUpdated">Last push</span><select class="field" id="f-updated">
+        <option value="" data-i18n="any">—</option><option value="7" data-i18n="days7">7 days</option>
+        <option value="30" data-i18n="days30">30 days</option><option value="90" data-i18n="days90">90 days</option>
+        <option value="365" data-i18n="year1">1 year</option></select></label>
+      <label class="check"><input type="checkbox" id="f-elf"> <span data-i18n="fHasElf">Has .elf payload</span></label>
+      <label class="check"><input type="checkbox" id="f-arch"> <span data-i18n="fHideArch">Hide archived</span></label>
+      <button class="btn small" id="f-clear" data-i18n="clearFilters">Clear filters</button>
+    </section>
 
     <section id="rows" class="cards grid">
       <div class="card skel"></div><div class="card skel"></div><div class="card skel"></div>
@@ -93,6 +112,7 @@
   <button class="tab" data-tab="projects"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span data-i18n="projects">Projects</span></button>
   <button class="tab" data-tab="pinned"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span data-i18n="pinned">Pinned</span><span class="count" id="pc" hidden></span></button>
   <button class="tab" data-tab="latest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="latest">Latest</span><span class="count" id="lc" hidden></span></button>
+  <button class="tab" data-tab="watch"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span data-i18n="watch">Watching</span><span class="count" id="wc" hidden></span></button>
   <a class="tab" href="offline.html" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg><span data-i18n="offline">Offline</span></a>
 </div></nav>
 
@@ -125,6 +145,12 @@
   <div class="seg wide" id="set-theme"><button data-th="auto" data-i18n="auto">Auto</button><button data-th="dark" data-i18n="dark">Dark</button><button data-th="light" data-i18n="light">Light</button></div>
   <p class="set-h" data-i18n="avatars">Author avatars</p>
   <div class="seg wide" id="set-av"><button data-av="1" data-i18n="on">On</button><button data-av="0" data-i18n="off">Off</button></div>
+  <p class="set-h" data-i18n="notifH">New-release notifications</p>
+  <div class="seg wide" id="set-notif"><button data-notif="1" data-i18n="on">On</button><button data-notif="0" data-i18n="off">Off</button></div>
+  <p class="hint" data-i18n="notifHint">Only for projects you watch. The browser asks for permission once.</p>
+  <p class="set-h" data-i18n="verifyH">Check SHA-256 before running</p>
+  <div class="seg wide" id="set-verify"><button data-verify="1" data-i18n="on">On</button><button data-verify="0" data-i18n="off">Off</button></div>
+  <p class="hint" data-i18n="verifyHint">Downloads the payload in this browser first and compares it with the hash GitHub published. Safer, but it uses more data.</p>
   <p class="set-h" data-i18n="backup">Backup (my list + pins)</p>
   <div class="row2">
     <button class="btn" id="do-export" data-i18n="export">Export file</button>
@@ -157,6 +183,7 @@
     <button class="btn" id="ps5-browse" data-i18n="ps5Browse">Pick an .elf on the PS5</button>
   </div>
   <div class="fs-box" id="ps5-fs" hidden></div>
+  <button class="btn" id="open-lib" data-i18n="libTitle">Payload library &amp; run queue</button>
 
   <!-- Upload into a folder: needs PS5Links Agent (agent/ in this repo) running on the PS5 -->
   <p class="set-h" data-i18n="agH">Upload to a folder (PS5Links Agent)</p>
@@ -168,12 +195,24 @@
     <button class="btn" id="ag-pair" type="button" data-i18n="agPair">Pair</button>
   </div>
   <p class="msg" id="ag-msg" aria-live="polite"></p>
+
+  <div class="ag-direct">
+    <div class="ps5-row">
+      <label class="fld"><span data-i18n="agLdrPort">ELF Loader Port</span>
+        <select id="ag-ldr-port" class="field">
+          <option value="9021" data-i18n="agLdr9021">Port 9021 (Persistent / websrv)</option>
+          <option value="9020" data-i18n="agLdr9020">Port 9020 (Standard elfldr)</option>
+        </select></label>
+      <label class="btn primary"><span data-i18n="agRunDirect">Send &amp; run .elf directly</span><input id="ag-run-file" type="file" accept=".elf,.bin,application/octet-stream" hidden></label>
+    </div>
+  </div>
+
   <div class="fld"><label for="ag-dest" data-i18n="agDest">Folder on the PS5</label>
     <div class="ps5-row"><input id="ag-dest" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="/data/homebrew">
       <button class="btn" id="ag-browse" type="button" data-i18n="agPickDir">Choose</button></div></div>
   <div class="fs-box" id="ag-fs" hidden></div>
   <label class="check"><input type="checkbox" id="ag-unzip" checked> <span data-i18n="agUnzip">Extract .zip files while sending</span></label>
-  <label class="btn primary"><span data-i18n="agSend">Choose files and send</span><input id="ag-files" type="file" multiple hidden></label>
+  <label class="btn"><span data-i18n="agSend">Upload files to folder</span><input id="ag-files" type="file" multiple hidden></label>
   <div class="ag-prog" id="ag-prog" hidden>
     <progress id="ag-bar" max="1" value="0"></progress>
     <p class="hint" id="ag-ptext"></p>
@@ -200,6 +239,16 @@
   <div class="sheet-head"><h2 data-i18n="ps5Run">Run on PS5</h2><button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
   <p id="runq-t"></p>
   <div id="runq-files" class="runq-list"></div>
+  <div id="runq-opt" class="runq-opt" hidden>
+    <label class="fld"><span data-i18n="runTarget">Runner engine</span>
+      <select id="runq-method" class="field">
+        <option value="agent-9021" data-i18n="runMethodAgent9021">Agent → Port 9021 (Direct)</option>
+        <option value="agent-9020" data-i18n="runMethodAgent9020">Agent → Port 9020 (Direct)</option>
+        <option value="websrv" data-i18n="runMethodWebsrv">websrv (Port 8080)</option>
+      </select></label>
+  </div>
+  <label class="check" id="runq-verify" hidden><input type="checkbox" id="runq-vf" checked> <span data-i18n="verifyRun">Check SHA-256 before running</span></label>
+  <p class="hint" id="runq-vmsg"></p>
   <p class="hint warn" data-i18n="ps5RunWarn">Only run payloads you trust.</p>
   <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="runq-go" data-i18n="ps5Go">Run</button></div>
 </div></dialog>
@@ -217,9 +266,72 @@
   <div id="reader-body" class="reader-body">Loading…</div>
 </div></dialog>
 
+<!-- ========== File editor (ps5.js): edit .txt / .json / .cfg on the PS5 ========== -->
+<dialog id="editor" class="wide"><div class="sheet reader-sheet">
+  <div class="reader-head">
+    <div class="reader-tt"><h3 id="ed-title">file</h3><p id="ed-sub"></p></div>
+    <div class="reader-acts">
+      <button class="btn small" id="ed-format" data-i18n="edFormat">Format</button>
+      <button class="btn primary small" id="ed-save" data-i18n="edSave">Save</button>
+      <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  <div class="ed-body">
+    <textarea id="ed-text" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="File content"></textarea>
+    <p class="msg" id="ed-msg" aria-live="polite"></p>
+  </div>
+</div></dialog>
+
+<!-- ========== Payload library + run queue (ps5.js) ========== -->
+<dialog id="library"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="libTitle">Payload library &amp; run queue</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+
+  <p class="set-h" data-i18n="qH">Run queue</p>
+  <div class="lib-list" id="q-list"></div>
+  <div class="ps5-row">
+    <label class="fld"><span data-i18n="qDelay">Pause between payloads (seconds)</span>
+      <input id="q-delay" type="text" inputmode="numeric" value="3" autocomplete="off"></label>
+    <button class="btn primary" id="q-run" data-i18n="qRun">Run queue</button>
+  </div>
+  <div class="row2">
+    <button class="btn small" id="q-save" data-i18n="qSave">Save as preset</button>
+    <button class="btn small" id="q-clear" data-i18n="qClear">Clear queue</button>
+  </div>
+  <div class="lib-list" id="q-presets"></div>
+  <p class="msg" id="q-msg" aria-live="polite"></p>
+
+  <p class="set-h" data-i18n="libSaved">Saved on this device</p>
+  <div class="ps5-row">
+    <label class="fld"><span data-i18n="libAddUrl">Add a payload from a link</span>
+      <input id="lib-url" type="text" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="https://github.com/…/payload.elf"></label>
+    <button class="btn" id="lib-add" data-i18n="libAdd">Save</button>
+  </div>
+  <div class="lib-list" id="lib-list"></div>
+  <p class="hint" data-i18n="libHint">Payloads are kept in this browser only. Nothing is uploaded anywhere.</p>
+</div></dialog>
+
+<!-- ========== Install homebrew (ps5.js): release ZIP → extract → upload ========== -->
+<dialog id="install"><div class="sheet">
+  <div class="sheet-head"><h2 id="in-title" data-i18n="inH">Install homebrew</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p class="hint" id="in-sub"></p>
+  <label class="fld"><span data-i18n="agDest">Folder on the PS5</span>
+    <input id="in-dest" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="/data/homebrew"></label>
+  <div id="in-zips" class="runq-list"></div>
+  <p class="msg" id="in-msg" aria-live="polite"></p>
+  <div class="ag-prog" id="in-prog" hidden>
+    <progress id="in-bar" max="1" value="0"></progress>
+    <p class="hint" id="in-step"></p>
+    <button class="btn small" id="in-cancel" type="button" data-i18n="ps5Cancel">Cancel</button>
+  </div>
+  <div class="ag-done" id="in-done" hidden></div>
+  <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="in-go" data-i18n="install">Install</button></div>
+</div></dialog>
+
 <button class="totop" id="totop" aria-label="Back to top" hidden><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=8"></script>
-<script src="ps5.js?v=8"></script>
+<script src="app.js?v=10"></script>
+<script src="ps5.js?v=10"></script>
 </body>
 </html>

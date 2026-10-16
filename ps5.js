@@ -34,6 +34,15 @@ Object.assign(I18N.en, {
   ps5Tools: "Open pages on the PS5", ps5UploadHint: "To upload into a folder, use the PS5Links Agent section above, or a file-manager payload from its own page (port 8888).",
   ps5Ios: "iPhone / iPad: Safari blocks this page from talking to the PS5. Use the \"Open pages on the PS5\" links instead.",
   ps5Saved: "Saved",
+  agLdrPort: "ELF Loader Port",
+  agLdr9021: "Port 9021 (Persistent / websrv)",
+  agLdr9020: "Port 9020 (Standard elfldr)",
+  agRunDirect: "Send & run .elf directly",
+  agDirectSent: "Payload sent directly to port {port}. Watch the PS5 for its notification.",
+  runTarget: "Runner engine",
+  runMethodAgent9021: "Agent → Port 9021 (Direct)",
+  runMethodAgent9020: "Agent → Port 9020 (Direct)",
+  runMethodWebsrv: "websrv (Port 8080)",
 });
 Object.assign(I18N.th, {
   ps5: "PS5", ps5Title: "เชื่อมต่อ PS5", ps5Beta: "ทดลอง", ps5Ip: "IP ของ PS5", ps5Port: "พอร์ต websrv",
@@ -50,12 +59,21 @@ Object.assign(I18N.th, {
   ps5Tools: "เปิดหน้าบน PS5", ps5UploadHint: "ถ้าจะอัปโหลดลงโฟลเดอร์ ใช้ส่วน PS5Links Agent ด้านบน หรือเปิดหน้าของ payload จัดการไฟล์ (พอร์ต 8888)",
   ps5Ios: "iPhone / iPad: Safari ไม่ยอมให้หน้านี้คุยกับ PS5 ให้ใช้ลิงก์ \"เปิดหน้าบน PS5\" แทน",
   ps5Saved: "บันทึกแล้ว",
+  agLdrPort: "พอร์ต ELF Loader",
+  agLdr9021: "พอร์ต 9021 (Persistent / websrv)",
+  agLdr9020: "พอร์ต 9020 (Standard elfldr)",
+  agRunDirect: "ส่งและรัน .elf โดยตรง",
+  agDirectSent: "ส่ง payload เข้าพอร์ต {port} แล้ว ดูแจ้งเตือนบนหน้าจอ PS5",
+  runTarget: "ช่องทางรัน",
+  runMethodAgent9021: "Agent → พอร์ต 9021 (สตรีมตรง)",
+  runMethodAgent9020: "Agent → พอร์ต 9020 (สตรีมตรง)",
+  runMethodWebsrv: "websrv (พอร์ต 8080)",
 });
 applyI18n();
 
 /* ---------- Settings + helpers ---------- */
 // ip + websrv port; aport/pin are for PS5Links Agent (the PIN is saved on this device only)
-let ps5 = Object.assign({ ip: "", port: 8080, aport: 8686, pin: "" }, store.get("ps5", {}));
+let ps5 = Object.assign({ ip: "", port: 8080, aport: 8686, pin: "", ldrPort: 9021, verify: true }, store.get("ps5", {}));
 const PM_PORT = 8084, WFM_PORT = 8888;
 const CATALOG_URL = new URL("payloads.json", location.href.replace(/[#?].*$/, "")).href;
 
@@ -126,27 +144,68 @@ async function ps5Run(target) {
 
 /* ---------- Confirmation dialog ---------- */
 const fmtMB = n => (n ? ` · ${(n / 1048576).toFixed(2)} MB` : "");
-function askRun(files, label) {
+function askRun(files, label, preferredMethod) {
   if (!ps5Ready()) { openPs5(); say5(t("ps5Need"), "err"); return; }
   if (!files?.length) return;
   $("runq-t").textContent = t("ps5RunQ", { f: label, ip: ps5.ip });
   $("runq-files").innerHTML = files.map((f, i) => `<label class="runq-f">
       <input type="radio" name="runf" value="${i}"${i ? "" : " checked"}>
       <span><strong>${esc(f.name)}</strong>${esc(fmtMB(f.size))}${f.sha256 ? `<br><code title="SHA-256">sha256 ${esc(f.sha256.slice(0, 16))}…</code>` : ""}</span></label>`).join("");
-  $("runq-go").onclick = () => {
+
+  const hasFile = files.some(f => f.file || f instanceof Blob);
+  const opt = $("runq-opt");
+  if (opt) {
+    opt.hidden = !hasFile;
+    if (hasFile) {
+      const def = preferredMethod || (ps5.pin ? (ps5.ldrPort === 9020 ? "agent-9020" : "agent-9021") : "websrv");
+      $("runq-method").value = def;
+    }
+  }
+
+  // SHA-256 checking only makes sense for links: the file is downloaded here first, so the
+  // bytes we verify are exactly the bytes the console gets. Local files are checked elsewhere.
+  const checkable = files.some(f => f.sha256 && f.url);
+  $("runq-verify").hidden = !checkable;
+  if (checkable) $("runq-vf").checked = ps5.verify !== false;
+  $("runq-vmsg").textContent = "";
+
+  $("runq-go").onclick = async () => {
     const i = Number($("runq").querySelector("input[name=runf]:checked")?.value || 0);
-    $("runq").close();
+    const method = $("runq-method")?.value || "websrv";
     const f = files[i];
+    const wantVerify = checkable && $("runq-vf").checked && f.sha256 && f.url;
+    $("runq").close();
+    if (f.file && method.startsWith("agent")) return void await agentRunDirect(f.file, method === "agent-9020" ? 9020 : 9021);
+    if (wantVerify) return void await runVerified(f);
     ps5Run(f.file || f.url || f.path);
   };
   $("runq").showModal();
 }
+// Download the link here, compare it with the hash GitHub published, then send those exact
+// bytes to the console. A payload that does not match never runs unless the user insists.
+async function runVerified(f) {
+  toast(t("verifyChecking", { n: f.name }));
+  let blob;
+  try { blob = await fetchBlob(f.url); }
+  catch { alert(t("ps5RunFail", { s: "network" }) + "\n\n" + t("ps5Fail")); return; }
+  const got = await sha256Hex(blob);
+  if (!got) return ps5Run(f.url);                    // no WebCrypto (plain http page): fall back
+  if (got !== String(f.sha256).toLowerCase()) {
+    if (!confirm(t("verifyAsk", { n: f.name, g: got.slice(0, 16), e: String(f.sha256).slice(0, 16) }))) return;
+  } else toast(t("verifyOk", { n: f.name }));
+  await sendBlob(blob, f.name);
+}
 window.askRun = askRun; // used by app.js (cards + Assets list)
 
-/* ---------- Folder browser (websrv /fs JSON) ---------- */
+/* ---------- Folder browser (websrv /fs JSON) ----------
+   Lists folders and every file. .elf/.bin files can be run, text files can be
+   edited in the browser, and anything can be downloaded to this device. */
 let fsPath = "/data";
 const FOLDER = '<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
 const fsEnc = p => p.split("/").map(encodeURIComponent).join("/");
+// Extensions the built-in editor can open safely (everything else is download-only)
+const TEXT_EXT = /\.(txt|json|ini|cfg|conf|log|md|xml|yml|yaml|lua|js|mjs|sh|bat|properties|toml|csv|list|env)$/i;
+const fileIcon = n => TEXT_EXT.test(n) ? ICON.book : /\.(elf|bin)$/i.test(n) ? ICON.play : /\.zip$/i.test(n) ? ICON.box : ICON.dl;
 async function ps5Browse(path = fsPath) {
   const box = $("ps5-fs");
   box.hidden = false;
@@ -158,15 +217,20 @@ async function ps5Browse(path = fsPath) {
     try { list = JSON.parse(await r.text()); } catch { throw new Error("bad JSON (a file name may contain quotes)"); }
     fsPath = path;
     const items = list
-      .filter(x => x && x.name !== "." && x.name !== ".." && (x.mode === "d" || /\.(elf|bin)$/i.test(x.name)))
+      .filter(x => x && x.name !== "." && x.name !== "..")
       .sort((a, b) => (a.mode === "d" ? 0 : 1) - (b.mode === "d" ? 0 : 1) || cmp(a.name, b.name));
     const parent = path.replace(/\/[^/]+\/?$/, "") || "/";
     let html = `<div class="fs-bar"><code class="fs-path">${esc(path)}</code>${path !== "/" ? `<button class="btn small" data-fs="${esc(parent)}">↑ ${esc(t("ps5Up"))}</button>` : ""}</div>`;
     html += items.length ? items.map(x => {
       const full = (path === "/" ? "" : path.replace(/\/$/, "")) + "/" + x.name;
-      return x.mode === "d"
-        ? `<button class="fs-i" data-fs="${esc(full)}">${FOLDER} ${esc(x.name)}</button>`
-        : `<button class="fs-i file" data-fs-run="${esc(full)}" data-size="${Number(x.size) || 0}">${ICON.play} ${esc(x.name)}<span>${esc(fmtMB(x.size).replace(" · ", ""))}</span></button>`;
+      if (x.mode === "d") return `<button class="fs-i" data-fs="${esc(full)}">${FOLDER} ${esc(x.name)}</button>`;
+      const size = Number(x.size) || 0;
+      return `<div class="fs-row">${fileIcon(x.name)}<span class="fs-name">${esc(x.name)}</span><span class="fs-size">${esc(fmtSize(size))}</span>
+        <span class="fs-acts">
+        ${/\.(elf|bin)$/i.test(x.name) ? `<button class="act run" data-fs-run="${esc(full)}" data-size="${size}" title="${esc(t("ps5Run"))}" aria-label="${esc(t("ps5Run"))}">${ICON.play}</button>` : ""}
+        ${TEXT_EXT.test(x.name) ? `<button class="act copy" data-fs-edit="${esc(full)}" data-size="${size}" title="${esc(t("fileEdit"))}" aria-label="${esc(t("fileEdit"))}">${ICON.pen}</button>` : ""}
+        <button class="act copy" data-fs-dl="${esc(full)}" title="${esc(t("fileDownload"))}" aria-label="${esc(t("fileDownload"))}">${ICON.dl}</button>
+        </span></div>`;
     }).join("") : `<p class="hint">${esc(t("ps5Empty"))}</p>`;
     box.innerHTML = html;
   } catch (e) {
@@ -209,10 +273,15 @@ $("ps5-run-url").onclick = () => {
 };
 $("ps5-file").onchange = e => {
   const f = e.target.files[0]; e.target.value = "";
-  if (f && savePs5()) askRun([{ name: f.name, size: f.size, file: f }], f.name);
+  if (f && savePs5()) {
+    const def = ps5.pin ? (ps5.ldrPort === 9020 ? "agent-9020" : "agent-9021") : "websrv";
+    askRun([{ name: f.name, size: f.size, file: f }], f.name, def);
+  }
 };
 $("ps5-fs").addEventListener("click", e => {
   const d = e.target.closest("[data-fs]"); if (d) return ps5Browse(d.dataset.fs);
+  const ed = e.target.closest("[data-fs-edit]"); if (ed) return void openEditor(ed.dataset.fsEdit, Number(ed.dataset.size) || 0);
+  const dl = e.target.closest("[data-fs-dl]"); if (dl) return void downloadFromPs5(dl.dataset.fsDl);
   const f = e.target.closest("[data-fs-run]");
   if (f) askRun([{ name: f.dataset.fsRun.split("/").pop(), size: Number(f.dataset.size), path: f.dataset.fsRun }], f.dataset.fsRun);
 });
@@ -276,9 +345,10 @@ async function agent(path, opts = {}, ms = 15000) {
 
 function saveAgent() {
   const pin = $("ag-pin").value.trim(), aport = Number($("ag-port").value) || 8686;
+  const ldrPort = Number($("ag-ldr-port")?.value) || 9021;
   if (!savePs5()) return false;
   if (!validPort(aport)) { sayAg(t("ps5BadIp"), "err"); return false; }
-  ps5 = { ...ps5, pin, aport }; store.set("ps5", ps5); return true;
+  ps5 = { ...ps5, pin, aport, ldrPort }; store.set("ps5", ps5); return true;
 }
 
 async function agentPair(quiet) {
@@ -413,13 +483,43 @@ function showDone(items, dest) {
 
 async function agentRun(path) {
   if (!confirm(t("agRunQ", { f: path }) + "\n\n" + t("ps5RunWarn"))) return;
-  try { await agent("/api/run" + qp(path), { method: "POST" }, 30000); toast(t("ps5Sent")); }
+  const port = ps5.ldrPort || 9021;
+  try { await agent(`/api/run${qp(path)}&port=${port}`, { method: "POST" }, 30000); toast(t("ps5Sent")); }
   catch (e) { alert(t("ps5RunFail", { s: e.status ? e.message : "network" })); }
+}
+
+async function agentRunDirect(file, targetPort = ps5.ldrPort || 9021) {
+  if (!saveAgent()) return false;
+  if (!ps5.pin) { sayAg(t("agNeedPair"), "err"); return false; }
+  toast(t("ps5Sending"));
+  try {
+    const name = encodeURIComponent(file.name || "payload.elf");
+    await agent(`/api/run-direct?port=${targetPort}&name=${name}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/octet-stream" },
+      body: file
+    }, 60000);
+    toast(t("agDirectSent", { port: targetPort }));
+    return true;
+  } catch (e) {
+    const s = e.status === 401 ? t("agBadPin") : e.status ? e.message : (e.name === "AbortError" ? "timeout" : "network");
+    alert(t("ps5RunFail", { s }) + (s === "network" ? "\n\n" + t("ps5Fail") : ""));
+    return false;
+  }
 }
 
 /* ---------- Agent events ---------- */
 $("ag-pair").onclick = () => agentPair();
 $("ag-pin").addEventListener("keydown", e => { if (e.key === "Enter") agentPair(); });
+if ($("ag-ldr-port")) $("ag-ldr-port").onchange = () => saveAgent();
+if ($("ag-run-file")) $("ag-run-file").onchange = e => {
+  const f = e.target.files[0]; e.target.value = "";
+  if (!f) return;
+  if (!saveAgent()) return;
+  if (!ps5.pin) { sayAg(t("agNeedPair"), "err"); return; }
+  const port = Number($("ag-ldr-port")?.value) || ps5.ldrPort || 9021;
+  askRun([{ name: f.name, size: f.size, file: f }], f.name, `agent-${port}`);
+};
 $("ag-browse").onclick = () => { if (saveAgent()) agentBrowse($("ag-dest").value.trim().replace(/\/+$/, "") || "/data/homebrew"); };
 $("ag-fs").addEventListener("click", e => {
   const d = e.target.closest("[data-ag-dir]"); if (d) return agentBrowse(d.dataset.agDir);
@@ -431,6 +531,507 @@ $("ag-done").addEventListener("click", e => { const b = e.target.closest("[data-
 // Fill the agent fields whenever the PS5 dialog opens (called from openPs5)
 function agentOnOpen() {
   $("ag-pin").value = ps5.pin || ""; $("ag-port").value = ps5.aport || 8686;
+  if ($("ag-ldr-port")) $("ag-ldr-port").value = String(ps5.ldrPort || 9021);
   $("ag-fs").hidden = true; sayAg("");
   if (ps5Ready() && ps5.pin) agentPair(true);
 }
+
+/* =========================================================
+   v9 · Text editor, SHA-256 checking, payload library and run queue
+
+   All of this is front-end only — no new agent endpoints:
+     read a file    GET  /fs/<path>              (websrv, port 8080)
+     write a file   PUT  /api/upload?offset=0    (PS5Links Agent: truncates and rewrites)
+     run a Blob     POST /api/run-direct         (agent) or POST /elfldr (websrv)
+   ========================================================= */
+Object.assign(I18N.en, {
+  fileEdit: "Edit", fileDownload: "Download", verifyRun: "Check SHA-256 before running",
+  verifyChecking: "Downloading {n} to check it…", verifyOk: "SHA-256 matches: {n}",
+  verifyAsk: "{n} does NOT match the published SHA-256.\n\nExpected: {e}…\nGot:      {g}…\n\nRun it anyway? That can happen when a release file was replaced, but treat it as a warning.",
+  edFormat: "Tidy", edSave: "Save", edSaving: "Saving…", edSaved: "Saved ({n})",
+  edLoaded: "{n} chars · {l} lines · UTF-8", edTooBig: "This file is too big to edit ({n}). Download it instead.",
+  edLoadFail: "Could not read the file: {e}", edSaveFail: "Could not save: {e}",
+  edNeedPair: "Pair with PS5Links Agent (PIN) before saving.",
+  edFormatted: "JSON formatted", edInvalid: "Invalid JSON: {e}", edTidied: "Trailing spaces trimmed",
+  libTitle: "Payload library & run queue", libSaved: "Saved on this device", libAdd: "Save",
+  libAddUrl: "Add a payload from a link", libHint: "Payloads are kept in this browser only. Nothing is uploaded anywhere.",
+  libEmpty: "Nothing saved yet. Use the save button next to a release file, or paste a link above.",
+  libStoring: "Downloading {n}…", libStored: "Saved {n} on this device", libFail: "Could not save: {e}",
+  libRemoved: "Removed", libQueue: "Add to run queue", libDl: "Download to this device",
+  libHashMismatch: "{n} does not match the published SHA-256 ({e}… vs {g}…), so it was not saved.",
+  verifyH: "Check SHA-256 before running",
+  verifyHint: "Downloads the payload in this browser first and compares it with the hash GitHub published. Safer, but it uses more data.",
+  qH: "Run queue", qDelay: "Pause between payloads (seconds)", qRun: "Run queue", qSave: "Save as preset",
+  qClear: "Clear queue", qEmpty: "The queue is empty. Add payloads from the library below.",
+  qRunning: "Running {i}/{n}: {f}", qDone: "Queue finished ({n})", qFail: "Stopped at {f}",
+  qPresetName: "Preset name", qPresetSaved: "Preset saved", qPresets: "Presets",
+});
+Object.assign(I18N.th, {
+  fileEdit: "แก้ไข", fileDownload: "ดาวน์โหลด", verifyRun: "ตรวจ SHA-256 ก่อนรัน",
+  verifyChecking: "กำลังดาวน์โหลด {n} เพื่อตรวจสอบ…", verifyOk: "SHA-256 ตรงกัน: {n}",
+  verifyAsk: "{n} ไม่ตรงกับ SHA-256 ที่ประกาศไว้\n\nที่คาดไว้: {e}…\nที่ได้:     {g}…\n\nยังจะรันต่อไหม? อาจเกิดจากการแทนไฟล์รีลีส แต่ให้ถือเป็นคำเตือน",
+  edFormat: "จัดรูปแบบ", edSave: "บันทึก", edSaving: "กำลังบันทึก…", edSaved: "บันทึกแล้ว ({n})",
+  edLoaded: "{n} ตัวอักษร · {l} บรรทัด · UTF-8", edTooBig: "ไฟล์ใหญ่เกินกว่าจะแก้ไข ({n}) ให้ดาวน์โหลดแทน",
+  edLoadFail: "อ่านไฟล์ไม่ได้: {e}", edSaveFail: "บันทึกไม่ได้: {e}",
+  edNeedPair: "ต้องจับคู่กับ PS5Links Agent (PIN) ก่อนจึงจะบันทึกได้",
+  edFormatted: "จัดรูปแบบ JSON แล้ว", edInvalid: "JSON ไม่ถูกต้อง: {e}", edTidied: "ตัดช่องว่างท้ายบรรทัดแล้ว",
+  libTitle: "คลัง payload และชุดรัน", libSaved: "เก็บไว้ในเครื่องนี้", libAdd: "เก็บ",
+  libAddUrl: "เพิ่ม payload จากลิงก์", libHint: "payload เก็บไว้ในเบราว์เซอร์นี้เท่านั้น ไม่ได้อัปโหลดไปที่ไหน",
+  libEmpty: "ยังไม่มีอะไรในคลัง ใช้ปุ่มเก็บข้างไฟล์รีลีส หรือวางลิงก์ด้านบน",
+  libStoring: "กำลังดาวน์โหลด {n}…", libStored: "เก็บ {n} ไว้ในเครื่องแล้ว", libFail: "เก็บไม่ได้: {e}",
+  libRemoved: "ลบแล้ว", libQueue: "เพิ่มเข้าชุดรัน", libDl: "ดาวน์โหลดลงเครื่องนี้",
+  libHashMismatch: "{n} ไม่ตรงกับ SHA-256 ที่ประกาศไว้ ({e}… vs {g}…) จึงไม่บันทึก",
+  verifyH: "ตรวจ SHA-256 ก่อนรัน",
+  verifyHint: "ดาวน์โหลด payload มาที่เบราว์เซอร์นี้ก่อน แล้วเทียบกับค่า hash ที่ GitHub ประกาศไว้ ปลอดภัยขึ้นแต่ใช้ข้อมูลมากขึ้น",
+  qH: "ชุดรัน", qDelay: "หน่วงระหว่าง payload (วินาที)", qRun: "รันทั้งชุด", qSave: "บันทึกเป็นพรีเซต",
+  qClear: "ล้างชุดรัน", qEmpty: "ชุดรันว่างอยู่ เพิ่ม payload จากคลังด้านล่าง",
+  qRunning: "กำลังรัน {i}/{n}: {f}", qDone: "รันครบชุดแล้ว ({n})", qFail: "หยุดที่ {f}",
+  qPresetName: "ชื่อพรีเซต", qPresetSaved: "บันทึกพรีเซตแล้ว", qPresets: "พรีเซต",
+});
+applyI18n();
+
+/* ---------- Shared helpers ---------- */
+// SHA-256 of a Blob as hex ("" when WebCrypto is unavailable, e.g. on a plain http page)
+async function sha256Hex(blob) {
+  if (!globalThis.crypto?.subtle) return "";
+  const d = await crypto.subtle.digest("SHA-256", await blob.arrayBuffer());
+  return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+// Plain download from an https link (GitHub release assets send Access-Control-Allow-Origin *)
+async function fetchBlob(url) {
+  const r = await fetch(url, { cache: "no-store", mode: "cors" });
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return r.blob();
+}
+// Read a file from the console through websrv's /fs (no PIN needed)
+async function readPs5File(path) {
+  const r = await ps5Fetch("/fs" + fsEnc(path), {}, 60000);
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return r.blob();
+}
+// Send a Blob to the console: the agent streams it straight into the ELF loader when it is
+// paired, otherwise websrv takes a multipart POST. Returns true when the console accepted it.
+async function sendBlob(blob, name) {
+  const label = name || "payload.elf";
+  if (ps5.pin) {
+    try {
+      await agent(`/api/run-direct?port=${ps5.ldrPort || 9021}&name=${encodeURIComponent(label)}`,
+        { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob }, 300000);
+      toast(t("ps5Sent")); return true;
+    } catch (e) {
+      if (e.status) { alert(t("ps5RunFail", { s: e.status === 401 ? t("agBadPin") : e.message })); return false; }
+      // agent not reachable -> fall through to websrv
+    }
+  }
+  try {
+    const fd = new FormData();
+    fd.append("elf", blob, label);
+    const r = await ps5Fetch("/elfldr", { method: "POST", body: fd }, 300000);
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    toast(t("ps5Sent")); return true;
+  } catch (e) {
+    const s = e.name === "AbortError" ? "timeout" : /^HTTP/.test(e.message || "") ? e.message : "network";
+    alert(t("ps5RunFail", { s }) + (s === "network" ? "\n\n" + t("ps5Fail") : ""));
+    return false;
+  }
+}
+function saveBlobToDevice(blob, name) {
+  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name || "payload.elf", target: "_self" });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+// Pull a file off the console and hand it to the browser's download list
+async function downloadFromPs5(path) {
+  try {
+    toast(t("loading"));
+    saveBlobToDevice(await readPs5File(path), path.split("/").pop());
+  } catch (e) {
+    alert(t("edLoadFail", { e: e.message === "Failed to fetch" ? t("ps5Fail") : e.message }));
+  }
+}
+
+/* =========================================================
+   Text editor: read through websrv /fs, write through the agent
+   Writing replaces the file in place (offset=0 truncates), so a dropped
+   connection can leave a half-written file — keep a copy of anything vital.
+   ========================================================= */
+const ED_MAX = 2 * 1024 * 1024;
+let edPath = "", edOriginal = "";
+const sayEd = (text, kind = "") => { const el = $("ed-msg"); el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); };
+
+async function openEditor(path, size) {
+  if (size > ED_MAX) return alert(t("edTooBig", { n: fmtSize(size) }));
+  edPath = path; edOriginal = "";
+  $("ed-title").textContent = path.split("/").pop();
+  $("ed-sub").textContent = path;
+  $("ed-text").value = "";
+  sayEd(t("loading"));
+  $("editor").showModal();
+  try {
+    const blob = await readPs5File(path);
+    if (blob.size > ED_MAX) throw new Error(t("edTooBig", { n: fmtSize(blob.size) }));
+    const text = await blob.text();
+    edOriginal = text;
+    $("ed-text").value = text;
+    sayEd(t("edLoaded", { n: text.length, l: text.split("\n").length }));
+  } catch (e) {
+    sayEd(t("edLoadFail", { e: e.message === "Failed to fetch" ? t("ps5Fail") : e.message }), "err");
+  }
+}
+$("ed-text").addEventListener("input", () => {
+  $("ed-title").textContent = (edPath.split("/").pop() || "file") + ($("ed-text").value !== edOriginal ? " •" : "");
+});
+$("ed-format").onclick = () => {
+  const text = $("ed-text").value;
+  if (/\.json$/i.test(edPath) || /^\s*[[{]/.test(text)) {
+    try {
+      $("ed-text").value = JSON.stringify(JSON.parse(text), null, 2) + "\n";
+      sayEd(t("edFormatted"), "ok");
+    } catch (e) { sayEd(t("edInvalid", { e: e.message }), "err"); }
+    return;
+  }
+  $("ed-text").value = text.split("\n").map(l => l.replace(/[ \t]+$/, "")).join("\n").replace(/\n*$/, "\n");
+  sayEd(t("edTidied"), "ok");
+};
+$("ed-save").onclick = async () => {
+  if (!ps5.pin) return sayEd(t("edNeedPair"), "err");
+  const text = $("ed-text").value;
+  $("ed-save").disabled = true;
+  sayEd(t("edSaving"));
+  try {
+    const body = new TextEncoder().encode(text);
+    const j = await agent(`/api/upload${qp(edPath)}&offset=0`, {
+      method: "PUT", headers: { "Content-Type": "application/octet-stream" }, body,
+    }, 60000);
+    edOriginal = text;
+    $("ed-title").textContent = edPath.split("/").pop();
+    const msg = t("edSaved", { n: fmtSize(j?.size ?? body.length) });
+    sayEd(msg, "ok"); toast(msg);
+  } catch (e) {
+    sayEd(t("edSaveFail", { e: e.status === 401 ? t("agBadPin") : e.status ? e.message : t("agNoAgent") }), "err");
+  }
+  $("ed-save").disabled = false;
+};
+
+/* =========================================================
+   Payload library (IndexedDB): keep .elf files on this device so they
+   can be sent again without downloading them from GitHub a second time
+   ========================================================= */
+const DB_NAME = "ps5links", DB_STORE = "payloads";
+let dbPromise;
+function openDb() {
+  return dbPromise ??= new Promise((ok, no) => {
+    if (!globalThis.indexedDB) return no(new Error("IndexedDB is not available in this browser"));
+    const rq = indexedDB.open(DB_NAME, 1);
+    rq.onupgradeneeded = () => {
+      const d = rq.result;
+      if (!d.objectStoreNames.contains(DB_STORE)) d.createObjectStore(DB_STORE, { keyPath: "key" });
+    };
+    rq.onsuccess = () => ok(rq.result);
+    rq.onerror = () => no(rq.error);
+  });
+}
+// Run one IndexedDB request inside a fresh transaction and resolve when it commits
+function idb(mode, fn) {
+  return openDb().then(d => new Promise((ok, no) => {
+    const tx = d.transaction(DB_STORE, mode);
+    const rq = fn(tx.objectStore(DB_STORE));
+    tx.oncomplete = () => ok(rq ? rq.result : undefined);
+    tx.onerror = () => no(tx.error);
+    tx.onabort = () => no(tx.error);
+  }));
+}
+const libAll = () => idb("readonly", s => s.getAll()).catch(() => []);
+const libGet = k => idb("readonly", s => s.get(k)).catch(() => null);
+const libPut = r => idb("readwrite", s => s.put(r));
+const libDel = k => idb("readwrite", s => s.delete(k));
+const libKey = o => String(o.sha256 || o.url || "").toLowerCase();
+const sayQ = (text, kind = "") => { const el = $("q-msg"); el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); };
+
+// Download a link once, check it against the published hash, then keep it locally
+async function savePayload({ url, name, size = 0, sha256 = "" }) {
+  if (!/^https:\/\//i.test(url || "")) return toast(t("validLink"));
+  const label = name || url.split("/").pop() || url;
+  try {
+    sayQ(t("libStoring", { n: label }));
+    const blob = await fetchBlob(url);
+    let hash = String(sha256 || "").toLowerCase();
+    const got = await sha256Hex(blob);
+    if (hash && got && got !== hash) {
+      const m = t("libHashMismatch", { n: label, e: hash.slice(0, 16), g: got.slice(0, 16) });
+      sayQ(m, "err"); alert(m);
+      return false;
+    }
+    hash = hash || got;
+    await libPut({ key: libKey({ sha256: hash, url }), name: label, url, size: blob.size, sha256: hash, blob, added: Date.now() });
+    sayQ(t("libStored", { n: label }), "ok");
+    toast(t("libStored", { n: label }));
+    if ($("library").open) drawLib();
+    return true;
+  } catch (e) {
+    const m = t("libFail", { e: e.message === "Failed to fetch" ? t("ps5Fail") : e.message || "network" });
+    sayQ(m, "err"); toast(m);
+    return false;
+  }
+}
+window.savePayload = savePayload;   // used by the Assets list in app.js
+
+/* =========================================================
+   Run queue + presets
+   ========================================================= */
+let queue = store.get("queue", []);          // [{ key, name, url, size, sha256 }]
+let presets = store.get("presets", []);      // [{ name, delay, items: [...] }]
+const saveQueue = () => store.set("queue", queue);
+
+function drawQueue() {
+  $("q-list").innerHTML = queue.length ? queue.map((it, i) => `<div class="lib-i">
+      <span class="lib-n"><b>${i + 1}. ${esc(it.name)}</b><span class="asset-meta">${esc(fmtSize(it.size || 0))}</span></span>
+      <span class="acts">
+        <button class="act copy" data-q-up="${i}" aria-label="move up">↑</button>
+        <button class="act copy" data-q-down="${i}" aria-label="move down">↓</button>
+        <button class="act rm" data-q-del="${i}">${esc(t("remove"))}</button>
+      </span></div>`).join("") : `<p class="hint">${esc(t("qEmpty"))}</p>`;
+}
+function drawPresets() {
+  $("q-presets").innerHTML = presets.length
+    ? `<p class="set-h">${esc(t("qPresets"))}</p>` + presets.map((p, i) => `<div class="lib-i">
+        <span class="lib-n"><b>${esc(p.name)}</b><span class="asset-meta">${p.items.length} · ${Number(p.delay) || 0}s</span></span>
+        <span class="acts">
+          <button class="act run" data-p-run="${i}" title="${esc(t("qRun"))}" aria-label="${esc(t("qRun"))}">${ICON.play}</button>
+          <button class="act rm" data-p-del="${i}">${esc(t("remove"))}</button>
+        </span></div>`).join("")
+    : "";
+}
+async function drawLib() {
+  const list = (await libAll()).sort((a, b) => cmp(a.name || "", b.name || ""));
+  $("lib-list").innerHTML = list.length ? list.map(r => `<div class="lib-i">
+      <span class="lib-n"><b>${esc(r.name)}</b><span class="asset-meta">${esc(fmtSize(r.size))}${r.sha256 ? ` · sha256 ${esc(String(r.sha256).slice(0, 10))}…` : ""}</span></span>
+      <span class="acts">
+        <button class="act run" data-lib-run="${esc(r.key)}" title="${esc(t("ps5Run"))}" aria-label="${esc(t("ps5Run"))}">${ICON.play}</button>
+        <button class="act copy" data-lib-q="${esc(r.key)}" title="${esc(t("libQueue"))}" aria-label="${esc(t("libQueue"))}">${ICON.box}</button>
+        <button class="act copy" data-lib-dl="${esc(r.key)}" title="${esc(t("libDl"))}" aria-label="${esc(t("libDl"))}">${ICON.dl}</button>
+        <button class="act rm" data-lib-del="${esc(r.key)}">${esc(t("remove"))}</button>
+      </span></div>`).join("") : `<p class="hint">${esc(t("libEmpty"))}</p>`;
+  drawQueue(); drawPresets();
+}
+
+// Send every item in order, reusing the local copy when there is one
+async function runQueue(items = queue) {
+  if (!items.length) return sayQ(t("qEmpty"), "err");
+  if (!ps5Ready()) { openPs5(); say5(t("ps5Need"), "err"); return; }
+  const delay = Math.max(0, Math.min(300, Number($("q-delay").value) || 0)) * 1000;
+  for (const [i, it] of items.entries()) {
+    sayQ(t("qRunning", { i: i + 1, n: items.length, f: it.name }), "ok");
+    let blob = (await libGet(it.key))?.blob;
+    if (!blob) {
+      try { blob = await fetchBlob(it.url); }
+      catch { return sayQ(t("qFail", { f: it.name }), "err"); }
+      const got = await sha256Hex(blob);
+      if (it.sha256 && got && got !== String(it.sha256).toLowerCase()) return sayQ(t("qFail", { f: it.name }), "err");
+      await libPut({ key: it.key, name: it.name, url: it.url, size: blob.size, sha256: got || it.sha256 || "", blob, added: Date.now() }).catch(() => {});
+    }
+    if (!(await sendBlob(blob, it.name))) return sayQ(t("qFail", { f: it.name }), "err");
+    if (i < items.length - 1 && delay) await sleep(delay);
+  }
+  sayQ(t("qDone", { n: items.length }), "ok");
+  drawLib();
+}
+
+/* ---------- Library dialog events ---------- */
+$("open-lib").onclick = () => {
+  $("q-delay").value = String(store.get("qd", 3));
+  sayQ("");
+  drawLib();
+  $("library").showModal();
+};
+$("q-delay").onchange = () => store.set("qd", Math.max(0, Math.min(300, Number($("q-delay").value) || 0)));
+$("lib-add").onclick = async () => {
+  const url = $("lib-url").value.trim();
+  if (!/^https?:\/\/\S+$/i.test(url)) return toast(t("validLink"));
+  $("lib-add").disabled = true;
+  await savePayload({ url, name: url.split("/").pop().split("?")[0] });
+  $("lib-add").disabled = false;
+  $("lib-url").value = "";
+};
+$("q-run").onclick = () => runQueue();
+$("q-clear").onclick = () => { queue = []; saveQueue(); drawQueue(); sayQ(""); };
+$("q-save").onclick = () => {
+  if (!queue.length) return sayQ(t("qEmpty"), "err");
+  const name = prompt(t("qPresetName"), `${queue.length} payloads`);
+  if (!name) return;
+  const clean = name.slice(0, 60);
+  presets = [...presets.filter(p => p.name !== clean), { name: clean, delay: Number($("q-delay").value) || 0, items: queue.map(x => ({ ...x })) }];
+  store.set("presets", presets);
+  drawPresets();
+  toast(t("qPresetSaved"));
+};
+$("library").addEventListener("click", async e => {
+  const run = e.target.closest("[data-lib-run]");
+  if (run) {
+    const r = await libGet(run.dataset.libRun);
+    if (r) askRun([{ name: r.name, size: r.size, file: r.blob }], r.name, ps5.pin ? (ps5.ldrPort === 9020 ? "agent-9020" : "agent-9021") : "websrv");
+    return;
+  }
+  const q = e.target.closest("[data-lib-q]");
+  if (q) {
+    const r = await libGet(q.dataset.libQ);
+    if (r && !queue.some(x => x.key === r.key)) {
+      queue = [...queue, { key: r.key, name: r.name, url: r.url, size: r.size, sha256: r.sha256 || "" }];
+      saveQueue(); drawQueue(); sayQ(t("libQueue"), "ok");
+    }
+    return;
+  }
+  const dl = e.target.closest("[data-lib-dl]");
+  if (dl) { const r = await libGet(dl.dataset.libDl); if (r) saveBlobToDevice(r.blob, r.name); return; }
+  const del = e.target.closest("[data-lib-del]");
+  if (del) { await libDel(del.dataset.libDel); toast(t("libRemoved")); drawLib(); return; }
+  const up = e.target.closest("[data-q-up]");
+  if (up) { const i = Number(up.dataset.qUp); if (i > 0) { [queue[i - 1], queue[i]] = [queue[i], queue[i - 1]]; saveQueue(); drawQueue(); } return; }
+  const dn = e.target.closest("[data-q-down]");
+  if (dn) { const i = Number(dn.dataset.qDown); if (i < queue.length - 1) { [queue[i + 1], queue[i]] = [queue[i], queue[i + 1]]; saveQueue(); drawQueue(); } return; }
+  const qd = e.target.closest("[data-q-del]");
+  if (qd) { queue.splice(Number(qd.dataset.qDel), 1); saveQueue(); drawQueue(); return; }
+  const pr = e.target.closest("[data-p-run]");
+  if (pr) {
+    const p = presets[Number(pr.dataset.pRun)];
+    if (p) { $("q-delay").value = String(p.delay || 0); store.set("qd", p.delay || 0); runQueue(p.items); }
+    return;
+  }
+  const pd = e.target.closest("[data-p-del]");
+  if (pd) { presets.splice(Number(pd.dataset.pDel), 1); store.set("presets", presets); drawPresets(); }
+});
+
+/* ---------- SHA-256 setting (Settings dialog, wired by app.js) ---------- */
+function syncPs5Settings() {
+  const on = ps5.verify !== false;
+  $$("#set-verify button").forEach(b => b.setAttribute("aria-pressed", String(on) === (b.dataset.verify === "1" ? "true" : "false")));
+}
+window.syncPs5Settings = syncPs5Settings;
+$("set-verify").onclick = e => {
+  const b = e.target.closest("[data-verify]"); if (!b) return;
+  ps5 = { ...ps5, verify: b.dataset.verify === "1" };
+  store.set("ps5", ps5);
+  syncPs5Settings();
+};
+
+/* =========================================================
+   v10 · Install homebrew — one click downloads a release .zip
+   here, extracts it (fflate) and sends each file to a folder on
+   the PS5 through the existing agent endpoints. The PS5 needs no
+   download/unzip code, and SHA-256 is checked on the bytes we send.
+   ========================================================= */
+Object.assign(I18N.en, {
+  inH: "Install homebrew", inZips: "Choose a release archive",
+  inNoZip: "This project has no installable .zip release yet.",
+  inDownload: "Downloading {f}…", inExtract: "Extracting {f}…", inMkdir: "Creating folders…",
+  inDone: "Installed: {n} file(s) in {d}", inFail: "Install failed: {e}",
+});
+Object.assign(I18N.th, {
+  inH: "ติดตั้ง homebrew", inZips: "เลือกไฟล์เก็บถาวรของรีลีส",
+  inNoZip: "โปรเจกต์นี้ยังไม่มีรีลีส .zip ที่ติดตั้งได้",
+  inDownload: "กำลังดาวน์โหลด {f}…", inExtract: "กำลังแตกไฟล์ {f}…", inMkdir: "กำลังสร้างโฟลเดอร์…",
+  inDone: "ติดตั้งแล้ว: {n} ไฟล์ ใน {d}", inFail: "ติดตั้งล้มเหลว: {e}",
+});
+applyI18n();
+
+const IN_DEST_KEY = "inDest";
+let inZips = [], inZip = null, inCancel = false;
+const sayIn = (text, kind = "") => { const el = $("in-msg"); el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); };
+const inStep = (key, vars = {}) => { $("in-step").textContent = t(key, vars); };
+
+// The zip to install; projects.json "install.zip" names one asset when a release has several
+function pickZip(p) {
+  const zips = (latest(p)?.zips || []).filter(z => /^https:\/\//i.test(z.url));
+  const pref = (p.install?.zip || "").toLowerCase();
+  const hits = pref ? zips.filter(z => z.name.toLowerCase().includes(pref)) : [];
+  return hits[0] || zips[0] || null;
+}
+
+// Destination: remembered default (or /data/homebrew) plus a per-project subfolder if set
+function installDest(p) {
+  const base = (store.get(IN_DEST_KEY) || "/data/homebrew").replace(/\/+$/, "");
+  const sub = p.install?.dir ? "/" + String(p.install.dir).replace(/^\/+|\/+$/g, "") : "";
+  return base + sub;
+}
+
+async function installProject(p) {
+  if (!ps5Ready()) { openPs5(); say5(t("ps5Need"), "err"); return; }
+  if (!ps5.pin) { openPs5(); sayAg(t("agNeedPair"), "err"); return; }
+  inZips = (latest(p)?.zips || []).filter(z => /^https:\/\//i.test(z.url));
+  if (!inZips.length) return toast(t("inNoZip"));
+  inZip = pickZip(p);
+  $("in-title").textContent = `${t("inH")}: ${p.name}`;
+  $("in-sub").textContent = `${inZip.name} · ${fmtSize(inZip.size || 0)}${inZip.sha256 ? ` · sha256 ${inZip.sha256.slice(0, 12)}…` : ""}`;
+  $("in-dest").value = installDest(p);
+  $("in-zips").innerHTML = inZips.length > 1
+    ? `<p class="set-h">${esc(t("inZips"))}</p>` + inZips.map((z, i) => `<label class="runq-f"><input type="radio" name="inz" value="${i}"${z.url === inZip.url ? " checked" : ""}><span><strong>${esc(z.name)}</strong><br><code>${esc(fmtSize(z.size || 0))}${z.sha256 ? ` · sha256 ${esc(z.sha256.slice(0, 10))}…` : ""}</code></span></label>`).join("")
+    : "";
+  sayIn(""); $("in-step").textContent = ""; $("in-prog").hidden = true; $("in-done").hidden = true;
+  $("install").showModal();
+}
+
+async function doInstall() {
+  if (!ps5.pin) return sayIn(t("agNeedPair"), "err");
+  const dest = $("in-dest").value.trim().replace(/\/+$/, "") || "/data/homebrew";
+  const sel = $("in-zips").querySelector("input[name=inz]:checked");
+  if (sel) inZip = inZips[Number(sel.value)] || inZip;
+  if (!inZip) return sayIn(t("inNoZip"), "err");
+  store.set(IN_DEST_KEY, dest);
+  inCancel = false; sayIn("");
+  $("in-prog").hidden = false; $("in-bar").value = 0; $("in-done").hidden = true;
+  $("in-go").disabled = true;
+  try {
+    inStep("inDownload", { f: inZip.name });
+    let blob;
+    try { blob = await fetchBlob(inZip.url); }
+    catch (e) { throw new Error(/^HTTP/.test(e.message || "") ? e.message : "network"); }
+    if (inZip.sha256 && ps5.verify !== false) {
+      const got = await sha256Hex(blob);
+      if (got && got !== String(inZip.sha256).toLowerCase()) {
+        if (!confirm(t("verifyAsk", { n: inZip.name, g: got.slice(0, 16), e: String(inZip.sha256).slice(0, 16) }))) {
+          sayIn(t("agCancelled")); $("in-prog").hidden = true; return;
+        }
+      }
+    }
+    inStep("inExtract", { f: inZip.name });
+    const plan = await buildPlan([new File([blob], inZip.name)], dest, true);
+    inStep("inMkdir");
+    for (const d of plan.dirs) await agent("/api/mkdir" + qp(d), { method: "POST" });
+    const total = plan.items.reduce((s, x) => s + x.size, 0);
+    let sent = 0;
+    for (const [i, item] of plan.items.entries()) {
+      const show = () => { $("in-bar").value = total ? sent / total : 1; inStep("agSending", { i: i + 1, n: plan.items.length, f: item.path.split("/").pop(), p: Math.round($("in-bar").value * 100) }); };
+      show();
+      await putFile(item, n => { sent += n; show(); });
+    }
+    $("in-bar").value = 1; $("in-prog").hidden = true;
+    showInstallDone(plan.items, dest);
+  } catch (e) {
+    $("in-prog").hidden = true;
+    if (inCancel) sayIn(t("agCancelled"));
+    else {
+      const reason = e.status === 401 ? t("agBadPin") : e.status ? e.message : (e.name === "AbortError" ? "timeout" : e.message || "network");
+      sayIn(t("inFail", { e: reason }), "err");
+    }
+  } finally {
+    $("in-go").disabled = false;
+  }
+}
+
+// After install: summary + "run" buttons for any .elf that landed in the folder
+function showInstallDone(items, dest) {
+  const box = $("in-done");
+  const elfs = items.filter(x => /\.elf$/i.test(x.path));
+  box.innerHTML = `<p class="msg ok">${esc(t("inDone", { n: items.length, d: dest }))}</p>` +
+    elfs.map(x => `<button class="fs-i file" data-in-run="${esc(x.path)}">${ICON.play} ${esc(x.path.replace(dest + "/", ""))}</button>`).join("");
+  box.hidden = false;
+  toast(t("inDone", { n: items.length, d: dest }));
+}
+
+$("in-go").onclick = () => doInstall();
+$("in-cancel").onclick = () => { inCancel = true; };
+$("in-done").addEventListener("click", e => {
+  const b = e.target.closest("[data-in-run]");
+  if (b) agentRun(b.dataset.inRun);
+});
+window.installProject = installProject;
