@@ -3,7 +3,7 @@
 
 Pretends to be, on this computer:
   - websrv            on port 8080  (/version, /elfldr, /fs/...?fmt=json)
-  - PS5Links Agent    on port 8686  (/api/info, /api/ls, /api/mkdir, /api/upload, /api/run)
+  - PS5Links Agent    on port 8686  (/api/info, /api/ls, /api/mkdir, /api/upload, /api/run, /api/rm)
 Files go into ./ps5-sim-root/data/... next to where you start it. Nothing is executed:
 "run" requests are only printed.
 
@@ -12,7 +12,7 @@ Then on the phone (same Wi-Fi): open the PS5 Links site → PS5 button →
 IP = this computer's IP (shown below), websrv port 8080, Agent port 8686, PIN shown below.
 Windows: allow Python through the firewall for *private* networks when asked.
 """
-import json, os, random, socket, sys, threading, urllib.parse
+import json, os, random, shutil, socket, sys, threading, urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = os.path.abspath("ps5-sim-root")
@@ -146,6 +146,21 @@ class Agent(Base):
             name = q.get("name", "payload.elf")
             print(f"   -> [SIM] directly streamed {name} ({len(data)} bytes) to ELF loader on port {port}")
             return self.send(200, {"ok": True, "port": port})
+        if path == "/api/rm":
+            top = "/data" if p.startswith("/data") else "/".join(p.split("/")[:3])
+            if p == top:
+                return self.send(403, {"error": "refusing to delete a top folder"})
+            f = real(p)
+            if not os.path.lexists(f):
+                return self.send(404, {"error": "not found"})
+            if os.path.isdir(f) and not os.path.islink(f):
+                if q.get("recursive") != "1":
+                    return self.send(400, {"error": "this is a folder: add recursive=1"})
+                shutil.rmtree(f)
+            else:
+                os.remove(f)
+            print(f"   -> deleted {p}")
+            return self.send(200, {"ok": True, "removed": 1})
         if path == "/api/run":
             try:
                 with open(real(p), "rb") as f:
