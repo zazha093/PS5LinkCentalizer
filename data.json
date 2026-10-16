@@ -10,9 +10,17 @@
       "date": "2026-10-10",
       "title": "Porpoise 3.0 (DolphinPS5)",
       "assets": 1,
-      "downloads": 9059,
+      "downloads": 9074,
       "notes": "Porpoise 3.0 is the biggest update yet. 🌐 Online Online Hub in Settings → Online WiiLink WFC and Wiimmfi set up in a few steps WiiConnect24 channels Custom servers, saved by name, with a connection test No more freeze when connecting in Mario Kart Wii 📁 Games and library Netwo…",
-      "files": []
+      "files": [],
+      "zips": [
+        {
+          "name": "Porpoise-3.0.zip",
+          "url": "https://github.com/elripalda/Porpoise-Dolphin-Emulator-for-PS5/releases/download/v3.0/Porpoise-3.0.zip",
+          "size": 31018028,
+          "sha256": "889bc738624c1c1abe5be304e3e78604f5cd66068473b5eeaef6c77e7677513e"
+        }
+      ]
     },
     "pre": null,
     "updated": "2026-10-10",
@@ -32,7 +40,8 @@
     "issues": 19,
     "homepage": "https://www.ripalda.dev",
     "branch": "Main",
-    "downloads": 23605
+    "downloads": 23620,
+    "install": null
   },
   {
     "name": "ps5-homebrew-ui",
@@ -47,7 +56,15 @@
       "assets": 2,
       "downloads": 3032,
       "notes": "Full Changelog: https://github.com/blackbearreloaded/ps5-homebrew-ui/compare/01.000.000...01.000.010",
-      "files": []
+      "files": [],
+      "zips": [
+        {
+          "name": "PPSA99050.zip",
+          "url": "https://github.com/blackbearreloaded/ps5-homebrew-ui/releases/download/01.000.010/PPSA99050.zip",
+          "size": 31382603,
+          "sha256": "420a3fb50ad6451c0d63f5e9a5b6ca3e8579a9e29b63f2eb187e740ce853cdaf"
+        }
+      ]
     },
     "pre": {
       "tag": "build-cache",
@@ -57,7 +74,8 @@
       "assets": 1,
       "downloads": 2,
       "notes": "Not an app release. This holds the compiler cache that the build workflow starts from. Download the newest versioned release instead.",
-      "files": []
+      "files": [],
+      "zips": []
     },
     "updated": "2026-10-13",
     "stars": 60,
@@ -69,7 +87,8 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 5564
+    "downloads": 5564,
+    "install": null
   },
   {
     "name": "PS5_RetroArch",
@@ -83,9 +102,17 @@
       "date": "2026-10-15",
       "title": "PS5_RetroArch-v2.0.0-beta-2",
       "assets": 1,
-      "downloads": 2346,
+      "downloads": 2355,
       "notes": "PS5RetroArch-v2.0.0-beta-2 PS5 RetroArch is a passion project, not a piracy project. It exists so you can play the games you own on the console you own. Piracy is not condoned. No games, BIOS files, console firmware or decryption keys are included, and they never will be. Use on…",
-      "files": []
+      "files": [],
+      "zips": [
+        {
+          "name": "PS5_RetroArch-v2.0.0-beta-2.zip",
+          "url": "https://github.com/mihawk-99/PS5_RetroArch/releases/download/v2.0.0-beta-2/PS5_RetroArch-v2.0.0-beta-2.zip",
+          "size": 1548581381,
+          "sha256": "ae1eb12615b36eb12d75cf2b950890282310479518be7b2d1d15e5005fdfc0af"
+        }
+      ]
     },
     "updated": "2026-10-15",
     "stars": 337,
@@ -97,7 +124,8 @@
     "issues": 18,
     "homepage": "",
     "branch": "main",
-    "downloads": 37667
+    "downloads": 37676,
+    "install": null
   },
   {
     "name": "PS5X360",
@@ -119,6 +147,20 @@
           "size": 941920,
           "sha256": "5da64c23263e6868696aa0f8b1bfd0eb97581bae73124d08066b507652adfbfb"
         }
+      ],
+      "zips": [
+        {
+          "name": "PPSA50011.zip",
+          "url": "https://github.com/BrinooTk/PS5X360/releases/download/v0.6.0/PPSA50011.zip",
+          "size": 24745309,
+          "sha256": "b2bf7a7d242428cfa002ec557210dc885403580b58bda8d67a436a2550b67dd2"
+        },
+        {
+          "name": "PS5X360-source-0.6.0-changes.zip",
+          "url": "https://github.com/BrinooTk/PS5X360/releases/download/v0.6.0/PS5X360-source-0.6.0-changes.zip",
+          "size": 1943090,
+          "sha256": "315a9df892995511403d2198e95058b850e470d6879d6c31d9e3397746412a93"
+        }
       ]
     },
     "pre": null,
@@ -138,7 +180,8 @@
     "issues": 84,
     "homepage": "",
     "branch": "main",
-    "downloads": 35348
+    "downloads": 35348,
+    "install": null
   },
   {
     "name": "PS5CEMU-HAR",
@@ -153,7 +196,15 @@
       "assets": 1,
       "downloads": 1568,
       "notes": "Download PS5CEMU-HAR-v4.0.1.zip (52.5 MB), attached below and on the releases branch. SHA-256: 5d441d73957276e0d2f92bd2f56c70e33020a75483075aaf03cea9ae05028816 From 3.0.0 or later, the app offers this update itself as it starts (Settings > Online checks again). Otherwise extract…",
-      "files": []
+      "files": [],
+      "zips": [
+        {
+          "name": "PS5CEMU-HAR-v4.0.1.zip",
+          "url": "https://github.com/premohq/PS5CEMU-HAR/releases/download/v4.0.1/PS5CEMU-HAR-v4.0.1.zip",
+          "size": 52507502,
+          "sha256": "5d441d73957276e0d2f92bd2f56c70e33020a75483075aaf03cea9ae05028816"
+        }
+      ]
     },
     "pre": null,
     "updated": "2026-10-16",
@@ -166,6 +217,7 @@
     "issues": 10,
     "homepage": "",
     "branch": "PS5-Cemu",
-    "downloads": 8080
+    "downloads": 8080,
+    "install": null
   }
 ]
