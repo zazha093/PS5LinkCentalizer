@@ -104,6 +104,8 @@ class Agent(Base):
         path, q = self.q()
         if self.headers.get("X-Agent-Pin") != PIN:
             self.send(401, {"error": "wrong or missing PIN"}); return None
+        if path == "/api/run-direct":
+            return path, q, ""
         p = q.get("path", "").rstrip("/")
         if not path_ok(p):
             self.send(403, {"error": "path must be under /data/, /mnt/usbN/ or /mnt/extN/ without .."}); return None
@@ -132,11 +134,18 @@ class Agent(Base):
     def do_POST(self):
         g = self.guard()
         if not g: return
-        path, _, p = g
-        self.body()
+        path, q, p = g
+        data = self.body()
         if path == "/api/mkdir":
             os.makedirs(real(p), exist_ok=True)
             return self.send(200, {"ok": True})
+        if path == "/api/run-direct":
+            if not data.startswith(b"\x7fELF"):
+                return self.send(400, {"error": "not an ELF file"})
+            port = int(q.get("port", 9021))
+            name = q.get("name", "payload.elf")
+            print(f"   -> [SIM] directly streamed {name} ({len(data)} bytes) to ELF loader on port {port}")
+            return self.send(200, {"ok": True, "port": port})
         if path == "/api/run":
             try:
                 with open(real(p), "rb") as f:
@@ -144,8 +153,9 @@ class Agent(Base):
                         return self.send(400, {"error": "not an ELF file"})
             except OSError as e:
                 return self.send(404, {"error": str(e)})
-            print(f"   -> would send {p} to the ELF loader (port 9021)")
-            return self.send(200, {"ok": True})
+            port = int(q.get("port", 9021))
+            print(f"   -> would send {p} to the ELF loader (port {port})")
+            return self.send(200, {"ok": True, "port": port})
         self.send(404, {"error": "unknown endpoint"})
 
     def do_PUT(self):
@@ -179,6 +189,12 @@ def my_ip():
 
 
 if __name__ == "__main__":
+    # Windows console defaults to cp1252, which crashes when the working folder path has
+    # non-ASCII characters (e.g. a Thai user name). Print UTF-8 and never die on encoding.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try: stream.reconfigure(encoding="utf-8", errors="replace")
+            except Exception: pass
     servers = [ThreadingHTTPServer(("0.0.0.0", 8080), Websrv), ThreadingHTTPServer(("0.0.0.0", 8686), Agent)]
     for s in servers[1:]:
         threading.Thread(target=s.serve_forever, daemon=True).start()
