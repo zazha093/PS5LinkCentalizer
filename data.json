@@ -38,7 +38,7 @@
       "date": "2026-10-15",
       "title": "OnionHEN v0.9.0",
       "assets": 1,
-      "downloads": 1238,
+      "downloads": 1240,
       "notes": "OnionHEN is a homebrew enabler and Toolbox for jailbroken PS5 consoles, built on etaHEN. It prepares the system, injects a Toolbox into the home screen, and adds cheats, a game overlay, payload management, and background services. Version: v0.9.0 is the stable re…",
       "files": [
         {
@@ -60,7 +60,7 @@
     "issues": 14,
     "homepage": "",
     "branch": "main",
-    "downloads": 30463
+    "downloads": 30465
   },
   {
     "name": "ProsperoEden",
@@ -194,7 +194,7 @@
       "date": "2026-08-04",
       "title": "nanoDNS 0.4",
       "assets": 2,
-      "downloads": 48023,
+      "downloads": 48026,
       "notes": "IPv6 support Quiet mode Yandex.DNS fix (remove old nanodns.ini) FW PS5 1.00-13.60, PS4 1.00-13.52",
       "files": [
         {
@@ -216,7 +216,7 @@
     "issues": 2,
     "homepage": "",
     "branch": "main",
-    "downloads": 102736
+    "downloads": 102739
   },
   {
     "name": "ShadowMountPlus",
@@ -299,7 +299,7 @@
       "date": "2026-10-03",
       "title": "PS5 App Dumper 2.00 Beta PS5 App Dumper 2.10 Beta",
       "assets": 3,
-      "downloads": 4376,
+      "downloads": 4377,
       "notes": "Highlights DLC Each title shows how many DLC are installed for it, with names and sizes Dump DLC on the running game dumps its DLC alone, next to a dump you made before, without copying the game again With several DLC you pick which ones; a picked DLC that is there already is re…",
       "files": [
         {
@@ -321,7 +321,7 @@
     "issues": 7,
     "homepage": "",
     "branch": "main",
-    "downloads": 23568
+    "downloads": 23569
   },
   {
     "name": "etahen-11.00-13.60",
@@ -411,7 +411,7 @@
       "date": "2026-10-10",
       "title": "",
       "assets": 1,
-      "downloads": 1977,
+      "downloads": 1978,
       "notes": "Added support for PS5 backport patches that previously appeared as unknown packages Show an \"SDK target\" badge for PS5 packages when the executable's SDK version can be read reliably Improved installed-version detection so newer PS5 patches can be installed and already installed…",
       "files": [
         {
@@ -433,7 +433,7 @@
     "issues": 12,
     "homepage": "",
     "branch": "main",
-    "downloads": 12367
+    "downloads": 12368
   },
   {
     "name": "ps5-webkit-autoloader",
@@ -538,7 +538,7 @@
     "issues": 811,
     "homepage": "",
     "branch": "main",
-    "downloads": 77835
+    "downloads": 77837
   },
   {
     "name": "PS5_RetroArch",
@@ -695,7 +695,7 @@
       "date": "2026-10-16",
       "title": "",
       "assets": 21,
-      "downloads": 2118,
+      "downloads": 2132,
       "notes": "Uploaded game and homebrew folders show up with ShadowMount+ again. ShadowMount+ registers a folder as soon as its scesys has been still for 10 seconds; an upload sends those small files first, so it tried while eboot.bin was still on its way, failed twice and gave up on the tit…",
       "files": [
         {
@@ -721,7 +721,7 @@
     "issues": 7,
     "homepage": "https://discord.gg/fzK3xddtrM",
     "branch": "main",
-    "downloads": 173549
+    "downloads": 173563
   },
   {
     "name": "poopicker",
@@ -965,7 +965,7 @@
     "topics": [],
     "license": "GPL-3.0",
     "forks": 26,
-    "issues": 7,
+    "issues": 8,
     "homepage": "",
     "branch": "PS5-Cemu",
     "downloads": 7572
@@ -1035,7 +1035,7 @@
       "date": "2026-10-11",
       "title": "",
       "assets": 4,
-      "downloads": 1787,
+      "downloads": 1791,
       "notes": "What's Changed patchGetAppInfoSfo: fix pattern for new firmware ps4 by @illusionyy in https://github.com/illusionyy/ps-patch-system/pull/32 shellcore: patch preLaunchUpdateCheck flags by @illusionyy in https://github.com/illusionyy/ps-patch-system/pull/33 Full Changelog: https:/…",
       "files": [
         {
@@ -1075,7 +1075,7 @@
     "issues": 4,
     "homepage": "",
     "branch": "main",
-    "downloads": 16068
+    "downloads": 16072
   },
   {
     "name": "ProsperoStore",
@@ -1103,7 +1103,7 @@
     "issues": 3,
     "homepage": "",
     "branch": "main",
-    "downloads": 68163
+    "downloads": 68164
   },
   {
     "name": "fetchpkg-gui",
@@ -1274,7 +1274,7 @@
       "date": "2026-10-14",
       "title": "Orbit Store 1.3.5 (Beta)",
       "assets": 17,
-      "downloads": 24222,
+      "downloads": 24224,
       "notes": "Archive.org sign-in comes to Orbit. Archive.org sign-in. Connect your account in the native PS5 app, browser or Orbit Zero to access downloads that require signing in. 225 unavailable Archive.org links removed, and 3 games also had to go. Links that require an Archive.org accoun…",
       "files": [
         {
@@ -1302,7 +1302,7 @@
     "issues": 49,
     "homepage": "",
     "branch": "main",
-    "downloads": 183487
+    "downloads": 183491
   },
   {
     "name": "PSSwanStation",
@@ -1315,7 +1315,7 @@
       "date": "2026-10-14",
       "title": "PSSwanStation build 22",
       "assets": 19,
-      "downloads": 980,
+      "downloads": 981,
       "notes": "A PlayStation (PS1) emulator as a PS5 homebrew title: SwanStation, the libretro fork of DuckStation, with a controller interface of its own, drawing with Vulkan (the RADV driver, linked into the title). It needs a jailbroken console with kstuff running. [!…",
       "files": []
     },
@@ -1330,7 +1330,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 2673
+    "downloads": 2674
   },
   {
     "name": "PShare",
@@ -1408,7 +1408,7 @@
       "date": "2026-10-14",
       "title": "LZ4 Compression v1.5.0",
       "assets": 3,
-      "downloads": 1478,
+      "downloads": 1484,
       "notes": "LZ4 Compression 1.5.0 The app updates itself now. When a new version is out you get a popup when you open the app: press Update and it downloads, installs and reopens on its own (engine included). No more FTP for updates after this one. Game reports: every packed game shows how…",
       "files": [
         {
@@ -1430,7 +1430,7 @@
     "issues": 26,
     "homepage": "",
     "branch": "main",
-    "downloads": 8780
+    "downloads": 8786
   },
   {
     "name": "ftpsrv",
@@ -1443,7 +1443,7 @@
       "date": "2026-08-20",
       "title": "",
       "assets": 3,
-      "downloads": 29498,
+      "downloads": 29500,
       "notes": "",
       "files": [
         {
@@ -1471,7 +1471,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "master",
-    "downloads": 95464
+    "downloads": 95466
   },
   {
     "name": "kodi-ps5-overdrive",
@@ -1659,7 +1659,7 @@
       "date": "2026-10-15",
       "title": "PS5 Library 0.7.31",
       "assets": 2,
-      "downloads": 615,
+      "downloads": 616,
       "notes": "[!NOTE] Rest Mode still works only on internal storage; USB support is in progress (unchanged from 0.7.29). Changes The Store no longer stays empty while the catalogs are large (#17). With several big catalogs (about 3,400 items, 8 MB), the console took 30 to 128 seconds to prep…",
       "files": [
         {
@@ -1681,7 +1681,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 7132
+    "downloads": 7133
   },
   {
     "name": "Spectrum-Library",
@@ -1813,7 +1813,7 @@
       "date": "2026-10-14",
       "title": "ps5-theme 1.60",
       "assets": 3,
-      "downloads": 199,
+      "downloads": 200,
       "notes": "Custom home-screen themes for jailbroken PS5 consoles on firmware 13.60 and below. Runs as an etaHEN plugin or on its own from any ELF loader. Tested on firmware 13.42, both with etaHEN 2.5B (unified build) and from PS5 Payload Manager. Which file? ps5-theme.plugin: for etaHEN.…",
       "files": [
         {
@@ -1841,7 +1841,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 1165
+    "downloads": 1166
   },
   {
     "name": "blackbox",
@@ -1867,7 +1867,7 @@
     },
     "pre": null,
     "updated": "2026-10-15",
-    "stars": 496,
+    "stars": 497,
     "archived": false,
     "language": "",
     "topics": [],
@@ -1876,7 +1876,7 @@
     "issues": 13,
     "homepage": "",
     "branch": "main",
-    "downloads": 98025
+    "downloads": 98028
   },
   {
     "name": "HEN-Cheats-Collection",
@@ -2111,7 +2111,7 @@
       "date": "2026-10-09",
       "title": "EVO Player v0.12.0",
       "assets": 3,
-      "downloads": 2132,
+      "downloads": 2133,
       "notes": "Your receiver decodes it, and your phone does the typing. 0.12.0 sends Dolby and DTS audio to a soundbar or AV receiver untouched, lets you type server addresses and addon links from a phone browser instead of the pad, and adds removal to the Stremio addons screen. Download PPSA…",
       "files": []
     },
@@ -2126,7 +2126,7 @@
     "issues": 30,
     "homepage": "",
     "branch": "main",
-    "downloads": 9470
+    "downloads": 9471
   },
   {
     "name": "Prospero.Eden-Encore",
