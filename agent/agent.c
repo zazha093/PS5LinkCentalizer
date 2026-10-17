@@ -273,6 +273,15 @@ static int origin_ok(const char *o) {
     size_t n = strlen(loc[i]);
     if (!strncmp(o, loc[i], n) && (o[n] == 0 || o[n] == ':')) return 1;
   }
+  /* Allow forks on GitHub Pages (https://<user>.github.io) */
+  if (!strncmp(o, "https://", 8) && strstr(o, ".github.io")) return 1;
+  /* Allow private LAN hosts (http://192.168.x.x, http://10.x.x.x, http://172.16-31.x.x, http://*.local) for home hosting */
+  if (!strncmp(o, "http://192.168.", 15) || !strncmp(o, "http://10.", 10)) return 1;
+  if (!strncmp(o, "http://172.", 11)) {
+    int b = atoi(o + 11);
+    if (b >= 16 && b <= 31) return 1;
+  }
+  if (!strncmp(o, "http://", 7) && strstr(o, ".local")) return 1;
   return 0;
 }
 
@@ -659,10 +668,36 @@ static int rm_rf(const char *real, int *n) {
   return rc;
 }
 
+/* Folders the site and the agent itself depend on: the folder is never deleted
+ * (what is inside it can be). Checked by name and again after symlinks are resolved. */
+static const char *const PROTECTED_DIRS[] = { "/data/homebrew", "/data/ps5links-agent", NULL };
+
+static int is_protected(const char *path, const char *real) {
+  char *rt = realpath(real, NULL); /* NULL when it does not exist: then the name check is enough */
+  int hit = 0;
+  for (int i = 0; PROTECTED_DIRS[i] && !hit; i++) {
+    if (!strcmp(path, PROTECTED_DIRS[i])) { hit = 1; break; }
+    if (!rt) continue;
+    char a[PATH_MAX_LEN + 256];
+    real_path(PROTECTED_DIRS[i], a, sizeof a);
+    char *ra = realpath(a, NULL);
+    if (ra && !strcmp(rt, ra)) hit = 1;
+    free(ra);
+  }
+  free(rt);
+  return hit;
+}
+
 /* POST /api/rm?path=/data/homebrew/App&recursive=1
  * The site asks for the project name first (see the Installed list in ps5.js); the path
  * guards in the dispatcher already keep this inside /data, /mnt/usbN or /mnt/extN. */
-static void h_rm(int fd, const char *path, int recursive) {
+static void h_rm(int fd, const char *path_in, int recursive) {
+  /* "/data/homebrew/" and "/data/homebrew" are the same folder */
+  char pbuf[PATH_MAX_LEN];
+  snprintf(pbuf, sizeof pbuf, "%s", path_in);
+  size_t pl = strlen(pbuf);
+  while (pl > 1 && pbuf[pl - 1] == '/') pbuf[--pl] = 0;
+  const char *path = pbuf;
   /* A top folder itself (/data, /mnt/usb0, ...) is never deleted */
   char top[PATH_MAX_LEN];
   size_t tl = 5;
@@ -675,6 +710,7 @@ static void h_rm(int fd, const char *path, int recursive) {
 
   char real[PATH_MAX_LEN + 256];
   real_path(path, real, sizeof real);
+  if (is_protected(path, real)) { reply_err(fd, 403, "refusing to delete a protected folder"); return; }
   struct stat st;
   if (lstat(real, &st)) { reply_err(fd, 404, strerror(errno)); return; }
   if (S_ISDIR(st.st_mode) && !recursive) { reply_err(fd, 400, "this is a folder: add recursive=1"); return; }

@@ -10,7 +10,7 @@ else
     $(error PS5_PAYLOAD_SDK is undefined)
 endif
 
-VERSION ?= 0.1.0
+VERSION ?= 0.2.0
 ELF := ps5links-agent.elf
 CFLAGS := -Wall -Werror -O2 -DAGENT_VERSION=\"$(VERSION)\"
 

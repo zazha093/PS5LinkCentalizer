@@ -1,0 +1,104 @@
+name: Build PS5Links Agent
+
+# - pull request / push touching agent/: run the PC self-test and build the PS5 ELF
+# - push to main: also refresh prebuilt/ps5links-agent.elf (+ .sha256)
+# - tag agent-vX.Y.Z: publish a release with the ELF and its .sha256
+on:
+  push:
+    branches: [main]
+    tags: ['agent-v*']
+    paths: ['agent/**', '.github/workflows/agent.yml']
+  pull_request:
+    paths: ['agent/**', '.github/workflows/agent.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agent-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Work out the version
+        id: ver
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/agent-v* ]]; then
+            v="${GITHUB_REF_NAME#agent-v}"
+          else
+            # same default as agent.c, so the site's "0.2.0 or newer" check keeps passing
+            v="$(grep -oP '#define AGENT_VERSION "\K[^"]+' agent/agent.c)"
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "Agent version: $v"
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq clang lld llvm unzip
+
+      - name: PC build + self-test (agent/test_agent.py)
+        working-directory: agent
+        run: |
+          make -f Makefile.linux VERSION="${{ steps.ver.outputs.version }}"
+          python3 test_agent.py ./ps5links-agent-linux
+
+      - name: Get the PS5 Payload SDK
+        run: |
+          curl -fsSL -o sdk.zip https://github.com/ps5-payload-dev/sdk/releases/latest/download/ps5-payload-sdk.zip
+          mkdir sdk-unpacked && unzip -q sdk.zip -d sdk-unpacked
+          mk="$(find sdk-unpacked -path '*toolchain/prospero.mk' | head -1)"
+          [ -n "$mk" ] || { echo "prospero.mk not found in the SDK zip"; exit 1; }
+          sdk="$(realpath "$(dirname "$mk")/..")"
+          sudo mv "$sdk" /opt/ps5-payload-sdk
+          sudo chmod -R a+rX /opt/ps5-payload-sdk
+          sudo find /opt/ps5-payload-sdk/bin -type f -exec chmod a+x {} + 2>/dev/null || true
+          echo "PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk" >> "$GITHUB_ENV"
+
+      - name: Build the PS5 ELF
+        working-directory: agent
+        run: make VERSION="${{ steps.ver.outputs.version }}"
+
+      - name: Make the .sha256 and check it
+        working-directory: agent
+        run: |
+          file ps5links-agent.elf
+          sha256sum ps5links-agent.elf > ps5links-agent.elf.sha256
+          cat ps5links-agent.elf.sha256
+          sha256sum -c ps5links-agent.elf.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ps5links-agent-${{ steps.ver.outputs.version }}
+          path: |
+            agent/ps5links-agent.elf
+            agent/ps5links-agent.elf.sha256
+
+      - name: Release (tag agent-v*)
+        if: startsWith(github.ref, 'refs/tags/agent-v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: PS5Links Agent ${{ steps.ver.outputs.version }}
+          files: |
+            agent/ps5links-agent.elf
+            agent/ps5links-agent.elf.sha256
+
+      - name: Refresh prebuilt/ (push to main)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p prebuilt
+          cp agent/ps5links-agent.elf agent/ps5links-agent.elf.sha256 prebuilt/
+          if git diff --quiet -- prebuilt; then
+            echo "prebuilt/ already up to date"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add prebuilt/ps5links-agent.elf prebuilt/ps5links-agent.elf.sha256
+            git commit -m "prebuilt: agent ${{ steps.ver.outputs.version }} (${GITHUB_SHA::7})"
+            git push
+          fi

@@ -20,7 +20,7 @@ The PIN is saved in `/data/ps5links-agent/pin.txt`. Delete that file to get a ne
 | `PUT /api/upload?path=...&offset=N` | write the body at byte N. `offset=0` creates/truncates. Wrong offset → `409 {"size": current}` so the client can resume |
 | `POST /api/run?path=...elf&port=9021` | send that ELF to the ELF loader (port 9021 or 9020) |
 | `POST /api/run-direct?port=9021&name=...` | stream an uploaded ELF directly to the ELF loader (port 9021 or 9020) without saving to disk |
-| `POST /api/rm?path=/data/homebrew/App&recursive=1` | delete a file, or a folder with everything inside it. A top folder (`/data`, `/mnt/usb0`, …) is never deleted; a folder needs `recursive=1` |
+| `POST /api/rm?path=/data/homebrew/App&recursive=1` | delete a file, or a folder with everything inside it. A top folder (`/data`, `/mnt/usb0`, …) and the folders `/data/homebrew` and `/data/ps5links-agent` themselves are never deleted (`403`), but what is inside them can be; a folder needs `recursive=1` |
 
 All calls except `/api/info` need the header `X-Agent-Pin`. Paths for file operations must be under `/data/`, `/mnt/usbN/` or `/mnt/extN/`; `..` is rejected. Answers carry CORS and `Access-Control-Allow-Private-Network` headers so Chrome's local network access works from the https site.
 
