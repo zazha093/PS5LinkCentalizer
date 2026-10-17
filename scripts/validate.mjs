@@ -10,7 +10,8 @@ const headers = { Accept: "application/vnd.github+json", "User-Agent": "ps5-link
 if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
 
 const errors = [], warnings = [];
-const FIELDS = ["repo", "name", "description", "category"];
+const FIELDS = ["repo", "name", "description", "category", "install"];
+const INSTALL_FIELDS = ["zip", "dir", "kind"];
 const readJson = async (f, fallback) => existsSync(f) ? JSON.parse(await readFile(f, "utf8")) : fallback;
 
 function report() {
@@ -53,7 +54,19 @@ for (const [i, p] of projects.entries()) {
   const at = `Entry ${i + 1}${typeof p?.repo === "string" ? ` (\`${p.repo}\`)` : ""}`;
   if (typeof p !== "object" || p === null || Array.isArray(p)) { errors.push(`${at}: must be an object like \`{ "repo": "owner/name", "category": "Payload" }\`.`); continue; }
   for (const k of Object.keys(p)) if (!FIELDS.includes(k)) errors.push(`${at}: unknown field \`${k}\`. Allowed: ${FIELDS.map(f => `\`${f}\``).join(", ")}.`);
-  for (const k of FIELDS.slice(1)) if (k in p && typeof p[k] !== "string") errors.push(`${at}: \`${k}\` must be a string.`);
+  for (const k of ["name", "description", "category"]) if (k in p && typeof p[k] !== "string") errors.push(`${at}: \`${k}\` must be a string.`);
+  if ("install" in p) {
+    if (typeof p.install !== "object" || p.install === null || Array.isArray(p.install)) {
+      errors.push(`${at}: \`install\` must be an object, e.g. \`{ "zip": "..." }\`.`);
+    } else {
+      for (const ik of Object.keys(p.install)) {
+        if (!INSTALL_FIELDS.includes(ik)) errors.push(`${at}: unknown install option \`${ik}\`. Allowed: ${INSTALL_FIELDS.map(f => `\`${f}\``).join(", ")}.`);
+      }
+      if ("zip" in p.install && typeof p.install.zip !== "string") errors.push(`${at}: \`install.zip\` must be a string.`);
+      if ("dir" in p.install && typeof p.install.dir !== "string") errors.push(`${at}: \`install.dir\` must be a string.`);
+      if ("kind" in p.install && p.install.kind !== "app" && p.install.kind !== "other") errors.push(`${at}: \`install.kind\` must be either "app" or "other".`);
+    }
+  }
   if (typeof p.repo !== "string" || !/^[\w.-]+\/[\w.-]+$/.test(p.repo)) {
     errors.push(`${at}: \`repo\` must be \`owner/name\` (not a full URL), e.g. \`"repo": "itsPLK/ps5-payload-manager"\`.`);
     continue;
