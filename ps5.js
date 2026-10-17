@@ -80,7 +80,7 @@ const CATALOG_URL = new URL("payloads.json", location.href.replace(/[#?].*$/, ""
 // Home-network targets only: 10/8, 172.16/12, 192.168/16, 127/8, 169.254/16, or name.local
 function isLocalHost(h) {
   h = String(h || "").trim().toLowerCase();
-  if (/^[a-z0-9-]+(\.[a-z0-9-]+)*\.local$/.test(h)) return true;
+  if (h === "localhost" || /^[a-z0-9-]+(\.[a-z0-9-]+)*\.local$/.test(h)) return true;
   const m = h.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
   if (!m) return false;
   const [a, b, c, d] = m.slice(1).map(Number);
@@ -95,8 +95,8 @@ async function ps5Fetch(path, opts = {}, ms = 8000, port = ps5.port) {
   const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), ms);
   try {
     // targetAddressSpace tells Chrome this http:// request is meant for the local network
-    // ("loopback" when the page runs on the PS5 itself and talks to 127.0.0.1)
-    const space = /^127\./.test(ps5.ip) ? "loopback" : "local";
+    // ("loopback" when the page runs on the PS5 itself and talks to 127.0.0.1 or localhost)
+    const space = (/^127\./.test(ps5.ip) || ps5.ip === "localhost") ? "loopback" : "local";
     return await fetch(ps5Url(port, path), { ...opts, mode: "cors", cache: "no-store", targetAddressSpace: space, signal: ctl.signal });
   } finally { clearTimeout(timer); }
 }
@@ -134,6 +134,12 @@ async function ps5Run(target) {
       r = await ps5Fetch(`/elfldr?elf=${encodeURIComponent(target)}`, {}, 90000);
     }
     if (!r.ok) throw new Error("HTTP " + r.status);
+    if (target instanceof Blob) {
+      addHist(target.name || "payload.elf", "upload");
+    } else {
+      const name = String(target).split("/").pop().split("?")[0] || target;
+      addHist(name, String(target).startsWith("http") ? "url" : "console", String(target).startsWith("http") ? { url: target } : { path: target });
+    }
     toast(t("ps5Sent")); dot5(true);
   } catch (e) {
     const s = e.name === "AbortError" ? "timeout" : /^HTTP/.test(e.message || "") ? e.message : "network";
@@ -653,6 +659,7 @@ async function sendBlob(blob, name) {
     fd.append("elf", blob, label);
     const r = await ps5Fetch("/elfldr", { method: "POST", body: fd }, 300000);
     if (!r.ok) throw new Error("HTTP " + r.status);
+    addHist(label, "upload");
     toast(t("ps5Sent")); return true;
   } catch (e) {
     const s = e.name === "AbortError" ? "timeout" : /^HTTP/.test(e.message || "") ? e.message : "network";

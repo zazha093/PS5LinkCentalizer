@@ -7,8 +7,10 @@
 <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
 <title>PS5 Links · Offline</title>
 <script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css?v=11">
 <base target="_blank">
 </head>
 <body>
@@ -36,6 +38,7 @@
   <a class="tab" href="./" target="_self"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span class="l">Projects</span></a>
   <a class="tab" href="./#pinned" target="_self"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span class="l">Pinned</span></a>
   <a class="tab" href="./#latest" target="_self"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="l">Latest</span></a>
+  <a class="tab" href="./#watch" target="_self"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="l">Watching</span></a>
   <a class="tab" href="offline.html" aria-current="page" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg><span class="l">Offline</span></a>
 </div></nav>
 
@@ -51,7 +54,7 @@ if (TH) {
   document.getElementById("p").textContent = "Repository ที่เคยอยู่ในรายการแต่ไม่มีบน GitHub แล้ว เก็บไว้เพื่ออ้างอิง";
   document.getElementById("d").innerHTML = "<strong>ข้อจำกัดความรับผิดชอบ:</strong> เว็บนี้เป็นเพียงดัชนีลิงก์ ไม่มีส่วนเกี่ยวข้องและไม่รับผิดชอบต่อโปรเจกต์ใดที่แสดงไว้ ใช้งานด้วยความเสี่ยงของคุณเอง";
   document.getElementById("back").textContent = "← โปรเจกต์";
-  ["โปรเจกต์", "ปักหมุด", "ล่าสุด", "ออฟไลน์"].forEach((l, i) => (document.querySelectorAll(".tab .l")[i].textContent = l));
+  ["โปรเจกต์", "ปักหมุด", "ล่าสุด", "ติดตาม", "ออฟไลน์"].forEach((l, i) => (document.querySelectorAll(".tab .l")[i].textContent = l));
 }
 fetch("offline.json", { cache: "no-cache" }).then(r => r.json()).then(list => {
   list.sort((a, b) => String(b.offlineSince).localeCompare(String(a.offlineSince)));

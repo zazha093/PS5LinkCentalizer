@@ -9,7 +9,7 @@
   { "repo": "drakmor/ShadowMountPlus",           "category": "Payload" },
   { "repo": "EchoStretch/kstuff-lite",           "category": "HEN" },
   { "repo": "EchoStretch/ps5-app-dumper",        "category": "Payload" },
-  { "repo": "GronedWaffel/etahen-13.60",         "category": "HEN (Unofficial)" },
+  { "repo": "GronedWaffel/etahen-11.00-13.60",   "category": "HEN (Unofficial)" },
   { "repo": "itsPLK/ps5-payload-manager",        "category": "Payload" },
   { "repo": "itsPLK/ps5-pkg-manager",            "category": "Homebrew" },
   { "repo": "itsPLK/ps5-webkit-autoloader",      "category": "Exploit" },

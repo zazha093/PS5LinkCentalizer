@@ -882,7 +882,10 @@ $("do-share").onclick = () => {
   const pr = parseRepo($("repo").value);
   if (!pr) return say(t("pasteFirst"), true);
   const repo = `${pr.o}/${pr.r}`, category = $("add-cat").value || "Other";
-  const q = new URLSearchParams({ title: `Add project: ${repo}`, body: `repo: ${repo}\ncategory: ${category}\n` });
+  const name = clip($("f-name").value, 80);
+  let body = `repo: ${repo}\ncategory: ${category}\n`;
+  if (name) body += `name: ${name}\n`;
+  const q = new URLSearchParams({ title: `Add project: ${repo}`, body });
   open(`https://github.com/${REPO}/issues/new?${q}`);
   say(t("shareHint"));
 };
