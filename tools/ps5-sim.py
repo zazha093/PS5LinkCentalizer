@@ -75,17 +75,28 @@ class Websrv(Base):
         if path == "/elfldr" and "elf" in q:
             print(f"   -> would run on the PS5: {q['elf']}")
             return self.send(200, b"", "text/plain")
-        if path.startswith("/fs/") and q.get("fmt") == "json":
-            try:
-                d = real(urllib.parse.unquote(path[3:]))
-                out = [{"name": ".", "mode": "d"}]
-                for n in sorted(os.listdir(d)):
-                    st = os.stat(os.path.join(d, n))
-                    out.append({"name": n, "mode": "d" if os.path.isdir(os.path.join(d, n)) else "-",
-                                "size": st.st_size, "mtime": int(st.st_mtime)})
-                return self.send(200, out)
-            except (OSError, PermissionError):
-                return self.send(404, {"error": "not found"})
+        if path.startswith("/fs/"):
+            sub = urllib.parse.unquote(path[3:])
+            if q.get("fmt") == "json":
+                try:
+                    d = real(sub)
+                    out = [{"name": ".", "mode": "d"}]
+                    for n in sorted(os.listdir(d)):
+                        st = os.stat(os.path.join(d, n))
+                        out.append({"name": n, "mode": "d" if os.path.isdir(os.path.join(d, n)) else "-",
+                                    "size": st.st_size, "mtime": int(st.st_mtime)})
+                    return self.send(200, out)
+                except (OSError, PermissionError):
+                    return self.send(404, {"error": "not found"})
+            else:
+                try:
+                    f = real(sub)
+                    if os.path.isfile(f):
+                        with open(f, "rb") as fp:
+                            return self.send(200, fp.read(), "application/octet-stream")
+                    return self.send(404, {"error": "not found"})
+                except (OSError, PermissionError):
+                    return self.send(404, {"error": "not found"})
         self.send(200, b"websrv simulator\n", "text/plain")
 
     def do_POST(self):
