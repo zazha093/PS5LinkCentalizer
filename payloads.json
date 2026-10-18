@@ -362,32 +362,32 @@
     {
       "id": "ps5-cooling-system-center-pro-cooling-center-launcher-installer",
       "name": "ps5-cooling-system-center-pro · cooling-center-launcher-installer",
-      "filename": "cooling-center-launcher-installer_v1.68.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.68.1/cooling-center-launcher-installer_v1.68.1.elf",
-      "version": "v1.68.1",
-      "last_update": "2026-10-15",
+      "filename": "cooling-center-launcher-installer_v1.69.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.69.1/cooling-center-launcher-installer_v1.69.1.elf",
+      "version": "v1.69.1",
+      "last_update": "2026-10-18",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
       "checksum": "fe8269ddac9420ec9b8d836c500e83ca2ee019efabfb227e30e0620710cf2960",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Design „Standard“ Das Design „Aktuell“ heißt jetzt „Standard“; wer es gewählt hatte, behält es automatisch Die Kacheln sind darin wieder deckend (ohne Durchscheinen) Nie zwei PS4Mount gleichzeitig Läuft PS4Mount schon als eigenes Payload (ps4mount.elf), lädt die App ihr eingebau…"
+      "release_notes": "Oberfläche Flüssiges Scrollen (Stick am Fernseher) in „Standard“, „Hell“ und „Dunkel“, nicht nur in „Optimal“. Gefunden mit fünf Testfassungen von „Standard“ an der Konsole: Bremsen waren der weiche Leuchtrand der Karten (Schatten mit 20 Pixel Unschärfe) und die Textschatten. De…"
     },
     {
       "id": "ps5-cooling-system-center-pro-ps5_cooling_system_center",
       "name": "ps5-cooling-system-center-pro · PS5_Cooling_System_Center",
-      "filename": "PS5_Cooling_System_Center_v1.68.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.68.1/PS5_Cooling_System_Center_v1.68.1.elf",
-      "version": "v1.68.1",
-      "last_update": "2026-10-15",
+      "filename": "PS5_Cooling_System_Center_v1.69.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.69.1/PS5_Cooling_System_Center_v1.69.1.elf",
+      "version": "v1.69.1",
+      "last_update": "2026-10-18",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "756f6caee9a20caab05493e5e2aa905b355d5f8518610895494272fe2c155989",
+      "checksum": "ab0b2c000586bbfe77a5477ae26f11b09609b9481dc69fa5d32835f6a0c6cb6a",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Design „Standard“ Das Design „Aktuell“ heißt jetzt „Standard“; wer es gewählt hatte, behält es automatisch Die Kacheln sind darin wieder deckend (ohne Durchscheinen) Nie zwei PS4Mount gleichzeitig Läuft PS4Mount schon als eigenes Payload (ps4mount.elf), lädt die App ihr eingebau…"
+      "release_notes": "Oberfläche Flüssiges Scrollen (Stick am Fernseher) in „Standard“, „Hell“ und „Dunkel“, nicht nur in „Optimal“. Gefunden mit fünf Testfassungen von „Standard“ an der Konsole: Bremsen waren der weiche Leuchtrand der Karten (Schatten mit 20 Pixel Unschärfe) und die Textschatten. De…"
     },
     {
       "id": "ps5-game-compressor",
@@ -418,21 +418,6 @@
       "source": "https://github.com/deox1111/ps5-library/releases",
       "details_url": "https://raw.githubusercontent.com/deox1111/ps5-library/main/README.md",
       "release_notes": "[!NOTE] Rest Mode still works only on internal storage; USB support is in progress (unchanged from 0.7.29). Changes A DNS filter that blocks a catalog server no longer stops the catalog (#17). DNS filters on the console, such as nanoDNS, answer a blocked name with 0.0.0.0 or the…"
-    },
-    {
-      "id": "ps5-lz4-compression",
-      "name": "PS5-LZ4-Compression",
-      "filename": "lz4-compression.elf",
-      "url": "https://github.com/theghostonline/PS5-LZ4-Compression/releases/download/v1.5.0/lz4-compression.elf",
-      "version": "v1.5.0",
-      "last_update": "2026-10-14",
-      "description": "LZ4 compression for games, done entirely on the PS5",
-      "category": "Payload",
-      "checksum": "edb4f2c5922bea293cc5c5354bd301fb0bde48856c0d2a8d115801d3c778b3f1",
-      "author": "theghostonline",
-      "source": "https://github.com/theghostonline/PS5-LZ4-Compression/releases",
-      "details_url": "https://raw.githubusercontent.com/theghostonline/PS5-LZ4-Compression/main/README.md",
-      "release_notes": "LZ4 Compression 1.5.0 The app updates itself now. When a new version is out you get a popup when you open the app: press Update and it downloads, installs and reopens on its own (engine included). No more FTP for updates after this one. Game reports: every packed game shows how…"
     },
     {
       "id": "ps5-payload-manager",
@@ -527,32 +512,32 @@
     {
       "id": "ps5-web-file-manager-web-file-mgr",
       "name": "ps5-web-file-manager · web-file-mgr",
-      "filename": "web-file-mgr-v1.10.elf",
-      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.10/web-file-mgr-v1.10.elf",
-      "version": "v1.10",
-      "last_update": "2026-10-05",
+      "filename": "web-file-mgr-v1.11.elf",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.11/web-file-mgr-v1.11.elf",
+      "version": "v1.11",
+      "last_update": "2026-10-17",
       "description": "A file manager for PS5 with a web UI.",
       "category": "Homebrew",
-      "checksum": "409145ec9a1c338ecb5f6f917c3b057c4ba48bfae2e86d621e19dda7ac129bd3",
+      "checksum": "cbcdacf69c331025e1643fc99f5b5fc117125e7c39931b6dd914323412558911",
       "author": "owendswang",
       "source": "https://github.com/owendswang/ps5-web-file-manager/releases",
       "details_url": "https://raw.githubusercontent.com/owendswang/ps5-web-file-manager/main/README.md",
-      "release_notes": "Change logs: Added samba support. Connection info except password is stored in /data/wfm/config/smb.conf. Password is stored in LocalStorage of the web browser. Added meta-data for PKG install. And it supports installing PKG from samba shares. Improved multiple transfer speed in…"
+      "release_notes": "Change logs: Added ability to list and select from share folders of the SMB server. (Issue #20) Fixed the problem that wfm-7zip-helper.elf wouldn't start automatically from /data/wfm/ sometimes. (Issue #19) Removed upload finish API. Tried to fix the endless finishing stage for…"
     },
     {
       "id": "ps5-web-file-manager-wfm-7zip-helper",
       "name": "ps5-web-file-manager · wfm-7zip-helper",
       "filename": "wfm-7zip-helper.elf",
-      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.10/wfm-7zip-helper.elf",
-      "version": "v1.10",
-      "last_update": "2026-10-05",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.11/wfm-7zip-helper.elf",
+      "version": "v1.11",
+      "last_update": "2026-10-17",
       "description": "A file manager for PS5 with a web UI.",
       "category": "Homebrew",
       "checksum": "dd8bbae4cd44ed20c4cbafc74fdc3271f52b9d7888a0d4f4038a8ae05feb92a4",
       "author": "owendswang",
       "source": "https://github.com/owendswang/ps5-web-file-manager/releases",
       "details_url": "https://raw.githubusercontent.com/owendswang/ps5-web-file-manager/main/README.md",
-      "release_notes": "Change logs: Added samba support. Connection info except password is stored in /data/wfm/config/smb.conf. Password is stored in LocalStorage of the web browser. Added meta-data for PKG install. And it supports installing PKG from samba shares. Improved multiple transfer speed in…"
+      "release_notes": "Change logs: Added ability to list and select from share folders of the SMB server. (Issue #20) Fixed the problem that wfm-7zip-helper.elf wouldn't start automatically from /data/wfm/ sometimes. (Issue #19) Removed upload finish API. Tried to fix the endless finishing stage for…"
     },
     {
       "id": "ps5-webkit-autoloader",
@@ -647,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-7.0.34.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.0.34/ps5upload-7.0.34.elf",
-      "version": "v7.0.34",
+      "filename": "ps5upload-7.1.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.0/ps5upload-7.1.0.elf",
+      "version": "v7.1.0",
       "last_update": "2026-10-17",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "f6a09ed9f92ea230490e2bc3ad912c4e882882839a25a184bb6daddabc0904a7",
+      "checksum": "f16a99904f194f96a592cc29206843f3641a46ad7df96fabd4cc9851cd8c1d37",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Unity games no longer crash when they run as a folder. Some game dumps name a file Il2cppUserAssemblies.prx while the game loads Il2CppUserAssemblies.prx. An exFAT image ignores the difference, so the game played from its .exfat. The console's internal storage does not: the same…"
+      "release_notes": "PS5Upload Files: manage your files from the couch. A new PS5Upload Files tile on the PS5 home screen opens a page in the PS5 browser that fills the TV. It has four sections: Home (the running game with Close game, the tasks that are running with Cancel, and your drives), Files,…"
     },
     {
       "id": "shadowmountplus-beta",
