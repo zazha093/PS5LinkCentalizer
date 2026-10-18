@@ -408,16 +408,16 @@
       "id": "ps5-library",
       "name": "ps5-library",
       "filename": "ps5-library.elf",
-      "url": "https://github.com/deox1111/ps5-library/releases/download/v0.7.34/ps5-library.elf",
-      "version": "v0.7.34",
+      "url": "https://github.com/deox1111/ps5-library/releases/download/v0.7.35/ps5-library.elf",
+      "version": "v0.7.35",
       "last_update": "2026-10-18",
       "description": "Game library for jailbroken PS5: pick a game, it downloads, installs and appears on your home screen.",
       "category": "Homebrew",
-      "checksum": "f4534177485cb861c3e135d1b6dd1f92a8cf4bd5574c523bfaceea03912eb6bf",
+      "checksum": "3657dfae52d062c35673f0f0f446f7abee7ba32200b2770174b2916c34e4bc32",
       "author": "deox1111",
       "source": "https://github.com/deox1111/ps5-library/releases",
       "details_url": "https://raw.githubusercontent.com/deox1111/ps5-library/main/README.md",
-      "release_notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes Real-Debrid. Settings → Accounts now takes a Real-Debrid API token (real-debrid.com/apitoken). The library checks the…"
+      "release_notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes New logo. A fan of game cases with a frosted glass case in front and a download arrow. It replaces the old \"L\" logo in…"
     },
     {
       "id": "ps5-payload-manager",
