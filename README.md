@@ -88,3 +88,7 @@ This hub was built with the help of AI (Claude Code). I used it to speed up prod
 ## License
 
 [MIT](LICENSE)
+
+## Discover (new PS5 projects)
+
+`discover.html` lists PS5 payload / homebrew repos that appeared or were pushed on GitHub lately. The **Discover new PS5 projects** workflow runs `scripts/discover.mjs` every 6 hours and commits `discover.json`. Put `owner/name` or `owner/*` in `discover-ignore.json` to hide a repo for good.
