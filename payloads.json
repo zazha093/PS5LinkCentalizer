@@ -408,16 +408,16 @@
       "id": "ps5-library",
       "name": "ps5-library",
       "filename": "ps5-library.elf",
-      "url": "https://github.com/deox1111/ps5-library/releases/download/v0.7.32/ps5-library.elf",
-      "version": "v0.7.32",
-      "last_update": "2026-10-16",
+      "url": "https://github.com/deox1111/ps5-library/releases/download/v0.7.34/ps5-library.elf",
+      "version": "v0.7.34",
+      "last_update": "2026-10-18",
       "description": "Game library for jailbroken PS5: pick a game, it downloads, installs and appears on your home screen.",
       "category": "Homebrew",
-      "checksum": "9979b2d2677efb8e98285b369527d93af5d5800b561687767a4795827c7694a1",
+      "checksum": "f4534177485cb861c3e135d1b6dd1f92a8cf4bd5574c523bfaceea03912eb6bf",
       "author": "deox1111",
       "source": "https://github.com/deox1111/ps5-library/releases",
       "details_url": "https://raw.githubusercontent.com/deox1111/ps5-library/main/README.md",
-      "release_notes": "[!NOTE] Rest Mode still works only on internal storage; USB support is in progress (unchanged from 0.7.29). Changes A DNS filter that blocks a catalog server no longer stops the catalog (#17). DNS filters on the console, such as nanoDNS, answer a blocked name with 0.0.0.0 or the…"
+      "release_notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes Real-Debrid. Settings → Accounts now takes a Real-Debrid API token (real-debrid.com/apitoken). The library checks the…"
     },
     {
       "id": "ps5-payload-manager",
@@ -643,6 +643,21 @@
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
       "release_notes": "PS5Upload Files: manage your files from the couch. A new PS5Upload Files tile on the PS5 home screen opens a page in the PS5 browser that fills the TV. It has four sections: Home (the running game with Close game, the tasks that are running with Cancel, and your drives), Files,…"
+    },
+    {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-7.1.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.1/ps5upload-7.1.1.elf",
+      "version": "v7.1.1",
+      "last_update": "2026-10-18",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "af29de2be5c5e7ba183df4e0f0e6284da11fa264c0e18ce99a9cdee248e4ca44",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "The app scrolls again on macOS Big Sur. On Big Sur's older built-in web engine the app window lost its fixed height, so no screen could scroll, and the side bar's rows lost their left padding. The app's styles now carry the older forms that engine understands."
     },
     {
       "id": "shadowmountplus-beta",
