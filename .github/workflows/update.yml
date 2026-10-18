@@ -27,7 +27,7 @@ jobs:
       # Dead repos are moved from projects.json to offline.json by the script
       - name: Commit if changed
         run: |
-          git add data.json projects.json offline.json
+          git add data.json projects.json offline.json payloads.json
           git diff --cached --quiet && exit 0
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: steps.add.outputs.added == 'true'
         run: |
-          git add data.json projects.json offline.json
+          git add data.json projects.json offline.json payloads.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "feat: add project from issue #${{ github.event.issue.number }}"
