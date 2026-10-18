@@ -275,7 +275,7 @@ static int origin_ok(const char *o) {
   }
   /* Allow forks on GitHub Pages (https://<user>.github.io) */
   if (!strncmp(o, "https://", 8) && strstr(o, ".github.io")) return 1;
-  /* Allow private LAN hosts (http://192.168.x.x, http://10.x.x.x, http://172.16-31.x.x, http://*.local) for home hosting */
+  /* Allow private LAN hosts (http://192.168.x.x, http://10.x.x.x, http://172.16-31.x.x, http://NAME.local) for home hosting */
   if (!strncmp(o, "http://192.168.", 15) || !strncmp(o, "http://10.", 10)) return 1;
   if (!strncmp(o, "http://172.", 11)) {
     int b = atoi(o + 11);

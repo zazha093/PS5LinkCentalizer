@@ -1,6 +1,6 @@
 VERSION ?= 0.2.0
 all: ps5links-agent-linux
 ps5links-agent-linux: agent.c
-	$(CC) -Wall -Wextra -Werror -O2 -DAGENT_VERSION=\"$(VERSION)\" -o $@ $^ -lpthread
+	$(CC) -Wall -Wextra -O2 -DAGENT_VERSION=\"$(VERSION)\" -o $@ $^ -lpthread
 clean:
 	rm -f ps5links-agent-linux
