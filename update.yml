@@ -1,0 +1,35 @@
+name: Update versions
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  push:
+    branches: [main]
+    paths: [projects.json, scripts/update.mjs]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: update
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/update.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Dead repos are moved from projects.json to offline.json by the script
+      - name: Commit if changed
+        run: |
+          git add data.json projects.json offline.json payloads.json
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update versions"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME:-main}" && git push && ok=1 && break; echo "push retry $i"; sleep $((i*3)); done; [ "$ok" = 1 ]

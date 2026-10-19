@@ -1,0 +1,36 @@
+name: Discover new PS5 projects
+
+# Scans GitHub every 6 hours for new / recently updated PS5 payload & homebrew repos
+# and commits the result to discover.json (shown on discover.html).
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main]
+    paths: [scripts/discover.mjs, discover-ignore.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: update
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/discover.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit if changed
+        run: |
+          git add discover.json
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: discover update"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME:-main}" && git push && ok=1 && break; echo "push retry $i"; sleep $((i*3)); done; [ "$ok" = 1 ]

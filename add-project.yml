@@ -1,0 +1,43 @@
+name: Add project from issue
+
+# Only the repo owner's issues titled "Add project: owner/name" are processed.
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency: update
+
+jobs:
+  add:
+    if: github.event.issue.user.login == github.repository_owner && startsWith(github.event.issue.title, 'Add project:')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - id: add
+        run: node scripts/add-project.mjs
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+      - if: steps.add.outputs.added == 'true'
+        run: node scripts/update.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: steps.add.outputs.added == 'true'
+        run: |
+          git add data.json projects.json offline.json payloads.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "feat: add project from issue #${{ github.event.issue.number }}"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME:-main}" && git push && ok=1 && break; echo "push retry $i"; sleep $((i*3)); done; [ "$ok" = 1 ]
+      - run: |
+          gh issue comment "$NUM" --body-file msg.txt
+          gh issue close "$NUM"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUM: ${{ github.event.issue.number }}
