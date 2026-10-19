@@ -60,5 +60,6 @@
   { "repo": "KINGDKAK/ProsperoPlayer",                     "category": "Media" },
   { "repo": "sainsaji/EVO-PLAYER-PS5",                     "category": "Media" },
   { "repo": "niakw/Prospero.Eden-Encore",                  "category": "Emulator" },
-  { "repo": "notmaj0r/CheatRunner",                        "category": "Cheats" }
+  { "repo": "notmaj0r/CheatRunner",                        "category": "Cheats" },
+  { "repo": "elripalda/RecompStore", "category": "Payload" }
 ]

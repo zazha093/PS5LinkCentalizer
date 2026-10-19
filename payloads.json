@@ -660,6 +660,21 @@
       "release_notes": "Organize packages works on your servers too. Folders on a saved SMB, FTP, SFTP or WebDAV server can now be organized like folders on this computer: the same preview, the same Platform › Game ID - Title layout, renames only, nothing overwritten, and every run can be undone. A dro…"
     },
     {
+      "id": "recompstore",
+      "name": "RecompStore",
+      "filename": "RecompStore-Installer.elf",
+      "url": "https://github.com/elripalda/RecompStore/releases/download/v1.1.3/RecompStore-Installer.elf",
+      "version": "v1.1.3",
+      "last_update": "2026-10-19",
+      "description": "A homebrew app store for jailbroken PS5: installs and updates native ports of recompiled games. Bring your own disc.",
+      "category": "Payload",
+      "checksum": "31ad654f92cb5cb357c3e3fc1be7f790ef15aa588e85072b7ed8afddc74cbfbf",
+      "author": "elripalda",
+      "source": "https://github.com/elripalda/RecompStore/releases",
+      "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
+      "release_notes": "More release zips install, so more games can join the store. What's new Games packed a different way now install. Some ports put their game folder one level down in the zip next to their notes, or ship two games in one zip. Perfect Eye, for one, has Perfect Dark and GoldenEye 00…"
+    },
+    {
       "id": "shadowmountplus-beta",
       "name": "ShadowMountPlus (beta)",
       "filename": "shadowmountplus.elf",
