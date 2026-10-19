@@ -482,3 +482,7 @@ button.as-link { padding:0; background:none; border:0; color:inherit; font:inher
 .inst-i { flex-wrap:wrap; }
 .inst-i .lib-n { gap:2px; }
 
+
+/* reader: translate button state */
+#reader-tr.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+.reader-body[aria-busy="true"] { opacity:.65; }

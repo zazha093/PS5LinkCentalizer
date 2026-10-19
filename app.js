@@ -31,10 +31,10 @@ const I18N = {
     addHint: "My list checks GitHub live and is saved on this device only.",
     language: "Language", auto: "Auto", dark: "Dark", light: "Light", avatars: "Author avatars", on: "On", off: "Off",
     backup: "Backup (my list + pins)", export: "Export file", import: "Import file", reset: "Clear all data on this device",
-    privacy: "Everything is stored in your browser only. GitHub receives requests when you open README, Assets, Commits or avatars.",
+    privacy: "Everything is stored in your browser only. GitHub receives requests when you open README, Assets, Commits or avatars. Pressing Translate sends the shown text to Google Translate.",
     statProjects: "Projects tracked", statFresh: "Releases this week", statActive: "Active (3 days)", statNew: "New for you",
     latestTitle: "Latest releases", noMatch: "No projects match.", pinnedEmpty: "Tap the star on any project to pin it here.", clearFilters: "Clear filters",
-    readme: "README", assets: "Assets", commits: "Recent commits", copyLink: "Copy link", edit: "Edit", remove: "Remove",
+    readme: "README", translate: "Translate", trOrig: "Show original", trFail: "Translation failed. Try again later.", assets: "Assets", commits: "Recent commits", copyLink: "Copy link", edit: "Edit", remove: "Remove",
     mine: "Mine", isNew: "NEW", updated: "Updated", archived: "Archived", stable: "Stable", pre: "Pre",
     today: "today", yesterday: "yesterday", daysAgo: "{n} days ago", weeksAgo: "{n} weeks ago", monthsAgo: "{n} months ago", dateUnknown: "date unknown",
     loading: "Loading…", noReadme: "Could not load README.", noAssets: "No releases with downloadable files yet.", failAssets: "Failed to load releases from GitHub.",
@@ -65,10 +65,10 @@ const I18N = {
     addHint: "รายการของฉันดึงข้อมูลจาก GitHub สดๆ และบันทึกไว้ในเครื่องนี้เท่านั้น",
     language: "ภาษา", auto: "อัตโนมัติ", dark: "มืด", light: "สว่าง", avatars: "รูปโปรไฟล์ผู้สร้าง", on: "เปิด", off: "ปิด",
     backup: "สำรองข้อมูล (รายการของฉัน + ปักหมุด)", export: "ส่งออกไฟล์", import: "นำเข้าไฟล์", reset: "ล้างข้อมูลทั้งหมดในเครื่องนี้",
-    privacy: "ข้อมูลทั้งหมดเก็บในเบราว์เซอร์ของคุณเท่านั้น GitHub จะได้รับคำขอเมื่อเปิด README, Assets, Commits หรือรูปโปรไฟล์",
+    privacy: "ข้อมูลทั้งหมดเก็บในเบราว์เซอร์ของคุณเท่านั้น GitHub จะได้รับคำขอเมื่อเปิด README, Assets, Commits หรือรูปโปรไฟล์ และเมื่อกดแปล ข้อความที่แสดงจะถูกส่งไปที่ Google Translate",
     statProjects: "โปรเจกต์ทั้งหมด", statFresh: "รีลีสสัปดาห์นี้", statActive: "เคลื่อนไหว 3 วัน", statNew: "ใหม่สำหรับคุณ",
     latestTitle: "รีลีสล่าสุด", noMatch: "ไม่พบโปรเจกต์ที่ตรงกัน", pinnedEmpty: "แตะดาวที่โปรเจกต์เพื่อปักหมุดไว้ที่นี่", clearFilters: "ล้างตัวกรอง",
-    readme: "README", assets: "ไฟล์", commits: "คอมมิตล่าสุด", copyLink: "คัดลอกลิงก์", edit: "แก้ไข", remove: "ลบ",
+    readme: "README", translate: "แปลภาษา", trOrig: "ดูต้นฉบับ", trFail: "แปลไม่สำเร็จ ลองใหม่ภายหลัง", assets: "ไฟล์", commits: "คอมมิตล่าสุด", copyLink: "คัดลอกลิงก์", edit: "แก้ไข", remove: "ลบ",
     mine: "ของฉัน", isNew: "ใหม่", updated: "อัปเดต", archived: "เก็บถาวร", stable: "เสถียร", pre: "ทดสอบ",
     today: "วันนี้", yesterday: "เมื่อวาน", daysAgo: "{n} วันก่อน", weeksAgo: "{n} สัปดาห์ก่อน", monthsAgo: "{n} เดือนก่อน", dateUnknown: "ไม่ทราบวันที่",
     loading: "กำลังโหลด…", noReadme: "โหลด README ไม่ได้", noAssets: "ยังไม่มีรีลีสที่มีไฟล์ให้ดาวน์โหลด", failAssets: "โหลดรีลีสจาก GitHub ไม่สำเร็จ",
@@ -629,8 +629,60 @@ function openReader(title, sub, extUrl) {
   $("reader-body").innerHTML = `<p class="loading">${esc(t("loading"))}</p>`;
   readerDlg.showModal();
   $("reader-body").scrollTop = 0;
+  trReset();
 }
 $("reader-copy").onclick = () => copyText && copy(copyText);
+
+/* ---------- Translate the reader (README / release notes) into the UI language ---------- */
+const trBtn = $("reader-tr");
+let trState = { on: false, busy: false, nodes: [] }; // nodes: [{ n, orig, core, lead, trail, tr }]
+const trCache = new Map();
+const TR_SKIP = "pre, code, script, style, button, a.badge, .badge, .asset-meta, .acts";
+function trLabel() { trBtn.title = trBtn.ariaLabel = t(trState.on ? "trOrig" : "translate"); }
+function trReset() { trState = { on: false, busy: false, nodes: [] }; trBtn.classList.remove("on"); trBtn.disabled = false; $("reader-body").removeAttribute("aria-busy"); trLabel(); }
+function trSplit(s, max = 1500) {
+  const out = []; while (s.length > max) { let i = s.lastIndexOf(". ", max); if (i < max / 2) i = s.lastIndexOf(" ", max); if (i < 1) i = max; out.push(s.slice(0, i + 1)); s = s.slice(i + 1).trimStart(); }
+  if (s) out.push(s); return out;
+}
+async function trFetch(text) {
+  const key = lang + "|" + text; if (trCache.has(key)) return trCache.get(key);
+  const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURIComponent(text)}`);
+  if (!r.ok) throw new Error(r.status);
+  const j = await r.json();
+  const out = (j[0] || []).map(x => x[0] || "").join("");
+  if (!out) throw new Error("empty");
+  trCache.set(key, out); return out;
+}
+trBtn.onclick = async () => {
+  if (trState.busy) return;
+  const body = $("reader-body");
+  if (trState.on) { trState.nodes.forEach(x => (x.n.nodeValue = x.orig)); trState.on = false; trBtn.classList.remove("on"); trLabel(); return; }
+  if (body.querySelector(".loading, .empty")) return;
+  if (!trState.nodes.length) {
+    const w = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, { acceptNode: n =>
+      /\p{L}/u.test(n.nodeValue) && !(n.parentElement && n.parentElement.closest(TR_SKIP)) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
+    for (let n; (n = w.nextNode()) && trState.nodes.length < 600;) {
+      const orig = n.nodeValue, core = orig.trim();
+      trState.nodes.push({ n, orig, core, lead: orig.slice(0, orig.indexOf(core)), trail: orig.slice(orig.indexOf(core) + core.length), tr: null });
+    }
+  }
+  const nodes = trState.nodes; if (!nodes.length) return;
+  trState.busy = true; trBtn.disabled = true; body.setAttribute("aria-busy", "true");
+  let i = 0, fail = false;
+  const worker = async () => {
+    while (i < nodes.length) {
+      const x = nodes[i++];
+      try {
+        if (x.tr == null) { const outs = []; for (const p of trSplit(x.core)) outs.push(await trFetch(p)); x.tr = x.lead + outs.join(" ") + x.trail; }
+        x.n.nodeValue = x.tr;
+      } catch { fail = true; }
+    }
+  };
+  await Promise.all(Array.from({ length: 6 }, worker));
+  trState.busy = false; trBtn.disabled = false; body.removeAttribute("aria-busy");
+  trState.on = nodes.some(x => x.tr != null); trBtn.classList.toggle("on", trState.on); trLabel();
+  if (fail) toast(t("trFail"));
+};
 const failBox = (msg) => `<div class="empty"><p class="err">${esc(msg)}</p></div>`;
 
 async function showReadme(p) {
