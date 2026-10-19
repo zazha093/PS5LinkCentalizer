@@ -10,7 +10,7 @@
       "last_update": "2026-10-18",
       "description": "BB",
       "category": "PC Tool",
-      "checksum": "df8d2846bd4bf5eb995b0bc1d68c42f50f0340250ff9f4cefd86b10dcc436eff",
+      "checksum": "07881b41daafb322af009062d8c35380d8a2016a4f0c5404aa021e0001cf45ab",
       "author": "D3ATHLY",
       "source": "https://github.com/D3ATHLY/blackbox/releases",
       "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md",
@@ -647,17 +647,17 @@
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-7.1.7.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.7/ps5upload-7.1.7.elf",
-      "version": "v7.1.7",
+      "filename": "ps5upload-7.1.9.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.9/ps5upload-7.1.9.elf",
+      "version": "v7.1.9",
       "last_update": "2026-10-19",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "55286e9212d31e6a0dbda993ce4bb041a0f49486db63b98b8b334d3c4676d3d9",
+      "checksum": "a9674bd22737688783c1857817d032ddf2fd5ca4e750eea17175428556271141",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Organize packages works on your servers too. Folders on a saved SMB, FTP, SFTP or WebDAV server can now be organized like folders on this computer: the same preview, the same Platform › Game ID - Title layout, renames only, nothing overwritten, and every run can be undone. A dro…"
+      "release_notes": "File properties and custom permissions (#478). In Files, open Properties to see a file or folder's size, modification time and permissions, and set the permissions you need. Applying to a whole folder is optional; drives that cannot keep Unix permissions are called out. Restore…"
     },
     {
       "id": "recompstore",
