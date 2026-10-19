@@ -34,7 +34,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "feat: add project from issue #${{ github.event.issue.number }}"
-          git push
+          ok=0; for i in 1 2 3 4; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME:-main}" && git push && ok=1 && break; echo "push retry $i"; sleep $((i*3)); done; [ "$ok" = 1 ]
       - run: |
           gh issue comment "$NUM" --body-file msg.txt
           gh issue close "$NUM"

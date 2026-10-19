@@ -100,5 +100,5 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add prebuilt/ps5links-agent.elf prebuilt/ps5links-agent.elf.sha256
             git commit -m "prebuilt: agent ${{ steps.ver.outputs.version }} (${GITHUB_SHA::7})"
-            git push
+            ok=0; for i in 1 2 3 4; do git pull --rebase -X theirs origin "${GITHUB_REF_NAME:-main}" && git push && ok=1 && break; echo "push retry $i"; sleep $((i*3)); done; [ "$ok" = 1 ]
           fi
