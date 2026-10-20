@@ -10,7 +10,7 @@
       "last_update": "2026-10-18",
       "description": "BB",
       "category": "PC Tool",
-      "checksum": "4dfc4d2cbced3a024e89ac1d485211360399559fe9864279405ee2329e9a9100",
+      "checksum": "7569cf9f749ad4489faeecd674f9edcd4615e1beff53fecfb07548cc1118cde5",
       "author": "D3ATHLY",
       "source": "https://github.com/D3ATHLY/blackbox/releases",
       "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md",
@@ -362,17 +362,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.71.3.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.71.3/PS5_Cooling_System_Center_v1.71.3.elf",
-      "version": "v1.71.3",
+      "filename": "PS5_Cooling_System_Center_v1.71.4.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.71.4/PS5_Cooling_System_Center_v1.71.4.elf",
+      "version": "v1.71.4",
       "last_update": "2026-10-20",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "1661971a47195c55da2b9254444cd4613b9e71cc2c063df22a13b34e76a79657",
+      "checksum": "a80aef271651dea375720c9b43b443624d95482f6a1659c854c69aa98871f7ca",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "PS5 Cooling & System Center – Pro v1.71.3 Highlights Sammelversion aus der Gesamtprüfung: viele kleine Fehler behoben, bessere Kompatibilität mit dem PS5-Browser, Handbuch und FAQ in allen sechs Sprachen auf dem neuesten Stand Verbesserungen Stilregeln für ältere Browser getrenn…"
+      "release_notes": "PS5 Cooling & System Center – Pro v1.71.4 Fehler „Ausschalten“ schaltet die Konsole wirklich aus. Bisher landete die PS5 nach zweimaligem Klicken im Ruhemodus, weil der verwendete Aufruf der Ruhemodus-Einstellung folgte. Jetzt wird der direkte Ausschalt-Aufruf des Systems benutz…"
     },
     {
       "id": "ps5-game-compressor",
