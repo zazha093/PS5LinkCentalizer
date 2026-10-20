@@ -1,0 +1,22 @@
+name: Run all
+
+# One button: starts Update versions, Discover and Build Agent together.
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  run-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start the workflows
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          for wf in update.yml discover.yml agent.yml; do
+            gh workflow run "$wf" --ref "${{ github.ref_name }}" && echo "started $wf" || echo "could not start $wf"
+          done
