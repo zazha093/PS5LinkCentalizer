@@ -362,17 +362,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.71.2.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.71.2/PS5_Cooling_System_Center_v1.71.2.elf",
-      "version": "v1.71.2",
+      "filename": "PS5_Cooling_System_Center_v1.71.3.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.71.3/PS5_Cooling_System_Center_v1.71.3.elf",
+      "version": "v1.71.3",
       "last_update": "2026-10-20",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "cf6a5ddfe41cb9b9b04506381f36d9ecc73715ffba83458b00792cb0af27bc1d",
+      "checksum": "1661971a47195c55da2b9254444cd4613b9e71cc2c063df22a13b34e76a79657",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "PS5 Cooling & System Center – Pro v1.71.2 Verbesserungen Flüssigeres Scrollen im Design „Standard“ (PS5-Browser): einfarbiger Hintergrund statt Musterbild, und die regelmäßigen Aktualisierungen pausieren, solange man scrollt Keine ständige Meldung „409 Conflict“ mehr in der Brow…"
+      "release_notes": "PS5 Cooling & System Center – Pro v1.71.3 Highlights Sammelversion aus der Gesamtprüfung: viele kleine Fehler behoben, bessere Kompatibilität mit dem PS5-Browser, Handbuch und FAQ in allen sechs Sprachen auf dem neuesten Stand Verbesserungen Stilregeln für ältere Browser getrenn…"
     },
     {
       "id": "ps5-game-compressor",
