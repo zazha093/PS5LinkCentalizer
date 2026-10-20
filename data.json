@@ -62,7 +62,7 @@
       "date": "2026-10-15",
       "title": "OnionHEN v0.9.0",
       "assets": 1,
-      "downloads": 3463,
+      "downloads": 3464,
       "notes": "OnionHEN is a homebrew enabler and Toolbox for jailbroken PS5 consoles, built on etaHEN. It prepares the system, injects a Toolbox into the home screen, and adds cheats, a game overlay, payload management, and background services. Version: v0.9.0 is the stable re…",
       "files": [
         {
@@ -85,7 +85,7 @@
     "issues": 17,
     "homepage": "",
     "branch": "main",
-    "downloads": 32902,
+    "downloads": 32903,
     "install": null
   },
   {
@@ -100,7 +100,7 @@
       "date": "2026-10-18",
       "title": "ProsperoEden v1.005.000",
       "assets": 2,
-      "downloads": 8509,
+      "downloads": 8526,
       "notes": "This alpha keeps each game in a folder of its own with everything that belongs to it, gives cheats their own list, adds a speed limit and a second frame generation method, and fixes a lost graphics device and black boxes that spread over the picture. Performance and compatibilit…",
       "files": [],
       "zips": [
@@ -123,7 +123,7 @@
     "issues": 74,
     "homepage": "",
     "branch": "main",
-    "downloads": 132124,
+    "downloads": 132141,
     "install": null
   },
   {
@@ -152,7 +152,7 @@
     },
     "pre": null,
     "updated": "2026-10-19",
-    "stars": 138,
+    "stars": 139,
     "archived": false,
     "language": "C++",
     "topics": [],
@@ -213,7 +213,7 @@
       "date": "2026-10-10",
       "title": "ShadowMountPlus 1.7beta5",
       "assets": 2,
-      "downloads": 17033,
+      "downloads": 17041,
       "notes": "Removed legacy kstuff auto-pause and delay autotuning. Use the latest version of kstuff and do not use EtaHEN. Added per-game and default fakelib modes: Full, Emulators only, and Disabled, configurable through the web UI. Prevented libkernel.sprx from entering fakelib overlays,…",
       "files": [
         {
@@ -243,7 +243,7 @@
     "issues": 23,
     "homepage": "https://discord.gg/x2Ppvzwjhm",
     "branch": "1.7",
-    "downloads": 290782,
+    "downloads": 290790,
     "install": null
   },
   {
@@ -257,7 +257,7 @@
       "date": "2026-09-20",
       "title": "Kstuff Lite 1.11 Beta",
       "assets": 1,
-      "downloads": 74985,
+      "downloads": 74993,
       "notes": "Supports Firmware 1.00-13.60 A huge thanks to @sleirsgoevy for the help and creating this project, and to @zecoxao, @flatz, @idlesauce, @buzzer-re, @Al-Azif, @drakmor and everyone else who contributed. Your work and support are greatly appreciated! 🔹 Chang…",
       "files": [
         {
@@ -280,7 +280,7 @@
     "issues": 11,
     "homepage": "",
     "branch": "main",
-    "downloads": 198468,
+    "downloads": 198476,
     "install": null
   },
   {
@@ -383,7 +383,7 @@
       "date": "2026-10-19",
       "title": "",
       "assets": 1,
-      "downloads": 1793,
+      "downloads": 1802,
       "notes": "Changelog 🛠️ Bug Fixes Hotfix for v0.6.2: fixed emojis not appearing on PS5. Full Changelog: https://github.com/itsPLK/ps5-payload-manager/compare/v0.6.2...v0.6.3",
       "files": [
         {
@@ -406,7 +406,7 @@
     "issues": 4,
     "homepage": "",
     "branch": "main",
-    "downloads": 119377,
+    "downloads": 119386,
     "install": null
   },
   {
@@ -457,7 +457,7 @@
       "date": "2026-10-08",
       "title": "",
       "assets": 3,
-      "downloads": 70352,
+      "downloads": 70355,
       "notes": "Changelog 9.05, 11.40 & 11.60: Added missing offsets to fix Poops support. (Note: Relapse remains unsupported on 9.05 and 11.40) --- Setup Instructions - see README Discussion thread for this release --- Downloads | Platform | File | |---|---| | PS5 (installer payload) | webkit-…",
       "files": [
         {
@@ -480,7 +480,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 320251,
+    "downloads": 320254,
     "install": null
   },
   {
@@ -553,7 +553,7 @@
       ]
     },
     "updated": "2026-10-20",
-    "stars": 9279,
+    "stars": 9280,
     "archived": false,
     "language": "C++",
     "topics": [
@@ -677,7 +677,7 @@
       "date": "2026-10-11",
       "title": "PS5 PKG Tool v1.3.0",
       "assets": 1,
-      "downloads": 8747,
+      "downloads": 8752,
       "notes": "PS5 PKG Tool 1.3.0 - 2026-10-11 Features Add a default workspace folder in Settings, so image builds and package conversions can stage on a drive with room instead of filling the system drive (C:). Remember the library grouping (Family, Title ID, Category, Region, Source format,…",
       "files": [],
       "zips": [
@@ -701,7 +701,7 @@
     "issues": 9,
     "homepage": "",
     "branch": "main",
-    "downloads": 22976,
+    "downloads": 22981,
     "install": null
   },
   {
@@ -752,7 +752,7 @@
       "date": "2026-10-19",
       "title": "",
       "assets": 21,
-      "downloads": 6476,
+      "downloads": 6487,
       "notes": "File properties and custom permissions (#478). In Files, open Properties to see a file or folder's size, modification time and permissions, and set the permissions you need. Applying to a whole folder is optional; drives that cannot keep Unix permissions are called out. Restore…",
       "files": [
         {
@@ -854,7 +854,7 @@
     "issues": 2,
     "homepage": "https://discord.gg/fzK3xddtrM",
     "branch": "main",
-    "downloads": 203065,
+    "downloads": 203076,
     "install": null
   },
   {
@@ -1033,7 +1033,7 @@
       "date": "2026-10-19",
       "title": "PS5SX2 2.15",
       "assets": 4,
-      "downloads": 7048,
+      "downloads": 7080,
       "notes": "(build vk-285-177) Everything from the test builds since 2.10 (172 to 177) in one version. It is the build testers have had since 17 October as test build 177. New Game tiles. Any game can get its own tile on the PS5 home screen: on the shelf, press □ on a game and p…",
       "files": [
         {
@@ -1076,7 +1076,7 @@
     "issues": 65,
     "homepage": "",
     "branch": "main",
-    "downloads": 163916,
+    "downloads": 163948,
     "install": null
   },
   {
@@ -1307,7 +1307,7 @@
     "issues": 0,
     "homepage": "https://buymeacoffee.com/angelxex",
     "branch": "main",
-    "downloads": 99361,
+    "downloads": 99362,
     "install": null
   },
   {
@@ -1476,7 +1476,7 @@
       "date": "2026-10-10",
       "title": "Porpoise 3.0 (DolphinPS5)",
       "assets": 1,
-      "downloads": 13387,
+      "downloads": 13389,
       "notes": "Porpoise 3.0 is the biggest update yet. 🌐 Online Online Hub in Settings → Online WiiLink WFC and Wiimmfi set up in a few steps WiiConnect24 channels Custom servers, saved by name, with a connection test No more freeze when connecting in Mario Kart Wii 📁 Games and library Netwo…",
       "files": [],
       "zips": [
@@ -1507,7 +1507,7 @@
     "issues": 20,
     "homepage": "https://www.ripalda.dev",
     "branch": "Main",
-    "downloads": 28065,
+    "downloads": 28067,
     "install": null
   },
   {
@@ -1521,7 +1521,7 @@
       "date": "2026-10-14",
       "title": "Orbit Store 1.3.5 (Beta)",
       "assets": 17,
-      "downloads": 65754,
+      "downloads": 65763,
       "notes": "Archive.org sign-in comes to Orbit. Archive.org sign-in. Connect your account in the native PS5 app, browser or Orbit Zero to access downloads that require signing in. 225 unavailable Archive.org links removed, and 3 games also had to go. Links that require an Archive.org accoun…",
       "files": [
         {
@@ -1586,7 +1586,7 @@
     "issues": 58,
     "homepage": "",
     "branch": "main",
-    "downloads": 228107,
+    "downloads": 228116,
     "install": null
   },
   {
@@ -1600,7 +1600,7 @@
       "date": "2026-10-18",
       "title": "PSSwanStation build 24",
       "assets": 20,
-      "downloads": 1261,
+      "downloads": 1263,
       "notes": "Added HD texture packs for 3D games too. A pack picture replaces one block of a texture page as the PlayStation's texture cache holds it (64x64 texels of a 4-bit texture, 32x64 of an 8-bit one, 32x32 of a 15-bit one). Pictures are named block- - .png and g…",
       "files": [],
       "zips": [
@@ -1624,7 +1624,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 5937,
+    "downloads": 5939,
     "install": null
   },
   {
@@ -1732,7 +1732,7 @@
       "date": "2026-08-20",
       "title": "",
       "assets": 3,
-      "downloads": 32572,
+      "downloads": 32575,
       "notes": "",
       "files": [
         {
@@ -1761,7 +1761,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "master",
-    "downloads": 98891,
+    "downloads": 98894,
     "install": null
   },
   {
@@ -1983,7 +1983,7 @@
       "date": "2026-10-19",
       "title": "PS5 Library 0.7.37",
       "assets": 3,
-      "downloads": 1346,
+      "downloads": 1350,
       "notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes New default catalog: homebrew.page. The PS5 Homebrew Catalog by darkxex, the list behind homebrew.page, is on from the…",
       "files": [
         {
@@ -2006,7 +2006,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 13300,
+    "downloads": 13304,
     "install": null
   },
   {
@@ -2113,7 +2113,7 @@
       "date": "2026-10-16",
       "title": "PS4Mount 0.6.0",
       "assets": 2,
-      "downloads": 1313,
+      "downloads": 1314,
       "notes": "What's new Adding games is much faster Until now, every time PS4Mount added games, the console went through every PS4 game already in your library, one by one, about 0.7 seconds each, even the ones that were already there. With 36 games in the library, registering a group of new…",
       "files": [],
       "zips": []
@@ -2129,7 +2129,7 @@
     "issues": 8,
     "homepage": "",
     "branch": "main",
-    "downloads": 7416,
+    "downloads": 7417,
     "install": null
   },
   {
@@ -2143,7 +2143,7 @@
       "date": "2026-10-10",
       "title": "prospero-win v0.2.0",
       "assets": 2,
-      "downloads": 3756,
+      "downloads": 3758,
       "notes": "is the biggest update since the first release. 32-bit Windows games now run directly on the PS5's CPU instead of through the translator, Vulkan traffic is batched so DXVK games keep their frame rate, OpenGL games draw through Mesa's Zink, and Windows programs…",
       "files": [],
       "zips": [
@@ -2167,7 +2167,7 @@
     "issues": 12,
     "homepage": "",
     "branch": "main",
-    "downloads": 6684,
+    "downloads": 6686,
     "install": null
   },
   {
@@ -2247,7 +2247,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 137935,
+    "downloads": 137936,
     "install": null
   },
   {
@@ -2624,7 +2624,7 @@
       "date": "2026-10-19",
       "title": "Recomp Store 2.0.1",
       "assets": 2,
-      "downloads": 469,
+      "downloads": 470,
       "notes": "Gets the store ready for the GTA IV beta. What's new Title Updates a game reads itself. Some ports install the game themselves from your disc image and its Title Update, like the GTA IV beta. For those, the store now puts the update file in the game's install folder as it is, un…",
       "files": [
         {
@@ -2655,7 +2655,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 9961,
+    "downloads": 9962,
     "install": null
   }
 ]
