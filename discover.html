@@ -39,7 +39,6 @@
 <main class="wrap">
   <div class="d-tools">
     <input id="q" type="search" autocomplete="off">
-    <div id="chips" class="d-chips"></div>
     <select id="sort"></select>
     <button class="d-btn" id="tr" type="button"></button>
   </div>
@@ -53,13 +52,13 @@ const SITE_DEFAULT = { owner: "zazha093", repo: "PS5LinkCentalizer" };
 const T = {
   en: { title: "Discover new PS5 projects", search: "Search repos…", back: "Back",
     day: "Today", week: "7 days", created: "Newly created", rel: "Has release", all: "All",
-    sRecent: "Recently pushed", sStars: "Most stars", sNew: "Newest repos",
+    sRecent: "Recently pushed", sStars: "Most stars", sNew: "Newest repos", sCreated: "Newly created",
     meta: "{n} shown of {t} · scanned {w}", noData: "No data yet. Run the “Discover new PS5 projects” workflow once (Actions tab) and refresh.",
     none: "Nothing matches this filter.", loadFail: "Could not load discover.json.",
     newB: "NEW", warn: "⚠ unusual stars", open: "Open", translate: "Translate", trOrig: "Show original", trTip: "Sends the descriptions to Google Translate", trFail: "Translation failed, try again later", add: "Add to my list", hide: "Hide", pushed: "pushed", created: "created", release: "release", unhide: "Show hidden ({n})" },
   th: { title: "ค้นหาโปรเจค PS5 ใหม่ๆ", search: "ค้นหา repo…", back: "กลับ",
     day: "วันนี้", week: "7 วัน", created: "สร้างใหม่", rel: "มี release", all: "ทั้งหมด",
-    sRecent: "อัปเดตล่าสุด", sStars: "ดาวเยอะสุด", sNew: "repo ใหม่สุด",
+    sRecent: "อัปเดตล่าสุด", sStars: "ดาวเยอะสุด", sNew: "repo ใหม่สุด", sCreated: "สร้างใหม่",
     meta: "แสดง {n} จาก {t} · สแกนเมื่อ {w}", noData: "ยังไม่มีข้อมูล ให้ไปรัน workflow “Discover new PS5 projects” 1 ครั้ง (แท็บ Actions) แล้วรีเฟรช",
     none: "ไม่มีรายการที่ตรงกับตัวกรองนี้", loadFail: "โหลด discover.json ไม่ได้",
     newB: "ใหม่", warn: "⚠ ดาวผิดปกติ", open: "เปิด", translate: "แปลภาษา", trOrig: "ดูต้นฉบับ", trTip: "ข้อความคำอธิบายจะถูกส่งไป Google Translate", trFail: "แปลไม่สำเร็จ ลองใหม่ภายหลัง", add: "เพิ่มเข้ารายการ", hide: "ซ่อน", pushed: "อัปเดต", created: "สร้างเมื่อ", release: "release", unhide: "แสดงที่ซ่อน ({n})" },
@@ -131,7 +130,7 @@ function render(noTr) {
   $("lang").textContent = lang === "th" ? "EN" : "TH";
   $("tr").textContent = "文A " + t(trOn ? "trOrig" : "translate"); $("tr").title = t("trTip"); $("tr").classList.toggle("on", trOn);
   const sel = $("sort"); sel.textContent = "";
-  for (const [v, k] of [["recent", "sRecent"], ["stars", "sStars"], ["new", "sNew"]]) { const o = h("option", "", t(k)); o.value = v; sel.append(o); }
+  for (const [v, k] of [["recent", "sRecent"], ["stars", "sStars"], ["new", "sNew"], ["created", "sCreated"]]) { const o = h("option", "", t(k)); o.value = v; sel.append(o); }
   sel.value = sort;
   const chips = $("chips"); chips.textContent = "";
   for (const f of ["day", "week", "created", "updated", "rel", "all"]) {
@@ -145,8 +144,9 @@ function render(noTr) {
   if (!data.items.length) { empty.textContent = t("noData"); empty.hidden = false; $("meta").textContent = ""; return; }
   const q = query.trim().toLowerCase();
   let list = data.items.filter(it => REPO_OK.test(it.repo) && inFilter(it) && (showHidden || !hidden.has(it.repo)) &&
-    (!q || `${it.repo} ${it.description} ${it.topics.join(" ")} ${it.language}`.toLowerCase().includes(q)));
-  list.sort(sort === "stars" ? (a, b) => b.stars - a.stars : sort === "new" ? (a, b) => b.created.localeCompare(a.created) : (a, b) => b.pushed.localeCompare(a.pushed));
+    (!q || `${it.repo} ${it.description} ${it.topics.join(" ")} ${it.language}`.toLowerCase().includes(q)) &&
+    (sort !== "created" || isFresh(it)));
+  list.sort(sort === "stars" ? (a, b) => b.stars - a.stars : sort === "created" ? (a, b) => b.created.localeCompare(a.created) : sort === "new" ? (a, b) => b.created.localeCompare(a.created) : (a, b) => b.pushed.localeCompare(a.pushed));
   $("meta").textContent = t("meta").replace("{n}", list.length).replace("{t}", data.items.length).replace("{w}", data.updated ? rel(data.updated) : "—");
   if (!list.length) { empty.textContent = t("none"); empty.hidden = false; return; }
 
