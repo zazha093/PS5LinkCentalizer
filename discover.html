@@ -40,6 +40,7 @@
   <div class="d-tools">
     <input id="q" type="search" autocomplete="off">
     <select id="sort"></select>
+    <button class="d-btn" id="tr" type="button"></button>
   </div>
   <div class="d-chips" id="chips"></div>
   <div class="d-meta" id="meta"></div>
@@ -55,13 +56,13 @@ const T = {
     sRecent: "Recently pushed", sStars: "Most stars", sNew: "Newest repos",
     meta: "{n} shown of {t} · scanned {w}", noData: "No data yet. Run the “Discover new PS5 projects” workflow once (Actions tab) and refresh.",
     none: "Nothing matches this filter.", loadFail: "Could not load discover.json.",
-    newB: "NEW", warn: "⚠ unusual stars", open: "Open", add: "Add to my list", hide: "Hide", pushed: "pushed", created: "created", release: "release", unhide: "Show hidden ({n})" },
+    newB: "NEW", warn: "⚠ unusual stars", open: "Open", translate: "Translate", trOrig: "Show original", trTip: "Sends the descriptions to Google Translate", trFail: "Translation failed, try again later", add: "Add to my list", hide: "Hide", pushed: "pushed", created: "created", release: "release", unhide: "Show hidden ({n})" },
   th: { title: "ค้นหาโปรเจค PS5 ใหม่ๆ", search: "ค้นหา repo…", back: "กลับ",
     day: "วันนี้", week: "7 วัน", fresh: "repo ใหม่", rel: "มี release", all: "ทั้งหมด",
     sRecent: "อัปเดตล่าสุด", sStars: "ดาวเยอะสุด", sNew: "repo ใหม่สุด",
     meta: "แสดง {n} จาก {t} · สแกนเมื่อ {w}", noData: "ยังไม่มีข้อมูล ให้ไปรัน workflow “Discover new PS5 projects” 1 ครั้ง (แท็บ Actions) แล้วรีเฟรช",
     none: "ไม่มีรายการที่ตรงกับตัวกรองนี้", loadFail: "โหลด discover.json ไม่ได้",
-    newB: "ใหม่", warn: "⚠ ดาวผิดปกติ", open: "เปิด", add: "เพิ่มเข้ารายการ", hide: "ซ่อน", pushed: "อัปเดต", created: "สร้างเมื่อ", release: "release", unhide: "แสดงที่ซ่อน ({n})" },
+    newB: "ใหม่", warn: "⚠ ดาวผิดปกติ", open: "เปิด", translate: "แปลภาษา", trOrig: "ดูต้นฉบับ", trTip: "ข้อความคำอธิบายจะถูกส่งไป Google Translate", trFail: "แปลไม่สำเร็จ ลองใหม่ภายหลัง", add: "เพิ่มเข้ารายการ", hide: "ซ่อน", pushed: "อัปเดต", created: "สร้างเมื่อ", release: "release", unhide: "แสดงที่ซ่อน ({n})" },
 };
 const ls = k => { try { const v = localStorage.getItem("ps5l." + k); return v == null ? null : JSON.parse(v); } catch { return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem("ps5l." + k, JSON.stringify(v)); } catch {} };
@@ -70,6 +71,24 @@ let lang = ["th", "en"].includes(ls("lang")) ? ls("lang") : (navigator.language 
 const th = ls("theme"); if (th === "light" || th === "dark") document.documentElement.dataset.theme = th;
 const t = k => T[lang][k];
 
+let trOn = false; const trMap = new Map();
+const trKey = d => lang + "|" + d;
+async function trFetch(text) {
+  const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURIComponent(text)}`);
+  if (!r.ok) throw new Error(r.status);
+  const out = ((await r.json())[0] || []).map(x => x[0] || "").join("");
+  if (!out) throw new Error("empty");
+  return out;
+}
+async function ensureTr(list) {
+  const todo = list.filter(i => i.description && !trMap.has(trKey(i.description)));
+  if (!todo.length) return;
+  let k = 0, failed = false;
+  const worker = async () => { while (k < todo.length) { const it = todo[k++]; try { trMap.set(trKey(it.description), await trFetch(it.description)); } catch { failed = true; } } };
+  await Promise.all(Array.from({ length: 6 }, worker));
+  render(true);
+  if (failed) $("meta").textContent += " · " + t("trFail");
+}
 let data = null, filter = "day", sort = "recent", query = "", showHidden = false;
 let hidden = new Set(Array.isArray(ls("discHidden")) ? ls("discHidden") : []);
 const $ = id => document.getElementById(id);
@@ -105,10 +124,11 @@ const inFilter = it => {
   return true;
 };
 
-function render() {
+function render(noTr) {
   document.documentElement.lang = lang;
   $("title").textContent = t("title"); $("q").placeholder = t("search"); $("back").textContent = "← " + t("back");
   $("lang").textContent = lang === "th" ? "EN" : "TH";
+  $("tr").textContent = "文A " + t(trOn ? "trOrig" : "translate"); $("tr").title = t("trTip"); $("tr").classList.toggle("on", trOn);
   const sel = $("sort"); sel.textContent = "";
   for (const [v, k] of [["recent", "sRecent"], ["stars", "sStars"], ["new", "sNew"]]) { const o = h("option", "", t(k)); o.value = v; sel.append(o); }
   sel.value = sort;
@@ -146,14 +166,16 @@ function render() {
     hide.onclick = () => { hidden.has(it.repo) ? hidden.delete(it.repo) : hidden.add(it.repo); lsSet("discHidden", [...hidden]); render(); };
     acts.append(open, add, hide);
     c.append(title, badges);
-    if (it.description) c.append(h("p", "d-desc", it.description));
+    if (it.description) c.append(h("p", "d-desc", (trOn && trMap.get(trKey(it.description))) || it.description));
     if (it.topics?.length) { const tr = h("div", "d-row"); it.topics.slice(0, 5).forEach(x => tr.append(h("span", "d-tag", "#" + x))); c.append(tr); }
     const rd = h("div", "d-meta", `${t("created")} ${rel(it.created)}`); rd.style.padding = "0"; c.append(rd, acts);
     grid.append(c);
   }
+  if (trOn && !noTr) ensureTr(list);
 }
 
 $("q").addEventListener("input", e => { query = e.target.value; render(); });
+$("tr").addEventListener("click", () => { trOn = !trOn; render(); });
 $("sort").addEventListener("change", e => { sort = e.target.value; render(); });
 $("lang").addEventListener("click", () => { lang = lang === "th" ? "en" : "th"; lsSet("lang", lang); render(); });
 render();
