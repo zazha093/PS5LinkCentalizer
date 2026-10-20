@@ -648,16 +648,16 @@
       "id": "recompstore",
       "name": "RecompStore",
       "filename": "RecompStore-Installer.elf",
-      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.0.1/RecompStore-Installer.elf",
-      "version": "v2.0.1",
-      "last_update": "2026-10-19",
+      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.1.0/RecompStore-Installer.elf",
+      "version": "v2.1.0",
+      "last_update": "2026-10-20",
       "description": "A homebrew app store for jailbroken PS5: installs and updates native ports of recompiled games. Bring your own disc.",
       "category": "Payload",
-      "checksum": "69de1c34ed3254bb90b043976df6315c248119a84e73e3a8a1dae97bcdd09f22",
+      "checksum": "22a6b98e57dc1dbe8c3615b34ee54c10412d4f570fa740b336c8b5102f6a5da3",
       "author": "elripalda",
       "source": "https://github.com/elripalda/RecompStore/releases",
       "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
-      "release_notes": "Gets the store ready for the GTA IV beta. What's new Title Updates a game reads itself. Some ports install the game themselves from your disc image and its Title Update, like the GTA IV beta. For those, the store now puts the update file in the game's install folder as it is, un…"
+      "release_notes": "Safer The store only accepts a catalog signed on my PC. If anyone tampers with recompstore.com, your store ignores it and keeps the last good one. Store updates and beta builds are signed too. GitHub apps can only download from their own repo. If an app's download moves somewher…"
     },
     {
       "id": "shadowmountplus-beta",
