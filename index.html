@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+<meta name="description" content="PS5 Links — a curated index of PS5 homebrew, payloads and tools with live release tracking.">
+<title>PS5 Links</title>
+<!-- Apply saved theme before CSS paints, so there is no light/dark flash -->
+<script>try{const t=JSON.parse(localStorage.getItem("ps5l.theme"));if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch{}</script>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PS5 Links">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f8dff'/%3E%3Cpath d='M9 22V10h6a4 4 0 0 1 0 8h-6M18 22h5' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css?v=11">
+<base target="_blank">
+</head>
+<body>
+
+<!-- ========== Top bar ========== -->
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="./" target="_self" aria-label="PS5 Links home">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--accent)" stroke="none"/><path d="M9 22V10h6a4 4 0 0 1 0 8H9M18 22h5" stroke="#fff" stroke-width="2.6"/></svg>
+      <span class="brand-name">PS5 Links</span>
+    </a>
+    <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" data-i18n-ph="searchPh" placeholder="Search projects, authors, tags" aria-label="Search" enterkeyhint="search" autocomplete="off">
+      <kbd class="kbd">/</kbd>
+    </label>
+    <div class="top-acts">
+      <!-- PS5 Remote (ps5.js): the dot is green when websrv on the PS5 answers -->
+      <button class="ibtn" id="open-ps5" data-i18n-al="ps5Title" aria-label="Connect to PS5"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 11v3M6 12.5h3"/><circle cx="16" cy="11.3" r=".6" fill="currentColor"/><circle cx="17.6" cy="13.6" r=".6" fill="currentColor"/></svg><span class="ps5-dot" id="ps5-dot"></span></button>
+      <button class="ibtn" id="bell" data-i18n-al="whatsNew" aria-label="What's new"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="dot-count" id="bell-n" hidden></span></button>
+      <a class="ibtn" href="discover.html" title="Discover" aria-label="Discover" style="display:inline-grid;place-items:center"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></a>
+      <button class="ibtn" id="theme" data-i18n-al="theme" aria-label="Theme"></button>
+      <button class="ibtn" id="open-settings" data-i18n-al="settings" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+      <button class="btn primary add-btn" id="open-add"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="add">Add</span></button>
+    </div>
+  </div>
+  <!-- Category chips: shown on phones/tablets; the sidebar replaces them on wide screens -->
+  <div class="wrap chips" id="chips" role="toolbar" aria-label="Categories"></div>
+</header>
+
+<div class="wrap layout">
+  <!-- ========== Sidebar (desktop only) ========== -->
+  <aside class="side" aria-label="Categories">
+    <p class="side-h"><span data-i18n="categories">Categories</span> <span id="cat-n"></span></p>
+    <div id="side-cats" class="side-cats"></div>
+  </aside>
+
+  <main>
+    <!-- Stats strip -->
+    <section class="stats" id="stats" aria-label="Overview"></section>
+
+    <!-- Toolbar: tabs (desktop), title, sort, view mode -->
+    <div class="meta">
+      <div class="seg tabs-inline" role="tablist" aria-label="Sections">
+        <button data-tab="projects" data-i18n="projects">Projects</button>
+        <button data-tab="pinned"><span data-i18n="pinned">Pinned</span> <span class="seg-n" id="pc2"></span></button>
+        <button data-tab="latest"><span data-i18n="latest">Latest</span> <span class="seg-n warn" id="lc2"></span></button>
+        <button data-tab="watch"><span data-i18n="watch">Watching</span> <span class="seg-n warn" id="wc2"></span></button>
+      </div>
+      <h1 class="title" id="title">PS5 Links</h1>
+      <div class="meta-r">
+        <button class="btn small" id="seen" hidden data-i18n="markSeen">Mark all seen</button>
+        <button class="btn small" id="filter-btn" aria-expanded="false" aria-controls="filterbar" data-i18n-al="filters" aria-label="Filters"><svg viewBox="0 0 24 24"><path d="M3 5h18M6 12h12M10 19h4"/></svg><span data-i18n="filters">Filters</span><span class="act-n" id="filter-n" hidden></span></button>
+        <select id="sort" aria-label="Sort">
+          <option value="relevance" data-i18n="sRelevance">Best match</option>
+          <option value="name" data-i18n="sName">Name A–Z</option>
+          <option value="stars" data-i18n="sStars">Most starred</option>
+          <option value="release" data-i18n="sRelease">Latest release</option>
+          <option value="updated" data-i18n="sUpdated">Recently updated</option>
+          <option value="downloads" data-i18n="sDownloads">Most downloaded</option>
+          <option value="category" data-i18n="sCategory">Group by category</option>
+        </select>
+        <div class="seg view" role="group" aria-label="View">
+          <button data-view="grid" aria-label="Grid"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+          <button data-view="list" aria-label="List"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
+          <button data-view="table" aria-label="Table"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <p class="sr" id="count" aria-live="polite"></p>
+
+    <!-- Extra filters (collapsible). Values are remembered per device. -->
+    <section class="filters" id="filterbar" hidden aria-label="Filters">
+      <label class="fld"><span data-i18n="fLang">Language</span><select class="field" id="f-lang"></select></label>
+      <label class="fld"><span data-i18n="fLicense">License</span><select class="field" id="f-lic"></select></label>
+      <label class="fld"><span data-i18n="fStars">Minimum stars</span><select class="field" id="f-stars">
+        <option value="">—</option><option value="10">10+</option><option value="50">50+</option>
+        <option value="100">100+</option><option value="500">500+</option><option value="1000">1000+</option></select></label>
+      <label class="fld"><span data-i18n="fUpdated">Last push</span><select class="field" id="f-updated">
+        <option value="" data-i18n="any">—</option><option value="7" data-i18n="days7">7 days</option>
+        <option value="30" data-i18n="days30">30 days</option><option value="90" data-i18n="days90">90 days</option>
+        <option value="365" data-i18n="year1">1 year</option></select></label>
+      <label class="check"><input type="checkbox" id="f-elf"> <span data-i18n="fHasElf">Has .elf payload</span></label>
+      <label class="check"><input type="checkbox" id="f-arch"> <span data-i18n="fHideArch">Hide archived</span></label>
+      <label class="fld"><span data-i18n="fFirmware">Firmware</span><select class="field" id="f-fw"></select></label>
+      <button class="btn small" id="f-clear" data-i18n="clearFilters">Clear filters</button>
+    </section>
+
+    <section id="rows" class="cards grid">
+      <div class="card skel"></div><div class="card skel"></div><div class="card skel"></div>
+    </section>
+
+    <footer>
+      <p id="updated-at"></p>
+      <p><strong data-i18n="disclaimerH">Disclaimer:</strong> <span data-i18n="disclaimer">this is only a link index. Not affiliated with, and not responsible for, any listed project.</span></p>
+    </footer>
+  </main>
+</div>
+
+<!-- ========== Bottom tabs (phones) ========== -->
+<nav class="tabs" aria-label="Sections"><div class="wrap">
+  <button class="tab" data-tab="projects"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span data-i18n="projects">Projects</span></button>
+  <button class="tab" data-tab="pinned"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span data-i18n="pinned">Pinned</span><span class="count" id="pc" hidden></span></button>
+  <button class="tab" data-tab="latest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-i18n="latest">Latest</span><span class="count" id="lc" hidden></span></button>
+  <button class="tab" data-tab="watch"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span data-i18n="watch">Watching</span><span class="count" id="wc" hidden></span></button>
+  <a class="tab" href="offline.html" target="_self"><svg viewBox="0 0 24 24"><path d="M3 7h18v4H3zM5 11v9h14v-9M10 15h4"/></svg><span data-i18n="offline">Offline</span></a>
+</div></nav>
+
+<!-- ========== Add / Edit dialog ========== -->
+<dialog id="add"><div class="sheet">
+  <div class="sheet-head"><h2 id="dlg-title" data-i18n="addTitle">Add a project</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <label class="fld"><span data-i18n="fRepo">GitHub link</span>
+    <input id="repo" type="text" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="github.com/owner/name"></label>
+  <label class="fld"><span data-i18n="fName">Display name</span>
+    <input id="f-name" type="text" autocomplete="off" maxlength="80" data-i18n-ph="fNamePh" placeholder="Leave empty to use the GitHub name"></label>
+  <label class="fld"><span data-i18n="fDesc">Description</span>
+    <textarea id="f-desc" rows="3" maxlength="400" data-i18n-ph="fDescPh" placeholder="Leave empty to use the GitHub description"></textarea></label>
+  <label class="fld"><span data-i18n="fCat">Category</span>
+    <select class="field" id="add-cat"></select></label>
+  <p class="msg" id="msg" aria-live="polite"></p>
+  <button class="btn primary" id="do-add" data-i18n="addMine">Add to my list</button>
+  <button class="btn" id="do-share" data-i18n="addShared">Submit to the shared list</button>
+  <button class="btn danger" id="do-revert" hidden data-i18n="revert">Restore original</button>
+  <p class="hint" data-i18n="addHint">My list checks GitHub live and is saved on this device only.</p>
+</div></dialog>
+
+<!-- ========== Settings dialog ========== -->
+<dialog id="settings"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="settings">Settings</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p class="set-h" data-i18n="language">Language</p>
+  <div class="seg wide" id="set-lang"><button data-lang="en">English</button><button data-lang="th">ไทย</button></div>
+  <p class="set-h" data-i18n="theme">Theme</p>
+  <div class="seg wide" id="set-theme"><button data-th="auto" data-i18n="auto">Auto</button><button data-th="dark" data-i18n="dark">Dark</button><button data-th="light" data-i18n="light">Light</button></div>
+  <p class="set-h" data-i18n="avatars">Author avatars</p>
+  <div class="seg wide" id="set-av"><button data-av="1" data-i18n="on">On</button><button data-av="0" data-i18n="off">Off</button></div>
+  <p class="set-h" data-i18n="notifH">New-release notifications</p>
+  <div class="seg wide" id="set-notif"><button data-notif="1" data-i18n="on">On</button><button data-notif="0" data-i18n="off">Off</button></div>
+  <p class="hint" data-i18n="notifHint">Only for projects you watch. The browser asks for permission once.</p>
+  <p class="set-h" data-i18n="verifyH">Check SHA-256 before running</p>
+  <div class="seg wide" id="set-verify"><button data-verify="1" data-i18n="on">On</button><button data-verify="0" data-i18n="off">Off</button></div>
+  <p class="hint" data-i18n="verifyHint">Downloads the payload in this browser first and compares it with the hash GitHub published. Safer, but it uses more data.</p>
+  <p class="set-h" data-i18n="backup">Backup (my list + pins)</p>
+  <div class="row2">
+    <button class="btn" id="do-export" data-i18n="export">Export file</button>
+    <label class="btn"><span data-i18n="import">Import file</span><input id="do-import" type="file" accept="application/json,.json" hidden></label>
+  </div>
+  <button class="btn danger" id="do-reset" data-i18n="reset">Clear all data on this device</button>
+  <p class="hint" data-i18n="privacy">Everything is stored in your browser only. GitHub receives requests when you open README, Assets, Commits or avatars.</p>
+</div></dialog>
+
+<!-- ========== PS5 Remote dialog (ps5.js) ========== -->
+<dialog id="ps5"><div class="sheet">
+  <div class="sheet-head"><h2><span data-i18n="ps5Title">Connect to PS5</span> <span class="badge beta" data-i18n="ps5Beta">Beta</span></h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div class="ps5-row">
+    <label class="fld"><span data-i18n="ps5Ip">PS5 IP address</span>
+      <input id="ps5-ip" type="text" inputmode="decimal" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="192.168.1.50"></label>
+    <label class="fld port"><span data-i18n="ps5Port">websrv port</span>
+      <input id="ps5-port" type="text" inputmode="numeric" autocomplete="off" placeholder="8080"></label>
+  </div>
+  <button class="btn primary" id="ps5-test" data-i18n="ps5Test">Save &amp; test</button>
+  <p class="msg" id="ps5-msg" aria-live="polite"></p>
+  <p class="hint ios" id="ps5-ios" hidden data-i18n="ps5Ios">iPhone / iPad: Safari blocks this page from talking to the PS5.</p>
+
+  <p class="set-h" data-i18n="ps5RunH">Run a payload</p>
+  <div class="fld"><label for="ps5-url" data-i18n="ps5RunUrl">Link to an .elf file (the PS5 downloads it)</label>
+    <div class="ps5-row"><input id="ps5-url" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://github.com/…/payload.elf">
+      <button class="btn" id="ps5-run-url" type="button" data-i18n="ps5RunUrlBtn">Run link</button></div></div>
+  <div class="row2">
+    <label class="btn"><span data-i18n="ps5RunFile">Send an .elf from this device</span><input id="ps5-file" type="file" accept=".elf,.bin,application/octet-stream" hidden></label>
+    <button class="btn" id="ps5-browse" data-i18n="ps5Browse">Pick an .elf on the PS5</button>
+  </div>
+  <div class="fs-box" id="ps5-fs" hidden></div>
+  <input id="fs-files" type="file" multiple hidden>
+  <button class="btn" id="open-lib" data-i18n="libTitle">Payload library &amp; run queue</button>
+  <button class="btn" id="open-inst" data-i18n="v10H">Installed homebrew</button>
+
+  <!-- Upload into a folder: needs PS5Links Agent (agent/ in this repo) running on the PS5 -->
+  <p class="set-h" data-i18n="agH">Upload to a folder (PS5Links Agent)</p>
+  <div class="ps5-row three">
+    <label class="fld"><span data-i18n="agPin">PIN shown on the PS5</span>
+      <input id="ag-pin" type="text" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="123456"></label>
+    <label class="fld port"><span data-i18n="agPort">Agent port</span>
+      <input id="ag-port" type="text" inputmode="numeric" autocomplete="off" placeholder="8686"></label>
+    <button class="btn" id="ag-pair" type="button" data-i18n="agPair">Pair</button>
+  </div>
+  <p class="msg" id="ag-msg" aria-live="polite"></p>
+
+  <div class="ag-direct">
+    <div class="ps5-row">
+      <label class="fld"><span data-i18n="agLdrPort">ELF Loader Port</span>
+        <select id="ag-ldr-port" class="field">
+          <option value="9021" data-i18n="agLdr9021">Port 9021 (Persistent / websrv)</option>
+          <option value="9020" data-i18n="agLdr9020">Port 9020 (Standard elfldr)</option>
+        </select></label>
+      <label class="btn primary"><span data-i18n="agRunDirect">Send &amp; run .elf directly</span><input id="ag-run-file" type="file" accept=".elf,.bin,application/octet-stream" hidden></label>
+    </div>
+  </div>
+
+  <div class="fld"><label for="ag-dest" data-i18n="agDest">Folder on the PS5</label>
+    <div class="ps5-row"><input id="ag-dest" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="/data/homebrew">
+      <button class="btn" id="ag-browse" type="button" data-i18n="agPickDir">Choose</button></div></div>
+  <div class="fs-box" id="ag-fs" hidden></div>
+  <label class="check"><input type="checkbox" id="ag-unzip" checked> <span data-i18n="agUnzip">Extract .zip files while sending</span></label>
+  <label class="btn"><span data-i18n="agSend">Upload files to folder</span><input id="ag-files" type="file" multiple hidden></label>
+  <div class="ag-prog" id="ag-prog" hidden>
+    <progress id="ag-bar" max="1" value="0"></progress>
+    <p class="hint" id="ag-ptext"></p>
+    <button class="btn small" id="ag-cancel" type="button" data-i18n="ps5Cancel">Cancel</button>
+  </div>
+  <div class="ag-done" id="ag-done" hidden></div>
+
+  <p class="set-h" data-i18n="ps5PmH">Payload Manager catalog</p>
+  <div class="ps5-row"><code class="cat-url" id="ps5-cat"></code><button class="btn small" id="ps5-copy-cat" data-i18n="copyLink">Copy link</button></div>
+  <p class="hint" data-i18n="ps5PmHint">Add this URL as a source in Payload Manager.</p>
+
+  <p class="set-h" data-i18n="ps5Tools">Open pages on the PS5</p>
+  <div class="tools">
+    <a class="tool disabled" id="ps5-l-websrv" target="_blank" rel="noopener">websrv<small>—</small></a>
+    <a class="tool disabled" id="ps5-l-elfldr" target="_blank" rel="noopener">websrv · ELF loader<small>—</small></a>
+    <a class="tool disabled" id="ps5-l-pm" target="_blank" rel="noopener">Payload Manager<small>—</small></a>
+    <a class="tool disabled" id="ps5-l-wfm" target="_blank" rel="noopener">Web File Manager<small>—</small></a>
+  </div>
+  <p class="hint" data-i18n="ps5UploadHint">To upload into a folder, use the PS5Links Agent section above.</p>
+</div></dialog>
+
+<!-- Confirmation before running anything on the console -->
+<dialog id="runq"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="ps5Run">Run on PS5</h2><button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p id="runq-t"></p>
+  <div id="runq-files" class="runq-list"></div>
+  <div id="runq-opt" class="runq-opt" hidden>
+    <label class="fld"><span data-i18n="runTarget">Runner engine</span>
+      <select id="runq-method" class="field">
+        <option value="agent-9021" data-i18n="runMethodAgent9021">Agent → Port 9021 (Direct)</option>
+        <option value="agent-9020" data-i18n="runMethodAgent9020">Agent → Port 9020 (Direct)</option>
+        <option value="websrv" data-i18n="runMethodWebsrv">websrv (Port 8080)</option>
+      </select></label>
+  </div>
+  <label class="check" id="runq-verify" hidden><input type="checkbox" id="runq-vf" checked> <span data-i18n="verifyRun">Check SHA-256 before running</span></label>
+  <p class="hint" id="runq-vmsg"></p>
+  <p class="hint warn" data-i18n="ps5RunWarn">Only run payloads you trust.</p>
+  <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="runq-go" data-i18n="ps5Go">Run</button></div>
+</div></dialog>
+
+<!-- ========== Reader dialog: README / Assets / Commits ========== -->
+<dialog id="modal-reader" class="wide"><div class="sheet reader-sheet">
+  <div class="reader-head">
+    <div class="reader-tt"><h3 id="reader-title">Viewer</h3><p id="reader-sub"></p></div>
+    <div class="reader-acts">
+      <button class="ibtn small" id="reader-tr" aria-label="Translate"><svg viewBox="0 0 24 24"><path d="M4 5h8M8 3v2M6 5c0 4 3 7 6 8M10 5c0 3-2 6-6 8M12 21l4-9 4 9M13.5 18h5"/></svg></button>
+      <button class="ibtn small" id="reader-copy" aria-label="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      <a class="ibtn small" id="reader-ext" aria-label="Open on GitHub"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
+      <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  <div id="reader-body" class="reader-body">Loading…</div>
+</div></dialog>
+
+<!-- ========== File editor (ps5.js): edit .txt / .json / .cfg on the PS5 ========== -->
+<dialog id="editor" class="wide"><div class="sheet reader-sheet">
+  <div class="reader-head">
+    <div class="reader-tt"><h3 id="ed-title">file</h3><p id="ed-sub"></p></div>
+    <div class="reader-acts">
+      <button class="btn small" id="ed-format" data-i18n="edFormat">Format</button>
+      <button class="btn primary small" id="ed-save" data-i18n="edSave">Save</button>
+      <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  <div class="ed-body">
+    <textarea id="ed-text" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="File content"></textarea>
+    <p class="msg" id="ed-msg" aria-live="polite"></p>
+  </div>
+</div></dialog>
+
+<!-- ========== Payload library + run queue (ps5.js) ========== -->
+<dialog id="library"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="libTitle">Payload library &amp; run queue</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+
+  <p class="set-h" data-i18n="qH">Run queue</p>
+  <div class="lib-list" id="q-list"></div>
+  <div class="ps5-row">
+    <label class="fld"><span data-i18n="qDelay">Pause between payloads (seconds)</span>
+      <input id="q-delay" type="text" inputmode="numeric" value="3" autocomplete="off"></label>
+    <button class="btn primary" id="q-run" data-i18n="qRun">Run queue</button>
+  </div>
+  <div class="row2">
+    <button class="btn small" id="q-save" data-i18n="qSave">Save as preset</button>
+    <button class="btn small" id="q-clear" data-i18n="qClear">Clear queue</button>
+  </div>
+  <div class="lib-list" id="q-presets"></div>
+  <p class="msg" id="q-msg" aria-live="polite"></p>
+
+  <p class="set-h" data-i18n="libSaved">Saved on this device</p>
+  <div class="ps5-row">
+    <label class="fld"><span data-i18n="libAddUrl">Add a payload from a link</span>
+      <input id="lib-url" type="text" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="https://github.com/…/payload.elf"></label>
+    <button class="btn" id="lib-add" data-i18n="libAdd">Save</button>
+  </div>
+  <div class="lib-list" id="lib-list"></div>
+  <p class="set-h" data-i18n="histH">Recent runs</p>
+  <div class="lib-list" id="hist-list"></div>
+  <button class="btn small" id="hist-clear" data-i18n="histClear">Clear history</button>
+  <p class="hint" data-i18n="libHint">Payloads are kept in this browser only. Nothing is uploaded anywhere.</p>
+</div></dialog>
+
+<!-- ========== Install / download a release archive (ps5.js) ========== -->
+<dialog id="install"><div class="sheet">
+  <div class="sheet-head"><h2 id="in-title" data-i18n="inH">Install or download</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p class="hint" id="in-sub"></p>
+  <p class="set-h" data-i18n="inMode">Action</p>
+  <div class="seg wide" id="in-mode">
+    <button data-inmode="app" data-i18n="inModeApp">Install (extract)</button>
+    <button data-inmode="file" data-i18n="inModeFile">Save the .zip</button>
+  </div>
+  <p class="hint" id="in-hint"></p>
+  <div id="in-zips" class="runq-list"></div>
+  <label class="fld"><span data-i18n="agDest">Folder on the PS5</span>
+    <input id="in-dest" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="/data/homebrew"></label>
+  <p class="hint" id="in-free"></p>
+  <p class="hint warn" id="in-warn" hidden></p>
+  <p class="msg" id="in-msg" aria-live="polite"></p>
+  <div class="ag-prog" id="in-prog" hidden>
+    <progress id="in-bar" max="1" value="0"></progress>
+    <p class="hint" id="in-step"></p>
+    <button class="btn small" id="in-cancel" type="button" data-i18n="ps5Cancel">Cancel</button>
+  </div>
+  <div class="ag-done" id="in-done" hidden></div>
+  <div class="row2"><button class="btn" data-close data-i18n="ps5Cancel">Cancel</button><button class="btn primary" id="in-go">Install</button></div>
+</div></dialog>
+
+<!-- ========== v10 · Installed homebrew manager (ps5.js) ========== -->
+<dialog id="installed"><div class="sheet">
+  <div class="sheet-head"><h2 data-i18n="v10H">Installed homebrew</h2>
+    <button class="ibtn small" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <p class="hint" data-i18n="v10Open">Folders under the install destination on the PS5.</p>
+  <div class="row2">
+    <button class="btn small" id="inst-refresh" data-i18n="v10Refresh">Refresh</button>
+    <button class="btn small" id="inst-forget" data-i18n="v10Forget">Forget extra folders</button>
+  </div>
+  <div class="lib-list" id="inst-list"></div>
+  <p class="msg" id="inst-msg" aria-live="polite"></p>
+  <p class="hint" data-i18n="v10Hint">Deleting asks for the folder name first. It needs ps5links-agent.elf 0.2.0 or newer.</p>
+</div></dialog>
+
+<button class="totop" id="totop" aria-label="Back to top" hidden><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=11"></script>
+<script src="ps5.js?v=11"></script>
+</body>
+</html>

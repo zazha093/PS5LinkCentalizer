@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PS5 Links · Discover</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .d-top { position:sticky; top:0; z-index:5; background:var(--bar); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top); }
+  .d-top .wrap { display:flex; align-items:center; gap:10px; height:52px; }
+  .d-top h1 { font-size:17px; margin:0; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .d-btn { border:1px solid var(--line); background:var(--card); border-radius:10px; padding:6px 12px; cursor:pointer; min-height:36px; display:inline-flex; align-items:center; gap:6px; }
+  .d-btn:hover { border-color:var(--accent); }
+  .d-btn.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .d-tools { display:flex; flex-wrap:wrap; gap:8px; padding:12px 0 4px; }
+  .d-tools input[type=search] { flex:1 1 220px; min-width:0; border:1px solid var(--line); background:var(--card); border-radius:10px; padding:8px 12px; }
+  .d-tools select { border:1px solid var(--line); background:var(--card); border-radius:10px; padding:8px; }
+  .d-chips { display:flex; flex-wrap:wrap; gap:8px; padding:6px 0 10px; }
+  .d-meta { color:var(--muted); font-size:13px; padding:2px 0 10px; }
+  .d-grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 340px), 1fr)); padding-bottom:calc(30px + env(safe-area-inset-bottom)); }
+  .d-card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .d-card h2 { font-size:15px; margin:0; overflow-wrap:anywhere; }
+  .d-card h2 a:hover { color:var(--accent); }
+  .d-desc { color:var(--muted); font-size:14px; margin:0; overflow-wrap:anywhere; }
+  .d-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .d-tag { font-size:12px; padding:2px 8px; border-radius:99px; background:var(--raised); color:var(--muted); }
+  .d-new { background:var(--stable); color:#04130d; font-weight:700; }
+  .d-rel { background:color-mix(in srgb, var(--accent) 18%, transparent); color:var(--accent); }
+  .d-acts { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:4px; }
+  .d-empty { color:var(--muted); text-align:center; padding:40px 10px; }
+</style>
+</head>
+<body>
+<header class="d-top"><div class="wrap">
+  <a class="d-btn" href="./" id="back">←</a>
+  <h1 id="title"></h1>
+  <button class="d-btn" id="lang" type="button"></button>
+</div></header>
+<main class="wrap">
+  <div class="d-tools">
+    <input id="q" type="search" autocomplete="off">
+    <select id="sort"></select>
+    <button class="d-btn" id="tr" type="button"></button>
+  </div>
+  <div class="d-chips" id="chips"></div>
+  <div class="d-meta" id="meta"></div>
+  <div class="d-grid" id="grid"></div>
+  <div class="d-empty" id="empty" hidden></div>
+</main>
+<script>
+"use strict";
+const SITE_DEFAULT = { owner: "zazha093", repo: "PS5LinkCentalizer" };
+const T = {
+  en: { title: "Discover new PS5 projects", search: "Search repos…", back: "Back",
+    day: "Today", week: "7 days", fresh: "New repos", rel: "Has release", all: "All",
+    sRecent: "Recently pushed", sStars: "Most stars", sNew: "Newest repos",
+    meta: "{n} shown of {t} · scanned {w}", noData: "No data yet. Run the “Discover new PS5 projects” workflow once (Actions tab) and refresh.",
+    none: "Nothing matches this filter.", loadFail: "Could not load discover.json.",
+    newB: "NEW", warn: "⚠ unusual stars", open: "Open", translate: "Translate", trOrig: "Show original", trTip: "Sends the descriptions to Google Translate", trFail: "Translation failed, try again later", add: "Add to my list", hide: "Hide", pushed: "pushed", created: "created", release: "release", unhide: "Show hidden ({n})" },
+  th: { title: "ค้นหาโปรเจค PS5 ใหม่ๆ", search: "ค้นหา repo…", back: "กลับ",
+    day: "วันนี้", week: "7 วัน", fresh: "repo ใหม่", rel: "มี release", all: "ทั้งหมด",
+    sRecent: "อัปเดตล่าสุด", sStars: "ดาวเยอะสุด", sNew: "repo ใหม่สุด",
+    meta: "แสดง {n} จาก {t} · สแกนเมื่อ {w}", noData: "ยังไม่มีข้อมูล ให้ไปรัน workflow “Discover new PS5 projects” 1 ครั้ง (แท็บ Actions) แล้วรีเฟรช",
+    none: "ไม่มีรายการที่ตรงกับตัวกรองนี้", loadFail: "โหลด discover.json ไม่ได้",
+    newB: "ใหม่", warn: "⚠ ดาวผิดปกติ", open: "เปิด", translate: "แปลภาษา", trOrig: "ดูต้นฉบับ", trTip: "ข้อความคำอธิบายจะถูกส่งไป Google Translate", trFail: "แปลไม่สำเร็จ ลองใหม่ภายหลัง", add: "เพิ่มเข้ารายการ", hide: "ซ่อน", pushed: "อัปเดต", created: "สร้างเมื่อ", release: "release", unhide: "แสดงที่ซ่อน ({n})" },
+};
+const ls = k => { try { const v = localStorage.getItem("ps5l." + k); return v == null ? null : JSON.parse(v); } catch { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem("ps5l." + k, JSON.stringify(v)); } catch {} };
+
+let lang = ["th", "en"].includes(ls("lang")) ? ls("lang") : (navigator.language || "").toLowerCase().startsWith("th") ? "th" : "en";
+const th = ls("theme"); if (th === "light" || th === "dark") document.documentElement.dataset.theme = th;
+const t = k => T[lang][k];
+
+let trOn = false; const trMap = new Map();
+const trKey = d => lang + "|" + d;
+async function trFetch(text) {
+  const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${lang}&dt=t&q=${encodeURIComponent(text)}`);
+  if (!r.ok) throw new Error(r.status);
+  const out = ((await r.json())[0] || []).map(x => x[0] || "").join("");
+  if (!out) throw new Error("empty");
+  return out;
+}
+async function ensureTr(list) {
+  const todo = list.filter(i => i.description && !trMap.has(trKey(i.description)));
+  if (!todo.length) return;
+  let k = 0, failed = false;
+  const worker = async () => { while (k < todo.length) { const it = todo[k++]; try { trMap.set(trKey(it.description), await trFetch(it.description)); } catch { failed = true; } } };
+  await Promise.all(Array.from({ length: 6 }, worker));
+  render(true);
+  if (failed) $("meta").textContent += " · " + t("trFail");
+}
+let data = null, filter = "day", sort = "recent", query = "", showHidden = false;
+let hidden = new Set(Array.isArray(ls("discHidden")) ? ls("discHidden") : []);
+const $ = id => document.getElementById(id);
+const DAY = 864e5;
+const age = iso => Date.now() - Date.parse(iso);
+const REPO_OK = /^[\w.-]+\/[\w.-]+$/;
+
+function h(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function rel(iso) {
+  const ms = Date.parse(iso) - Date.now(), f = new Intl.RelativeTimeFormat(lang, { numeric: "auto" });
+  const m = Math.round(ms / 6e4);
+  if (Math.abs(m) < 60) return f.format(m, "minute");
+  if (Math.abs(m) < 1440) return f.format(Math.round(m / 60), "hour");
+  return f.format(Math.round(m / 1440), "day");
+}
+function siteRepo() {
+  const host = location.hostname, seg = location.pathname.split("/")[1];
+  if (host.endsWith(".github.io") && seg) return { owner: host.split(".")[0], repo: seg };
+  return SITE_DEFAULT;
+}
+function addUrl(it) {
+  const s = siteRepo();
+  const cat = (it.release?.assets || []).some(n => /\.elf$/i.test(n)) ? "Payload" : "Homebrew";
+  const q = new URLSearchParams({ title: "Add project: " + it.repo, body: `repo: ${it.repo}\ncategory: ${cat}` });
+  return `https://github.com/${s.owner}/${s.repo}/issues/new?${q}`;
+}
+const isFresh = it => age(it.created) <= 7 * DAY;
+const inFilter = it => {
+  if (filter === "day") return age(it.pushed) <= DAY || age(it.first_seen) <= DAY;
+  if (filter === "week") return age(it.pushed) <= 7 * DAY;
+  if (filter === "fresh") return isFresh(it);
+  if (filter === "rel") return !!it.release;
+  return true;
+};
+
+function render(noTr) {
+  document.documentElement.lang = lang;
+  $("title").textContent = t("title"); $("q").placeholder = t("search"); $("back").textContent = "← " + t("back");
+  $("lang").textContent = lang === "th" ? "EN" : "TH";
+  $("tr").textContent = "文A " + t(trOn ? "trOrig" : "translate"); $("tr").title = t("trTip"); $("tr").classList.toggle("on", trOn);
+  const sel = $("sort"); sel.textContent = "";
+  for (const [v, k] of [["recent", "sRecent"], ["stars", "sStars"], ["new", "sNew"]]) { const o = h("option", "", t(k)); o.value = v; sel.append(o); }
+  sel.value = sort;
+  const chips = $("chips"); chips.textContent = "";
+  for (const f of ["day", "week", "fresh", "rel", "all"]) {
+    const b = h("button", "d-btn" + (f === filter ? " on" : ""), t(f)); b.type = "button";
+    b.onclick = () => { filter = f; render(); }; chips.append(b);
+  }
+  if (hidden.size) { const b = h("button", "d-btn" + (showHidden ? " on" : ""), t("unhide").replace("{n}", hidden.size)); b.type = "button"; b.onclick = () => { showHidden = !showHidden; render(); }; chips.append(b); }
+
+  const grid = $("grid"), empty = $("empty"); grid.textContent = ""; empty.hidden = true;
+  if (!data) return;
+  if (!data.items.length) { empty.textContent = t("noData"); empty.hidden = false; $("meta").textContent = ""; return; }
+  const q = query.trim().toLowerCase();
+  let list = data.items.filter(it => REPO_OK.test(it.repo) && inFilter(it) && (showHidden || !hidden.has(it.repo)) &&
+    (!q || `${it.repo} ${it.description} ${it.topics.join(" ")} ${it.language}`.toLowerCase().includes(q)));
+  list.sort(sort === "stars" ? (a, b) => b.stars - a.stars : sort === "new" ? (a, b) => b.created.localeCompare(a.created) : (a, b) => b.pushed.localeCompare(a.pushed));
+  $("meta").textContent = t("meta").replace("{n}", list.length).replace("{t}", data.items.length).replace("{w}", data.updated ? rel(data.updated) : "—");
+  if (!list.length) { empty.textContent = t("none"); empty.hidden = false; return; }
+
+  for (const it of list) {
+    const c = h("article", "d-card"), url = "https://github.com/" + it.repo;
+    const title = h("h2"); const a = h("a", "", it.repo); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer"; title.append(a);
+    const badges = h("div", "d-row");
+    if (isFresh(it)) badges.append(h("span", "d-tag d-new", t("newB")));
+    badges.append(h("span", "d-tag", `${t("pushed")} ${rel(it.pushed)}`));
+    if (it.stars) badges.append(h("span", "d-tag", "★ " + it.stars));
+    if (it.warn) { const w = h("span", "d-tag", t("warn")); w.style.color = "var(--beta)"; badges.append(w); }
+    if (it.language) badges.append(h("span", "d-tag", it.language));
+    if (it.release?.tag) badges.append(h("span", "d-tag d-rel", `${t("release")} ${it.release.tag}`));
+    const acts = h("div", "d-acts");
+    const open = h("a", "d-btn", t("open")); open.href = url; open.target = "_blank"; open.rel = "noopener noreferrer";
+    const add = h("a", "d-btn", t("add")); add.href = addUrl(it); add.target = "_blank"; add.rel = "noopener noreferrer";
+    const hide = h("button", "d-btn", hidden.has(it.repo) ? "↺" : t("hide")); hide.type = "button";
+    hide.onclick = () => { hidden.has(it.repo) ? hidden.delete(it.repo) : hidden.add(it.repo); lsSet("discHidden", [...hidden]); render(); };
+    acts.append(open, add, hide);
+    c.append(title, badges);
+    if (it.description) c.append(h("p", "d-desc", (trOn && trMap.get(trKey(it.description))) || it.description));
+    if (it.topics?.length) { const tr = h("div", "d-row"); it.topics.slice(0, 5).forEach(x => tr.append(h("span", "d-tag", "#" + x))); c.append(tr); }
+    const rd = h("div", "d-meta", `${t("created")} ${rel(it.created)}`); rd.style.padding = "0"; c.append(rd, acts);
+    grid.append(c);
+  }
+  if (trOn && !noTr) ensureTr(list);
+}
+
+$("q").addEventListener("input", e => { query = e.target.value; render(); });
+$("tr").addEventListener("click", () => { trOn = !trOn; render(); });
+$("sort").addEventListener("change", e => { sort = e.target.value; render(); });
+$("lang").addEventListener("click", () => { lang = lang === "th" ? "en" : "th"; lsSet("lang", lang); render(); });
+render();
+fetch("discover.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw 0; return r.json(); }).then(j => {
+  data = { updated: j.updated, items: Array.isArray(j.items) ? j.items.filter(i => i && typeof i.repo === "string") : [] };
+  if (!data.items.some(i => inFilter(i))) filter = "week";
+  if (!data.items.some(i => inFilter(i))) filter = "all";
+  render();
+}).catch(() => { $("empty").textContent = t("loadFail"); $("empty").hidden = false; });
+</script>
+</body>
+</html>
