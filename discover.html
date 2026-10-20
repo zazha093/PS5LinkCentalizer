@@ -52,13 +52,13 @@
 const SITE_DEFAULT = { owner: "zazha093", repo: "PS5LinkCentalizer" };
 const T = {
   en: { title: "Discover new PS5 projects", search: "Search repos…", back: "Back",
-    day: "Today", week: "7 days", fresh: "New repos", rel: "Has release", all: "All",
+    day: "Today", week: "7 days", created: "Newly created", rel: "Has release", all: "All",
     sRecent: "Recently pushed", sStars: "Most stars", sNew: "Newest repos",
     meta: "{n} shown of {t} · scanned {w}", noData: "No data yet. Run the “Discover new PS5 projects” workflow once (Actions tab) and refresh.",
     none: "Nothing matches this filter.", loadFail: "Could not load discover.json.",
     newB: "NEW", warn: "⚠ unusual stars", open: "Open", translate: "Translate", trOrig: "Show original", trTip: "Sends the descriptions to Google Translate", trFail: "Translation failed, try again later", add: "Add to my list", hide: "Hide", pushed: "pushed", created: "created", release: "release", unhide: "Show hidden ({n})" },
   th: { title: "ค้นหาโปรเจค PS5 ใหม่ๆ", search: "ค้นหา repo…", back: "กลับ",
-    day: "วันนี้", week: "7 วัน", fresh: "repo ใหม่", rel: "มี release", all: "ทั้งหมด",
+    day: "วันนี้", week: "7 วัน", created: "สร้างใหม่", rel: "มี release", all: "ทั้งหมด",
     sRecent: "อัปเดตล่าสุด", sStars: "ดาวเยอะสุด", sNew: "repo ใหม่สุด",
     meta: "แสดง {n} จาก {t} · สแกนเมื่อ {w}", noData: "ยังไม่มีข้อมูล ให้ไปรัน workflow “Discover new PS5 projects” 1 ครั้ง (แท็บ Actions) แล้วรีเฟรช",
     none: "ไม่มีรายการที่ตรงกับตัวกรองนี้", loadFail: "โหลด discover.json ไม่ได้",
@@ -119,7 +119,8 @@ const isFresh = it => age(it.created) <= 7 * DAY;
 const inFilter = it => {
   if (filter === "day") return age(it.pushed) <= DAY || age(it.first_seen) <= DAY;
   if (filter === "week") return age(it.pushed) <= 7 * DAY;
-  if (filter === "fresh") return isFresh(it);
+  if (filter === "created") return isFresh(it);
+  if (filter === "updated") return age(it.pushed) <= 7 * DAY && age(it.created) > 7 * DAY;
   if (filter === "rel") return !!it.release;
   return true;
 };
@@ -133,7 +134,7 @@ function render(noTr) {
   for (const [v, k] of [["recent", "sRecent"], ["stars", "sStars"], ["new", "sNew"]]) { const o = h("option", "", t(k)); o.value = v; sel.append(o); }
   sel.value = sort;
   const chips = $("chips"); chips.textContent = "";
-  for (const f of ["day", "week", "fresh", "rel", "all"]) {
+  for (const f of ["day", "week", "created", "updated", "rel", "all"]) {
     const b = h("button", "d-btn" + (f === filter ? " on" : ""), t(f)); b.type = "button";
     b.onclick = () => { filter = f; render(); }; chips.append(b);
   }
