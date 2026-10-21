@@ -362,17 +362,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.73.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.0/PS5_Cooling_System_Center_v1.73.0.elf",
-      "version": "v1.73.0",
+      "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.1/PS5_Cooling_System_Center_v1.73.1.elf",
+      "version": "v1.73.1",
       "last_update": "2026-10-21",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "5f2e3d26d33981b2542f6a8b16d6cfee7989a4a3fe48d35d6d6c959f965a46de",
+      "checksum": "1378dd6a0622b9186e21214016dc70e5b349a3d44cfffe8f065d9e0c6b38c52f",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "PS5 Cooling & System Center – Pro v1.73.0 Highlights Disc im Laufwerk – neuer Reiter „Disc“: zeigt, welche Disc im Laufwerk liegt (PS2, PS3, PS4, PS5) mit Titelkennung, und legt von PS2-DVDs und PS3-Discs ein Abbild (ISO) mit CRC-32, MD5 und SHA-1 an, auf Wunsch geprüft gegen Re…"
+      "release_notes": "PS5 Cooling & System Center – Pro v1.73.1 Fehlerbehebungen Weboberfläche nach einem Netzwerkwechsel. Wird das WLAN aus- und wieder eingeschaltet oder das Kabel gezogen, beendete die Konsole mitunter den Zugang der Seite, obwohl die App weiterlief – die Seite lud erst nach erneut…"
     },
     {
       "id": "ps5-game-compressor",
@@ -617,21 +617,6 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-7.1.10.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.10/ps5upload-7.1.10.elf",
-      "version": "v7.1.10",
-      "last_update": "2026-10-20",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "0025ee8d5ac9b660e8bc0ee98e42675ddd69b39c58ce71ff5ac0fb97de1a6040",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Compressed images in Game files. .ffpfsc files now appear, including images beyond the first directory page. Open their folder in Files to decompress before editing; compressed images use ShadowMount+ for playback. Truthful tile removal (#480). Removing PS5Upload's own tile now…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
       "filename": "ps5upload-7.1.11.elf",
       "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.11/ps5upload-7.1.11.elf",
       "version": "v7.1.11",

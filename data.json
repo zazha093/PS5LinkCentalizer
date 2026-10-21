@@ -11,7 +11,7 @@
       "date": "2026-03-31",
       "title": "",
       "assets": 5,
-      "downloads": 27621,
+      "downloads": 27694,
       "notes": "Special April 1st Release",
       "files": [],
       "zips": [
@@ -49,7 +49,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 31496,
+    "downloads": 31574,
     "install": null
   },
   {
@@ -64,7 +64,7 @@
       "date": "2026-10-15",
       "title": "OnionHEN v0.9.0",
       "assets": 1,
-      "downloads": 3913,
+      "downloads": 3993,
       "notes": "OnionHEN is a homebrew enabler and Toolbox for jailbroken PS5 consoles, built on etaHEN. It prepares the system, injects a Toolbox into the home screen, and adds cheats, a game overlay, payload management, and background services. Version: v0.9.0 is the stable re…",
       "files": [
         {
@@ -87,7 +87,7 @@
     "issues": 16,
     "homepage": "",
     "branch": "main",
-    "downloads": 33418,
+    "downloads": 33510,
     "install": null
   },
   {
@@ -103,7 +103,7 @@
       "date": "2026-10-18",
       "title": "ProsperoEden v1.005.000",
       "assets": 2,
-      "downloads": 12085,
+      "downloads": 12742,
       "notes": "This alpha keeps each game in a folder of its own with everything that belongs to it, gives cheats their own list, adds a speed limit and a second frame generation method, and fixes a lost graphics device and black boxes that spread over the picture. Performance and compatibilit…",
       "files": [],
       "zips": [
@@ -117,16 +117,16 @@
       ]
     },
     "updated": "2026-10-18",
-    "stars": 842,
+    "stars": 843,
     "archived": false,
     "language": "C++",
     "topics": [],
     "license": "GPL-3.0",
     "forks": 114,
-    "issues": 82,
+    "issues": 83,
     "homepage": "",
     "branch": "main",
-    "downloads": 135977,
+    "downloads": 136700,
     "install": null
   },
   {
@@ -141,7 +141,7 @@
       "date": "2026-10-15",
       "title": "ProsperoLight 01.000.110",
       "assets": 2,
-      "downloads": 2288,
+      "downloads": 2337,
       "notes": "Stable: Punktfunk hosts, more box art, no wait before the stream New Punktfunk hosts: the decoder now reserves six pictures by default, so Punktfunk's GameStream stream (five reference frames) decodes on a release build. Before, it showed no picture. Streams from other hosts are…",
       "files": [],
       "zips": [
@@ -165,7 +165,7 @@
     "issues": 4,
     "homepage": "https://discord.gg/xermTyfngt",
     "branch": "main",
-    "downloads": 10599,
+    "downloads": 10672,
     "install": null
   },
   {
@@ -180,7 +180,7 @@
       "date": "2026-08-04",
       "title": "nanoDNS 0.4",
       "assets": 2,
-      "downloads": 54149,
+      "downloads": 54361,
       "notes": "IPv6 support Quiet mode Yandex.DNS fix (remove old nanodns.ini) FW PS5 1.00-13.60, PS4 1.00-13.52",
       "files": [
         {
@@ -194,7 +194,7 @@
     },
     "pre": null,
     "updated": "2026-10-12",
-    "stars": 446,
+    "stars": 447,
     "archived": false,
     "language": "C",
     "topics": [],
@@ -203,7 +203,7 @@
     "issues": 4,
     "homepage": "",
     "branch": "main",
-    "downloads": 108977,
+    "downloads": 109191,
     "install": null
   },
   {
@@ -219,7 +219,7 @@
       "date": "2026-10-21",
       "title": "ShadowMountPlus 1.7beta7",
       "assets": 2,
-      "downloads": 994,
+      "downloads": 2763,
       "notes": "Fix sandbox USB recovery after device removal",
       "files": [
         {
@@ -240,16 +240,16 @@
       ]
     },
     "updated": "2026-10-21",
-    "stars": 1068,
+    "stars": 1078,
     "archived": false,
     "language": "C",
     "topics": [],
     "license": "GPL-3.0",
-    "forks": 92,
+    "forks": 94,
     "issues": 14,
     "homepage": "https://discord.gg/x2Ppvzwjhm",
     "branch": "1.7",
-    "downloads": 260526,
+    "downloads": 262610,
     "install": null
   },
   {
@@ -264,7 +264,7 @@
       "date": "2026-09-20",
       "title": "Kstuff Lite 1.11 Beta",
       "assets": 1,
-      "downloads": 76758,
+      "downloads": 77128,
       "notes": "Supports Firmware 1.00-13.60 A huge thanks to @sleirsgoevy for the help and creating this project, and to @zecoxao, @flatz, @idlesauce, @buzzer-re, @Al-Azif, @drakmor and everyone else who contributed. Your work and support are greatly appreciated! 🔹 Chang…",
       "files": [
         {
@@ -278,7 +278,7 @@
     },
     "pre": null,
     "updated": "2026-10-20",
-    "stars": 791,
+    "stars": 793,
     "archived": false,
     "language": "C",
     "topics": [],
@@ -287,7 +287,7 @@
     "issues": 11,
     "homepage": "",
     "branch": "main",
-    "downloads": 200355,
+    "downloads": 200752,
     "install": null
   },
   {
@@ -302,7 +302,7 @@
       "date": "2026-10-03",
       "title": "PS5 App Dumper 2.00 Beta PS5 App Dumper 2.10 Beta",
       "assets": 3,
-      "downloads": 5478,
+      "downloads": 5528,
       "notes": "Highlights DLC Each title shows how many DLC are installed for it, with names and sizes Dump DLC on the running game dumps its DLC alone, next to a dump you made before, without copying the game again With several DLC you pick which ones; a picked DLC that is there already is re…",
       "files": [
         {
@@ -316,7 +316,7 @@
     },
     "pre": null,
     "updated": "2026-10-03",
-    "stars": 175,
+    "stars": 176,
     "archived": false,
     "language": "C",
     "topics": [],
@@ -325,7 +325,7 @@
     "issues": 7,
     "homepage": "",
     "branch": "main",
-    "downloads": 24825,
+    "downloads": 24889,
     "install": null
   },
   {
@@ -340,7 +340,7 @@
       "date": "2026-10-05",
       "title": "etaHEN 2.5B Unified r1 - PS5 11.00-13.60",
       "assets": 4,
-      "downloads": 3626,
+      "downloads": 3649,
       "notes": "etaHEN 2.5B Unified r1 — PS5 11.00–13.60 The multi-firmware line is now the main release. This unofficial etaHEN update combines the controller-input startup fix, a Toolbox card positioned to the left of PlayStation Store, system/game plugin improvements, and working PS4/PS5 FPS…",
       "files": [
         {
@@ -378,7 +378,7 @@
     "issues": 5,
     "homepage": "https://sniperscheats.lol/",
     "branch": "main",
-    "downloads": 17267,
+    "downloads": 17341,
     "install": null
   },
   {
@@ -393,7 +393,7 @@
       "date": "2026-10-19",
       "title": "",
       "assets": 1,
-      "downloads": 3911,
+      "downloads": 4261,
       "notes": "Changelog 🛠️ Bug Fixes Hotfix for v0.6.2: fixed emojis not appearing on PS5. Full Changelog: https://github.com/itsPLK/ps5-payload-manager/compare/v0.6.2...v0.6.3 --- 📝 How to update You do not need to manually download or replace your original pldmgr.elf file. Simply install…",
       "files": [
         {
@@ -407,7 +407,7 @@
     },
     "pre": null,
     "updated": "2026-10-19",
-    "stars": 614,
+    "stars": 616,
     "archived": false,
     "language": "JavaScript",
     "topics": [],
@@ -416,7 +416,7 @@
     "issues": 5,
     "homepage": "",
     "branch": "main",
-    "downloads": 121766,
+    "downloads": 122174,
     "install": null
   },
   {
@@ -431,7 +431,7 @@
       "date": "2026-10-10",
       "title": "",
       "assets": 1,
-      "downloads": 3201,
+      "downloads": 3257,
       "notes": "Added support for PS5 backport patches that previously appeared as unknown packages Show an \"SDK target\" badge for PS5 packages when the executable's SDK version can be read reliably Improved installed-version detection so newer PS5 patches can be installed and already installed…",
       "files": [
         {
@@ -454,7 +454,7 @@
     "issues": 11,
     "homepage": "",
     "branch": "main",
-    "downloads": 13735,
+    "downloads": 13801,
     "install": null
   },
   {
@@ -469,7 +469,7 @@
       "date": "2026-10-08",
       "title": "",
       "assets": 3,
-      "downloads": 74768,
+      "downloads": 75671,
       "notes": "Changelog 9.05, 11.40 & 11.60: Added missing offsets to fix Poops support. (Note: Relapse remains unsupported on 9.05 and 11.40) --- Setup Instructions - see README Discussion thread for this release --- Downloads | Platform | File | |---|---| | PS5 (installer payload) | webkit-…",
       "files": [
         {
@@ -483,16 +483,16 @@
     },
     "pre": null,
     "updated": "2026-10-08",
-    "stars": 1169,
+    "stars": 1171,
     "archived": false,
     "language": "JavaScript",
     "topics": [],
     "license": "GPL-3.0",
-    "forks": 132,
+    "forks": 133,
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 325623,
+    "downloads": 326722,
     "install": null
   },
   {
@@ -507,7 +507,7 @@
       "date": "2026-08-21",
       "title": "Game Compressor 1.0.4",
       "assets": 1,
-      "downloads": 22714,
+      "downloads": 22822,
       "notes": "Game Compressor 1.0.4 adds a multilingual interface and improves compatibility with firmware 4.51, APR-EMU folder workflows, and ShadowMountPlus launch layouts. Compared against v1.0.3. Key Changes Added German, French, Arabic, Italian, Spanish, and Simplif…",
       "files": [
         {
@@ -530,7 +530,7 @@
     "issues": 38,
     "homepage": "",
     "branch": "main",
-    "downloads": 46885,
+    "downloads": 47011,
     "install": null
   },
   {
@@ -541,33 +541,33 @@
     "firmware": "",
     "stable": null,
     "pre": {
-      "tag": "KytyPS5-2026-10-21-4644c52",
-      "url": "https://github.com/KytyPS5/KytyPS5/releases/tag/KytyPS5-2026-10-21-4644c52",
+      "tag": "KytyPS5-2026-10-21-ca6a7b8",
+      "url": "https://github.com/KytyPS5/KytyPS5/releases/tag/KytyPS5-2026-10-21-ca6a7b8",
       "date": "2026-10-21",
       "title": "",
       "assets": 3,
-      "downloads": 3246,
-      "notes": "Full Changelog: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-20-7b7f9a7...KytyPS5-2026-10-21-4644c52",
+      "downloads": 215,
+      "notes": "What's Changed launcher: add Enable all / Disable all to the cheats dialog by @Pipe530 in https://github.com/KytyPS5/KytyPS5/pull/1773 Full Changelog: https://github.com/KytyPS5/KytyPS5/compare/KytyPS5-2026-10-21-13b291f...KytyPS5-2026-10-21-ca6a7b8",
       "files": [],
       "zips": [
         {
-          "name": "KytyPS5-2026-10-21-4644c52-macOS-x86_64.zip",
-          "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-4644c52/KytyPS5-2026-10-21-4644c52-macOS-x86_64.zip",
-          "size": 56313507,
-          "sha256": "2c34fdcd7ce1280c1a6025cb80964e44b7068955ae3ec08773fde13c1c8515ee",
+          "name": "KytyPS5-2026-10-21-ca6a7b8-macOS-x86_64.zip",
+          "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-ca6a7b8/KytyPS5-2026-10-21-ca6a7b8-macOS-x86_64.zip",
+          "size": 56320949,
+          "sha256": "2de7fe97ee1165783b70b7e069f0441f4888139503f4a2a48f890bb182b84812",
           "kind": "other"
         },
         {
-          "name": "KytyPS5-2026-10-21-4644c52-Windows-x64.zip",
-          "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-4644c52/KytyPS5-2026-10-21-4644c52-Windows-x64.zip",
-          "size": 28336932,
-          "sha256": "6efd3dc2cd53693c23ce878f2b4505ffa8e383321234f3931b8211ec2f86efc6",
+          "name": "KytyPS5-2026-10-21-ca6a7b8-Windows-x64.zip",
+          "url": "https://github.com/KytyPS5/KytyPS5/releases/download/KytyPS5-2026-10-21-ca6a7b8/KytyPS5-2026-10-21-ca6a7b8-Windows-x64.zip",
+          "size": 28338738,
+          "sha256": "09bd3b9089f741deaa0fbe9c308d5c007f421ae33be6f6068ca0852c81e39636",
           "kind": "other"
         }
       ]
     },
     "updated": "2026-10-21",
-    "stars": 9461,
+    "stars": 9498,
     "archived": false,
     "language": "C++",
     "topics": [
@@ -579,11 +579,11 @@
       "ps5"
     ],
     "license": "GPL-2.0",
-    "forks": 1179,
-    "issues": 817,
+    "forks": 1187,
+    "issues": 816,
     "homepage": "",
     "branch": "main",
-    "downloads": 59461,
+    "downloads": 61190,
     "install": null
   },
   {
@@ -599,7 +599,7 @@
       "date": "2026-10-19",
       "title": "PS5_RetroArch-v4.0.0-beta-4",
       "assets": 2,
-      "downloads": 3118,
+      "downloads": 3473,
       "notes": "PS5RetroArch-v4.0.0-beta-4 PS5 RetroArch is a passion project, not a piracy project. It exists so you can play the games you own on the console you own. Piracy is not condoned. No games, BIOS files, console firmware or decryption keys are included, and they never will be. Use on…",
       "files": [],
       "zips": [
@@ -619,10 +619,10 @@
     "topics": [],
     "license": "GPL-3.0",
     "forks": 35,
-    "issues": 29,
+    "issues": 30,
     "homepage": "",
     "branch": "main",
-    "downloads": 47506,
+    "downloads": 47995,
     "install": null
   },
   {
@@ -657,7 +657,7 @@
       "date": "2026-09-28",
       "title": "",
       "assets": 1,
-      "downloads": 35287,
+      "downloads": 35698,
       "notes": "Prospero Manager v1.1 See the full changelog here: Changelog If you encounter any issues, please report them through GitHub or in our Discord server! Special Thanks: 💖 Supporters — those who supported the project through Ko-Fi, Buy Me a Coffee, or PIX. • Vinas • Someone • Bruno…",
       "files": [
         {
@@ -671,7 +671,7 @@
     },
     "pre": null,
     "updated": "2026-09-28",
-    "stars": 232,
+    "stars": 234,
     "archived": false,
     "language": "C++",
     "topics": [],
@@ -680,7 +680,7 @@
     "issues": 13,
     "homepage": "",
     "branch": "main",
-    "downloads": 38027,
+    "downloads": 38441,
     "install": null
   },
   {
@@ -695,7 +695,7 @@
       "date": "2026-10-11",
       "title": "PS5 PKG Tool v1.3.0",
       "assets": 1,
-      "downloads": 9846,
+      "downloads": 10099,
       "notes": "PS5 PKG Tool 1.3.0 - 2026-10-11 Features Add a default workspace folder in Settings, so image builds and package conversions can stage on a drive with room instead of filling the system drive (C:). Remember the library grouping (Family, Title ID, Category, Region, Source format,…",
       "files": [],
       "zips": [
@@ -710,16 +710,16 @@
     },
     "pre": null,
     "updated": "2026-10-19",
-    "stars": 182,
+    "stars": 183,
     "archived": false,
     "language": "C#",
     "topics": [],
     "license": "GPL-3.0",
     "forks": 22,
-    "issues": 8,
+    "issues": 9,
     "homepage": "",
     "branch": "main",
-    "downloads": 24088,
+    "downloads": 24346,
     "install": null
   },
   {
@@ -734,7 +734,7 @@
       "date": "2026-10-09",
       "title": "Pegasus DL 1.11.0",
       "assets": 1,
-      "downloads": 8294,
+      "downloads": 8374,
       "notes": "Parallel downloads now use persistent connections and write ranges directly into the temporary file, avoiding a final segment-copy pass. New configurations default to 16 connections, with a single-stream fallback for incompatible hosts. RAR/RAR5 and 7z archive cache downloads us…",
       "files": [
         {
@@ -757,7 +757,7 @@
     "issues": 18,
     "homepage": "",
     "branch": "main",
-    "downloads": 42022,
+    "downloads": 42113,
     "install": null
   },
   {
@@ -767,59 +767,12 @@
     "category": "PC Tool",
     "firmware": "",
     "stable": {
-      "tag": "v7.1.10",
-      "url": "https://github.com/phantomptr/ps5upload/releases/tag/v7.1.10",
-      "date": "2026-10-20",
-      "title": "",
-      "assets": 21,
-      "downloads": 12112,
-      "notes": "Compressed images in Game files. .ffpfsc files now appear, including images beyond the first directory page. Open their folder in Files to decompress before editing; compressed images use ShadowMount+ for playback. Truthful tile removal (#480). Removing PS5Upload's own tile now…",
-      "files": [
-        {
-          "name": "ps5upload-7.1.10.elf",
-          "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.10/ps5upload-7.1.10.elf",
-          "size": 4104352,
-          "sha256": "0025ee8d5ac9b660e8bc0ee98e42675ddd69b39c58ce71ff5ac0fb97de1a6040"
-        }
-      ],
-      "zips": [
-        {
-          "name": "PS5Upload-7.1.10-linux-arm64.zip",
-          "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.10/PS5Upload-7.1.10-linux-arm64.zip",
-          "size": 100888541,
-          "sha256": "9d06ab3c2cf7efc391fb2c14ad242c97536d2f81daa1f6f35372ccc92ed7d8b3",
-          "kind": "other"
-        },
-        {
-          "name": "PS5Upload-7.1.10-linux-x64.zip",
-          "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.10/PS5Upload-7.1.10-linux-x64.zip",
-          "size": 102926195,
-          "sha256": "1e3d5b923db4f5da838aa1d376a08e4de1d433015700fc432a7e12285a0c22d5",
-          "kind": "other"
-        },
-        {
-          "name": "PS5Upload-7.1.10-win-arm64.zip",
-          "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.10/PS5Upload-7.1.10-win-arm64.zip",
-          "size": 23481261,
-          "sha256": "77688d65dbea36aaed2c26a2cf049af8fe94fa4278415016c7054b3c8826c959",
-          "kind": "other"
-        },
-        {
-          "name": "PS5Upload-7.1.10-win-x64.zip",
-          "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.10/PS5Upload-7.1.10-win-x64.zip",
-          "size": 24787693,
-          "sha256": "3e53f65c3d37c7f424865c0479ee931f41dfd48204ca98f1e9c6dd0efe761bb4",
-          "kind": "other"
-        }
-      ]
-    },
-    "pre": {
       "tag": "v7.1.11",
       "url": "https://github.com/phantomptr/ps5upload/releases/tag/v7.1.11",
       "date": "2026-10-21",
       "title": "",
       "assets": 21,
-      "downloads": 693,
+      "downloads": 4419,
       "notes": "Browser avatar upload (#486). Choose an image from the browser device, preview crop or fit, and confirm applying it to the selected console user. Works with Docker engines too. Remote conversion inspection (#485). Allow slow console image reads to complete beyond the ordinary on…",
       "files": [
         {
@@ -860,6 +813,7 @@
         }
       ]
     },
+    "pre": null,
     "updated": "2026-10-21",
     "stars": 808,
     "archived": false,
@@ -871,10 +825,10 @@
     ],
     "license": "",
     "forks": 60,
-    "issues": 6,
+    "issues": 7,
     "homepage": "https://discord.gg/fzK3xddtrM",
     "branch": "main",
-    "downloads": 218901,
+    "downloads": 224715,
     "install": null
   },
   {
@@ -889,7 +843,7 @@
       "date": "2026-08-29",
       "title": "poopicker-host 2026.08.29",
       "assets": 3,
-      "downloads": 10694,
+      "downloads": 10715,
       "notes": "poopicker-host.exe - the offline DNS + HTTP/HTTPS host, one file, no install. Run it elevated, point the console's DNS at the PC, open any address in the console browser. Any unknown hostname serves the poopicker page, so a stale bookmark lands on the index instead of an error.…",
       "files": [],
       "zips": []
@@ -905,7 +859,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 10694,
+    "downloads": 10715,
     "install": null
   },
   {
@@ -920,7 +874,7 @@
       "date": "2026-07-17",
       "title": "",
       "assets": 1,
-      "downloads": 860,
+      "downloads": 864,
       "notes": "Initial release.",
       "files": [
         {
@@ -943,7 +897,7 @@
     "issues": 4,
     "homepage": "",
     "branch": "main",
-    "downloads": 860,
+    "downloads": 864,
     "install": null
   },
   {
@@ -958,7 +912,7 @@
       "date": "2026-09-12",
       "title": "Prospero Explorer v1.0",
       "assets": 1,
-      "downloads": 9767,
+      "downloads": 9841,
       "notes": "What is Prospero Explorer Prospero Explorer is a file explorer for the PS5 console, built on the SharpProspero SDK. It browses and manages the file system, unpacks and builds archives, plays audio and video, views and edits text, views and converts picture…",
       "files": [],
       "zips": [
@@ -974,7 +928,7 @@
     "pre": null,
     "updated": "2026-09-12",
     "stars": 26,
-    "archived": false,
+    "archived": true,
     "language": "C#",
     "topics": [
       "csharp",
@@ -987,7 +941,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 9767,
+    "downloads": 9841,
     "install": null
   },
   {
@@ -1002,7 +956,7 @@
       "date": "2026-09-25",
       "title": "Prospero Multi Tools v1",
       "assets": 2,
-      "downloads": 5994,
+      "downloads": 6036,
       "notes": "A PS5 Homebrew Backup Manager & Toolkit for PS1, PS2, PS3, PS4, PS5, PSP and PS Vita backups. Browse backups, inspect and modify metadata, install PS4/PS5 packages, launch PS1/PS2/PSP titles, and more. Please check the README for all features, information and how to use : https:…",
       "files": [],
       "zips": [
@@ -1025,7 +979,7 @@
     "pre": null,
     "updated": "2026-09-25",
     "stars": 19,
-    "archived": false,
+    "archived": true,
     "language": "C#",
     "topics": [
       "backupmanager",
@@ -1039,7 +993,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 5994,
+    "downloads": 6036,
     "install": {
       "dir": "",
       "zip": "ProsperoMultiTools",
@@ -1058,7 +1012,7 @@
       "date": "2026-10-19",
       "title": "PS5SX2 2.15",
       "assets": 4,
-      "downloads": 14165,
+      "downloads": 15366,
       "notes": "(build vk-285-177) Everything from the test builds since 2.10 (172 to 177) in one version. It is the build testers have had since 17 October as test build 177. New Game tiles. Any game can get its own tile on the PS5 home screen: on the shelf, press □ on a game and p…",
       "files": [
         {
@@ -1092,16 +1046,16 @@
     },
     "pre": null,
     "updated": "2026-10-19",
-    "stars": 1485,
+    "stars": 1488,
     "archived": false,
     "language": "C++",
     "topics": [],
     "license": "GPL-3.0",
-    "forks": 129,
+    "forks": 130,
     "issues": 68,
     "homepage": "",
     "branch": "main",
-    "downloads": 171351,
+    "downloads": 172627,
     "install": null
   },
   {
@@ -1116,7 +1070,7 @@
       "date": "2026-10-06",
       "title": "",
       "assets": 3,
-      "downloads": 604,
+      "downloads": 609,
       "notes": "After updating, check your autoload settings. If a payload manager or autoloader starts Tailscale with the console, make sure it starts the new version, or the old one comes back after a restart. The easy way: keep that copy under a fixed name such as tailscale.elf and save the…",
       "files": [
         {
@@ -1146,7 +1100,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 1727,
+    "downloads": 1755,
     "install": null
   },
   {
@@ -1161,7 +1115,7 @@
       "date": "2026-10-20",
       "title": "PS5-ECAM 5.0.0",
       "assets": 1,
-      "downloads": 70,
+      "downloads": 79,
       "notes": "Download PS5-ECAM-v5.0.0.zip (81.5 MB), on the releases branch. SHA-256: 5e29977effb819b884630aaeda212e10b082b243a72c6440b21ed7d286432299 From 3.0.0 or later, the app offers this update itself as it starts (Settings > Online checks again). Otherwise extract the ZIP and copy the…",
       "files": [],
       "zips": []
@@ -1174,10 +1128,10 @@
     "topics": [],
     "license": "GPL-3.0",
     "forks": 30,
-    "issues": 5,
+    "issues": 7,
     "homepage": "",
     "branch": "PS5-ECAM",
-    "downloads": 11760,
+    "downloads": 11852,
     "install": null
   },
   {
@@ -1192,7 +1146,7 @@
       "date": "2026-10-21",
       "title": "PoorDS4 v0.2.0",
       "assets": 6,
-      "downloads": 285,
+      "downloads": 441,
       "notes": "This release brings together the DS4 compatibility, controller-routing and recovery fixes made since RC51. After connecting additional controllers, hold L1 + R1 + L2 + R2 to reset PoorDS4 and refresh controller detection. Changes Improved emulator and homebrew inp…",
       "files": [
         {
@@ -1233,7 +1187,7 @@
     },
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 116,
+    "stars": 117,
     "archived": false,
     "language": "C",
     "topics": [
@@ -1246,10 +1200,10 @@
     ],
     "license": "GPL-3.0",
     "forks": 9,
-    "issues": 37,
+    "issues": 36,
     "homepage": "",
     "branch": "main",
-    "downloads": 19474,
+    "downloads": 19643,
     "install": null
   },
   {
@@ -1264,7 +1218,7 @@
       "date": "2026-10-11",
       "title": "",
       "assets": 4,
-      "downloads": 3498,
+      "downloads": 3551,
       "notes": "What's Changed patchGetAppInfoSfo: fix pattern for new firmware ps4 by @illusionyy in https://github.com/illusionyy/ps-patch-system/pull/32 shellcore: patch preLaunchUpdateCheck flags by @illusionyy in https://github.com/illusionyy/ps-patch-system/pull/33 Full Changelog: https:/…",
       "files": [
         {
@@ -1305,7 +1259,7 @@
     "issues": 4,
     "homepage": "",
     "branch": "main",
-    "downloads": 18476,
+    "downloads": 18641,
     "install": null
   },
   {
@@ -1315,36 +1269,36 @@
     "category": "Homebrew",
     "firmware": "",
     "stable": {
-      "tag": "v1.000.104",
-      "url": "https://github.com/darkxex/ProsperoStore/releases/tag/v1.000.104",
-      "date": "2026-10-20",
+      "tag": "v1.000.105",
+      "url": "https://github.com/darkxex/ProsperoStore/releases/tag/v1.000.105",
+      "date": "2026-10-21",
       "title": "",
       "assets": 2,
-      "downloads": 5968,
-      "notes": "Custom catalogs: you can add a list of GitHub repositories as catalogs, each in its own Catalogs room (#44). The official catalog's own repository is no longer loaded as a custom catalog from settings.txt (including a catalogurl saved by an older version); it stays the Official…",
+      "downloads": 1361,
+      "notes": "Turkish is now the eighth language: the console's Turkish starts the store in it, and Settings > Language offers \"Türkçe\" (#46). The store can now update itself from a custom catalog's own host (#45).",
       "files": [],
       "zips": [
         {
           "name": "PPSA99000.zip",
-          "url": "https://github.com/darkxex/ProsperoStore/releases/download/v1.000.104/PPSA99000.zip",
-          "size": 28810897,
-          "sha256": "8219df628a65039291e98690c1b63a251dba114fc86c89944dfb356c2e3bc8da",
+          "url": "https://github.com/darkxex/ProsperoStore/releases/download/v1.000.105/PPSA99000.zip",
+          "size": 28821498,
+          "sha256": "c3d60cc649fd814c54c4d82c209050126d8e6fa7dd66838d35e44eecf6f4fa88",
           "kind": "app"
         }
       ]
     },
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 372,
+    "stars": 373,
     "archived": false,
     "language": "C++",
     "topics": [],
     "license": "GPL-3.0",
     "forks": 23,
-    "issues": 0,
+    "issues": 1,
     "homepage": "https://buymeacoffee.com/angelxex",
     "branch": "main",
-    "downloads": 108843,
+    "downloads": 110803,
     "install": null
   },
   {
@@ -1359,7 +1313,7 @@
       "date": "2026-08-05",
       "title": "fetchpkg-gui 1.0.4",
       "assets": 1,
-      "downloads": 874,
+      "downloads": 884,
       "notes": "",
       "files": [],
       "zips": [
@@ -1383,7 +1337,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 874,
+    "downloads": 884,
     "install": null
   },
   {
@@ -1398,7 +1352,7 @@
       "date": "2026-09-19",
       "title": "",
       "assets": 1,
-      "downloads": 5816,
+      "downloads": 5846,
       "notes": "Compile with latest SDK (13.60 prep)",
       "files": [
         {
@@ -1421,7 +1375,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 6208,
+    "downloads": 6238,
     "install": null
   },
   {
@@ -1436,7 +1390,7 @@
       "date": "2026-10-20",
       "title": "PSFlyCast v1.3.0",
       "assets": 12,
-      "downloads": 643,
+      "downloads": 713,
       "notes": "Flycast, the Dreamcast, NAOMI and Atomiswave emulator, as a native app for a jailbroken PS5, with a controller-only interface and the emulator's Vulkan renderer drawing through RADV. PSFlyCast is a passion project, not a piracy project. It exists so you can play…",
       "files": [],
       "zips": [
@@ -1460,7 +1414,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 5052,
+    "downloads": 5197,
     "install": null
   },
   {
@@ -1475,7 +1429,7 @@
       "date": "2026-10-11",
       "title": "PSGFX 2.0",
       "assets": 1,
-      "downloads": 566,
+      "downloads": 570,
       "notes": "has a completely new look and a community icon library, and it works with the latest PS5 Upload. If you're updating from 1.1, this release also brings everything from 1.2 and 1.3, including home-screen music. Download: PSGFX-windows.zip below. Unzip it once and run PSG…",
       "files": [],
       "zips": [
@@ -1503,7 +1457,7 @@
     "issues": 5,
     "homepage": "",
     "branch": "main",
-    "downloads": 945,
+    "downloads": 950,
     "install": null
   },
   {
@@ -1518,7 +1472,7 @@
       "date": "2026-10-10",
       "title": "Porpoise 3.0 (DolphinPS5)",
       "assets": 1,
-      "downloads": 14500,
+      "downloads": 14703,
       "notes": "Porpoise 3.0 is the biggest update yet. 🌐 Online Online Hub in Settings → Online WiiLink WFC and Wiimmfi set up in a few steps WiiConnect24 channels Custom servers, saved by name, with a connection test No more freeze when connecting in Mario Kart Wii 📁 Games and library Netwo…",
       "files": [],
       "zips": [
@@ -1549,7 +1503,7 @@
     "issues": 21,
     "homepage": "https://www.ripalda.dev",
     "branch": "Main",
-    "downloads": 29221,
+    "downloads": 29436,
     "install": null
   },
   {
@@ -1564,7 +1518,7 @@
       "date": "2026-10-14",
       "title": "Orbit Store 1.3.5 (Beta)",
       "assets": 17,
-      "downloads": 74170,
+      "downloads": 75751,
       "notes": "Archive.org sign-in comes to Orbit. Archive.org sign-in. Connect your account in the native PS5 app, browser or Orbit Zero to access downloads that require signing in. 225 unavailable Archive.org links removed, and 3 games also had to go. Links that require an Archive.org accoun…",
       "files": [
         {
@@ -1614,7 +1568,7 @@
     },
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 1088,
+    "stars": 1093,
     "archived": false,
     "language": "",
     "topics": [
@@ -1625,11 +1579,11 @@
       "ps5"
     ],
     "license": "",
-    "forks": 84,
-    "issues": 53,
+    "forks": 85,
+    "issues": 51,
     "homepage": "",
     "branch": "main",
-    "downloads": 237079,
+    "downloads": 238911,
     "install": null
   },
   {
@@ -1644,7 +1598,7 @@
       "date": "2026-10-18",
       "title": "PSSwanStation build 24",
       "assets": 20,
-      "downloads": 1741,
+      "downloads": 1828,
       "notes": "Added HD texture packs for 3D games too. A pack picture replaces one block of a texture page as the PlayStation's texture cache holds it (64x64 texels of a 4-bit texture, 32x64 of an 8-bit one, 32x32 of a 15-bit one). Pictures are named block- - .png and g…",
       "files": [],
       "zips": [
@@ -1668,7 +1622,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 6569,
+    "downloads": 6787,
     "install": null
   },
   {
@@ -1683,7 +1637,7 @@
       "date": "2026-10-10",
       "title": "v1.0 welcome to pshare",
       "assets": 1,
-      "downloads": 1413,
+      "downloads": 1432,
       "notes": "PShare sends your PS5 captures where you want them, the moment you take them. Take a screenshot or save a clip with the Create button and PShare sends it to Discord, Telegram, catbox.moe, a USB drive, a shared folder on your PC or a dozen other places, automatically and in the b…",
       "files": [],
       "zips": [
@@ -1707,7 +1661,7 @@
     "issues": 13,
     "homepage": "",
     "branch": "main",
-    "downloads": 1413,
+    "downloads": 1432,
     "install": null
   },
   {
@@ -1722,7 +1676,7 @@
       "date": "2026-05-01",
       "title": "",
       "assets": 2,
-      "downloads": 15019,
+      "downloads": 15021,
       "notes": "New Loader UI: A clean graphical interface that replaces system notification spam with a dedicated log window for important status updates. In the event of an error, the UI automatically hides to reveal the full \"old style\" debug logs. Payload Manager (New Default ELF): It handl…",
       "files": [],
       "zips": [
@@ -1741,7 +1695,7 @@
       "date": "2026-10-20",
       "title": "v1.0.3",
       "assets": 2,
-      "downloads": 4226,
+      "downloads": 6038,
       "notes": "Changelog: Updater: ensure splash.html permissions (read-only) even when no update zip was applied Updated unified-autoloader to v0.1.6 includes bundled Payload Manager v0.6.3 Full Changelog (since last stable release): https://github.com/itsPLK/ps5-y2jb-autoloader/compare/v1.0.…",
       "files": [],
       "zips": [
@@ -1755,16 +1709,16 @@
       ]
     },
     "updated": "2026-10-21",
-    "stars": 952,
+    "stars": 958,
     "archived": false,
     "language": "JavaScript",
     "topics": [],
     "license": "GPL-3.0",
-    "forks": 61,
+    "forks": 62,
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 296247,
+    "downloads": 298234,
     "install": null
   },
   {
@@ -1779,7 +1733,7 @@
       "date": "2026-08-20",
       "title": "",
       "assets": 3,
-      "downloads": 33328,
+      "downloads": 33475,
       "notes": "",
       "files": [
         {
@@ -1808,7 +1762,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "master",
-    "downloads": 99720,
+    "downloads": 99881,
     "install": null
   },
   {
@@ -1861,7 +1815,7 @@
       "date": "2026-10-14",
       "title": "HyperHEN v0.9.2",
       "assets": 2,
-      "downloads": 6812,
+      "downloads": 6865,
       "notes": "HyperHEN has evolved into a single, firmware-aware PS5 homebrew stack. This release brings the firmware engines, HyperCore, Automount, Toolbox, plugins, network services, and optional boot tools together behind one entry ELF and one strict startup pipeline. What'…",
       "files": [
         {
@@ -1875,16 +1829,16 @@
     },
     "pre": null,
     "updated": "2026-10-14",
-    "stars": 230,
+    "stars": 229,
     "archived": false,
     "language": "C++",
     "topics": [],
     "license": "GPL-3.0",
-    "forks": 17,
+    "forks": 18,
     "issues": 7,
     "homepage": "",
     "branch": "main",
-    "downloads": 10401,
+    "downloads": 10460,
     "install": null
   },
   {
@@ -1899,7 +1853,7 @@
       "date": "2026-10-14",
       "title": "exFAT2AMPR v1.104",
       "assets": 6,
-      "downloads": 494,
+      "downloads": 503,
       "notes": "exFAT2AMPR — convert your PS5 games to AMPR LZ4, right on the console Made by V-10 · LZ4 format: DLPSGAME · AMPR emulator: drakmor/ampremu · free software (GPL-3.0) Pick a game with the controller: the app compresses it on the PS5 and puts it where you want (internal SSD, M.2 SS…",
       "files": [
         {
@@ -1937,7 +1891,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 753,
+    "downloads": 768,
     "install": null
   },
   {
@@ -1952,7 +1906,7 @@
       "date": "2026-10-11",
       "title": "DPIv2.elf v1.0.0 - Direct PKG Installer",
       "assets": 1,
-      "downloads": 4150,
+      "downloads": 4224,
       "notes": ".elf - PS5 Shop Appkg Direct PKG Installer FW 1.00 - 13.60 download pkg files from ps5shopappkg website No etaHEN or onionHEN required. Usage Start kstuff on your PS5. Send DPIv2.elf with your payload injector or payloadmanager Open https://ps5shopappkg.pages.dev in your br…",
       "files": [
         {
@@ -1975,7 +1929,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 4872,
+    "downloads": 4947,
     "install": null
   },
   {
@@ -1990,7 +1944,7 @@
       "date": "2026-10-14",
       "title": "PS5Library v0.2.91",
       "assets": 4,
-      "downloads": 609,
+      "downloads": 626,
       "notes": "Full Changelog: https://github.com/rdiol12/PS5Library/compare/v0.2.70...v0.2.91",
       "files": [
         {
@@ -2021,7 +1975,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 5542,
+    "downloads": 5581,
     "install": null
   },
   {
@@ -2036,7 +1990,7 @@
       "date": "2026-10-19",
       "title": "PS5 Library 0.7.37",
       "assets": 3,
-      "downloads": 2533,
+      "downloads": 2688,
       "notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes New default catalog: homebrew.page. The PS5 Homebrew Catalog by darkxex, the list behind homebrew.page, is on from the…",
       "files": [
         {
@@ -2050,7 +2004,7 @@
     },
     "pre": null,
     "updated": "2026-10-19",
-    "stars": 249,
+    "stars": 252,
     "archived": false,
     "language": "",
     "topics": [],
@@ -2059,7 +2013,7 @@
     "issues": 2,
     "homepage": "",
     "branch": "main",
-    "downloads": 14491,
+    "downloads": 14647,
     "install": null
   },
   {
@@ -2074,7 +2028,7 @@
       "date": "2026-10-04",
       "title": "SpectrumLibrary_1.4.9",
       "assets": 1,
-      "downloads": 20591,
+      "downloads": 20686,
       "notes": "soon :)",
       "files": [],
       "zips": []
@@ -2090,7 +2044,7 @@
     "issues": 27,
     "homepage": "",
     "branch": "main",
-    "downloads": 63568,
+    "downloads": 63760,
     "install": null
   },
   {
@@ -2105,7 +2059,7 @@
       "date": "2026-10-10",
       "title": "DIRECT STREAM FOR PLAYSTATION 5 v2.9.1 — Hardware Verified & Direct Link Engine",
       "assets": 3,
-      "downloads": 542,
+      "downloads": 548,
       "notes": "DIRECT STREAM FOR PLAYSTATION 5 (v2.9.1) Direct Stream for PlayStation 5 v2.9.1 is a major stability and performance release resolving numerous real-world bugs reported in v2.9.0, backed by complete live hardware validation across 32 comprehensive testing scenarios on physical P…",
       "files": [],
       "zips": [
@@ -2150,7 +2104,7 @@
     "issues": 9,
     "homepage": "https://github.com/ChillQuant/direct-stream-ps5/releases/tag/v2.8.0",
     "branch": "main",
-    "downloads": 1484,
+    "downloads": 1493,
     "install": {
       "dir": "",
       "zip": "PurePython",
@@ -2169,23 +2123,23 @@
       "date": "2026-10-21",
       "title": "PS4Mount 0.6.1",
       "assets": 2,
-      "downloads": 204,
+      "downloads": 294,
       "notes": "Changes Registration: a drive mounted under another name keeps its games registered README: warn about merged pkgs, drop PS Plus backup mention Registration: a renamed drive gets its pkg links rewritten instead of a new registration Log: keep log.txt under 10 MB Log and registra…",
       "files": [],
       "zips": []
     },
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 148,
+    "stars": 149,
     "archived": false,
     "language": "C",
     "topics": [],
     "license": "GPL-3.0",
     "forks": 14,
-    "issues": 10,
+    "issues": 9,
     "homepage": "",
     "branch": "main",
-    "downloads": 7885,
+    "downloads": 8006,
     "install": null
   },
   {
@@ -2200,7 +2154,7 @@
       "date": "2026-10-10",
       "title": "prospero-win v0.2.0",
       "assets": 2,
-      "downloads": 4065,
+      "downloads": 4123,
       "notes": "is the biggest update since the first release. 32-bit Windows games now run directly on the PS5's CPU instead of through the translator, Vulkan traffic is batched so DXVK games keep their frame rate, OpenGL games draw through Mesa's Zink, and Windows programs…",
       "files": [],
       "zips": [
@@ -2224,7 +2178,7 @@
     "issues": 15,
     "homepage": "",
     "branch": "main",
-    "downloads": 6998,
+    "downloads": 7056,
     "install": null
   },
   {
@@ -2239,7 +2193,7 @@
       "date": "2026-10-14",
       "title": "ps5-theme 1.60",
       "assets": 3,
-      "downloads": 535,
+      "downloads": 548,
       "notes": "Custom home-screen themes for jailbroken PS5 consoles on firmware 13.60 and below. Runs as an etaHEN plugin or on its own from any ELF loader. Tested on firmware 13.42, both with etaHEN 2.5B (unified build) and from PS5 Payload Manager. Which file? ps5-theme.plugin: for etaHEN.…",
       "files": [
         {
@@ -2268,7 +2222,7 @@
     "issues": 2,
     "homepage": "",
     "branch": "main",
-    "downloads": 1566,
+    "downloads": 1579,
     "install": null
   },
   {
@@ -2283,7 +2237,7 @@
       "date": "2026-10-21",
       "title": "BlackBox 1.12.3",
       "assets": 2,
-      "downloads": 1530,
+      "downloads": 4600,
       "notes": "English BlackBox 1.12.3 Bug Fixes & Improvements • App Reopen Issue Resolved: Fixed a critical issue from version 1.12.2 where some consoles failed to reopen the app. The background scan that repairs the TV app's installation record could overflow its 1 MiB stack buffer (within…",
       "files": [
         {
@@ -2297,16 +2251,16 @@
     },
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 606,
+    "stars": 609,
     "archived": false,
     "language": "",
     "topics": [],
     "license": "",
-    "forks": 59,
-    "issues": 6,
+    "forks": 60,
+    "issues": 8,
     "homepage": "",
     "branch": "main",
-    "downloads": 147748,
+    "downloads": 150993,
     "install": null
   },
   {
@@ -2317,7 +2271,7 @@
     "firmware": "",
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 264,
+    "stars": 265,
     "archived": false,
     "language": "Batchfile",
     "topics": [
@@ -2327,8 +2281,8 @@
       "goldhen"
     ],
     "license": "",
-    "forks": 26,
-    "issues": 43,
+    "forks": 27,
+    "issues": 46,
     "homepage": "https://hencheats.vercel.app/",
     "branch": "master",
     "downloads": 0,
@@ -2391,7 +2345,7 @@
       "date": "2026-10-19",
       "title": "Hot fix for SMB share folders with Chinese characters",
       "assets": 2,
-      "downloads": 1609,
+      "downloads": 1770,
       "notes": "Change logs: Added utf8 fix for SMB share folders. No changes for wfm-7zip-helper.elf.",
       "files": [
         {
@@ -2411,16 +2365,16 @@
     },
     "pre": null,
     "updated": "2026-10-19",
-    "stars": 228,
+    "stars": 229,
     "archived": false,
     "language": "C",
     "topics": [],
     "license": "GPL-3.0",
-    "forks": 15,
-    "issues": 6,
+    "forks": 16,
+    "issues": 7,
     "homepage": "",
     "branch": "main",
-    "downloads": 36158,
+    "downloads": 36360,
     "install": null
   },
   {
@@ -2435,7 +2389,7 @@
       "date": "2026-10-20",
       "title": "VLC PS5 v0.5.0",
       "assets": 1,
-      "downloads": 654,
+      "downloads": 780,
       "notes": "What's new Upscaling (Settings › Video › Upscaling, or Picture during a video). Off by default: EWA Lanczos Sharp: the most natural look, the best plain scaler AMD FSR: sharp and the fastest FSRCNNX: a neural network upscaler for films and shows, restores fine detail Anim…",
       "files": [],
       "zips": [
@@ -2450,7 +2404,7 @@
     },
     "pre": null,
     "updated": "2026-10-20",
-    "stars": 70,
+    "stars": 71,
     "archived": false,
     "language": "C",
     "topics": [
@@ -2464,7 +2418,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 8526,
+    "downloads": 8655,
     "install": null
   },
   {
@@ -2474,27 +2428,27 @@
     "category": "Homebrew",
     "firmware": "",
     "stable": {
-      "tag": "v1.73.0",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/tag/v1.73.0",
+      "tag": "v1.73.1",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/tag/v1.73.1",
       "date": "2026-10-21",
       "title": "",
       "assets": 3,
-      "downloads": 9,
-      "notes": "PS5 Cooling & System Center – Pro v1.73.0 Highlights Disc im Laufwerk – neuer Reiter „Disc“: zeigt, welche Disc im Laufwerk liegt (PS2, PS3, PS4, PS5) mit Titelkennung, und legt von PS2-DVDs und PS3-Discs ein Abbild (ISO) mit CRC-32, MD5 und SHA-1 an, auf Wunsch geprüft gegen Re…",
+      "downloads": 19,
+      "notes": "PS5 Cooling & System Center – Pro v1.73.1 Fehlerbehebungen Weboberfläche nach einem Netzwerkwechsel. Wird das WLAN aus- und wieder eingeschaltet oder das Kabel gezogen, beendete die Konsole mitunter den Zugang der Seite, obwohl die App weiterlief – die Seite lud erst nach erneut…",
       "files": [
         {
-          "name": "PS5_Cooling_System_Center_v1.73.0.elf",
-          "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.0/PS5_Cooling_System_Center_v1.73.0.elf",
+          "name": "PS5_Cooling_System_Center_v1.73.1.elf",
+          "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.1/PS5_Cooling_System_Center_v1.73.1.elf",
           "size": 9391800,
-          "sha256": "5f2e3d26d33981b2542f6a8b16d6cfee7989a4a3fe48d35d6d6c959f965a46de"
+          "sha256": "1378dd6a0622b9186e21214016dc70e5b349a3d44cfffe8f065d9e0c6b38c52f"
         }
       ],
       "zips": [
         {
           "name": "PPSA86921.zip",
-          "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.0/PPSA86921.zip",
-          "size": 11460012,
-          "sha256": "d14fbff0b05ab1325cae61046305b10e50998082b66b9aa5cf59fe9267e6ac0f",
+          "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.1/PPSA86921.zip",
+          "size": 11461332,
+          "sha256": "dd8116e215f186b2b96354abad86c15ac1744575463a3d11510f0ae8efdabf87",
           "kind": "app"
         }
       ]
@@ -2517,7 +2471,7 @@
     "issues": 0,
     "homepage": "",
     "branch": "main",
-    "downloads": 923,
+    "downloads": 883,
     "install": null
   },
   {
@@ -2532,7 +2486,7 @@
       "date": "2026-08-08",
       "title": "ProsperoPlayer 1.0",
       "assets": 1,
-      "downloads": 2170,
+      "downloads": 2180,
       "notes": "Install Jailbreak Inject ProsperoPlayerMediaLauncher.elf (autoload recommended) Wait for toast: ProsperoPlayer ready / Open from Media Home → Media → ProsperoPlayer 1.0 Note A brief not supported flash when opening the tile is normal if the player still opens.",
       "files": [
         {
@@ -2555,7 +2509,7 @@
     "issues": 1,
     "homepage": "",
     "branch": "main",
-    "downloads": 2170,
+    "downloads": 2180,
     "install": null
   },
   {
@@ -2570,7 +2524,7 @@
       "date": "2026-10-19",
       "title": "EVO Player v0.12.5",
       "assets": 3,
-      "downloads": 756,
+      "downloads": 829,
       "notes": "Plex integration, multiple USB drives, and precision keyboard navigation. 0.12.5 brings a full native Plex client with PIN pairing and direct playback, lets you browse multiple connected USB drives with friendly labels, adds cursor navigation to the on-screen keyboard, embeds Th…",
       "files": [],
       "zips": [
@@ -2591,10 +2545,10 @@
     "topics": [],
     "license": "GPL-3.0",
     "forks": 4,
-    "issues": 29,
+    "issues": 36,
     "homepage": "",
     "branch": "main",
-    "downloads": 11108,
+    "downloads": 11217,
     "install": null
   },
   {
@@ -2655,7 +2609,7 @@
       "date": "2026-10-10",
       "title": "",
       "assets": 1,
-      "downloads": 6812,
+      "downloads": 6894,
       "notes": "CheatRunner v0.18 See the full changelog here: Changelog Check GUIDE to setup CheatRunner.zip on Homebrew Launcher. ⚠️ Before updating to a new CheatRunner version, please follow these steps: Updating CheatRunner Special Thanks: 💖 Supporters - those who supported the project th…",
       "files": [
         {
@@ -2669,7 +2623,7 @@
     },
     "pre": null,
     "updated": "2026-10-10",
-    "stars": 248,
+    "stars": 249,
     "archived": false,
     "language": "Assembly",
     "topics": [],
@@ -2678,7 +2632,7 @@
     "issues": 7,
     "homepage": "",
     "branch": "main",
-    "downloads": 40932,
+    "downloads": 41016,
     "install": null
   },
   {
@@ -2693,7 +2647,7 @@
       "date": "2026-10-21",
       "title": "Recomp Store 2.5.1",
       "assets": 3,
-      "downloads": 418,
+      "downloads": 837,
       "notes": "What's new Two apps that use the same title ID can both be in the store now. Steam Remote Play is the first one. Installing Update from inside the store, or send RecompStore-Installer.elf with your payload sender.",
       "files": [
         {
@@ -2715,7 +2669,7 @@
     },
     "pre": null,
     "updated": "2026-10-21",
-    "stars": 89,
+    "stars": 91,
     "archived": false,
     "language": "C++",
     "topics": [],
@@ -2724,7 +2678,7 @@
     "issues": 2,
     "homepage": "",
     "branch": "main",
-    "downloads": 12117,
+    "downloads": 12571,
     "install": null
   }
 ]
