@@ -5,16 +5,16 @@
       "id": "blackbox",
       "name": "blackbox",
       "filename": "blackbox.elf",
-      "url": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.1/blackbox.elf",
-      "version": "1.12.1",
-      "last_update": "2026-10-20",
+      "url": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.3/blackbox.elf",
+      "version": "1.12.3",
+      "last_update": "2026-10-21",
       "description": "BB",
       "category": "PC Tool",
-      "checksum": "8e9568a7e63fea1fa47636f1b1cabe95b37350e94cb3be464d584130ceef33f6",
+      "checksum": "67f87f5a2ab7454f7cf1d7968ddc6e2c33e35cb2aa36c2102a537f3bc5e2d799",
       "author": "D3ATHLY",
       "source": "https://github.com/D3ATHLY/blackbox/releases",
       "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md",
-      "release_notes": "Fixes for consoles stuck in the 1.12.0 update lane (the 67.7 MB payload exceeded the old 64 MiB ceilings: downloads stopped at the limit, the TV app reported \"No BlackBox copy to start was found\", and the update retried at every launch). ELF update ceilings raised to 96 MiB: the…"
+      "release_notes": "English BlackBox 1.12.3 Bug Fixes & Improvements • App Reopen Issue Resolved: Fixed a critical issue from version 1.12.2 where some consoles failed to reopen the app. The background scan that repairs the TV app's installation record could overflow its 1 MiB stack buffer (within…"
     },
     {
       "id": "cheatrunner",
@@ -362,17 +362,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.72.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.72.0/PS5_Cooling_System_Center_v1.72.0.elf",
-      "version": "v1.72.0",
-      "last_update": "2026-10-20",
+      "filename": "PS5_Cooling_System_Center_v1.73.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.0/PS5_Cooling_System_Center_v1.73.0.elf",
+      "version": "v1.73.0",
+      "last_update": "2026-10-21",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "3e6bb0675a17271b00fe583098872d1d404d7b8bec16b7fe60f9703ed0630559",
+      "checksum": "5f2e3d26d33981b2542f6a8b16d6cfee7989a4a3fe48d35d6d6c959f965a46de",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "PS5 Cooling & System Center – Pro v1.72.0 Neu Updates: Versionsauswahl für alle Spiele. Im Reiter „Updates“ gibt es jetzt bei jedem Spiel (nicht mehr nur bei „neuere Firmware nötig“) die Schaltfläche „Versionen …“ mit der vollständigen Liste von Prospero Patches bzw. Orbis Patch…"
+      "release_notes": "PS5 Cooling & System Center – Pro v1.73.0 Highlights Disc im Laufwerk – neuer Reiter „Disc“: zeigt, welche Disc im Laufwerk liegt (PS2, PS3, PS4, PS5) mit Titelkennung, und legt von PS2-DVDs und PS3-Discs ein Abbild (ISO) mit CRC-32, MD5 und SHA-1 an, auf Wunsch geprüft gegen Re…"
     },
     {
       "id": "ps5-game-compressor",
@@ -663,16 +663,16 @@
       "id": "shadowmountplus-beta",
       "name": "ShadowMountPlus (beta)",
       "filename": "shadowmountplus.elf",
-      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta6-fix2/shadowmountplus.elf",
-      "version": "1.7beta6-fix2",
+      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta7/shadowmountplus.elf",
+      "version": "1.7beta7",
       "last_update": "2026-10-21",
       "description": "Automated background auto-mounter payload for jailbroken PS5 consoles. Detects, mounts, and installs game backups from internal or external storage, with support for UFS, exFAT, PFS, and nested compressed PFS containers.",
       "category": "Payload",
-      "checksum": "ec87ad20f78be2d7cb82e9d77e72352b079e049baac3c1a211960ccd6f252e62",
+      "checksum": "a8f9d7f76e8749912508ade0cd5c78076b5bbf1271813c78c80c3d3d9d4777ee",
       "author": "drakmor",
       "source": "https://github.com/drakmor/ShadowMountPlus/releases",
       "details_url": "https://raw.githubusercontent.com/drakmor/ShadowMountPlus/1.7/README.md",
-      "release_notes": "Improved ShellCore hook reliability and startup handling while waiting for kstuff. Fixed sandbox cleanup and mount ownership across process handoffs and relaunches. Fixed duplicate-image remount loops across scan roots. Restored HTTP service recovery after rest mode and socket l…"
+      "release_notes": "Fix sandbox USB recovery after device removal"
     }
   ]
 }
