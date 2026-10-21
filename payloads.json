@@ -630,6 +630,21 @@
       "release_notes": "Browser avatar upload (#486). Choose an image from the browser device, preview crop or fit, and confirm applying it to the selected console user. Works with Docker engines too. Remote conversion inspection (#485). Allow slow console image reads to complete beyond the ordinary on…"
     },
     {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-7.1.13.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.13/ps5upload-7.1.13.elf",
+      "version": "v7.1.13",
+      "last_update": "2026-10-21",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "46bb7dc0e7f28ded2859ac4392c151e39010354c79de2f323d73aaa861287a30",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "SMB collection moves. Close metadata readers before moving inspected game folders, and wait for pending closes before renames and directory removal. Denied SMB operations no longer appear as failed sign-ins. CI checks intact folder moves and Undo on an authenticated Samba share…"
+    },
+    {
       "id": "recompstore",
       "name": "RecompStore",
       "filename": "RecompStore-Installer.elf",
