@@ -153,16 +153,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.3.5/orbit_store.elf",
-      "version": "v1.3.5",
-      "last_update": "2026-10-14",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.4.0/orbit_store.elf",
+      "version": "v1.4.0",
+      "last_update": "2026-10-22",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "561a8e8015d9564d44e32b58a84e1294ea7043e96146110801a9f62ad99ac93b",
+      "checksum": "e43c6272b3519fc2ec8b9373a484f2c2adb9669d7652567661149da741ab6d94",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "Archive.org sign-in comes to Orbit. Archive.org sign-in. Connect your account in the native PS5 app, browser or Orbit Zero to access downloads that require signing in. 225 unavailable Archive.org links removed, and 3 games also had to go. Links that require an Archive.org accoun…"
+      "release_notes": "More games, better download recovery, and the freedom to download to your computer now and transfer to your PS5 later. 104 games added in recent catalogue updates: 86 PS5 and 18 PS4. Orbit now includes 1,702 games and 3,991 download options, with 166 more options since 1.3.5. Th…"
     },
     {
       "id": "pegasus-dl",
@@ -362,17 +362,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.73.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.73.1/PS5_Cooling_System_Center_v1.73.1.elf",
-      "version": "v1.73.1",
-      "last_update": "2026-10-21",
+      "filename": "PS5_Cooling_System_Center_v1.74.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.74.0/PS5_Cooling_System_Center_v1.74.0.elf",
+      "version": "v1.74.0",
+      "last_update": "2026-10-22",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "1378dd6a0622b9186e21214016dc70e5b349a3d44cfffe8f065d9e0c6b38c52f",
+      "checksum": "deb088fa0c525a808744ee0db66a52e71faff23718750f59c5d8237ecc20ab8e",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "PS5 Cooling & System Center – Pro v1.73.1 Fehlerbehebungen Weboberfläche nach einem Netzwerkwechsel. Wird das WLAN aus- und wieder eingeschaltet oder das Kabel gezogen, beendete die Konsole mitunter den Zugang der Seite, obwohl die App weiterlief – die Seite lud erst nach erneut…"
+      "release_notes": "Highlights Mehr Kontrolle bei Spiel-Updates – Standardregel und Schalter je Spiel, „Nur laden“, Download-Ordner (auch USB), Prüfsummen-Schalter und ein Diagnosebericht Andere Versionen – Versionsliste von prosperopatches.com und orbispatches.com, dazu der letzte Patch, der auf d…"
     },
     {
       "id": "ps5-game-compressor",
@@ -648,16 +648,16 @@
       "id": "recompstore",
       "name": "RecompStore",
       "filename": "RecompStore-Installer.elf",
-      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.5.1/RecompStore-Installer.elf",
-      "version": "v2.5.1",
-      "last_update": "2026-10-21",
+      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.6.0/RecompStore-Installer.elf",
+      "version": "v2.6.0",
+      "last_update": "2026-10-22",
       "description": "A homebrew app store for jailbroken PS5: installs and updates native ports of recompiled games. Bring your own disc.",
       "category": "Payload",
-      "checksum": "f5a224ec77e56194e6db141bd077a029dfced975c3645f1afe34e4994419309b",
+      "checksum": "849b3d6ba5e164ce1ca81345217fa3bdd3cb9ac7706fdc2d74b8302a48945fe2",
       "author": "elripalda",
       "source": "https://github.com/elripalda/RecompStore/releases",
       "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
-      "release_notes": "What's new Two apps that use the same title ID can both be in the store now. Steam Remote Play is the first one. Installing Update from inside the store, or send RecompStore-Installer.elf with your payload sender."
+      "release_notes": "Languages The store speaks 20 languages. It follows your PS5's language, or pick one in Settings > General > Language. Descriptions and patch notes get translated into your language too. Files A full-screen file manager in My Apps > Drives. Copy, move, rename and delete, make fo…"
     },
     {
       "id": "shadowmountplus-beta",
