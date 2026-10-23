@@ -5,16 +5,15 @@
       "id": "blackbox",
       "name": "blackbox",
       "filename": "blackbox.elf",
-      "url": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.4/blackbox.elf",
-      "version": "1.12.4",
-      "last_update": "2026-10-22",
+      "url": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.5/blackbox.elf",
+      "version": "1.12.5",
+      "last_update": "2026-10-23",
       "description": "BB",
       "category": "PC Tool",
-      "checksum": "8c76923f233a66ce53fe774bd2e80d184e07408f9f1e1edcf917f5858e4c758e",
+      "checksum": "c99c154b0b141e9a845f3029f7e905644958104ff3ed93911c38a458344f3e3f",
       "author": "D3ATHLY",
       "source": "https://github.com/D3ATHLY/blackbox/releases",
-      "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md",
-      "release_notes": "Fixed: \"Connection lost. Reconnecting to BlackBox...\""
+      "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md"
     },
     {
       "id": "cheatrunner",
@@ -632,17 +631,17 @@
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-7.1.17.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.17/ps5upload-7.1.17.elf",
-      "version": "v7.1.17",
-      "last_update": "2026-10-22",
+      "filename": "ps5upload-7.1.19.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.19/ps5upload-7.1.19.elf",
+      "version": "v7.1.19",
+      "last_update": "2026-10-23",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "37b56b3e5cbe582e1bc33d0cf20ae4a01a4ea30723200750cd444a936cc10bf3",
+      "checksum": "c5e68afd6c3101a50b6a425350a7d3fec9ab5049cf8bed9ced53f4548598da07",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Disk usage counts everything inside a folder (#495). A folder's size now includes all its subfolders, so /data and the folders in it show what they really take up. Disk usage counts folders as it goes, with a Stop button, and opening a subfolder afterwards is instant. Links, the…"
+      "release_notes": "Update the helper for everything below. Files on a disc download now (#497). Downloading a file from a data DVD or Blu-ray in the drive (/mnt/disc) failed with \"not allowed\". It works now; the disc stays read-only. Bring up automatically (#479, desktop). A new switch on Connecti…"
     },
     {
       "id": "recompstore",
