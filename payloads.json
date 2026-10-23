@@ -393,16 +393,16 @@
       "id": "ps5-library",
       "name": "ps5-library",
       "filename": "ps5-library.elf",
-      "url": "https://github.com/deox1111/ps5-library/releases/download/v0.7.37/ps5-library.elf",
-      "version": "v0.7.37",
-      "last_update": "2026-10-19",
+      "url": "https://github.com/deox1111/ps5-library/releases/download/v0.7.38/ps5-library.elf",
+      "version": "v0.7.38",
+      "last_update": "2026-10-23",
       "description": "Game library for jailbroken PS5: pick a game, it downloads, installs and appears on your home screen.",
       "category": "Homebrew",
-      "checksum": "4fb8256ad4e88a6f03d04ff3042bc7e3a5cf0e807b9a0f96632ffc9d38d490f3",
+      "checksum": "efa72fbb34984961678cb88dc8336ffdb8308c7011d8d8fb0e00b1a57ace16f3",
       "author": "deox1111",
       "source": "https://github.com/deox1111/ps5-library/releases",
       "details_url": "https://raw.githubusercontent.com/deox1111/ps5-library/main/README.md",
-      "release_notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes New default catalog: homebrew.page. The PS5 Homebrew Catalog by darkxex, the list behind homebrew.page, is on from the…"
+      "release_notes": "[!NOTE] REST MODE CURRENTLY WORKS ONLY ON INTERNAL STORAGE, NOT USB. USB SUPPORT IS IN PROGRESS. Keep the console awake for USB downloads and unpacking. Changes A part whose link expired no longer fails the whole download. When you solve the CAPTCHA for a game split into parts,…"
     },
     {
       "id": "ps5-payload-manager",
