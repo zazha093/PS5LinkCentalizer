@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
 const WINDOW_DAYS = Number(process.env.WINDOW_DAYS) || 30; // how far back "pushed" may be
 const MAX_ITEMS = 300;
+const RELEASE_TTL_DAYS = Number(process.env.RELEASE_TTL_DAYS) || 3; // re-check a cached release after this long
 const MAX_LOOKUPS = Number(process.env.MAX_LOOKUPS) || 80; // release lookups per run
 const token = process.env.GITHUB_TOKEN;
 const headers = { Accept: "application/vnd.github+json", "User-Agent": "ps5-link-centralizer", ...(token && { Authorization: `Bearer ${token}` }) };
@@ -67,7 +68,7 @@ for (const q of QUERIES) {
   }
   await sleep(pause);
 }
-if (!okQueries) { console.error("Every search failed (rate limit?). Keeping the old discover.json."); process.exit(1); }
+if (okQueries < Math.ceil(QUERIES.length / 2)) { console.error(`Only ${okQueries}/${QUERIES.length} searches worked (rate limit?). Keeping the old discover.json.`); process.exit(1); }
 
 // ---- merge with the previous run (keeps first_seen and cached release info)
 const old = readJson("discover.json", { items: [] });
@@ -88,17 +89,18 @@ const items = [...found.values()].map(x => {
   };
   // lots of stars on a very new repo is usually bought: show it, but flagged
   if (it.stars >= 500 && Date.now() - Date.parse(it.created) < 90 * 864e5) it.warn = "stars";
-  if (o && o.pushed === it.pushed && "release" in o) it.release = o.release;
+  if (o && o.pushed === it.pushed && "release" in o) { it.release = o.release; if (o.rel_checked) it.rel_checked = o.rel_checked; }
   return it;
 }).sort((a, b) => b.pushed.localeCompare(a.pushed)).slice(0, MAX_ITEMS);
 
 // ---- latest release for the most recently pushed ones
 let lookups = 0;
 for (const it of items) {
-  if ("release" in it) continue;
+  if ("release" in it && it.rel_checked && Date.now() - Date.parse(it.rel_checked) < RELEASE_TTL_DAYS * 864e5) continue; // fresh enough
   if (lookups++ >= MAX_LOOKUPS) break;
   const rel = await gh(`/repos/${it.repo}/releases/latest`);
   if (rel === undefined) break;
+  it.rel_checked = now;
   it.release = rel ? {
     tag: clean(rel.tag_name).slice(0, 60), date: rel.published_at, url: rel.html_url,
     assets: (rel.assets || []).map(a => clean(a.name).slice(0, 80)).slice(0, 12),

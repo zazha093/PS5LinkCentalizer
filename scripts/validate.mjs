@@ -10,7 +10,7 @@ const headers = { Accept: "application/vnd.github+json", "User-Agent": "ps5-link
 if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
 
 const errors = [], warnings = [];
-const FIELDS = ["repo", "name", "description", "category", "install"];
+const FIELDS = ["repo", "name", "description", "category", "install", "firmware"];
 const INSTALL_FIELDS = ["zip", "dir", "kind"];
 const readJson = async (f, fallback) => existsSync(f) ? JSON.parse(await readFile(f, "utf8")) : fallback;
 
@@ -54,6 +54,7 @@ for (const [i, p] of projects.entries()) {
   const at = `Entry ${i + 1}${typeof p?.repo === "string" ? ` (\`${p.repo}\`)` : ""}`;
   if (typeof p !== "object" || p === null || Array.isArray(p)) { errors.push(`${at}: must be an object like \`{ "repo": "owner/name", "category": "Payload" }\`.`); continue; }
   for (const k of Object.keys(p)) if (!FIELDS.includes(k)) errors.push(`${at}: unknown field \`${k}\`. Allowed: ${FIELDS.map(f => `\`${f}\``).join(", ")}.`);
+  if ("firmware" in p && (typeof p.firmware !== "string" || !p.firmware.trim() || p.firmware.length > 40)) errors.push(`${at}: \`firmware\` must be a short non-empty string (e.g. "11.00-13.60").`);
   for (const k of ["name", "description", "category"]) if (k in p && typeof p[k] !== "string") errors.push(`${at}: \`${k}\` must be a string.`);
   if ("install" in p) {
     if (typeof p.install !== "object" || p.install === null || Array.isArray(p.install)) {
