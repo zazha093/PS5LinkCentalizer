@@ -161,7 +161,7 @@
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "More games, better download recovery, and the freedom to download to your computer now and transfer to your PS5 later. 104 games added in recent catalogue updates: 86 PS5 and 18 PS4. Orbit now includes 1,702 games and 3,991 download options, with 166 more options since 1.3.5. Th…"
+      "release_notes": "More games, better download recovery, and the freedom to download to your computer now and transfer to your PS5 later. 133 games added in recent catalogue updates: 97 PS5 and 36 PS4. Orbit now includes 1,731 games and 4,406 download options, with 581 more options since 1.3.5. Th…"
     },
     {
       "id": "pegasus-dl",
@@ -616,21 +616,6 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-7.1.18.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.18/ps5upload-7.1.18.elf",
-      "version": "v7.1.18",
-      "last_update": "2026-10-22",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "360529ccbd9f00b9341f8ca72ed15851e3324ff69341304b7e93e12977aa7470",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Update the helper for everything below. Clean up: get space back on the PS5. A new Clean up screen (desktop, browser and PS5Upload Minion) finds what takes space for no reason: updates of games that are gone, leftover .pkg files on any drive (your package library is skipped), PS…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
       "filename": "ps5upload-7.1.19.elf",
       "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.1.19/ps5upload-7.1.19.elf",
       "version": "v7.1.19",
@@ -647,16 +632,16 @@
       "id": "recompstore",
       "name": "RecompStore",
       "filename": "RecompStore-Installer.elf",
-      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.6.0/RecompStore-Installer.elf",
-      "version": "v2.6.0",
-      "last_update": "2026-10-22",
+      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.6.1/RecompStore-Installer.elf",
+      "version": "v2.6.1",
+      "last_update": "2026-10-23",
       "description": "A homebrew app store for jailbroken PS5: installs and updates native ports of recompiled games. Bring your own disc.",
       "category": "Payload",
-      "checksum": "849b3d6ba5e164ce1ca81345217fa3bdd3cb9ac7706fdc2d74b8302a48945fe2",
+      "checksum": "6a35fade96c2937930473f427cd3bf9cb176df364e2e795218e0adf2fe9bafe0",
       "author": "elripalda",
       "source": "https://github.com/elripalda/RecompStore/releases",
       "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
-      "release_notes": "Languages The store speaks 20 languages. It follows your PS5's language, or pick one in Settings > General > Language. Descriptions and patch notes get translated into your language too. Files A full-screen file manager in My Apps > Drives. Copy, move, rename and delete, make fo…"
+      "release_notes": "Fixes Installs work on consoles where the store couldn't see its own homebrew folder. Those installs used to stop with \"eboot.bin doesn't match the download after installing\", even though the files were fine. Send logs now says more about how your homebrew folders look, so probl…"
     },
     {
       "id": "shadowmountplus-beta",
