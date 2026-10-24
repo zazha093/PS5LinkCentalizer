@@ -616,32 +616,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-7.4.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.1/ps5upload-7.4.1.elf",
-      "version": "v7.4.1",
+      "filename": "ps5upload-7.4.3.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.3/ps5upload-7.4.3.elf",
+      "version": "v7.4.3",
       "last_update": "2026-10-24",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "b37ff9670fe33162e03b570a58542ddf3966d1ad4e0a3acdc6e1dae5b69c5b8a",
+      "checksum": "1a7dfaff37d131adac59a74a454dd0a756a503d1022bddda5b5b7e619299e667",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Dependency updates: Tauri 2.12.5, Tauri CLI 2.12.4, Vite 8.3.5, lucide-react 1.61.0 and crc32fast 1.5.3. The new security scan no longer flags the Wake screen's made-up sample key, and a test no longer trips the repository's old-port check."
+      "release_notes": "Check for updates from anywhere. A button in the top bar (desktop and tablet) shows your version and checks GitHub when you press it: it says when you are up to date, or the update bar appears. With an update waiting it lights up and opens Settings → Updates. On a phone the vers…"
     },
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-7.4.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.0/ps5upload-7.4.0.elf",
-      "version": "v7.4.0",
+      "filename": "ps5upload-7.4.2.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.2/ps5upload-7.4.2.elf",
+      "version": "v7.4.2",
       "last_update": "2026-10-24",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "17f11956fd819a758c2036147a46b5615f888c5c72ddae728328e501d81a0d38",
+      "checksum": "2dd06acd553718c6b29dacbca8f7e0b3444827fbede80b8f1acab8c9f0c83030",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Security scanning on every change. Every pull request now runs a security scan: known vulnerable Rust and npm dependencies (cargo audit, npm audit) and secrets anywhere in the git history (gitleaks); make security runs the same scan locally. CodeQL checks our Rust, TypeScript, P…"
+      "release_notes": "Web UI and Docker: every browser sees the same consoles. The consoles you add in the web UI (names, addresses, order, notes and Wake keys) are now kept by the engine in /data, not in the browser, so opening the container from another computer shows the same list. A change in one…"
     },
     {
       "id": "recompstore",
