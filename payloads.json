@@ -13,7 +13,8 @@
       "checksum": "c99c154b0b141e9a845f3029f7e905644958104ff3ed93911c38a458344f3e3f",
       "author": "D3ATHLY",
       "source": "https://github.com/D3ATHLY/blackbox/releases",
-      "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md"
+      "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md",
+      "release_notes": "Fixed: \"Connection lost. Reconnecting to BlackBox...\" Fixed: Camera error (Partially) Fixed: 12.00 - 13.60 PKG to Exfat converter (Not supporting all games)"
     },
     {
       "id": "cheatrunner",
@@ -162,21 +163,6 @@
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
       "release_notes": "A major update: DLCs, game installation support and over 2,000 games now in Orbit. Install without leaving Orbit. After a PKG or FPKG downloads or transfers, choose Install on PS5. If a download has several packages, pick the ones you want. For exFAT, FFPFSC and extracted game f…"
-    },
-    {
-      "id": "pegasus-dl",
-      "name": "pegasus-dl",
-      "filename": "pegasus_dl.elf",
-      "url": "https://github.com/pegasus-ps5/pegasus-dl/releases/download/v1.11.0/pegasus_dl.elf",
-      "version": "v1.11.0",
-      "last_update": "2026-10-09",
-      "description": "Direct package downloading from your PS5",
-      "category": "Homebrew",
-      "checksum": "32b69c2089bb545abfabd04d5827444698f9c4f1bc4915d72247cb781e8c23d9",
-      "author": "pegasus-ps5",
-      "source": "https://github.com/pegasus-ps5/pegasus-dl/releases",
-      "details_url": "https://raw.githubusercontent.com/pegasus-ps5/pegasus-dl/main/README.md",
-      "release_notes": "Parallel downloads now use persistent connections and write ranges directly into the temporary file, avoiding a final segment-copy pass. New configurations default to 16 connections, with a single-stream fallback for incompatible hosts. RAR/RAR5 and 7z archive cache downloads us…"
     },
     {
       "id": "poords4-poords4",
@@ -616,32 +602,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-7.4.3.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.3/ps5upload-7.4.3.elf",
-      "version": "v7.4.3",
+      "filename": "ps5upload-7.5.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.5.1/ps5upload-7.5.1.elf",
+      "version": "v7.5.1",
       "last_update": "2026-10-24",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "1a7dfaff37d131adac59a74a454dd0a756a503d1022bddda5b5b7e619299e667",
+      "checksum": "021c03c15d1b077558f8966ca46f38636f1934c084b930545098167e11abbc7b",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Check for updates from anywhere. A button in the top bar (desktop and tablet) shows your version and checks GitHub when you press it: it says when you are up to date, or the update bar appears. With an update waiting it lights up and opens Settings → Updates. On a phone the vers…"
+      "release_notes": "Security scan clean-up. Every finding of the new code scan was reviewed. A damaged game image can no longer make the converter reserve a huge buffer before reading it. Every GitHub Action the builds use is pinned to an exact commit, and the scan now skips tests, examples and dev…"
     },
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-7.4.2.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.2/ps5upload-7.4.2.elf",
-      "version": "v7.4.2",
+      "filename": "ps5upload-7.4.4.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v7.4.4/ps5upload-7.4.4.elf",
+      "version": "v7.4.4",
       "last_update": "2026-10-24",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "2dd06acd553718c6b29dacbca8f7e0b3444827fbede80b8f1acab8c9f0c83030",
+      "checksum": "6ee60f88ab7e35e88ba85ce4714576e7e8a68fb1adcd540fd4a518ffdc2f0f9f",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Web UI and Docker: every browser sees the same consoles. The consoles you add in the web UI (names, addresses, order, notes and Wake keys) are now kept by the engine in /data, not in the browser, so opening the container from another computer shows the same list. A change in one…"
+      "release_notes": "Save backups that run on their own. Automatic save backups now run in the engine, so the Docker web UI has them too, around the clock with no browser open (the desktop app backs up while it runs, as before). Choose a folder (in Docker, one in a mounted volume such as /data/save-…"
     },
     {
       "id": "recompstore",
