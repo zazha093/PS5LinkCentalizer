@@ -621,7 +621,7 @@
       "url": "https://github.com/elripalda/RecompStore/releases/download/v2.7.1/RecompStore-Installer.elf",
       "version": "v2.7.1",
       "last_update": "2026-10-25",
-      "description": "A homebrew app store for jailbroken PS5: installs and updates native ports of recompiled games. Bring your own disc.",
+      "description": "RecompStore: the free homebrew app store for jailbroken PS5. Installs and updates recompiled game ports, emulators, apps and tools from the console. Bring your own disc.",
       "category": "Payload",
       "checksum": "0a370c191ebaa97541e171757ef53d36e30f36816c0eabf004fba8dc1aad2f6f",
       "author": "elripalda",
