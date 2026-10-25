@@ -633,16 +633,16 @@
       "id": "recompstore",
       "name": "RecompStore",
       "filename": "RecompStore-Installer.elf",
-      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.7.0/RecompStore-Installer.elf",
-      "version": "v2.7.0",
-      "last_update": "2026-10-23",
+      "url": "https://github.com/elripalda/RecompStore/releases/download/v2.7.1/RecompStore-Installer.elf",
+      "version": "v2.7.1",
+      "last_update": "2026-10-25",
       "description": "A homebrew app store for jailbroken PS5: installs and updates native ports of recompiled games. Bring your own disc.",
       "category": "Payload",
-      "checksum": "9353926171d88dd873b5d01cd2e7928c8530e0fd245ba72349e4cfe3aee0dc76",
+      "checksum": "0a370c191ebaa97541e171757ef53d36e30f36816c0eabf004fba8dc1aad2f6f",
       "author": "elripalda",
       "source": "https://github.com/elripalda/RecompStore/releases",
       "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
-      "release_notes": "A new look Recomp Store is now RecompStore, with a new logo, icon and home screen art. A new aurora background runs behind the whole store. The store starts with the logo building itself, a soft hum and a chime. Turn the sound off in Settings > General > Boot sound. The logo fli…"
+      "release_notes": "Fixes Stability improvements and a performance boost. Updates now reach the store wherever it's installed, including an M.2 or USB drive. Lots of small fixes. If your store is on an M.2 or USB drive, send the new RecompStore-Installer.elf with your payload sender once. Updates f…"
     },
     {
       "id": "shadowmountplus-beta",
