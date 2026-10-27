@@ -602,21 +602,6 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-8.3.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.3.0/ps5upload-8.3.0.elf",
-      "version": "v8.3.0",
-      "last_update": "2026-10-26",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "9fe5785c63382b2d3c6eb131b14b7027a6c7cf0fcac011ba26cc331051e44a13",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Updates install and restart, every time \"Install and restart\" no longer freezes the app (macOS, and the same code on Windows and Linux). Quitting waited on its clean-up with no limit; when that clean-up could not finish, the app sat \"not responding\" and the update waited for it.…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
       "filename": "ps5upload-8.4.0.elf",
       "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.4.0/ps5upload-8.4.0.elf",
       "version": "v8.4.0",
