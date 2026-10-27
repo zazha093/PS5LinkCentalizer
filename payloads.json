@@ -162,7 +162,7 @@
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "A major update: Orbit gets a file manager, saved filters, and streaming game installs straight from your computer with Orbit Zero, saving space on your PS5. Vikingfile accounts now work too. File manager comes to Orbit. Open Library → Files to browse you…"
+      "release_notes": "A major update: Orbit gets a file manager and saved filters, and Orbit Zero can now install games on your PS5 straight from your computer, without copying the package to the console first. Vikingfile accounts now work too. File manager comes to Orbit. Op…"
     },
     {
       "id": "poords4-poords4",
@@ -602,17 +602,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-8.4.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.4.0/ps5upload-8.4.0.elf",
-      "version": "v8.4.0",
+      "filename": "ps5upload-8.5.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.5.1/ps5upload-8.5.1.elf",
+      "version": "v8.5.1",
       "last_update": "2026-10-27",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "09c09071b8ac031ef91f9a81911894a04bb5b48aad2b278995b981e772706f38",
+      "checksum": "2039eb340f6c09f7fce6bd726ad526adb68e9e924351b21dba74720025267481",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Games copied from a mounted NAS share no longer arrive with made-up names. A Samba share mounted by the OS (a Windows mapped drive, a share mounted in Finder) shows files whose real names hold : ? as C69YSY1.TXT; copied that way a game does not start. Uploads and Convert now sto…"
+      "release_notes": "Packages with Windows bookkeeping folders convert to game images again (#523, thanks frzzyone). An empty System Volume Information folder made the read-back check fail after compression. Package sources now omit the same OS junk as game folders and image readers, while keeping r…"
     },
     {
       "id": "recompstore",
