@@ -92,17 +92,17 @@
     {
       "id": "hyperhen",
       "name": "HYPERHEN",
-      "filename": "HyperHEN-v0.9.2.elf",
-      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_2/HyperHEN-v0.9.2.elf",
-      "version": "HYPERHEN_V0_9_2",
-      "last_update": "2026-10-14",
+      "filename": "HyperHEN-v0.9.3.elf",
+      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_3/HyperHEN-v0.9.3.elf",
+      "version": "HYPERHEN_V0_9_3",
+      "last_update": "2026-10-28",
       "description": "",
       "category": "HEN",
-      "checksum": "c35b8f6dbe4355be7e55891e6b326d82f3d6aae8483f6cf0e27d372b0aea97ae",
+      "checksum": "c78c4a16db85610c7d8753c798dbcb9b5d0bb8dfcdc8fb54d8925344bc708f73",
       "author": "Michele-M-Media",
       "source": "https://github.com/Michele-M-Media/HYPERHEN/releases",
       "details_url": "https://raw.githubusercontent.com/Michele-M-Media/HYPERHEN/main/README.md",
-      "release_notes": "HyperHEN has evolved into a single, firmware-aware PS5 homebrew stack. This release brings the firmware engines, HyperCore, Automount, Toolbox, plugins, network services, and optional boot tools together behind one entry ELF and one strict startup pipeline. What'…"
+      "release_notes": "HyperHEN continues to evolve as a single, firmware-aware PS5 homebrew stack. This release brings together the additions made since public v0.9.2: HyperDeck, expanded Advanced Debug tools, engine selectors, updated Automount, broader localized notifications, and i…"
     },
     {
       "id": "kstuff-lite",
@@ -522,7 +522,7 @@
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Changelog Updated ps5-unified-autoloader to v0.1.6 includes bundled Payload Manager v0.6.3 Updated ps5-elfldr to v0.27 Updated ps5-webkit-remote-loader to v0.1.2 Added Relapse support for FW 11.40 (credit: @tidewell, @notmaj0r) Downloads | Platform | File | |---|---| | PS5 (inst…"
+      "release_notes": "Changelog Updated ps5-unified-autoloader to v0.1.6 includes bundled Payload Manager v0.6.3 Updated ps5-elfldr to v0.27 Updated ps5-webkit-remote-loader to v0.1.2 Added Relapse support for FW 11.40 (credit: @tidewell @notmaj0r) --- Setup Instructions - see README Discussion threa…"
     },
     {
       "id": "ps5library",
@@ -602,17 +602,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-8.5.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.5.1/ps5upload-8.5.1.elf",
-      "version": "v8.5.1",
-      "last_update": "2026-10-27",
+      "filename": "ps5upload-8.6.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.6.1/ps5upload-8.6.1.elf",
+      "version": "v8.6.1",
+      "last_update": "2026-10-28",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "2039eb340f6c09f7fce6bd726ad526adb68e9e924351b21dba74720025267481",
+      "checksum": "3e7d67537a2eac9f92ae9330a90682499610b06a5058dd47cb99c2b567c62671",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Packages with Windows bookkeeping folders convert to game images again (#523, thanks frzzyone). An empty System Volume Information folder made the read-back check fail after compression. Package sources now omit the same OS junk as game folders and image readers, while keeping r…"
+      "release_notes": "Undo sign-in covers every account slot used. The copy kept before np-fake-signin now also takes a later slot's settings, untouched, when the account moved to another slot since the first copy; Undo puts those back too. Restoring a save gives back exactly the save backed up. A sa…"
+    },
+    {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-8.6.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.6.0/ps5upload-8.6.0.elf",
+      "version": "v8.6.0",
+      "last_update": "2026-10-28",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "79c4e86611235fc7cc6c5267a98c8abe77ec0b72054953bab9b78d54acf51984",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "Minion's Library: one card per game, and a full-screen page for each (#526). Copies, updates, DLC and backports of the same game found on your drives and shares now sit on one card with a sharper cover, an Installed mark and Update / DLC / Backport badges. ✕ opens a full-screen…"
     },
     {
       "id": "recompstore",
