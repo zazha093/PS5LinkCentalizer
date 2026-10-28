@@ -602,32 +602,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-8.6.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.6.1/ps5upload-8.6.1.elf",
-      "version": "v8.6.1",
+      "filename": "ps5upload-8.8.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.8.0/ps5upload-8.8.0.elf",
+      "version": "v8.8.0",
       "last_update": "2026-10-28",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "3e7d67537a2eac9f92ae9330a90682499610b06a5058dd47cb99c2b567c62671",
+      "checksum": "71e100106f50d25056b998d0e39cefda1b36ca1f3a2b655ec3a45ccbc15a563f",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Undo sign-in covers every account slot used. The copy kept before np-fake-signin now also takes a later slot's settings, untouched, when the account moved to another slot since the first copy; Undo puts those back too. Restoring a save gives back exactly the save backed up. A sa…"
+      "release_notes": "XML game patches, without CheatRunner (#527). Cheats now also takes game patches in the PS-Game-Patch .xml format (the one GoldHEN, etaHEN and CheatRunner read): 60 fps unlocks, resolution and debug-menu patches and the like. Find them in the cheat browser under PS-Game-Patch: t…"
     },
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-8.7.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.7.0/ps5upload-8.7.0.elf",
-      "version": "v8.7.0",
+      "filename": "ps5upload-8.8.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.8.1/ps5upload-8.8.1.elf",
+      "version": "v8.8.1",
       "last_update": "2026-10-28",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "2ed23dcf25ea2ef08d9976b34a399415f991171cc28f014ff0e86a038e7bf789",
+      "checksum": "54d9feb2bb8f876d829f3305d4aaf90244d48dff0aa94468b26ddec17a6dda56",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "A simpler sidebar: 25 screens became 21, and every feature is still there. Screens that did overlapping jobs are now one screen each, named by what you do there. Old links, bookmarks, pinned screens and hidden screens carry over by themselves. Send to PS5 replaces Upload and Ins…"
+      "release_notes": "\"Convert…\" opens Workshop with the game picked again. Since 8.7.0, Convert… from Files, a game page, a Collection card and the Send as One Image card opened an empty Workshop: they still linked to the old Convert screen, and the redirect to Workshop lost the game. They go straig…"
     },
     {
       "id": "recompstore",
@@ -643,21 +643,6 @@
       "source": "https://github.com/elripalda/RecompStore/releases",
       "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
       "release_notes": "RecompStore now comes in Bahasa Indonesia, ไทย and Українська. It follows your PS5's language, or pick one in Settings. Thai has its own font, long lines wrap cleanly between words, and tone marks sit where they belong. Numbers are written the way each new lang…"
-    },
-    {
-      "id": "shadowmountplus-beta",
-      "name": "ShadowMountPlus (beta)",
-      "filename": "shadowmountplus.elf",
-      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta9/shadowmountplus.elf",
-      "version": "1.7beta9",
-      "last_update": "2026-10-27",
-      "description": "Automated background auto-mounter payload for jailbroken PS5 consoles. Detects, mounts, and installs game backups from internal or external storage, with support for UFS, exFAT, PFS, and nested compressed PFS containers.",
-      "category": "Payload",
-      "checksum": "928a5a7e33d2801c1c14a5ed8ad83fcab07957ba3a5daccd382dba67d408b3e2",
-      "author": "drakmor",
-      "source": "https://github.com/drakmor/ShadowMountPlus/releases",
-      "details_url": "https://raw.githubusercontent.com/drakmor/ShadowMountPlus/1.7/README.md",
-      "release_notes": "Added SMB2/SMB3 support for network file transfers and installation. Big thanks to @owendswang and @john-tornblom for the libraries. Added installation of game folders and images into a selected local directory. Improved PKG upload speed, SMB transfers and installation reliabili…"
     }
   ]
 }
