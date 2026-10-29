@@ -143,11 +143,11 @@
       "last_update": "2026-10-29",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "1ebf3a573c6008135ce8452efc38276f162cb7d542a536cc942a8ec688e7ed62",
+      "checksum": "c5c601dd349b52c650ee4147fc89d9e2ab9a7d1df35e6e6039eee1175194e832",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "LZ4 🦎 comes to Orbit, alongside more games and improvements to downloads, TorBox and Library moves. Find LZ4 games. Select LZ4 in the Format filter in Orbit Store’s browser, native PS5 app or Orbit Zero, in all four interfaces. The catalogue includes 49…"
+      "release_notes": "LZ4 🦎 (credits to DLPSGAME) comes to Orbit, alongside more games and improvements to downloads, TorBox and Library moves. Find LZ4 games. Select LZ4 in the Format filter in Orbit Store’s browser, native PS5 app or Orbit Zero, in all four interfaces. The…"
     },
     {
       "id": "poords4-poords4",
@@ -480,6 +480,21 @@
       "release_notes": "Change logs: Changed 'Manage SMB' to 'Manage Paths', which allows you to add custom paths, not only SMB share folders. (Issue #23) Poppup and other optimization. wfm-7zip-helper.elf updated to v26.04-0."
     },
     {
+      "id": "ps5-web-file-manager-web-file-mgr-beta",
+      "name": "ps5-web-file-manager · web-file-mgr (beta)",
+      "filename": "web-file-mgr-v1.13-rc1.elf",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.13-rc1/web-file-mgr-v1.13-rc1.elf",
+      "version": "v1.13-rc1",
+      "last_update": "2026-10-29",
+      "description": "A file manager for PS5 with a web UI.",
+      "category": "Homebrew",
+      "checksum": "8c9456a10ddde61dd0247b9171e71a285b955096ca7eb8e4ae3bdbe94f38f605",
+      "author": "owendswang",
+      "source": "https://github.com/owendswang/ps5-web-file-manager/releases",
+      "details_url": "https://raw.githubusercontent.com/owendswang/ps5-web-file-manager/main/README.md",
+      "release_notes": "Added a PS5-only fullscreen/restore button beside the exit button. Tried to fix the error when moving multiple files at the same time in the same disk partition. (Issue #31) Fullscreen is experimental and currently verified on firmware 4.03, 7.00, 7.61, 12.20 and 13.60. Thanks t…"
+    },
+    {
       "id": "ps5-web-file-manager-wfm-7zip-helper",
       "name": "ps5-web-file-manager · wfm-7zip-helper",
       "filename": "wfm-7zip-helper.elf",
@@ -493,6 +508,21 @@
       "source": "https://github.com/owendswang/ps5-web-file-manager/releases",
       "details_url": "https://raw.githubusercontent.com/owendswang/ps5-web-file-manager/main/README.md",
       "release_notes": "Change logs: Changed 'Manage SMB' to 'Manage Paths', which allows you to add custom paths, not only SMB share folders. (Issue #23) Poppup and other optimization. wfm-7zip-helper.elf updated to v26.04-0."
+    },
+    {
+      "id": "ps5-web-file-manager-wfm-7zip-helper-beta",
+      "name": "ps5-web-file-manager · wfm-7zip-helper (beta)",
+      "filename": "wfm-7zip-helper.elf",
+      "url": "https://github.com/owendswang/ps5-web-file-manager/releases/download/v1.13-rc1/wfm-7zip-helper.elf",
+      "version": "v1.13-rc1",
+      "last_update": "2026-10-29",
+      "description": "A file manager for PS5 with a web UI.",
+      "category": "Homebrew",
+      "checksum": "6acc2972d358dfc92b5ac66cf8cb9ca8613c096bde56ce790077a6831fb17825",
+      "author": "owendswang",
+      "source": "https://github.com/owendswang/ps5-web-file-manager/releases",
+      "details_url": "https://raw.githubusercontent.com/owendswang/ps5-web-file-manager/main/README.md",
+      "release_notes": "Added a PS5-only fullscreen/restore button beside the exit button. Tried to fix the error when moving multiple files at the same time in the same disk partition. (Issue #31) Fullscreen is experimental and currently verified on firmware 4.03, 7.00, 7.61, 12.20 and 13.60. Thanks t…"
     },
     {
       "id": "ps5-webkit-autoloader",
@@ -587,17 +617,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-9.1.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.1.0/ps5upload-9.1.0.elf",
-      "version": "v9.1.0",
+      "filename": "ps5upload-9.2.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.2.1/ps5upload-9.2.1.elf",
+      "version": "v9.2.1",
       "last_update": "2026-10-29",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "4004b092c48b531ceb2035c2213c5fe8b0a7aaa0af47df7370c67935649b0f1d",
+      "checksum": "293535f8a55ed74beb729b4eee36e98076b6deee0e78295008b6370bd2d6b8af",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Upload & Install (was Send to PS5). One drop zone takes everything: packages (installed as a game, update or DLC), game folders and dumps, disk images, archives and any other file. Installs from a link or from the PS5 and USB drives are a small row in it. Convert first sends a g…"
+      "release_notes": "Send helper also updates the copy your PS5 starts at boot (#540, #541). If Payload Manager, the WebKit Autoloader or an autoload folder starts ps5upload's helper at every boot, it kept starting the old version: Send helper only replaced the copy running in memory, so the \"helper…"
     },
     {
       "id": "recompstore",
@@ -618,16 +648,16 @@
       "id": "shadowmountplus-beta",
       "name": "ShadowMountPlus (beta)",
       "filename": "shadowmountplus.elf",
-      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta10/shadowmountplus.elf",
-      "version": "1.7beta10",
-      "last_update": "2026-10-28",
+      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta11/shadowmountplus.elf",
+      "version": "1.7beta11",
+      "last_update": "2026-10-29",
       "description": "Automated background auto-mounter payload for jailbroken PS5 consoles. Detects, mounts, and installs game backups from internal or external storage, with support for UFS, exFAT, PFS, and nested compressed PFS containers.",
       "category": "Payload",
-      "checksum": "8c6798232ae2a8fbcd209ab97fc4f8d4d47cf23b7eecfaa6349c0bfeb8e4a3d3",
+      "checksum": "08c843018750bef013fe3a4de5f80c5c9738c6c2dafa2406e6b6e68d7585f3da",
       "author": "drakmor",
       "source": "https://github.com/drakmor/ShadowMountPlus/releases",
       "details_url": "https://raw.githubusercontent.com/drakmor/ShadowMountPlus/1.7/README.md",
-      "release_notes": "Added safe USB drive ejection from the web interface. Enabled library scans and operations on other games during gameplay while protecting the active game. Fixed SMB guest connections and added a guest/authenticated access switch. Added a read-only mode for SMB connections. Remo…"
+      "release_notes": "Unified PKG installation queue with cover cards for PC, local storage and SMB. Select up to 32 PC files; additional selections append without duplicates. Automatic game → update → DLC ordering for PC batches. Failed or cancelled queues retain unfinished packages. Improved PS4 DL…"
     }
   ]
 }
