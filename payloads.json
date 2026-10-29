@@ -602,32 +602,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-8.8.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.8.0/ps5upload-8.8.0.elf",
-      "version": "v8.8.0",
-      "last_update": "2026-10-28",
+      "filename": "ps5upload-8.9.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.9.0/ps5upload-8.9.0.elf",
+      "version": "v8.9.0",
+      "last_update": "2026-10-29",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "71e100106f50d25056b998d0e39cefda1b36ca1f3a2b655ec3a45ccbc15a563f",
+      "checksum": "59e622340d9faf7c8a54e41d303a51f03408c88dbef409e299aea3ffc5c306a0",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "XML game patches, without CheatRunner (#527). Cheats now also takes game patches in the PS-Game-Patch .xml format (the one GoldHEN, etaHEN and CheatRunner read): 60 fps unlocks, resolution and debug-menu patches and the like. Find them in the cheat browser under PS-Game-Patch: t…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
-      "filename": "ps5upload-8.8.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v8.8.1/ps5upload-8.8.1.elf",
-      "version": "v8.8.1",
-      "last_update": "2026-10-28",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "54d9feb2bb8f876d829f3305d4aaf90244d48dff0aa94468b26ddec17a6dda56",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "\"Convert…\" opens Workshop with the game picked again. Since 8.7.0, Convert… from Files, a game page, a Collection card and the Send as One Image card opened an empty Workshop: they still linked to the old Convert screen, and the redirect to Workshop lost the game. They go straig…"
+      "release_notes": "Games is one list. Every game shows once, wherever its copies are, and each row names the places: Installed, a PS5 drive (ext0, usb0, internal), This computer, or a saved server by name, with how many copies are there. Narrow it with Everywhere, Installed, On PS5 drives or Your…"
     },
     {
       "id": "recompstore",
@@ -643,6 +628,21 @@
       "source": "https://github.com/elripalda/RecompStore/releases",
       "details_url": "https://raw.githubusercontent.com/elripalda/RecompStore/main/README.md",
       "release_notes": "RecompStore now comes in Bahasa Indonesia, ไทย and Українська. It follows your PS5's language, or pick one in Settings. Thai has its own font, long lines wrap cleanly between words, and tone marks sit where they belong. Numbers are written the way each new lang…"
+    },
+    {
+      "id": "shadowmountplus-beta",
+      "name": "ShadowMountPlus (beta)",
+      "filename": "shadowmountplus.elf",
+      "url": "https://github.com/drakmor/ShadowMountPlus/releases/download/1.7beta10/shadowmountplus.elf",
+      "version": "1.7beta10",
+      "last_update": "2026-10-28",
+      "description": "Automated background auto-mounter payload for jailbroken PS5 consoles. Detects, mounts, and installs game backups from internal or external storage, with support for UFS, exFAT, PFS, and nested compressed PFS containers.",
+      "category": "Payload",
+      "checksum": "8c6798232ae2a8fbcd209ab97fc4f8d4d47cf23b7eecfaa6349c0bfeb8e4a3d3",
+      "author": "drakmor",
+      "source": "https://github.com/drakmor/ShadowMountPlus/releases",
+      "details_url": "https://raw.githubusercontent.com/drakmor/ShadowMountPlus/1.7/README.md",
+      "release_notes": "Added safe USB drive ejection from the web interface. Enabled library scans and operations on other games during gameplay while protecting the active game. Fixed SMB guest connections and added a guest/authenticated access switch. Added a read-only mode for SMB connections. Remo…"
     }
   ]
 }
