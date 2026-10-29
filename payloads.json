@@ -2,21 +2,6 @@
   "name": "PS5 Links",
   "payloads": [
     {
-      "id": "blackbox",
-      "name": "blackbox",
-      "filename": "blackbox.elf",
-      "url": "https://github.com/D3ATHLY/blackbox/releases/download/1.12.5/blackbox.elf",
-      "version": "1.12.5",
-      "last_update": "2026-10-23",
-      "description": "Package installer for PS5",
-      "category": "PC Tool",
-      "checksum": "c99c154b0b141e9a845f3029f7e905644958104ff3ed93911c38a458344f3e3f",
-      "author": "D3ATHLY",
-      "source": "https://github.com/D3ATHLY/blackbox/releases",
-      "details_url": "https://raw.githubusercontent.com/D3ATHLY/blackbox/main/README.md",
-      "release_notes": "Fixed: \"Connection lost. Reconnecting to BlackBox...\" Fixed: Camera error (Partially) Fixed: 12.00 - 13.60 PKG to Exfat converter (Not supporting all games)"
-    },
-    {
       "id": "cheatrunner",
       "name": "CheatRunner",
       "filename": "CheatRunner.elf",
@@ -153,16 +138,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.7.0/orbit_store.elf",
-      "version": "v1.7.0",
-      "last_update": "2026-10-26",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.7.5/orbit_store.elf",
+      "version": "v1.7.5",
+      "last_update": "2026-10-29",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "ca46295969f4711096c036af5cad9925e96b24fcefc5211ed07dbe768f6f809b",
+      "checksum": "1ebf3a573c6008135ce8452efc38276f162cb7d542a536cc942a8ec688e7ed62",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "A major update: Orbit gets a file manager and saved filters, and Orbit Zero can now install games on your PS5 straight from your computer, without copying the package to the console first. Vikingfile accounts now work too. File manager comes to Orbit. Op…"
+      "release_notes": "LZ4 🦎 comes to Orbit, alongside more games and improvements to downloads, TorBox and Library moves. Find LZ4 games. Select LZ4 in the Format filter in Orbit Store’s browser, native PS5 app or Orbit Zero, in all four interfaces. The catalogue includes 49…"
     },
     {
       "id": "poords4-poords4",
@@ -602,17 +587,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-9.0.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.0.1/ps5upload-9.0.1.elf",
-      "version": "v9.0.1",
+      "filename": "ps5upload-9.1.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.1.0/ps5upload-9.1.0.elf",
+      "version": "v9.1.0",
       "last_update": "2026-10-29",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "36317d7d360faad3aeac6127199e7e61514dc2c2cc5f83c10835682951806d9f",
+      "checksum": "4004b092c48b531ceb2035c2213c5fe8b0a7aaa0af47df7370c67935649b0f1d",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "The first 9.0 release. (9.0.0 was tagged, but its Windows build failed to link the new RAR helper, so it was never published; 9.0.1 is the same release with that fixed.) Every game on one page. Installed games and Games on the PS5's drives are no longer views of their own. The G…"
+      "release_notes": "Upload & Install (was Send to PS5). One drop zone takes everything: packages (installed as a game, update or DLC), game folders and dumps, disk images, archives and any other file. Installs from a link or from the PS5 and USB drives are a small row in it. Convert first sends a g…"
     },
     {
       "id": "recompstore",
