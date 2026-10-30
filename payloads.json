@@ -617,17 +617,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-9.2.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.2.1/ps5upload-9.2.1.elf",
-      "version": "v9.2.1",
-      "last_update": "2026-10-29",
+      "filename": "ps5upload-9.4.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.4.0/ps5upload-9.4.0.elf",
+      "version": "v9.4.0",
+      "last_update": "2026-10-30",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "293535f8a55ed74beb729b4eee36e98076b6deee0e78295008b6370bd2d6b8af",
+      "checksum": "620a771e34c83c2b84e537307d25e47cead2270c1024db44cf2c340c9c7bb083",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Send helper also updates the copy your PS5 starts at boot (#540, #541). If Payload Manager, the WebKit Autoloader or an autoload folder starts ps5upload's helper at every boot, it kept starting the old version: Send helper only replaced the copy running in memory, so the \"helper…"
+      "release_notes": "Backporting uses ShadowMount+'s own controls (1.7beta8 and later). To write the backport into a game image, the app now asks ShadowMount+ to mount that one game read-write and to unmount it after: it takes well under a second instead of half a minute or more, and no longer fails…"
     },
     {
       "id": "recompstore",
