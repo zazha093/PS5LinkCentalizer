@@ -77,17 +77,17 @@
     {
       "id": "hyperhen",
       "name": "HYPERHEN",
-      "filename": "HyperHEN-v0.9.3.elf",
-      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_3/HyperHEN-v0.9.3.elf",
-      "version": "HYPERHEN_V0_9_3",
-      "last_update": "2026-10-28",
+      "filename": "HyperHEN-v0.9.4.elf",
+      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_4/HyperHEN-v0.9.4.elf",
+      "version": "HYPERHEN_V0_9_4",
+      "last_update": "2026-10-30",
       "description": "",
       "category": "HEN",
-      "checksum": "c78c4a16db85610c7d8753c798dbcb9b5d0bb8dfcdc8fb54d8925344bc708f73",
+      "checksum": "86cc5525f06fd098197c0ca1fd8fccb08c5fa0d4a5b8eb5a1740f0799dcb9c80",
       "author": "Michele-M-Media",
       "source": "https://github.com/Michele-M-Media/HYPERHEN/releases",
       "details_url": "https://raw.githubusercontent.com/Michele-M-Media/HYPERHEN/main/README.md",
-      "release_notes": "HyperHEN continues to evolve as a single, firmware-aware PS5 homebrew stack. This release brings together the additions made since public v0.9.2: HyperDeck, expanded Advanced Debug tools, engine selectors, updated Automount, broader localized notifications, and i…"
+      "release_notes": "HyperHEN 0.9.4 brings Hyper to the main Toolbox page and carries forward the R45 development fixes, including the restored 13.xx Bypervisor HyperCore path and corrected 13.60 runtime. Automount remains ShadowMountPlus 1.7 beta9. Hyper — a local voice assistant fo…"
     },
     {
       "id": "kstuff-lite",
@@ -138,16 +138,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.0/orbit_store.elf",
-      "version": "v1.8.0",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.1/orbit_store.elf",
+      "version": "v1.8.1",
       "last_update": "2026-10-30",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "53446c09c568468436f5762593618a5063375ece64e73f0532063a2da5c80a07",
+      "checksum": "a9fe33c3b0338af074edb4f7c68bb3806a84efba718e3897f94eba9dc720f914",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "Orbit now speaks 15 new languages and can automatically shut down your PS5 when downloads, transfers and installations finish. 15 more languages. Orbit now supports 26 languages, adding Japanese, Simplified and Traditional Chinese, Korean, Arabic, Ukrain…"
+      "release_notes": "Performance improvements and bug fixes. Copy and move while downloading. Fixed a bug that prevented copying or moving games and files while a download was active. Orbit keeps enough space for both, and downloads can start or resume during a copy. 54 more…"
     },
     {
       "id": "poords4-poords4",
@@ -617,17 +617,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-9.11.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v9.11.0/ps5upload-9.11.0.elf",
-      "version": "v9.11.0",
-      "last_update": "2026-10-30",
+      "filename": "ps5upload-10.0.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.0.1/ps5upload-10.0.1.elf",
+      "version": "v10.0.1",
+      "last_update": "2026-10-31",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "ea961717fb823398dbf346a215cab21aba8cf7a966fb8be53b9d48e75543bdd9",
+      "checksum": "c5da95b6438a6d68e8c453df8ea84fb0341744f5fc9dae0781371b350450c3cc",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Per-game controls in Remote Play. The Game panel's new Controls tab sets the running game's own controls, kept per game on this device and switched by themselves with the game: turbo on any face button, shoulder, trigger or arrow (2–30 presses a second while held), mouse aim (wi…"
+      "release_notes": "Share a save with a friend (experimental). Saves › Share saves a PS5 save's contents as a .zip; on another PS5, Use a shared save puts it into that user's own save of the game, so the console keeps it as theirs: no account ID change needed. Your save is backed up first and put b…"
     },
     {
       "id": "recompstore",
