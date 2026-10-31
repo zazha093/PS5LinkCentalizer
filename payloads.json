@@ -138,16 +138,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.1/orbit_store.elf",
-      "version": "v1.8.1",
-      "last_update": "2026-10-30",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.2/orbit_store.elf",
+      "version": "v1.8.2",
+      "last_update": "2026-10-31",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "a9fe33c3b0338af074edb4f7c68bb3806a84efba718e3897f94eba9dc720f914",
+      "checksum": "134cedb380b39f5a010beb1a0834cebb2192ea0e5749c13675b3a64b6dfd3996",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "Performance improvements and bug fixes. Copy and move while downloading. Fixed a bug that prevented copying or moving games and files while a download was active. Orbit keeps enough space for both, and downloads can start or resume during a copy. 54 more…"
+      "release_notes": "Smoother updates, better download choices and a growing catalogue. Simpler native updates. From this version on, updating Orbit from the TV app downloads the app once when it already includes the newest download service. Select Close and reopen when it f…"
     },
     {
       "id": "poords4-poords4",
