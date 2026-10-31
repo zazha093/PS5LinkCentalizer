@@ -630,6 +630,21 @@
       "release_notes": "Share a save with a friend (experimental). Saves › Share saves a PS5 save's contents as a .zip; on another PS5, Use a shared save puts it into that user's own save of the game, so the console keeps it as theirs: no account ID change needed. Your save is backed up first and put b…"
     },
     {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-10.0.2.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.0.2/ps5upload-10.0.2.elf",
+      "version": "v10.0.2",
+      "last_update": "2026-10-31",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "53ad7fe7b446709ccc36bdd9a7109a0f62a38076bb3b8cb9ba5c3c7cce5dc510",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "Fixed: watching the stream on a phone never showed the picture (\"The picture could not be played here.\"), in H.264 and HEVC alike. A phone opens the watch link as plain http://, and browsers offer the video decoder the page used only on secure pages, so it worked on the computer…"
+    },
+    {
       "id": "recompstore",
       "name": "RecompStore",
       "filename": "RecompStore-Installer.elf",
