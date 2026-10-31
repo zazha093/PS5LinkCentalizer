@@ -540,6 +540,21 @@
       "release_notes": "Changelog Updated ps5-unified-autoloader to v0.1.6 includes bundled Payload Manager v0.6.3 Updated ps5-elfldr to v0.27 Updated ps5-webkit-remote-loader to v0.1.2 Added Relapse support for FW 11.40 (credit: @tidewell @notmaj0r) --- Setup Instructions - see README Discussion threa…"
     },
     {
+      "id": "ps5-webkit-autoloader-beta",
+      "name": "ps5-webkit-autoloader (beta)",
+      "filename": "webkit-autoloader-installer_v0.7.0-dev-8be7994.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0-prerelease-1/webkit-autoloader-installer_v0.7.0-dev-8be7994.elf",
+      "version": "v0.7.0-prerelease-1",
+      "last_update": "2026-10-31",
+      "description": "An automated payload loader for exploited PS5 consoles",
+      "category": "Exploit",
+      "checksum": "4de384c640b2c4e8e5c4fcc7972fdb06185bdfdf8a1c105e1ad4581881c11b7e",
+      "author": "itsPLK",
+      "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
+      "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
+      "release_notes": "Discussion thread A lot of internal changes, so need your feedback. Focused on relapse, but there's also a change from which poops should benefit too. --- Automatically selects the best exploit based on firmware version and network status: FW > 12.00 and FW 12.00) FW == 9.05: Po…"
+    },
+    {
       "id": "ps5library",
       "name": "PS5Library",
       "filename": "ps5library-agent.elf",
@@ -617,32 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-10.0.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.0.1/ps5upload-10.0.1.elf",
-      "version": "v10.0.1",
+      "filename": "ps5upload-10.0.3.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.0.3/ps5upload-10.0.3.elf",
+      "version": "v10.0.3",
       "last_update": "2026-10-31",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "c5da95b6438a6d68e8c453df8ea84fb0341744f5fc9dae0781371b350450c3cc",
+      "checksum": "5dd0997ae31abe1e095a83ce0166eb92ccefa0ae13189aa29e51365498e872a2",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Share a save with a friend (experimental). Saves › Share saves a PS5 save's contents as a .zip; on another PS5, Use a shared save puts it into that user's own save of the game, so the console keeps it as theirs: no account ID change needed. Your save is backed up first and put b…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
-      "filename": "ps5upload-10.0.2.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.0.2/ps5upload-10.0.2.elf",
-      "version": "v10.0.2",
-      "last_update": "2026-10-31",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "53ad7fe7b446709ccc36bdd9a7109a0f62a38076bb3b8cb9ba5c3c7cce5dc510",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Fixed: watching the stream on a phone never showed the picture (\"The picture could not be played here.\"), in H.264 and HEVC alike. A phone opens the watch link as plain http://, and browsers offer the video decoder the page used only on secure pages, so it worked on the computer…"
+      "release_notes": "Fixed: after waking the PS5 from rest mode, the app said the helper was down (#593), and sending it again left two copies running. The helper survived rest mode but stopped listening; it now listens again right after the wake, and sending it again always leaves exactly one copy.…"
     },
     {
       "id": "recompstore",
