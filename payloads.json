@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-10.2.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.2.0/ps5upload-10.2.0.elf",
-      "version": "v10.2.0",
+      "filename": "ps5upload-10.3.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.3.0/ps5upload-10.3.0.elf",
+      "version": "v10.3.0",
       "last_update": "2026-11-01",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "44c1f5315d0020d14311bdd6bdb079ff8dfb1311bee9972a0749648a23918804",
+      "checksum": "e3da25330b0b3aeba1ad1eab628726a7b7526bd2be2d5f9a40dba59527dfb155",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Updates are checked before they install. Each release now publishes the SHA-256 of every download, and the app checks the file against it; a file that doesn't match is deleted and nothing is installed. One-click updates for a .deb or .rpm install on Linux. Install and restart as…"
+      "release_notes": "Remote Play's Settings open over the stream. Every Settings button (on the picture's bar, beside Start, in the menu) opens the same panel: at the right edge on a computer or tablet, a sheet from the bottom on a phone. In full screen it opens inside full screen, so the game keeps…"
     },
     {
       "id": "ps5upload-beta",
