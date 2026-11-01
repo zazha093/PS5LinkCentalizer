@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-10.3.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.3.0/ps5upload-10.3.0.elf",
-      "version": "v10.3.0",
+      "filename": "ps5upload-10.4.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.4.1/ps5upload-10.4.1.elf",
+      "version": "v10.4.1",
       "last_update": "2026-11-01",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "e3da25330b0b3aeba1ad1eab628726a7b7526bd2be2d5f9a40dba59527dfb155",
+      "checksum": "7e52589212fb2a5da387d1cdfb5e245909316bab9fe6ae6c5a0e1d15ba34254d",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Remote Play's Settings open over the stream. Every Settings button (on the picture's bar, beside Start, in the menu) opens the same panel: at the right edge on a computer or tablet, a sheet from the bottom on a phone. In full screen it opens inside full screen, so the game keeps…"
+      "release_notes": "Keyboard & mouse in Remote Play now works on every firmware, not only FW 13.60 (still the one it's tested on). A firmware without the PS5's virtual keyboard and mouse says it isn't available and keeps Controller. If it doesn't start on your console, it isn't tried again on its o…"
     },
     {
       "id": "ps5upload-beta",
