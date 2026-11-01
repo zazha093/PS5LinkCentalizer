@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.74.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.74.0/PS5_Cooling_System_Center_v1.74.0.elf",
-      "version": "v1.74.0",
-      "last_update": "2026-10-22",
+      "filename": "PS5_Cooling_System_Center_v1.75.2.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.2/PS5_Cooling_System_Center_v1.75.2.elf",
+      "version": "v1.75.2",
+      "last_update": "2026-11-01",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "deb088fa0c525a808744ee0db66a52e71faff23718750f59c5d8237ecc20ab8e",
+      "checksum": "8f996a114f7f3cff0a42b425450c16ee989282b6d7081c37f97d70baee1d4cb5",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Mehr Kontrolle bei Spiel-Updates – Standardregel und Schalter je Spiel, „Nur laden“, Download-Ordner (auch USB), Prüfsummen-Schalter und ein Diagnosebericht Andere Versionen – Versionsliste von prosperopatches.com und orbispatches.com, dazu der letzte Patch, der auf d…"
+      "release_notes": "Highlights Schnellerer, sauberer Start – die App versucht beim Start nicht mehr, die alte Medien-Kachel anzulegen Fehlerbehebungen Bis 1.75.1 versuchte die App mit jeder neuen Version einmal, die frühere Medien-Kachel (PSCC69690) anzulegen – obwohl sie nicht mehr gebraucht wird.…"
     },
     {
       "id": "ps5-game-compressor",
@@ -632,17 +632,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-10.1.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.1.0/ps5upload-10.1.0.elf",
-      "version": "v10.1.0",
-      "last_update": "2026-10-31",
+      "filename": "ps5upload-10.2.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.2.0/ps5upload-10.2.0.elf",
+      "version": "v10.2.0",
+      "last_update": "2026-11-01",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "2608d338b47438f7702a7be04a7821c637ace1e64fb046e179eb29c5385dfda0",
+      "checksum": "44c1f5315d0020d14311bdd6bdb079ff8dfb1311bee9972a0749648a23918804",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Remap controller buttons in Play. Settings › Controller buttons: choose which PS5 button each button on your controller sends (swap ✕ and ○, turn a button off, put Create on L3...). It works for every controller, and Reset to defaults puts it back. Sharpening and upscaling is on…"
+      "release_notes": "Updates are checked before they install. Each release now publishes the SHA-256 of every download, and the app checks the file against it; a file that doesn't match is deleted and nothing is installed. One-click updates for a .deb or .rpm install on Linux. Install and restart as…"
+    },
+    {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-10.2.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.2.1/ps5upload-10.2.1.elf",
+      "version": "v10.2.1",
+      "last_update": "2026-11-01",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "e497814706b2c1b914e6e6906e37884c233a0c1dde4d4d3e12ac2e53503bd00c",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "Fixed: Play crashed on a Mac with a DualSense connected. The app quit while starting or stopping Remote Play, often several times in a row (10.1.0 and 10.2.0). The controller is now read from one place for the whole session, so starting and stopping streams is safe again."
     },
     {
       "id": "recompstore",
