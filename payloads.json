@@ -138,16 +138,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.3/orbit_store.elf",
-      "version": "v1.8.3",
-      "last_update": "2026-11-01",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.4/orbit_store.elf",
+      "version": "v1.8.4",
+      "last_update": "2026-11-02",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "59e216d7d5b163a14c8f7ac8fce4962b0af04541a1724236e0efb216a882e124",
+      "checksum": "a2ece507fdc835d72671820a6da30c3e2f92391a85da10e5f14130b5dbc2c596",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "Clearer Browse filters and other improvements. See how many games match each filter. Browse dropdowns show game counts alongside each choice. Choices with no matches are dimmed, and the counts update as you change your filters. Browse by genre. Choose one or more genres, combine…"
+      "release_notes": "TorBox filtering and fixes across Orbit. Find downloads supported by TorBox. With TorBox connected, choose Browse → Source → TorBox available to find games with a supported download option. You can save this choice with your other filters. Clearer extraction errors. Orbit explai…"
     },
     {
       "id": "poords4-poords4",
@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.75.3.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.3/PS5_Cooling_System_Center_v1.75.3.elf",
-      "version": "v1.75.3",
+      "filename": "PS5_Cooling_System_Center_v1.75.4.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.4/PS5_Cooling_System_Center_v1.75.4.elf",
+      "version": "v1.75.4",
       "last_update": "2026-11-02",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "b349c8bef3463fcef785f24fa5dde8748ba0669e64ac60b32cb89710d5d9889f",
+      "checksum": "a8fe006231e4586a687babe730622731c480f1448906128d6a20d94c59fdc178",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Die Vollbild-App spricht jetzt 7 Sprachen – Deutsch, Englisch, Spanisch, Französisch, Italienisch, Russisch und Schwedisch Sprache direkt wählen – Options-Taste → „Sprache / Language“ öffnet eine Liste aller Sprachen Übersetzungen vervollständigt – rund 1.600 fehlende…"
+      "release_notes": "Highlights Uhrzeiten stimmen – die Vollbild-App zeigt Protokoll, Kernel-Log, Dateien, Spielzeit und Sicherungen in der Ortszeit der Konsole statt in UTC Klarer Hinweis zur Kernlast – statt „keine Angabe“ steht da, welche Zusatzabfrage sie braucht Fehlerbehebungen Vollbild-App: U…"
     },
     {
       "id": "ps5-game-compressor",
@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-10.7.2.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.2/ps5upload-10.7.2.elf",
-      "version": "v10.7.2",
+      "filename": "ps5upload-10.7.4.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.4/ps5upload-10.7.4.elf",
+      "version": "v10.7.4",
       "last_update": "2026-11-02",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "afb8b1965796795f308dcc8e27be1a2e80feeaddbb85e3c94823ba46dabeb0d2",
+      "checksum": "31b39654ddf0d7e97160f99bbae57bff669ec34c8f7dd19ae8b15668205f1e5c",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Switched-on cheats now apply once the game is ready, and stay applied (For #627). The helper used to try a game's saved cheats once, right when the game started. When the game's code was not loaded yet, that try failed quietly and nothing tried again, so a switch could read On w…"
+      "release_notes": "Updates install when you quit, with no click (For #611). On Windows, macOS and the Linux AppImage, a new release is now downloaded in the background (never while something is transferring) and installed as you quit PS5Upload. The update bar then just says \"v10.7.4 ready · instal…"
     },
     {
       "id": "recompstore",
