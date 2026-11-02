@@ -632,32 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-10.5.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.5.1/ps5upload-10.5.1.elf",
-      "version": "v10.5.1",
-      "last_update": "2026-11-01",
+      "filename": "ps5upload-10.7.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.7.1/ps5upload-10.7.1.elf",
+      "version": "v10.7.1",
+      "last_update": "2026-11-02",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "b95d33b5afb9c51f90c41477d436e57a1ce8cd3539419f71d8a8f8be4223ff13",
+      "checksum": "db65ec2b61a6532620eb7b941cf378dadd11a254f05e1dd7b545911f65bfe49e",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Pressing Play no longer crashes the Linux app (#610). On WebKitGTK 2.54 (Fedora 44 and other current distros) the whole window died the moment Play checked which video formats it can decode, whenever WebKit's DMA-BUF renderer was off, which the app does on most AMD and Intel mac…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
-      "filename": "ps5upload-10.2.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v10.2.1/ps5upload-10.2.1.elf",
-      "version": "v10.2.1",
-      "last_update": "2026-11-01",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "e497814706b2c1b914e6e6906e37884c233a0c1dde4d4d3e12ac2e53503bd00c",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Fixed: Play crashed on a Mac with a DualSense connected. The app quit while starting or stopping Remote Play, often several times in a row (10.1.0 and 10.2.0). The controller is now read from one place for the whole session, so starting and stopping streams is safe again."
+      "release_notes": "Pairing with the PIN shown on the PS5 tries again by itself (#609). On a PS5 Pro with FW 11.60 the console dropped the connection on the first try (sometimes showing CE-110024-8 \"Something went wrong\") and accepted the same PIN on the next. The app now retries a dropped connecti…"
     },
     {
       "id": "recompstore",
