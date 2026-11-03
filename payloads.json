@@ -5,16 +5,16 @@
       "id": "cheatrunner",
       "name": "CheatRunner",
       "filename": "CheatRunner.elf",
-      "url": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18/CheatRunner.elf",
-      "version": "v0.18",
-      "last_update": "2026-10-10",
+      "url": "https://github.com/notmaj0r/CheatRunner/releases/download/v0.18.1/CheatRunner.elf",
+      "version": "v0.18.1",
+      "last_update": "2026-11-03",
       "description": "Web-Based Cheat Trainer for PS5!",
       "category": "Cheats",
-      "checksum": "4ae1ea4e37b2e67d5487355ddf671f166861ed6dceea348c048ad060770c0140",
+      "checksum": "80535260027983f09fc9d131e11e13591de61ef5eeea458825598263862d2ce8",
       "author": "notmaj0r",
       "source": "https://github.com/notmaj0r/CheatRunner/releases",
       "details_url": "https://raw.githubusercontent.com/notmaj0r/CheatRunner/main/README.md",
-      "release_notes": "CheatRunner v0.18 See the full changelog here: Changelog Check GUIDE to setup CheatRunner.zip on Homebrew Launcher. ⚠️ Before updating to a new CheatRunner version, please follow these steps: Updating CheatRunner Special Thanks: 💖 Supporters - those who supported the project th…"
+      "release_notes": "CheatRunner v0.18.1 See the full changelog here: Changelog ⚠️ Before updating to a new CheatRunner version, please follow these steps: Updating CheatRunner Special Thanks: 💖 Supporters — those who supported the project through Ko-Fi, Buy Me a Coffee, or PIX. • Vinas • Someone •…"
     },
     {
       "id": "etahen-11.00-13.60",
@@ -77,17 +77,17 @@
     {
       "id": "hyperhen",
       "name": "HYPERHEN",
-      "filename": "HyperHEN-v0.9.4.elf",
-      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_4/HyperHEN-v0.9.4.elf",
-      "version": "HYPERHEN_V0_9_4",
-      "last_update": "2026-10-30",
+      "filename": "HyperHEN-v0.9.5.elf",
+      "url": "https://github.com/Michele-M-Media/HYPERHEN/releases/download/HYPERHEN_V0_9_5/HyperHEN-v0.9.5.elf",
+      "version": "HYPERHEN_V0_9_5",
+      "last_update": "2026-11-03",
       "description": "",
       "category": "HEN",
-      "checksum": "86cc5525f06fd098197c0ca1fd8fccb08c5fa0d4a5b8eb5a1740f0799dcb9c80",
+      "checksum": "dbdecc6187bd43a1f3e84c47874c50c8546673accc969918340c7522a3bb299e",
       "author": "Michele-M-Media",
       "source": "https://github.com/Michele-M-Media/HYPERHEN/releases",
       "details_url": "https://raw.githubusercontent.com/Michele-M-Media/HYPERHEN/main/README.md",
-      "release_notes": "HyperHEN 0.9.4 brings Hyper to the main Toolbox page and carries forward the R45 development fixes, including the restored 13.xx Bypervisor HyperCore path and corrected 13.60 runtime. Automount remains ShadowMountPlus 1.7 beta9. Hyper — a local voice assistant fo…"
+      "release_notes": "HyperHEN 0.9.5 adds the confirmed 12.70 startup correction, manual PRX/SPRX game-module loading and ShadowMountPlus 1.7 beta11. Hyper's 7B Q5KM model has now completed a spoken reply, while remaining experimental with high latency and significant memory use. 12.7…"
     },
     {
       "id": "kstuff-lite",
@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.0.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.0/ps5upload-11.0.0.elf",
-      "version": "v11.0.0",
+      "filename": "ps5upload-11.0.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.1/ps5upload-11.0.1.elf",
+      "version": "v11.0.1",
       "last_update": "2026-11-03",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "027f62daaf060c90d159da9e2988e44fcc5f128ad866cb1b67d49a77d6485998",
+      "checksum": "7a5f7d1b8c1cbf6d7d1030294b7623793d544f6a4933224c73cc936b33386f2f",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Play Together: friends play your PS5 as Player 2, 3 and 4 (For #641). While you play, the new people button on the Play bar (or ⋯ › Play Together on a phone) opens a panel with three steps: share the invite (a QR code, the link with Copy, your phone's Share sheet, or a short cod…"
+      "release_notes": "Friends away from home can play together, over Tailscale. While the Tailscale app is connected on the computer that plays, Play Together's invite and the phone controller / watch panel offer This network | Tailscale above the QR code; the Tailscale link reaches your computer fro…"
     },
     {
       "id": "recompstore",
