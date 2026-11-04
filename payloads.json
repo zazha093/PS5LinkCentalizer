@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.0.2.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.2/ps5upload-11.0.2.elf",
-      "version": "v11.0.2",
+      "filename": "ps5upload-11.0.8.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.8/ps5upload-11.0.8.elf",
+      "version": "v11.0.8",
       "last_update": "2026-11-04",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "f3d0f6be1ec19f8285720618260fbe65bdc523ab6e4b1c5d99a60dd07dea9b54",
+      "checksum": "f315f5645d7be6cc0736ec3183cfa67ec9d7ec689321295fb222f5b699b2542e",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "No more green picture on some Linux PCs (For #656). On some Linux PCs, the Linux app's fast way of handing the picture to the graphics card came back empty, which shows as solid green. The app now notices and switches to drawing frames the slower way that always worked. Sound fo…"
+      "release_notes": "A friend's buttons hide right away on a phone. When a friend joins, the TV asks who's using their controller; until someone picked a user, the card with the buttons stayed in the middle of a phone's screen with no way to hide it. It now shows the ask once, and Hide (or press and…"
     },
     {
       "id": "recompstore",
