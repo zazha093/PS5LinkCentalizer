@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.75.6.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.6/PS5_Cooling_System_Center_v1.75.6.elf",
-      "version": "v1.75.6",
+      "filename": "PS5_Cooling_System_Center_v1.75.7.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.75.7/PS5_Cooling_System_Center_v1.75.7.elf",
+      "version": "v1.75.7",
       "last_update": "2026-11-03",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a web UI (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5",
       "category": "Homebrew",
-      "checksum": "661a4e731f1ab5dd319d3f197988f260ee4f04fde39195da7e4555908573ca05",
+      "checksum": "3d7c6a967359cab3dd841a6c5b8c14f1582b9c6dfee326a28e05925aa37f53bf",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Das Protokoll übersteht jetzt einen Neustart – die App schreibt jedes Ereignis zusätzlich in /data/PS5-Cooling-Center/app.log, damit nach einem Neustart oder Absturz der Konsole nachzulesen ist, was vorher geschah Neu Die Datei app.log hat denselben Aufbau wie der Exp…"
+      "release_notes": "Highlights app.log zeigt jetzt, wie die App geendet hat – jede Ausführung schließt mit einer Zeile ===== … beendet: =====, und fehlt sie, sagt der nächste Start das Neu Vor dem Ende schreibt die App alles, was noch nicht in der Datei steht, sofort hinein und setzt dann die Endze…"
     },
     {
       "id": "ps5-game-compressor",
@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.0.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.1/ps5upload-11.0.1.elf",
-      "version": "v11.0.1",
-      "last_update": "2026-11-03",
+      "filename": "ps5upload-11.0.2.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.2/ps5upload-11.0.2.elf",
+      "version": "v11.0.2",
+      "last_update": "2026-11-04",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "7a5f7d1b8c1cbf6d7d1030294b7623793d544f6a4933224c73cc936b33386f2f",
+      "checksum": "f3d0f6be1ec19f8285720618260fbe65bdc523ab6e4b1c5d99a60dd07dea9b54",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Friends away from home can play together, over Tailscale. While the Tailscale app is connected on the computer that plays, Play Together's invite and the phone controller / watch panel offer This network | Tailscale above the QR code; the Tailscale link reaches your computer fro…"
+      "release_notes": "No more green picture on some Linux PCs (For #656). On some Linux PCs, the Linux app's fast way of handing the picture to the graphics card came back empty, which shows as solid green. The app now notices and switches to drawing frames the slower way that always worked. Sound fo…"
     },
     {
       "id": "recompstore",
