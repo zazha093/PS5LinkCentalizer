@@ -147,7 +147,7 @@
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "We’re shipping improvements and bug fixes across our apps: Orbit Store · Native PS5 app (FFPKG) and browser (ELF) Fixed the Downloads list jumping or losing your selection when you resume a download, refresh the list or remove an entry. This applies to all four layouts. Fixed do…"
+      "release_notes": "We’re shipping improvements and bug fixes across our apps: The catalogue now has 2,320 games and 5,162 download options, plus 631 add-ons with 633 options across 197 base games. 620 existing download options now identify the format inside their archive and the space needed after…"
     },
     {
       "id": "poords4-poords4",
@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.76.8.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.8/PS5_Cooling_System_Center_v1.76.8.elf",
-      "version": "v1.76.8",
+      "filename": "PS5_Cooling_System_Center_v1.76.9.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.9/PS5_Cooling_System_Center_v1.76.9.elf",
+      "version": "v1.76.9",
       "last_update": "2026-11-05",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "cec2ca16a382e372ca10052a1f4c2191e495d82813a991db0cf1c86f83c69127",
+      "checksum": "aa24b1e997503001e0b312bc53ca30bbdafdc6c2471b2dcf863c544e09d13548",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Browser-App: Vollbild startet nur noch im Browser der PS5, am PC und am Handy bleibt das normale Fenster mit Taskleiste Dateimanager: Kopieren nach und Verschieben nach für mehrere ausgewählte Einträge auf einmal Neu Dateimanager In der Leiste über der Auswahl stehen…"
+      "release_notes": "Highlights Dateimanager: Die Auftragsanzeige nennt, wie viele Dateien/Ordner es sind und von wo nach wo es geht Beides in Browser-App und Vollbild-App, in allen sechs Sprachen Neu Dateimanager Beim Kopieren, Verschieben und Löschen steht jetzt z. B. „Kopiere 1 von 2 Dateien/Ordn…"
     },
     {
       "id": "ps5-game-compressor",
@@ -588,61 +588,61 @@
       "id": "ps5sx2-ps5sx2installer",
       "name": "PS5SX2 · PS5SX2Installer",
       "filename": "PS5SX2Installer.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-187/PS5SX2Installer.elf",
-      "version": "vk-285-187",
-      "last_update": "2026-11-03",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-190/PS5SX2Installer.elf",
+      "version": "vk-285-190",
+      "last_update": "2026-11-05",
       "description": "A port of PCSX2 for PS5",
       "category": "Emulator",
       "checksum": "efdec4f8d968ef4a7c1880e75d26b96d212a042a6c208de46f0a859609f6224c",
       "author": "Swordpdf",
       "source": "https://github.com/Swordpdf/PS5SX2/releases",
       "details_url": "https://raw.githubusercontent.com/Swordpdf/PS5SX2/main/README.md",
-      "release_notes": "(build vk-285-187) Everything from the test builds since 2.20 (183 to 187) in one version. After updating, restart your console once so the new disc helper (171p) loads. Frame generation and display 60 → 120 fps on original PS5s below firmware 9.00 (it was stuck at 4…"
+      "release_notes": "(build vk-285-190) The in-game menu. No console restart needed this time: the disc helper is still 171p. The in-game menu In a game, hold L2 + D-pad Down for a second (a small Menu ring fills in the corner). The game pauses and its picture moves into a card next to a…"
     },
     {
       "id": "ps5sx2-ps5sxhelper",
       "name": "PS5SX2 · PS5SXHelper",
       "filename": "PS5SXHelper.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-187/PS5SXHelper.elf",
-      "version": "vk-285-187",
-      "last_update": "2026-11-03",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-190/PS5SXHelper.elf",
+      "version": "vk-285-190",
+      "last_update": "2026-11-05",
       "description": "A port of PCSX2 for PS5",
       "category": "Emulator",
       "checksum": "e98906788909cab909f22b75fedbeeb8d41a1adb49166e92d98b3f7536c8a2cd",
       "author": "Swordpdf",
       "source": "https://github.com/Swordpdf/PS5SX2/releases",
       "details_url": "https://raw.githubusercontent.com/Swordpdf/PS5SX2/main/README.md",
-      "release_notes": "(build vk-285-187) Everything from the test builds since 2.20 (183 to 187) in one version. After updating, restart your console once so the new disc helper (171p) loads. Frame generation and display 60 → 120 fps on original PS5s below firmware 9.00 (it was stuck at 4…"
+      "release_notes": "(build vk-285-190) The in-game menu. No console restart needed this time: the disc helper is still 171p. The in-game menu In a game, hold L2 + D-pad Down for a second (a small Menu ring fills in the corner). The game pauses and its picture moves into a card next to a…"
     },
     {
       "id": "ps5sx2-ps5sxhelper-no-data-mount",
       "name": "PS5SX2 · PS5SXHelper-no-data-mount",
       "filename": "PS5SXHelper-no-data-mount.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-187/PS5SXHelper-no-data-mount.elf",
-      "version": "vk-285-187",
-      "last_update": "2026-11-03",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-190/PS5SXHelper-no-data-mount.elf",
+      "version": "vk-285-190",
+      "last_update": "2026-11-05",
       "description": "A port of PCSX2 for PS5",
       "category": "Emulator",
       "checksum": "1d85c21611de6c7ab51859b850c2c886fbd16855e58968b9ae47b042dbc4438a",
       "author": "Swordpdf",
       "source": "https://github.com/Swordpdf/PS5SX2/releases",
       "details_url": "https://raw.githubusercontent.com/Swordpdf/PS5SX2/main/README.md",
-      "release_notes": "(build vk-285-187) Everything from the test builds since 2.20 (183 to 187) in one version. After updating, restart your console once so the new disc helper (171p) loads. Frame generation and display 60 → 120 fps on original PS5s below firmware 9.00 (it was stuck at 4…"
+      "release_notes": "(build vk-285-190) The in-game menu. No console restart needed this time: the disc helper is still 171p. The in-game menu In a game, hold L2 + D-pad Down for a second (a small Menu ring fills in the corner). The game pauses and its picture moves into a card next to a…"
     },
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.1.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.1.0/ps5upload-11.1.0.elf",
-      "version": "v11.1.0",
+      "filename": "ps5upload-11.2.3.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.3/ps5upload-11.2.3.elf",
+      "version": "v11.2.3",
       "last_update": "2026-11-05",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "1aaf50efa91aac8d26d53ce27ec223a3646a880892834977615c2770ff17197b",
+      "checksum": "0a0fd1cd7946e5bd364dfaaadc0e7b01c35c33fd48302385378ff743646b129a",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Agents can now drive PS5Upload: the engine has an MCP server at /mcp, and ps5upload-engine mcp connects clients that only speak stdio. It covers files, uploads, installs, games, saves, cheats, payloads, power, hardware and Remote Play, and can call any route of the engine's API.…"
+      "release_notes": "Play Together: a friend's picture no longer freezes about 10 seconds after joining. It hit friends on plain http links (LAN and Tailscale) until they reloaded. The Watch party on phones gets the same fix. (#649) Play Together: on a phone, the buttons no longer sit on top of the…"
     },
     {
       "id": "recompstore",
