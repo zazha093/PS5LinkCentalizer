@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.76.7.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.7/PS5_Cooling_System_Center_v1.76.7.elf",
-      "version": "v1.76.7",
-      "last_update": "2026-11-04",
+      "filename": "PS5_Cooling_System_Center_v1.76.8.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.8/PS5_Cooling_System_Center_v1.76.8.elf",
+      "version": "v1.76.8",
+      "last_update": "2026-11-05",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "6a669399dfca68a179b49c34a693daf47c5cef78b7871586ef8f69ced2ae2a05",
+      "checksum": "cec2ca16a382e372ca10052a1f4c2191e495d82813a991db0cf1c86f83c69127",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Vollbild-App: Die Titelzeile zeigt jetzt die Version der App gleich hinter dem Namen Neu Vollbild-App Oben steht „PS5 COOLING & SYSTEM CENTER Pro v1.76.7 | Dateimanager“: Die Version folgt klein und gedämpft auf den Titel, der Name der Seite rückt ein Stück nach recht…"
+      "release_notes": "Highlights Browser-App: Vollbild startet nur noch im Browser der PS5, am PC und am Handy bleibt das normale Fenster mit Taskleiste Dateimanager: Kopieren nach und Verschieben nach für mehrere ausgewählte Einträge auf einmal Neu Dateimanager In der Leiste über der Auswahl stehen…"
     },
     {
       "id": "ps5-game-compressor",
@@ -632,17 +632,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.0.8.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.0.8/ps5upload-11.0.8.elf",
-      "version": "v11.0.8",
-      "last_update": "2026-11-04",
+      "filename": "ps5upload-11.1.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.1.0/ps5upload-11.1.0.elf",
+      "version": "v11.1.0",
+      "last_update": "2026-11-05",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "f315f5645d7be6cc0736ec3183cfa67ec9d7ec689321295fb222f5b699b2542e",
+      "checksum": "1aaf50efa91aac8d26d53ce27ec223a3646a880892834977615c2770ff17197b",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "A friend's buttons hide right away on a phone. When a friend joins, the TV asks who's using their controller; until someone picked a user, the card with the buttons stayed in the middle of a phone's screen with no way to hide it. It now shows the ask once, and Hide (or press and…"
+      "release_notes": "Agents can now drive PS5Upload: the engine has an MCP server at /mcp, and ps5upload-engine mcp connects clients that only speak stdio. It covers files, uploads, installs, games, saves, cheats, payloads, power, hardware and Remote Play, and can call any route of the engine's API.…"
     },
     {
       "id": "recompstore",
