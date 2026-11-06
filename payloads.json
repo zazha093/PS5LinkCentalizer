@@ -147,7 +147,7 @@
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "We’re shipping improvements and bug fixes across our apps: The catalogue now has 2,320 games and 5,162 download options, plus 631 add-ons with 633 options across 197 base games. 620 existing download options now identify the format inside their archive and the space needed after…"
+      "release_notes": "We’re shipping improvements and bug fixes across our apps: The catalogue now has 2,331 games and 5,196 download options, plus 631 add-ons with 633 options across 197 base games. 1,064 existing download options now identify the format inside their archive and the space needed aft…"
     },
     {
       "id": "poords4-poords4",
@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.76.9.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.76.9/PS5_Cooling_System_Center_v1.76.9.elf",
-      "version": "v1.76.9",
-      "last_update": "2026-11-05",
+      "filename": "PS5_Cooling_System_Center_v1.77.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.0/PS5_Cooling_System_Center_v1.77.0.elf",
+      "version": "v1.77.0",
+      "last_update": "2026-11-06",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "aa24b1e997503001e0b312bc53ca30bbdafdc6c2471b2dcf863c544e09d13548",
+      "checksum": "5e6b8600a50c615539563b97f5825c9b567a155aad6eb3bdd0d946e6a51d725e",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Dateimanager: Die Auftragsanzeige nennt, wie viele Dateien/Ordner es sind und von wo nach wo es geht Beides in Browser-App und Vollbild-App, in allen sechs Sprachen Neu Dateimanager Beim Kopieren, Verschieben und Löschen steht jetzt z. B. „Kopiere 1 von 2 Dateien/Ordn…"
+      "release_notes": "Highlights zstd-Pakete: Spiele lassen sich jetzt auch in zstd-Asset-Packs packen (für AMPR EMU NG) – LZ4 oder zstd zur Wahl AMPR EMU NG 0.3.2 ist fest eingebaut; beim Einbauen fragt die App, ob die automatische Fakelib-Aktualisierung in ShadowMountPlus abgeschaltet werden soll L…"
     },
     {
       "id": "ps5-game-compressor",
@@ -632,32 +632,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.2.4.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.4/ps5upload-11.2.4.elf",
-      "version": "v11.2.4",
+      "filename": "ps5upload-11.2.6.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.6/ps5upload-11.2.6.elf",
+      "version": "v11.2.6",
       "last_update": "2026-11-06",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "06fb08963fb31c59ab277d5e1b109481c546fc1128a664b06ca70a9c2078e374",
+      "checksum": "c0a549d34b9bd9c307aeca7eb211edea58c8a10142cd892e1f72fea7bfe7dcac",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Play: when a computer can't show any picture from a stream, the app no longer repeats \"could not decode the picture\" forever. It switches to H.264 and asks you to press Start again, then tries software decoding, and only then stops and says so. It came up on an older Intel Mac.…"
+      "release_notes": "Dependency updates, including a much newer SMB client (0.39) and audio library (cpal 0.18). Browsing, reading, uploading, renaming and deleting on a network share were checked against a real Samba server. DualSense haptics keep playing through a small audio glitch. The new audio…"
     },
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-11.2.5.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.5/ps5upload-11.2.5.elf",
-      "version": "v11.2.5",
+      "filename": "ps5upload-11.2.8.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.2.8/ps5upload-11.2.8.elf",
+      "version": "v11.2.8",
       "last_update": "2026-11-06",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "a2c51a140fe3c701edc854decfe0cc120ec155bd8f99c9d49feac8cb5d057f80",
+      "checksum": "a76ae6f70ee8cb0b536ee39f60855cee627a01f33271699020ee35989a9a8f37",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Hardware: Read sensors works while a game runs. It used to wait 30 seconds and bring back only the temperatures, because the measured CPU clock doesn't answer during a game. Now the fan, GPU and core clocks come back in about 2 seconds, then almost at once, and only the measured…"
+      "release_notes": "Convert: a game whose executables are plain unsigned ELFs now gets them fake-signed in the package, image or game folder you make, because the console won't start a plain ELF. Your source isn't changed. A game folder sent as it is stays as it is. Convert: more packages can be re…"
     },
     {
       "id": "recompstore",
