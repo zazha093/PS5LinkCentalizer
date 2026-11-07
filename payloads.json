@@ -527,32 +527,17 @@
     {
       "id": "ps5-webkit-autoloader",
       "name": "ps5-webkit-autoloader",
-      "filename": "webkit-autoloader-installer_v0.6.2.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.6.2/webkit-autoloader-installer_v0.6.2.elf",
-      "version": "v0.6.2",
-      "last_update": "2026-10-28",
+      "filename": "webkit-autoloader-installer_v0.7.0.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0/webkit-autoloader-installer_v0.7.0.elf",
+      "version": "v0.7.0",
+      "last_update": "2026-11-06",
       "description": "An automated payload loader for exploited PS5 consoles",
       "category": "Exploit",
-      "checksum": "27fd335764270716972faea399a5cc7810b9e49a21abf4966d9759580756cb19",
+      "checksum": "10cb38baae078e41f252cffb0d356829c89ee63fd3234f1fd1e6b19f81eab1c7",
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Changelog Updated ps5-unified-autoloader to v0.1.6 includes bundled Payload Manager v0.6.3 Updated ps5-elfldr to v0.27 Updated ps5-webkit-remote-loader to v0.1.2 Added Relapse support for FW 11.40 (credit: @tidewell @notmaj0r) --- Setup Instructions - see README Discussion threa…"
-    },
-    {
-      "id": "ps5-webkit-autoloader-beta",
-      "name": "ps5-webkit-autoloader (beta)",
-      "filename": "webkit-autoloader-installer_v0.7.0-dev-3a34c3b.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0-prerelease-2/webkit-autoloader-installer_v0.7.0-dev-3a34c3b.elf",
-      "version": "v0.7.0-prerelease-2",
-      "last_update": "2026-10-31",
-      "description": "An automated payload loader for exploited PS5 consoles",
-      "category": "Exploit",
-      "checksum": "2a202023ee9ef4c742c3dc05d872c679c3570ca28e50c668b4b2e86c732d27b1",
-      "author": "itsPLK",
-      "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
-      "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Discussion thread A lot of internal changes, so need your feedback. Focused on relapse, but there's also a change from which poops should benefit too. --- Automatically selects the best exploit based on firmware version and network status: FW > 12.00 and FW 12.00) FW == 9.05: Po…"
+      "release_notes": "Changelog Most of this release is changes in ps5-webkit-remote-loader, the shared base this project builds on. Main changes: Switched Relapse to notmaj0r's Lua implementation: Adapted to run through the remote loader's new Lua runtime (LuaK1t) Fixed freezes/hangs during loading:…"
     },
     {
       "id": "ps5library",
