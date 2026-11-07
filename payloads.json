@@ -332,17 +332,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.77.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.0/PS5_Cooling_System_Center_v1.77.0.elf",
-      "version": "v1.77.0",
-      "last_update": "2026-11-06",
+      "filename": "PS5_Cooling_System_Center_v1.77.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.77.1/PS5_Cooling_System_Center_v1.77.1.elf",
+      "version": "v1.77.1",
+      "last_update": "2026-11-07",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "5e6b8600a50c615539563b97f5825c9b567a155aad6eb3bdd0d946e6a51d725e",
+      "checksum": "0d5b9bb32c27b0f6207d354a6b9a8dc7305eb38d8b5f290326ab9637ac3e6658",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights zstd-Pakete: Spiele lassen sich jetzt auch in zstd-Asset-Packs packen (für AMPR EMU NG) – LZ4 oder zstd zur Wahl AMPR EMU NG 0.3.2 ist fest eingebaut; beim Einbauen fragt die App, ob die automatische Fakelib-Aktualisierung in ShadowMountPlus abgeschaltet werden soll L…"
+      "release_notes": "Highlights Die Kacheln ersetzen eine ältere laufende App selbst – wer neue Kachel-Ordner kopiert, bekommt beim Antippen die neue Version, auch ohne Neustart der Konsole Neu Kacheln aktualisieren die laufende App Bisher schickten beide Kacheln (Vollbild FAKE86921 und Browser FAKE…"
     },
     {
       "id": "ps5-game-compressor",
@@ -617,17 +617,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.3.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.3.0/ps5upload-11.3.0.elf",
-      "version": "v11.3.0",
+      "filename": "ps5upload-11.4.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.4.0/ps5upload-11.4.0.elf",
+      "version": "v11.4.0",
       "last_update": "2026-11-07",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "db1d0e2be1d14fea08b42a9289e20ebe8609011f288b29b7dd73c957b2616ffd",
+      "checksum": "35d95bce6b4bec134575164d45658051e7ab5689b331beac68c81d1f24842b33",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "New: Backup & Restore (Console section). Choose what to keep on your computer: saves, payload settings, screenshots and clips, homebrew and other folders in /data, each with its size. It says what it leaves out and why: installed games, because copying them back doesn't install…"
+      "release_notes": "Games and formats: New: zstd asset packs in Convert, smaller than LZ4 and for any plain image (.ffpkg, .exfat, .ffpfs), with levels 1, 5 and 19. They're written straight into the image with no temporary copy, and the image gets ampr-emu-ng as its emulator. A game already in LZ4…"
     },
     {
       "id": "ps5upload-beta",
