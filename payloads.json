@@ -527,17 +527,17 @@
     {
       "id": "ps5-webkit-autoloader",
       "name": "ps5-webkit-autoloader",
-      "filename": "webkit-autoloader-installer_v0.7.0.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.0/webkit-autoloader-installer_v0.7.0.elf",
-      "version": "v0.7.0",
-      "last_update": "2026-11-06",
+      "filename": "webkit-autoloader-installer_v0.7.1.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.1/webkit-autoloader-installer_v0.7.1.elf",
+      "version": "v0.7.1",
+      "last_update": "2026-11-08",
       "description": "An automated payload loader for exploited PS5 consoles",
       "category": "Exploit",
-      "checksum": "10cb38baae078e41f252cffb0d356829c89ee63fd3234f1fd1e6b19f81eab1c7",
+      "checksum": "df60538570e9811bb0b4652a3fdb3e1a35ec3455b3ca7c80edc4140c5bb47ce2",
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Changelog Most of this release is changes in ps5-webkit-remote-loader, the shared base this project builds on. Main changes: Switched Relapse to notmaj0r's Lua implementation: Adapted to run through the remote loader's new Lua runtime (LuaK1t) Fixed freezes/hangs during loading:…"
+      "release_notes": "Changelog Fixed Poops stability: A stability fix for Relapse in v0.7.0 was unintentionally affecting Poops, causing slower runs and more kernel panics. Cleaned up Poops logging: Poops now shows cleaner, less noisy output. --- Setup Instructions - see README Discussion thread for…"
     },
     {
       "id": "ps5library",
@@ -617,17 +617,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.5.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.5.0/ps5upload-11.5.0.elf",
-      "version": "v11.5.0",
+      "filename": "ps5upload-11.5.2.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.5.2/ps5upload-11.5.2.elf",
+      "version": "v11.5.2",
       "last_update": "2026-11-07",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "92e47765d122cb0adc262c06318b3647faf08a8910ebfb74f47c62738188c845",
+      "checksum": "1c2a6fe82de8438219c01c8c866deffd2b88ec3896bccb649601ef1fe1bc84c5",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Remote Play: No sound? The stream now says why after a few seconds: the PS5 is sending none, it sends a format the app can't play, or it arrives and this device plays none of it. The log says which, so a bug report shows it. Both of our consoles send sound normally. A device tha…"
+      "release_notes": "Remote Play on older Macs (#720, #683): Picture: the system media player fallback now works inside the app. The app's own security rules blocked it, so it failed and retried in a loop; that's fixed, a player that still fails gives up after three tries with one error, and Setting…"
     },
     {
       "id": "ps5upload-beta",
