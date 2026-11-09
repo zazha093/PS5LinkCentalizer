@@ -50,20 +50,6 @@
       "id": "ftpsrv-ftpsrv-ps5",
       "name": "ftpsrv · ftpsrv-ps5",
       "filename": "ftpsrv-ps5.elf",
-      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5.elf",
-      "version": "v0.21.1",
-      "last_update": "2026-08-20",
-      "description": "An FTP server for jailbroken PS4s and PS5s",
-      "category": "Network",
-      "checksum": "7d4b31c83eae4e056580482a3a074e1db25922efc74ac1e439473b45d71a5938",
-      "author": "ps5-payload-dev",
-      "source": "https://github.com/ps5-payload-dev/ftpsrv/releases",
-      "details_url": "https://raw.githubusercontent.com/ps5-payload-dev/ftpsrv/master/README.md"
-    },
-    {
-      "id": "ftpsrv-ftpsrv-ps5-beta",
-      "name": "ftpsrv · ftpsrv-ps5 (beta)",
-      "filename": "ftpsrv-ps5.elf",
       "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps5.elf",
       "version": "v0.22",
       "last_update": "2026-11-08",
@@ -72,25 +58,12 @@
       "checksum": "41148c2c1cad1ea9e7cfde03e389fa918e3338e896d06167346de09adbdc8757",
       "author": "ps5-payload-dev",
       "source": "https://github.com/ps5-payload-dev/ftpsrv/releases",
-      "details_url": "https://raw.githubusercontent.com/ps5-payload-dev/ftpsrv/master/README.md"
+      "details_url": "https://raw.githubusercontent.com/ps5-payload-dev/ftpsrv/master/README.md",
+      "release_notes": "cmd: initialize addrlen before accept() in ftpdataopen"
     },
     {
       "id": "ftpsrv-ftpsrv-ps5-install",
       "name": "ftpsrv · ftpsrv-ps5-install",
-      "filename": "ftpsrv-ps5-install.elf",
-      "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.21.1/ftpsrv-ps5-install.elf",
-      "version": "v0.21.1",
-      "last_update": "2026-08-20",
-      "description": "An FTP server for jailbroken PS4s and PS5s",
-      "category": "Network",
-      "checksum": "0ccfe0097081be0514aabef34390a0f6776226e8b3eefbb047964584e0cfe3a9",
-      "author": "ps5-payload-dev",
-      "source": "https://github.com/ps5-payload-dev/ftpsrv/releases",
-      "details_url": "https://raw.githubusercontent.com/ps5-payload-dev/ftpsrv/master/README.md"
-    },
-    {
-      "id": "ftpsrv-ftpsrv-ps5-install-beta",
-      "name": "ftpsrv · ftpsrv-ps5-install (beta)",
       "filename": "ftpsrv-ps5-install.elf",
       "url": "https://github.com/ps5-payload-dev/ftpsrv/releases/download/v0.22/ftpsrv-ps5-install.elf",
       "version": "v0.22",
@@ -100,7 +73,8 @@
       "checksum": "5e845b93dac8906f15f72dbe5b3ee07d3a4c47474a3afd4126d8ba4a280b106d",
       "author": "ps5-payload-dev",
       "source": "https://github.com/ps5-payload-dev/ftpsrv/releases",
-      "details_url": "https://raw.githubusercontent.com/ps5-payload-dev/ftpsrv/master/README.md"
+      "details_url": "https://raw.githubusercontent.com/ps5-payload-dev/ftpsrv/master/README.md",
+      "release_notes": "cmd: initialize addrlen before accept() in ftpdataopen"
     },
     {
       "id": "hyperhen",
@@ -226,16 +200,16 @@
       "id": "prosperomgr",
       "name": "ProsperoMgr",
       "filename": "ProsperoMgr.elf",
-      "url": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.1/ProsperoMgr.elf",
-      "version": "v1.1",
-      "last_update": "2026-09-28",
+      "url": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.2/ProsperoMgr.elf",
+      "version": "v1.2",
+      "last_update": "2026-11-09",
       "description": "All-In-One manager for your PS5!",
       "category": "Homebrew",
-      "checksum": "e7a6bb544adb2fb2a61aa9cc83b0ad15f70b32d7511a3de0f1fb88812f11983c",
+      "checksum": "127394cc4f1ac7347fea509e010e80bab7b5ee13d820665474cdc3928d173bce",
       "author": "notmaj0r",
       "source": "https://github.com/notmaj0r/ProsperoMgr/releases",
       "details_url": "https://raw.githubusercontent.com/notmaj0r/ProsperoMgr/main/README.md",
-      "release_notes": "Prospero Manager v1.1 See the full changelog here: Changelog If you encounter any issues, please report them through GitHub or in our Discord server! Special Thanks: 💖 Supporters — those who supported the project through Ko-Fi, Buy Me a Coffee, or PIX. • Vinas • Someone • Bruno…"
+      "release_notes": "Prospero Manager v1.2 The biggest update so far: a new Media page, a Games / Apps library, right-click menus, Back/Forward navigation, safe USB removal, a much faster PKG install, and a lot of polish for phones and the PS5 browser. See the full changelog here: Changelog If you e…"
     },
     {
       "id": "prosperoplayer",
@@ -645,17 +619,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-11.6.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v11.6.0/ps5upload-11.6.0.elf",
-      "version": "v11.6.0",
-      "last_update": "2026-11-08",
+      "filename": "ps5upload-12.3.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.3.0/ps5upload-12.3.0.elf",
+      "version": "v12.3.0",
+      "last_update": "2026-11-09",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "13dca53b2216d920ad94b9564cba68fd085d4ea0f1f0193be5b5299c9872e67e",
+      "checksum": "68f6baf099d68062632220c64a048fae59d54a5babed14a73c55c993ac283d33",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Play Together over the internet: Friends no longer need to be on your Wi-Fi. When you invite, choose Internet, and the link works from anywhere: a phone on mobile data, a friend's home. A small server at hub.phantomptr.com only introduces the two sides; the game's picture, sound…"
+      "release_notes": "Connecting: Connection shows the PS5s your Tailscale network can see that aren't on this device's list yet, with Add. No more going through Settings › Tailscale or a scan to find them. If one doesn't let this device in yet, it says where to allow it. When Tailscale is paused on…"
     },
     {
       "id": "ps5upload-beta",
