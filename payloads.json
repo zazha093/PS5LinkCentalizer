@@ -634,17 +634,17 @@
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-12.1.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.1.0/ps5upload-12.1.0.elf",
-      "version": "v12.1.0",
+      "filename": "ps5upload-12.4.1.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.1/ps5upload-12.4.1.elf",
+      "version": "v12.4.1",
       "last_update": "2026-11-09",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "c7235dc594c00e04fa0d946ffe18ca3d93d8505affd621669e357e79ef48af80",
+      "checksum": "fd3f6679bba4f3246ef83fa4cc747a614b449ad1b9dcfabb0b0069751a609ed4",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Play Together: One invite link works everywhere. A friend on your Wi-Fi connects over your home network, a friend on Tailscale over Tailscale, anyone else directly over the internet; the app picks the best way by itself. Settings › App › Play Together: \"Invites work: Anywhere\" o…"
+      "release_notes": "⚠️ Don't use Wake & sign in with 12.4.1. Waking a PS5 from rest with Wake & sign in switched two consoles off in our testing. A fix (12.4.2) is on the way. Plain Wake, and everything else in this release, is not affected. Remote Play: Play connects again after another device or…"
     },
     {
       "id": "recompstore",
