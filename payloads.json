@@ -334,17 +334,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.78.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.78.0/PS5_Cooling_System_Center_v1.78.0.elf",
-      "version": "v1.78.0",
-      "last_update": "2026-11-08",
+      "filename": "PS5_Cooling_System_Center_v1.79.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.79.0/PS5_Cooling_System_Center_v1.79.0.elf",
+      "version": "v1.79.0",
+      "last_update": "2026-11-09",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "7a4b2bec36918b92ffac55dd934b4cdf56cf8dffd2d86ec9bd4f71e322936699",
+      "checksum": "9ce01f4c93b0934fe0612163d07f15477e6a5d8edc35be24e7c5e46d51027afc",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "PS5 Cooling & System Center – Pro v1.78.0 Highlights Spiele mit unsignierten Programmdateien starten: Beim Konvertieren und beim Packen in einen neuen Ordner schreibt die App einfache ELF-Dateien als FSELF – an der Konsole bestätigt zstd packt immer im Spielordner und kann die P…"
+      "release_notes": "Highlights ShadowMountPlus 1.7beta12: Die App liest und schreibt die neue config.ini (Abschnitte, updateenabled) genauso wie die alte und ändert immer die richtige Zeile – Standard ist „Automatisch erkennen“ ShadowMountPlus hat einen eigenen Platz: im Browser als Karte ganz oben…"
     },
     {
       "id": "ps5-game-compressor",
@@ -619,17 +619,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.3.0.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.3.0/ps5upload-12.3.0.elf",
-      "version": "v12.3.0",
+      "filename": "ps5upload-12.4.2.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.2/ps5upload-12.4.2.elf",
+      "version": "v12.4.2",
       "last_update": "2026-11-09",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "68f6baf099d68062632220c64a048fae59d54a5babed14a73c55c993ac283d33",
+      "checksum": "06dbb9022bcb71cb95178c29c9da39ae6e60d17becf9c1ff8938c98bd15fa8ef",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Connecting: Connection shows the PS5s your Tailscale network can see that aren't on this device's list yet, with Add. No more going through Settings › Tailscale or a scan to find them. If one doesn't let this device in yet, it says where to allow it. When Tailscale is paused on…"
+      "release_notes": "PS5 helper and rest mode: The helper now notices a rest started from the console's own menu (or when the PS5 goes to rest by itself), not just one PS5Upload asks for. Before, such a rest could slip past it, so Tailscale stayed connected through rest and the helper's after-wake c…"
     },
     {
       "id": "ps5upload-beta",
@@ -644,7 +644,7 @@
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "⚠️ Don't use Wake & sign in with 12.4.1. Waking a PS5 from rest with Wake & sign in switched two consoles off in our testing. A fix (12.4.2) is on the way. Plain Wake, and everything else in this release, is not affected. Remote Play: Play connects again after another device or…"
+      "release_notes": "Please update to 12.4.2. It fixes how the helper handles rest mode and starting at boot, among other things. Remote Play: Play connects again after another device or a controller at the console took the session over, or right after a Stop. Before, PS5Upload could keep failing un…"
     },
     {
       "id": "recompstore",
@@ -675,6 +675,21 @@
       "source": "https://github.com/drakmor/ShadowMountPlus/releases",
       "details_url": "https://raw.githubusercontent.com/drakmor/ShadowMountPlus/1.7/README.md",
       "release_notes": "Introduced configuration format v2, with separate config.ini and profiles.ini, automatic migration, and runtime reloads. Improved mount and launch recovery, including safer cleanup of sandbox layers and handling for M.2 storage. Made library scans more resilient to inaccessible…"
+    },
+    {
+      "id": "vlc",
+      "name": "VLC",
+      "filename": "Helper.elf",
+      "url": "https://github.com/ZiZc3/VLC/releases/download/v0.6.1/Helper.elf",
+      "version": "v0.6.1",
+      "last_update": "2026-11-10",
+      "description": "VLC for PS5.",
+      "category": "Media",
+      "checksum": "31c8a3479937e310f758d36d87c937c91ae942921fa4645473b3d228a7d88959",
+      "author": "ZiZc3",
+      "source": "https://github.com/ZiZc3/VLC/releases",
+      "details_url": "https://raw.githubusercontent.com/ZiZc3/VLC/main/README.md",
+      "release_notes": "VLC for PS5 v0.6.1 Share files and folders in playlists, Playlists on Home. --- What's new &nbsp; SMB files and folders in playlists In Browse, highlight a video or song on a share, press Options and pick Add to playlist. Highlight a folder, on the console or on a share, and pic…"
     }
   ]
 }
