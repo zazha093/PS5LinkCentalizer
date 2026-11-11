@@ -334,17 +334,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.79.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.79.0/PS5_Cooling_System_Center_v1.79.0.elf",
-      "version": "v1.79.0",
-      "last_update": "2026-11-09",
+      "filename": "PS5_Cooling_System_Center_v1.80.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.80.0/PS5_Cooling_System_Center_v1.80.0.elf",
+      "version": "v1.80.0",
+      "last_update": "2026-11-11",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "9ce01f4c93b0934fe0612163d07f15477e6a5d8edc35be24e7c5e46d51027afc",
+      "checksum": "cfc0ed6a51341e1f8cfad0489fa004147de60a0fb14942db859e08fed0c7ec5f",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights ShadowMountPlus 1.7beta12: Die App liest und schreibt die neue config.ini (Abschnitte, updateenabled) genauso wie die alte und ändert immer die richtige Zeile – Standard ist „Automatisch erkennen“ ShadowMountPlus hat einen eigenen Platz: im Browser als Karte ganz oben…"
+      "release_notes": "Highlights Alle 28 Befunde der Sicherheits- und Stabilitätsprüfung sind bewertet, die 20 bestätigten behoben. Die wichtigsten: Die App schließt ihren Webserver nicht mehr, wenn der Konsole Dateien, Puffer oder Speicher knapp werden; die Vollbild-Kachel ersetzt die App nicht mehr…"
     },
     {
       "id": "ps5-game-compressor",
@@ -589,17 +589,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.8.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.8/ps5upload-12.4.8.elf",
-      "version": "v12.4.8",
+      "filename": "ps5upload-12.4.9.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.9/ps5upload-12.4.9.elf",
+      "version": "v12.4.9",
       "last_update": "2026-11-11",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "053154034ffdb5057a08a962b68a26708270c78da966ef0a9f433c3f6de860fc",
+      "checksum": "58b8686c04ee703a1cb0a3c00b945caae1f9ec8bbf1a8f42f19947c274983596",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Files: Extracting a RAR archive on the PS5 no longer fails with \"Declared dictionary size is not supported\". Archives packed with a large dictionary (up to 4 GB, common for big games) now extract on the console. Tested on a PS5 Pro with a 4 GB-dictionary multi-part archive. Uplo…"
+      "release_notes": "Upload: Upload with unpacking on the way now takes tar archives: .tar, .tar.zst/.tzst, .tar.gz/.tgz, .tar.xz/.txz and .tar.bz2/.tbz2, plus a single .zst file and zip archives compressed with zstd. They're unpacked on your computer or phone as they're sent, so the PS5 gets the fi…"
     },
     {
       "id": "recompstore",
