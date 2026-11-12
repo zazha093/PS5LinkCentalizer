@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.11.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.11/ps5upload-12.4.11.elf",
-      "version": "v12.4.11",
+      "filename": "ps5upload-12.4.12.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.12/ps5upload-12.4.12.elf",
+      "version": "v12.4.12",
       "last_update": "2026-11-12",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "476d569b8dc68bd07c6ef225b166e9d7e1f3aca843a8057ab08880a2c5c9cbd8",
+      "checksum": "7ce3b5fc3b5815b8b39711aacc83df247d93947fc165810161f1336b8527f2e3",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Remote Play: Fixed the picture hitching every few seconds when Settings › Video decoding is set to the system's media player. The player asks the PS5 for a fresh full picture about every 12 seconds to tidy its buffer, and the app held back all pictures until it arrived, about a…"
+      "release_notes": "Save Data: Restore to another user now works for a user who has no save of the game yet, or is missing one of its save slots. The backup becomes that user's save: the app rewrites who owns it (the account and user inside the save) and adds it to that user's saved data on the PS5…"
     },
     {
       "id": "recompstore",
