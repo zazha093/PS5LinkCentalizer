@@ -137,6 +137,21 @@
       "release_notes": "OnionHEN is a homebrew enabler and Toolbox for jailbroken PS5 consoles, built on etaHEN. It prepares the system, injects a Toolbox into the home screen, and adds cheats, a game overlay, payload management, and background services. Version: v0.9.0 is the stable re…"
     },
     {
+      "id": "onionhen-beta",
+      "name": "onionHEN (beta)",
+      "filename": "OnionHEN.elf",
+      "url": "https://github.com/aydencharles/onionHEN/releases/download/nightly/OnionHEN.elf",
+      "version": "nightly",
+      "last_update": "2026-11-12",
+      "description": "Yet another HEN enabler for jailbroken PS5",
+      "category": "HEN",
+      "checksum": "d0620cc430c10ac2bc7776bd10265742075c7b782b5c8c3fd05cf46e752ed49e",
+      "author": "aydencharles",
+      "source": "https://github.com/aydencharles/onionHEN/releases",
+      "details_url": "https://raw.githubusercontent.com/aydencharles/onionHEN/main/README.md",
+      "release_notes": "Automated Release build of main at 39683d3, built 2026-11-12 04:24 UTC. This is an untested development build. Use the latest stable release unless you want to try new changes early. Changes since v0.9.0: v0.9.0...39683d3 OnionHEN.elf SHA-256: d0620cc430c10ac2bc7776bd10265742075…"
+    },
+    {
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
@@ -589,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.9.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.9/ps5upload-12.4.9.elf",
-      "version": "v12.4.9",
-      "last_update": "2026-11-11",
+      "filename": "ps5upload-12.4.11.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.11/ps5upload-12.4.11.elf",
+      "version": "v12.4.11",
+      "last_update": "2026-11-12",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "58b8686c04ee703a1cb0a3c00b945caae1f9ec8bbf1a8f42f19947c274983596",
+      "checksum": "476d569b8dc68bd07c6ef225b166e9d7e1f3aca843a8057ab08880a2c5c9cbd8",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Upload: Upload with unpacking on the way now takes tar archives: .tar, .tar.zst/.tzst, .tar.gz/.tgz, .tar.xz/.txz and .tar.bz2/.tbz2, plus a single .zst file and zip archives compressed with zstd. They're unpacked on your computer or phone as they're sent, so the PS5 gets the fi…"
+      "release_notes": "Remote Play: Fixed the picture hitching every few seconds when Settings › Video decoding is set to the system's media player. The player asks the PS5 for a fresh full picture about every 12 seconds to tidy its buffer, and the app held back all pictures until it arrived, about a…"
     },
     {
       "id": "recompstore",
