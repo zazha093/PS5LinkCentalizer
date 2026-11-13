@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.81.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.81.0/PS5_Cooling_System_Center_v1.81.0.elf",
-      "version": "v1.81.0",
+      "filename": "PS5_Cooling_System_Center_v1.82.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.82.0/PS5_Cooling_System_Center_v1.82.0.elf",
+      "version": "v1.82.0",
       "last_update": "2026-11-13",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "e51ab6805d91bde74e0791fb51660846349a7a6ec5076f957a3d74b27835b3c3",
+      "checksum": "b6357aefe8ef7930904fff707d139945b9aed945e37e678202db97ce9c5d27e4",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Systemsprache: Die Browser-App übernimmt ohne eigene Wahl die Systemsprache und zeigt Englisch, wenn sie die Sprache nicht hat. Im Browser der PS5 gilt die Sprache der Konsole, am PC und Handy die des Browsers. In der Sprachwahl oben steht dafür der neue Eintrag Auto…"
+      "release_notes": "Highlights Konvertieren mit Prüfung vor dem Start: Das Fenster zeigt alle Befunde auf einmal als Liste (Quelle lesbar, Platz auf dem Ziel, FAT32-Grenze, Name am Ziel schon vergeben, Spiel läuft, anderer Auftrag läuft, Namen und Pfade nah an der Grenze). Rot sperrt den Start, Gel…"
     },
     {
       "id": "ps5-game-compressor",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.14.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.14/ps5upload-12.4.14.elf",
-      "version": "v12.4.14",
-      "last_update": "2026-11-12",
+      "filename": "ps5upload-12.4.15.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.15/ps5upload-12.4.15.elf",
+      "version": "v12.4.15",
+      "last_update": "2026-11-13",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "17dc0827d3d49701534a8b2f7dca337ec88f213eb825ed028763be5eeec72f7e",
+      "checksum": "e70e8c6fcc8f0f833f71e9c631d9be809cd567e31f7d7e8e8ecf3e4e5f87f8e6",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Share: The Share page now lines up with the rest of the app. The box for opening a friend's link sits on the left like the other pages, and beside it are three short steps on how sharing works, with a button to choose a game to share from, and your past shares (now always shown,…"
+      "release_notes": "Play Together: \"Block PS & Create for friends\" now does what it says: a friend gets one press of PS to pick a user on the TV, and once they pick one (PS, then ✕), PS and Create are off for them. Before, both kept working for the first minute after joining, and again for a minute…"
     },
     {
       "id": "recompstore",
