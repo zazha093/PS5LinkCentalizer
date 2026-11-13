@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.80.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.80.0/PS5_Cooling_System_Center_v1.80.0.elf",
-      "version": "v1.80.0",
-      "last_update": "2026-11-11",
+      "filename": "PS5_Cooling_System_Center_v1.81.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.81.0/PS5_Cooling_System_Center_v1.81.0.elf",
+      "version": "v1.81.0",
+      "last_update": "2026-11-13",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "cfc0ed6a51341e1f8cfad0489fa004147de60a0fb14942db859e08fed0c7ec5f",
+      "checksum": "e51ab6805d91bde74e0791fb51660846349a7a6ec5076f957a3d74b27835b3c3",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Alle 28 Befunde der Sicherheits- und Stabilitätsprüfung sind bewertet, die 20 bestätigten behoben. Die wichtigsten: Die App schließt ihren Webserver nicht mehr, wenn der Konsole Dateien, Puffer oder Speicher knapp werden; die Vollbild-Kachel ersetzt die App nicht mehr…"
+      "release_notes": "Highlights Systemsprache: Die Browser-App übernimmt ohne eigene Wahl die Systemsprache und zeigt Englisch, wenn sie die Sprache nicht hat. Im Browser der PS5 gilt die Sprache der Konsole, am PC und Handy die des Browsers. In der Sprachwahl oben steht dafür der neue Eintrag Auto…"
     },
     {
       "id": "ps5-game-compressor",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.13.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.13/ps5upload-12.4.13.elf",
-      "version": "v12.4.13",
+      "filename": "ps5upload-12.4.14.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.14/ps5upload-12.4.14.elf",
+      "version": "v12.4.14",
       "last_update": "2026-11-12",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "be4879657d76ad8880b3176a215387462776569b9d6e077f29b2ff544d43338a",
+      "checksum": "17dc0827d3d49701534a8b2f7dca337ec88f213eb825ed028763be5eeec72f7e",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Cheats: Cheats that write to many places, like a game's \"Master Code\", now apply. A cheat could hold 32 places and about 8 KB of text, and anything bigger was refused with \"cheat has more locations than the engine can hold\". It can now hold up to 4096. The Master Code for The Bl…"
+      "release_notes": "Share: The Share page now lines up with the rest of the app. The box for opening a friend's link sits on the left like the other pages, and beside it are three short steps on how sharing works, with a button to choose a game to share from, and your past shares (now always shown,…"
     },
     {
       "id": "recompstore",
