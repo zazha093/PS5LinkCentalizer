@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.17.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.17/ps5upload-12.4.17.elf",
-      "version": "v12.4.17",
-      "last_update": "2026-11-13",
+      "filename": "ps5upload-12.4.19.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.19/ps5upload-12.4.19.elf",
+      "version": "v12.4.19",
+      "last_update": "2026-11-14",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "f145f543338cab0b5f67946d1b98c4cc2dab1ca6e898f088da41e525fb0c6903",
+      "checksum": "cd3765ab9c643190bb3ca00b40de0dee5a90d6f5f0f1085d0decd056c5d91889",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Play Together: Internet invites now connect over IPv6 too. If your internet provider shares one IPv4 address between many homes (CGNAT), so ports can't be forwarded, a friend can still join directly when both of you have IPv6, as most mobile networks and many home providers do.…"
+      "release_notes": "Cheats: switching a cheat on or off could fail with \"location 1: bad offset\" and garbled text, even with a correct cheat file. Fixed (#824). Cheats: the cheat list counts switched-on cheats correctly for games with more than one cheat file. Cheats: a cheat file with an extra sec…"
     },
     {
       "id": "recompstore",

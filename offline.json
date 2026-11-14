@@ -38,5 +38,13 @@
     "category": "Emulator",
     "lastVersion": "",
     "offlineSince": "2026-11-12"
+  },
+  {
+    "repo": "terrafirma2021/kodi-ps5-overdrive",
+    "name": "kodi-ps5-overdrive",
+    "description": "Unofficial native Kodi 22 for PS5 with integrated Overdrive catalog browsing",
+    "category": "Media",
+    "lastVersion": "v0.1.0-preview.1",
+    "offlineSince": "2026-11-14"
   }
 ]
