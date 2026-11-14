@@ -155,16 +155,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.8.5/orbit_store.elf",
-      "version": "v1.8.5",
-      "last_update": "2026-11-04",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.0/orbit_store.elf",
+      "version": "v1.9.0",
+      "last_update": "2026-11-13",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "935f81956acd3acba876977057c2ce77ded6a7fc72a98fd821cba2d1765e1f77",
+      "checksum": "4d2b78ad4c0de1211b93664d5401beb1e19e54452fccc74886d4cb63b659439a",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "We’re shipping improvements and bug fixes across our apps: The catalogue now has 2,368 games and 5,306 download options, plus 631 add-ons with 633 options across 197 base games. 1,064 existing download options now identify the format inside their archive and the space needed aft…"
+      "release_notes": "🎉 Orbit is now on PS4 too. Get the new Orbit Store for PS4 port, with downloads and setup instructions in its own repository. We’re shipping new features and fixes across Orbit Store and Orbit Zero. Scores and playtimes for 1,663 games. See Metacritic scores and HowLongToBeat e…"
     },
     {
       "id": "poords4-poords4",
@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.82.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.82.0/PS5_Cooling_System_Center_v1.82.0.elf",
-      "version": "v1.82.0",
-      "last_update": "2026-11-13",
+      "filename": "PS5_Cooling_System_Center_v1.84.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.84.0/PS5_Cooling_System_Center_v1.84.0.elf",
+      "version": "v1.84.0",
+      "last_update": "2026-11-14",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "b6357aefe8ef7930904fff707d139945b9aed945e37e678202db97ce9c5d27e4",
+      "checksum": "06a853d7016439d198cc17d2fdeb328bee2617735a1b79dc6832eb10463aee9e",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Konvertieren mit Prüfung vor dem Start: Das Fenster zeigt alle Befunde auf einmal als Liste (Quelle lesbar, Platz auf dem Ziel, FAT32-Grenze, Name am Ziel schon vergeben, Spiel läuft, anderer Auftrag läuft, Namen und Pfade nah an der Grenze). Rot sperrt den Start, Gel…"
+      "release_notes": "Highlights Neues Konvertierformat „FPKG (Debug-.pkg)“ in der Browser-App und der Vollbild-App, geschrieben von Dump Forge (quer3q): mit Prüfliste, Schritten, Warteschlange und vier Kompressionsstufen. Dump Forge liegt in den Ordnern beider Kacheln oder wird mit einem Knopf gelad…"
     },
     {
       "id": "ps5-game-compressor",
