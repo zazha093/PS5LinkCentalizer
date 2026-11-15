@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.84.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.84.0/PS5_Cooling_System_Center_v1.84.0.elf",
-      "version": "v1.84.0",
-      "last_update": "2026-11-14",
+      "filename": "PS5_Cooling_System_Center_v1.85.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.85.1/PS5_Cooling_System_Center_v1.85.1.elf",
+      "version": "v1.85.1",
+      "last_update": "2026-11-15",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "06a853d7016439d198cc17d2fdeb328bee2617735a1b79dc6832eb10463aee9e",
+      "checksum": "91e81c68fe6a4eafd5efe1a9477fda0764dbfb51e30547f9595cae73e32216ab",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Neues Konvertierformat „FPKG (Debug-.pkg)“ in der Browser-App und der Vollbild-App, geschrieben von Dump Forge (quer3q): mit Prüfliste, Schritten, Warteschlange und vier Kompressionsstufen. Dump Forge liegt in den Ordnern beider Kacheln oder wird mit einem Knopf gelad…"
+      "release_notes": "Highlights FPKGMount zeigt den richtigen Suchordner: Bei ausgeschaltetem Kraken Mount nennt die Seite jetzt den Ordner FPKG-Games, den die App beim ersten Start einträgt, und nicht mehr die Grundeinstellung von Kraken Mount. Das war irreführend, weil ShadowMountPlus die Ordner d…"
     },
     {
       "id": "ps5-game-compressor",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.21.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.21/ps5upload-12.4.21.elf",
-      "version": "v12.4.21",
+      "filename": "ps5upload-12.4.22.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.22/ps5upload-12.4.22.elf",
+      "version": "v12.4.22",
       "last_update": "2026-11-15",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "c7a9a0f143ace22f59465ac85924518c4b21eaec9f50429718f73b9b80292843",
+      "checksum": "b60d65a9f753233cd1a25f46eb3c3e7de595f251a1b87d8a9deefaf4c2b8cf06",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Remove PS5Upload from a PS5: a new button in Settings › This PS5 takes PS5Upload off a console you are done with. The PS5Upload Minion tile, PS5Upload's own files on the PS5 and the copies of the helper your loaders start at boot all go, and icons it hid are shown again. Games,…"
+      "release_notes": "Games in zstd packs that hang at startup (ASTRO BOT and others): the zstd runtime (ampr-emu-ng) that went into packed games could be 0.3.2, and versions before 0.3.4 hang some games at startup. New packs now get 0.4.0 or newer, and so does Add the AMPR emulator when you pick amp…"
     },
     {
       "id": "recompstore",
