@@ -155,16 +155,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.0/orbit_store.elf",
-      "version": "v1.9.0",
-      "last_update": "2026-11-13",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.1/orbit_store.elf",
+      "version": "v1.9.1",
+      "last_update": "2026-11-15",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "4d2b78ad4c0de1211b93664d5401beb1e19e54452fccc74886d4cb63b659439a",
+      "checksum": "88caf08827cd8141fc18e1d293480633343e0f6f92aa9a43e07de8ee5a497738",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "🎉 Orbit is now on PS4 too. Get the new Orbit Store for PS4 port, with downloads and setup instructions in its own repository. We’re shipping new features and fixes across Orbit Store and Orbit Zero. Scores and playtimes for 1,663 games. See Metacritic scores and HowLongToBeat e…"
+      "release_notes": "🎉 Orbit is now on PS4 too. Get the new Orbit Store for PS4 port, with downloads and setup instructions in its own repository. ZSTD comes to Orbit. Find ZSTD games with the Format filter and see the format in download details, across the PS5 browser and native app's four layouts…"
     },
     {
       "id": "poords4-poords4",
@@ -215,16 +215,16 @@
       "id": "prosperomgr",
       "name": "ProsperoMgr",
       "filename": "ProsperoMgr.elf",
-      "url": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.2/ProsperoMgr.elf",
-      "version": "v1.2",
-      "last_update": "2026-11-09",
+      "url": "https://github.com/notmaj0r/ProsperoMgr/releases/download/v1.2.1/ProsperoMgr.elf",
+      "version": "v1.2.1",
+      "last_update": "2026-11-15",
       "description": "All-In-One manager for your PS5!",
       "category": "Homebrew",
-      "checksum": "127394cc4f1ac7347fea509e010e80bab7b5ee13d820665474cdc3928d173bce",
+      "checksum": "f9240e53ac5f035b36fb6eca2845dd49827eddfb133d1bbb2810b1a025db9c5b",
       "author": "notmaj0r",
       "source": "https://github.com/notmaj0r/ProsperoMgr/releases",
       "details_url": "https://raw.githubusercontent.com/notmaj0r/ProsperoMgr/main/README.md",
-      "release_notes": "Prospero Manager v1.2 The biggest update so far: a new Media page, a Games / Apps library, right-click menus, Back/Forward navigation, safe USB removal, a much faster PKG install, and a lot of polish for phones and the PS5 browser. See the full changelog here: Changelog If you e…"
+      "release_notes": "Prospero Manager v1.2.1 A polish update on top of v1.2: logos for payloads and repositories, a clearer and safer PKG install, games recognised by what is inside their folder, and better behaviour when the network changes or goes away. See the full changelog here: Changelog If yo…"
     },
     {
       "id": "prosperoplayer",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.20.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.20/ps5upload-12.4.20.elf",
-      "version": "v12.4.20",
-      "last_update": "2026-11-14",
+      "filename": "ps5upload-12.4.21.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.21/ps5upload-12.4.21.elf",
+      "version": "v12.4.21",
+      "last_update": "2026-11-15",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "23584161eb851eca7185ede538387da8a280cfc84092e0c3dff488e41975cbba",
+      "checksum": "c7a9a0f143ace22f59465ac85924518c4b21eaec9f50429718f73b9b80292843",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Payloads: add a whole list of payloads at once with Payload sources: paste the address of a list in Payload Manager's format and its payloads show up in the catalogue. A payload is only shown when the list gives its checksum, and a download that doesn't match is refused (#829).…"
+      "release_notes": "Remove PS5Upload from a PS5: a new button in Settings › This PS5 takes PS5Upload off a console you are done with. The PS5Upload Minion tile, PS5Upload's own files on the PS5 and the copies of the helper your loaders start at boot all go, and icons it hid are shown again. Games,…"
     },
     {
       "id": "recompstore",
