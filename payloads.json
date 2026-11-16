@@ -145,11 +145,11 @@
       "last_update": "2026-11-12",
       "description": "Yet another HEN enabler for jailbroken PS5",
       "category": "HEN",
-      "checksum": "d0620cc430c10ac2bc7776bd10265742075c7b782b5c8c3fd05cf46e752ed49e",
+      "checksum": "db56838865c42e01bae921c197e4753d9388de4ff2930937be5f3666be5be19d",
       "author": "aydencharles",
       "source": "https://github.com/aydencharles/onionHEN/releases",
       "details_url": "https://raw.githubusercontent.com/aydencharles/onionHEN/main/README.md",
-      "release_notes": "Automated Release build of main at 39683d3, built 2026-11-12 04:24 UTC. This is an untested development build. Use the latest stable release unless you want to try new changes early. Changes since v0.9.0: v0.9.0...39683d3 OnionHEN.elf SHA-256: d0620cc430c10ac2bc7776bd10265742075…"
+      "release_notes": "Automated Release build of main at 86c79cf, built 2026-11-15 23:22 UTC. This is an untested development build. Use the latest stable release unless you want to try new changes early. Changes since the previous nightly: 39683d3...86c79cf Changes since v0.9.0: v0.9.0...86c79cf Oni…"
     },
     {
       "id": "orbit-store-ps5",
@@ -164,7 +164,7 @@
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "🎉 Orbit is now on PS4 too. Get the new Orbit Store for PS4 port, with downloads and setup instructions in its own repository. ZSTD comes to Orbit. Find ZSTD games with the Format filter and see the format in download details, across the PS5 browser and native app's four layouts…"
+      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. ZSTD comes to Orbit. Find ZSTD games with the Format filter and see the format in download details, across the PS5 browser and native app's four layo…"
     },
     {
       "id": "poords4-poords4",
@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.85.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.85.1/PS5_Cooling_System_Center_v1.85.1.elf",
-      "version": "v1.85.1",
-      "last_update": "2026-11-15",
+      "filename": "PS5_Cooling_System_Center_v1.86.4.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.4/PS5_Cooling_System_Center_v1.86.4.elf",
+      "version": "v1.86.4",
+      "last_update": "2026-11-16",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "91e81c68fe6a4eafd5efe1a9477fda0764dbfb51e30547f9595cae73e32216ab",
+      "checksum": "d6b0b86dd46ac3e7fa10346acc1642ce0603d57ab0f24d09b6061490f03d6f58",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights FPKGMount zeigt den richtigen Suchordner: Bei ausgeschaltetem Kraken Mount nennt die Seite jetzt den Ordner FPKG-Games, den die App beim ersten Start einträgt, und nicht mehr die Grundeinstellung von Kraken Mount. Das war irreführend, weil ShadowMountPlus die Ordner d…"
+      "release_notes": "Highlights Keine inhaltlichen Änderungen gegenüber v1.86.3. Dieses Release trägt nur eine neue Versionsnummer; Funktionen und Verhalten sind dieselben. Hinweise Stand von v1.86.3, der in diesem Release steckt: Im Reiter Disc startet „Starten“ das Spiel und dumpt es gleich mit (M…"
     },
     {
       "id": "ps5-game-compressor",
@@ -560,61 +560,61 @@
       "id": "ps5sx2-ps5sx2installer",
       "name": "PS5SX2 · PS5SX2Installer",
       "filename": "PS5SX2Installer.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-190/PS5SX2Installer.elf",
-      "version": "vk-285-190",
-      "last_update": "2026-11-05",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SX2Installer.elf",
+      "version": "vk-285-321",
+      "last_update": "2026-11-15",
       "description": "A port of PCSX2 for PS5",
       "category": "Emulator",
       "checksum": "efdec4f8d968ef4a7c1880e75d26b96d212a042a6c208de46f0a859609f6224c",
       "author": "Swordpdf",
       "source": "https://github.com/Swordpdf/PS5SX2/releases",
       "details_url": "https://raw.githubusercontent.com/Swordpdf/PS5SX2/main/README.md",
-      "release_notes": "(build vk-285-190) The in-game menu. No console restart needed this time: the disc helper is still 171p. The in-game menu In a game, hold L2 + D-pad Down for a second (a small Menu ring fills in the corner). The game pauses and its picture moves into a card next to a…"
+      "release_notes": "(build vk-285-321) Lossless Scaling frame generation, a new settings sheet, and a long list of fixes from your reports. Restart the console once after updating: the disc helper is now 171q. Lossless Scaling frame generation A second frame generation method. On a game…"
     },
     {
       "id": "ps5sx2-ps5sxhelper",
       "name": "PS5SX2 · PS5SXHelper",
       "filename": "PS5SXHelper.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-190/PS5SXHelper.elf",
-      "version": "vk-285-190",
-      "last_update": "2026-11-05",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SXHelper.elf",
+      "version": "vk-285-321",
+      "last_update": "2026-11-15",
       "description": "A port of PCSX2 for PS5",
       "category": "Emulator",
-      "checksum": "e98906788909cab909f22b75fedbeeb8d41a1adb49166e92d98b3f7536c8a2cd",
+      "checksum": "d8ff3a8d35dd2943ee405c5eca9405142f19057368eb539c4454b18b5de2917f",
       "author": "Swordpdf",
       "source": "https://github.com/Swordpdf/PS5SX2/releases",
       "details_url": "https://raw.githubusercontent.com/Swordpdf/PS5SX2/main/README.md",
-      "release_notes": "(build vk-285-190) The in-game menu. No console restart needed this time: the disc helper is still 171p. The in-game menu In a game, hold L2 + D-pad Down for a second (a small Menu ring fills in the corner). The game pauses and its picture moves into a card next to a…"
+      "release_notes": "(build vk-285-321) Lossless Scaling frame generation, a new settings sheet, and a long list of fixes from your reports. Restart the console once after updating: the disc helper is now 171q. Lossless Scaling frame generation A second frame generation method. On a game…"
     },
     {
       "id": "ps5sx2-ps5sxhelper-no-data-mount",
       "name": "PS5SX2 · PS5SXHelper-no-data-mount",
       "filename": "PS5SXHelper-no-data-mount.elf",
-      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-190/PS5SXHelper-no-data-mount.elf",
-      "version": "vk-285-190",
-      "last_update": "2026-11-05",
+      "url": "https://github.com/Swordpdf/PS5SX2/releases/download/vk-285-321/PS5SXHelper-no-data-mount.elf",
+      "version": "vk-285-321",
+      "last_update": "2026-11-15",
       "description": "A port of PCSX2 for PS5",
       "category": "Emulator",
-      "checksum": "1d85c21611de6c7ab51859b850c2c886fbd16855e58968b9ae47b042dbc4438a",
+      "checksum": "fc14c48b6b91da83f817e21afdef8e00d2a59c588de57b3f6d12d2015acc0654",
       "author": "Swordpdf",
       "source": "https://github.com/Swordpdf/PS5SX2/releases",
       "details_url": "https://raw.githubusercontent.com/Swordpdf/PS5SX2/main/README.md",
-      "release_notes": "(build vk-285-190) The in-game menu. No console restart needed this time: the disc helper is still 171p. The in-game menu In a game, hold L2 + D-pad Down for a second (a small Menu ring fills in the corner). The game pauses and its picture moves into a card next to a…"
+      "release_notes": "(build vk-285-321) Lossless Scaling frame generation, a new settings sheet, and a long list of fixes from your reports. Restart the console once after updating: the disc helper is now 171q. Lossless Scaling frame generation A second frame generation method. On a game…"
     },
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.4.22.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.22/ps5upload-12.4.22.elf",
-      "version": "v12.4.22",
+      "filename": "ps5upload-12.4.23.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.4.23/ps5upload-12.4.23.elf",
+      "version": "v12.4.23",
       "last_update": "2026-11-15",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "b60d65a9f753233cd1a25f46eb3c3e7de595f251a1b87d8a9deefaf4c2b8cf06",
+      "checksum": "ef1a7e246158ce9dbbeb99bf0057f044c45a6a07b713a12a7575d4345147bba3",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Games in zstd packs that hang at startup (ASTRO BOT and others): the zstd runtime (ampr-emu-ng) that went into packed games could be 0.3.2, and versions before 0.3.4 hang some games at startup. New packs now get 0.4.0 or newer, and so does Add the AMPR emulator when you pick amp…"
+      "release_notes": "Fixes from a review of everything changed since 12.4.10. Checked with the automated tests; not tried on a PS5. Restore a save to another user: if the last step failed, the other user's own save was not always put back, and with an older helper on the PS5 the restore started befo…"
     },
     {
       "id": "recompstore",
