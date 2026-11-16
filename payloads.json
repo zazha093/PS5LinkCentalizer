@@ -155,16 +155,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.1/orbit_store.elf",
-      "version": "v1.9.1",
-      "last_update": "2026-11-15",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.2/orbit_store.elf",
+      "version": "v1.9.2",
+      "last_update": "2026-11-16",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "88caf08827cd8141fc18e1d293480633343e0f6f92aa9a43e07de8ee5a497738",
+      "checksum": "5fe4892269ebe940731d0236cd1bbca8d827e7690676f7b7af32fb9c5a775f5b",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. ZSTD comes to Orbit. Find ZSTD games with the Format filter and see the format in download details, across the PS5 browser and native app's four layo…"
+      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. A big update: RAR games now extract more than three times faster on PS5. Faster RAR extraction. RAR games now extract more than three times faster on…"
     },
     {
       "id": "poords4-poords4",
@@ -527,6 +527,21 @@
       "release_notes": "Changelog Fixed Poops stability: A stability fix for Relapse in v0.7.0 was unintentionally affecting Poops, causing slower runs and more kernel panics. Cleaned up Poops logging: Poops now shows cleaner, less noisy output. --- Setup Instructions - see README Discussion thread for…"
     },
     {
+      "id": "ps5-webkit-autoloader-beta",
+      "name": "ps5-webkit-autoloader (beta)",
+      "filename": "webkit-autoloader-installer_v0.8.0-pre-627ba8c.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-627ba8c/webkit-autoloader-installer_v0.8.0-pre-627ba8c.elf",
+      "version": "v0.8.0-pre-627ba8c",
+      "last_update": "2026-11-16",
+      "description": "An automated payload loader for exploited PS5 consoles",
+      "category": "Exploit",
+      "checksum": "e12b69b53e1486412b834ca68f948b78d8182dccefd4e3f2f1db89a2ae666e5c",
+      "author": "itsPLK",
+      "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
+      "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
+      "release_notes": "[!WARNING] This is a pre-release / test build from branch wobkot. It is intended for early testing and may contain bugs, experimental features, or unfinished changes. Discussion thread Now based on @ufm42's wobkot (84ac4a7). Downloads | Platform | File | |---|---| | PS5 (install…"
+    },
+    {
       "id": "ps5library",
       "name": "PS5Library",
       "filename": "ps5library-agent.elf",
@@ -615,6 +630,21 @@
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
       "release_notes": "A big Convert update: zstd packs for every PS5 game, packs in every image format, converting straight from archives, editing an image in place, converting on the PS5 itself from Minion, and mounting a debug package with Kraken Mount instead of installing it. Checked with the aut…"
+    },
+    {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-12.6.0.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.0/ps5upload-12.6.0.elf",
+      "version": "v12.6.0",
+      "last_update": "2026-11-16",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "a57fe14b5c3ec449208a90b68a798498653fce259a36f691f366376aa2b93df1",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "Keep saves in step between two PS5s, copy a .pkg instead of installing it, and payloads now come from you: the app no longer downloads them. Checked with the automated tests; not yet tried on a PS5 unless it says so. New Save sync between two PS5s (Saves › Save sync): pair a use…"
     },
     {
       "id": "recompstore",
