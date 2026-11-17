@@ -529,17 +529,17 @@
     {
       "id": "ps5-webkit-autoloader-beta",
       "name": "ps5-webkit-autoloader (beta)",
-      "filename": "webkit-autoloader-installer_v0.8.0-pre-627ba8c.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-627ba8c/webkit-autoloader-installer_v0.8.0-pre-627ba8c.elf",
-      "version": "v0.8.0-pre-627ba8c",
-      "last_update": "2026-11-16",
+      "filename": "webkit-autoloader-installer_v0.8.0-pre-0850478.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-0850478/webkit-autoloader-installer_v0.8.0-pre-0850478.elf",
+      "version": "v0.8.0-pre-0850478",
+      "last_update": "2026-11-17",
       "description": "An automated payload loader for exploited PS5 consoles",
       "category": "Exploit",
-      "checksum": "e12b69b53e1486412b834ca68f948b78d8182dccefd4e3f2f1db89a2ae666e5c",
+      "checksum": "d5929a1a8aa31ba7c6fd86eb501650b3be11d9f370adaada3d1abd236473356e",
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "[!WARNING] This is a pre-release / test build from branch wobkot. It is intended for early testing and may contain bugs, experimental features, or unfinished changes. Discussion thread Now based on @ufm42's wobkot (84ac4a7). Downloads | Platform | File | |---|---| | PS5 (install…"
+      "release_notes": "[!WARNING] This is a pre-release / test build from branch wobkot. It is intended for early testing and may contain bugs, experimental features, or unfinished changes. Discussion thread Now based on @ufm42's wobkot (2419c5a). Downloads | Platform | File | |---|---| | PS5 (install…"
     },
     {
       "id": "ps5library",
@@ -619,17 +619,32 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.1.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.1/ps5upload-12.6.1.elf",
-      "version": "v12.6.1",
+      "filename": "ps5upload-12.6.3.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.3/ps5upload-12.6.3.elf",
+      "version": "v12.6.3",
       "last_update": "2026-11-17",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "0ad7e0d05985b2f9969bc71117bb4cafd28c4764d7d8ed91e96a140bef17f508",
+      "checksum": "9e640b760fe7ae79f2dd7a7dfefda6720bbbf79ac4219a02b6f199df71e74c5d",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Every disk in the file browser, a note when Kraken Mount needs an update, and the frame rate on older firmware. Changed Every disk in the file browser: when the app browses the computer the engine runs on (the web UI, Docker, or a phone using a PC), it now lists every mounted di…"
+      "release_notes": "A clear way to replace a game that's already on the PS5, and faster checks behind the scenes. Changed Already on the PS5? Replace it right there. When an upload finds its game already in that folder on the PS5, the failed row now has Replace (it asks first, naming what gets dele…"
+    },
+    {
+      "id": "ps5upload-beta",
+      "name": "ps5upload (beta)",
+      "filename": "ps5upload-12.6.2.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.2/ps5upload-12.6.2.elf",
+      "version": "v12.6.2",
+      "last_update": "2026-11-17",
+      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
+      "category": "PC Tool",
+      "checksum": "85fb68760b16a958ded77becf2cba14581af375f4988594bfddfde5fa1a749ad",
+      "author": "phantomptr",
+      "source": "https://github.com/phantomptr/ps5upload/releases",
+      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
+      "release_notes": "Clearer Payloads › On your PS5, and what to do with PS5 fake packages on newer firmware. Changed Payloads › On your PS5 shows each payload once, and says who started it. A payload saved in your Payload Manager list that is running now shows on its own row (\"● Running · PID\", whe…"
     },
     {
       "id": "recompstore",
