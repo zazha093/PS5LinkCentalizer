@@ -634,17 +634,17 @@
     {
       "id": "ps5upload-beta",
       "name": "ps5upload (beta)",
-      "filename": "ps5upload-12.6.2.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.2/ps5upload-12.6.2.elf",
-      "version": "v12.6.2",
+      "filename": "ps5upload-12.6.4.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.4/ps5upload-12.6.4.elf",
+      "version": "v12.6.4",
       "last_update": "2026-11-17",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "85fb68760b16a958ded77becf2cba14581af375f4988594bfddfde5fa1a749ad",
+      "checksum": "ef80322b107474dd3c1d5cdc8bc34de8b686da81268e0186ce5cd2b654bf44f7",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Clearer Payloads › On your PS5, and what to do with PS5 fake packages on newer firmware. Changed Payloads › On your PS5 shows each payload once, and says who started it. A payload saved in your Payload Manager list that is running now shows on its own row (\"● Running · PID\", whe…"
+      "release_notes": "Trophies after offline activation, a cleaner Payloads page, and fixes from an audit. Fixes Trophies stop after offline activation (#853). Activation gives the user a new account, but the trophy files of games they already played kept the old one, so the PS5 stopped recording tro…"
     },
     {
       "id": "recompstore",
