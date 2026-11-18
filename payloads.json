@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.86.4.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.4/PS5_Cooling_System_Center_v1.86.4.elf",
-      "version": "v1.86.4",
-      "last_update": "2026-11-16",
+      "filename": "PS5_Cooling_System_Center_v1.86.5.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.86.5/PS5_Cooling_System_Center_v1.86.5.elf",
+      "version": "v1.86.5",
+      "last_update": "2026-11-18",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
       "category": "Homebrew",
-      "checksum": "d6b0b86dd46ac3e7fa10346acc1642ce0603d57ab0f24d09b6061490f03d6f58",
+      "checksum": "c75f3274c7fa8dd05c281c376171158ad0940b609f2efe4facfdbd047d1973d8",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Keine inhaltlichen Änderungen gegenüber v1.86.3. Dieses Release trägt nur eine neue Versionsnummer; Funktionen und Verhalten sind dieselben. Hinweise Stand von v1.86.3, der in diesem Release steckt: Im Reiter Disc startet „Starten“ das Spiel und dumpt es gleich mit (M…"
+      "release_notes": "Highlights Sanftere Lüfterregelung: Der Lüfter folgt der Temperatur schon ab 10 K unter dem Ziel langsam, springt beim Aufholen nicht mehr und schwankt weniger. Neu: die Lüfterkurve als Bild (Browser-App und Vollbild-App), eine Regelaufzeichnung der letzten 30 Minuten und eine e…"
     },
     {
       "id": "ps5-game-compressor",
@@ -619,32 +619,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.3.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.3/ps5upload-12.6.3.elf",
-      "version": "v12.6.3",
-      "last_update": "2026-11-17",
+      "filename": "ps5upload-12.6.7.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.7/ps5upload-12.6.7.elf",
+      "version": "v12.6.7",
+      "last_update": "2026-11-18",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "9e640b760fe7ae79f2dd7a7dfefda6720bbbf79ac4219a02b6f199df71e74c5d",
+      "checksum": "8ab0e3eb842624c103acae831cc72190bdb22f92b359c93ed185ca754ee450f7",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "A clear way to replace a game that's already on the PS5, and faster checks behind the scenes. Changed Already on the PS5? Replace it right there. When an upload finds its game already in that folder on the PS5, the failed row now has Replace (it asks first, naming what gets dele…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
-      "filename": "ps5upload-12.6.4.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.4/ps5upload-12.6.4.elf",
-      "version": "v12.6.4",
-      "last_update": "2026-11-17",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "ef80322b107474dd3c1d5cdc8bc34de8b686da81268e0186ce5cd2b654bf44f7",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Trophies after offline activation, a cleaner Payloads page, and fixes from an audit. Fixes Trophies stop after offline activation (#853). Activation gives the user a new account, but the trophy files of games they already played kept the old one, so the PS5 stopped recording tro…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.7-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.7-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.7-win-x64.zip) | | Mac | PS5Upload-12.6.7-mac-arm64.dmg (Apple Silicon) or PS5Upload-12…"
     },
     {
       "id": "recompstore",
