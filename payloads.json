@@ -155,16 +155,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.2/orbit_store.elf",
-      "version": "v1.9.2",
-      "last_update": "2026-11-16",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.5/orbit_store.elf",
+      "version": "v1.9.5",
+      "last_update": "2026-11-19",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "5fe4892269ebe940731d0236cd1bbca8d827e7690676f7b7af32fb9c5a775f5b",
+      "checksum": "95da321dcfa054fe355e1d820e50163b3ee4da1410a9a2aa72213d7626b2d3b9",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. A big update: RAR games now extract more than three times faster on PS5. Faster RAR extraction. RAR games now extract more than three times faster on…"
+      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. Big update: Orbit gets PKG/FPKG support via Kraken Mount and Orbit can now also get a game with all its DLC in one go. Get everything. On a game’s pa…"
     },
     {
       "id": "poords4-poords4",
@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.88.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.88.1/PS5_Cooling_System_Center_v1.88.1.elf",
-      "version": "v1.88.1",
-      "last_update": "2026-11-19",
-      "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV) | Lüftersteuerung und Systemzentrale für die PS5, mit Browser- und Vollbild-App",
+      "filename": "PS5_Cooling_System_Center_v1.89.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.89.0/PS5_Cooling_System_Center_v1.89.0.elf",
+      "version": "v1.89.0",
+      "last_update": "2026-11-20",
+      "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "b49782f084c82706539692d27b2a90610d7fcacb235a665842f9251650158a1a",
+      "checksum": "2cfb09a1d2f71f7de8f51d919edda484f60d8f61cbafa0fac873807852b96458",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights USB-Laufwerk sicher auswerfen – jetzt auch im Dateimanager: Neben jedem USB-Laufwerk steht Auswerfen (Browser), in der Vollbild-App die Quadrat-Taste auf dem Laufwerk unter „Orte“ oder △ → Mehr in einem Ordner des Laufwerks. Ein Laufwerk im Betrieb einfach abzuziehen…"
+      "release_notes": "Highlights Pack a game into LZ4 or zstd packs while converting it to an image: In the \"Convert\" window, exFAT and ffpkg now have a \"Packing (AMPR packs)\" choice: Do not pack, LZ4 packs or zstd packs (AMPR EMU NG only). Dump Forge packs the game straight into the image while it w…"
     },
     {
       "id": "ps5-game-compressor",
@@ -514,32 +514,17 @@
     {
       "id": "ps5-webkit-autoloader",
       "name": "ps5-webkit-autoloader",
-      "filename": "webkit-autoloader-installer_v0.7.1.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.7.1/webkit-autoloader-installer_v0.7.1.elf",
-      "version": "v0.7.1",
-      "last_update": "2026-11-08",
+      "filename": "webkit-autoloader-installer_v0.8.0.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0/webkit-autoloader-installer_v0.8.0.elf",
+      "version": "v0.8.0",
+      "last_update": "2026-11-20",
       "description": "An automated payload loader for exploited PS5 consoles",
       "category": "Exploit",
-      "checksum": "df60538570e9811bb0b4652a3fdb3e1a35ec3455b3ca7c80edc4140c5bb47ce2",
+      "checksum": "015959f76c48e45df2b331ee2a6b52096afa3c2f9f1cbf9a29e67be699a6455b",
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Changelog Fixed Poops stability: A stability fix for Relapse in v0.7.0 was unintentionally affecting Poops, causing slower runs and more kernel panics. Cleaned up Poops logging: Poops now shows cleaner, less noisy output. --- Setup Instructions - see README Discussion thread for…"
-    },
-    {
-      "id": "ps5-webkit-autoloader-beta",
-      "name": "ps5-webkit-autoloader (beta)",
-      "filename": "webkit-autoloader-installer_v0.8.0-pre-0850478.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.0-pre-0850478/webkit-autoloader-installer_v0.8.0-pre-0850478.elf",
-      "version": "v0.8.0-pre-0850478",
-      "last_update": "2026-11-17",
-      "description": "An automated payload loader for exploited PS5 consoles",
-      "category": "Exploit",
-      "checksum": "d5929a1a8aa31ba7c6fd86eb501650b3be11d9f370adaada3d1abd236473356e",
-      "author": "itsPLK",
-      "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
-      "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "[!WARNING] This is a pre-release / test build from branch wobkot. It is intended for early testing and may contain bugs, experimental features, or unfinished changes. Discussion thread Now based on @ufm42's wobkot (2419c5a). Downloads | Platform | File | |---|---| | PS5 (install…"
+      "release_notes": "Changelog Migrated to Wobkot: Now uses @ufm42's Wobkot base and Relapse implementation as the preferred exploit, with Poops used automatically as the fallback where appropriate. This expands supported firmware to 6.00–13.60. --- Setup Instructions - see README Discussion thread…"
     },
     {
       "id": "ps5library",
@@ -619,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.11.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.11/ps5upload-12.6.11.elf",
-      "version": "v12.6.11",
+      "filename": "ps5upload-12.6.13.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.13/ps5upload-12.6.13.elf",
+      "version": "v12.6.13",
       "last_update": "2026-11-19",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "c41ae74fb2cab8c6980b428a115b16d40dfbabde4627131b4fd5afea94a0dd3a",
+      "checksum": "83b0222253285e3a95db389caaffb3063ea659a3940e7f95c70f5568f887365e",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.11-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.11-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.11-win-x64.zip) | | Mac | PS5Upload-12.6.11-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.13-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.13-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.13-win-x64.zip) | | Mac | PS5Upload-12.6.13-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "ps5upload-beta",
