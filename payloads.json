@@ -514,17 +514,17 @@
     {
       "id": "ps5-webkit-autoloader",
       "name": "ps5-webkit-autoloader",
-      "filename": "webkit-autoloader-installer_v0.8.1.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.1/webkit-autoloader-installer_v0.8.1.elf",
-      "version": "v0.8.1",
+      "filename": "webkit-autoloader-installer_v0.8.2.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.2/webkit-autoloader-installer_v0.8.2.elf",
+      "version": "v0.8.2",
       "last_update": "2026-11-20",
       "description": "An automated payload loader for exploited PS5 consoles",
       "category": "Exploit",
-      "checksum": "1144f939f62c9d80a73aafb576ba5e7091966f1e48491d19bd97ec825934145c",
+      "checksum": "1c415bc124944c85b86a4751006b98010b977f142142d67306d13804899bad54",
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Changelog Dependencies Updated Wobkot to 38ad28e Added Relapse support for FW 5.00, 5.02, 5.10, and 5.50. Updated offsets for FW 6.00, 6.02, 13.40, and 13.60. This expands supported firmware to 5.00–13.60. --- Setup Instructions - see README Discussion thread for this release --…"
+      "release_notes": "Changelog Fixed FW 5.xx being rejected by the Wobkot adapter before exploitation. Dependencies Updated ps5-webkit-remote-loader to commit 073718c (v0.3.1). --- Setup Instructions - see README Discussion thread for this release --- Downloads | Platform | File | |---|---| | PS5 (i…"
     },
     {
       "id": "ps5library",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.13.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.13/ps5upload-12.6.13.elf",
-      "version": "v12.6.13",
-      "last_update": "2026-11-19",
+      "filename": "ps5upload-12.6.16.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.16/ps5upload-12.6.16.elf",
+      "version": "v12.6.16",
+      "last_update": "2026-11-20",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "83b0222253285e3a95db389caaffb3063ea659a3940e7f95c70f5568f887365e",
+      "checksum": "e02f0251c60e3de979e99b37b2f5276f7887a535223f78f35daf73735cea6576",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.13-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.13-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.13-win-x64.zip) | | Mac | PS5Upload-12.6.13-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.16-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.16-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.16-win-x64.zip) | | Mac | PS5Upload-12.6.16-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "ps5upload-beta",
