@@ -604,32 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.16.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.16/ps5upload-12.6.16.elf",
-      "version": "v12.6.16",
-      "last_update": "2026-11-20",
+      "filename": "ps5upload-12.6.21.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.21/ps5upload-12.6.21.elf",
+      "version": "v12.6.21",
+      "last_update": "2026-11-22",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "e02f0251c60e3de979e99b37b2f5276f7887a535223f78f35daf73735cea6576",
+      "checksum": "a6766a847adcf9b60011b95fa775ec35b58fd32a2fa5c0259019074366de1aae",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.16-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.16-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.16-win-x64.zip) | | Mac | PS5Upload-12.6.16-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
-    },
-    {
-      "id": "ps5upload-beta",
-      "name": "ps5upload (beta)",
-      "filename": "ps5upload-12.6.17.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.17/ps5upload-12.6.17.elf",
-      "version": "v12.6.17",
-      "last_update": "2026-11-20",
-      "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
-      "category": "PC Tool",
-      "checksum": "2bf4c7ebee49c06e0517040a68f6e6458826bcaca49f435c6151aeb108c65ee4",
-      "author": "phantomptr",
-      "source": "https://github.com/phantomptr/ps5upload/releases",
-      "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.17-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.17-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.17-win-x64.zip) | | Mac | PS5Upload-12.6.17-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.21-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.21-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.21-win-x64.zip) | | Mac | PS5Upload-12.6.21-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "recompstore",
