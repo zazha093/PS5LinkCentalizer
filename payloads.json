@@ -155,16 +155,16 @@
       "id": "orbit-store-ps5",
       "name": "orbit-store-ps5",
       "filename": "orbit_store.elf",
-      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.5/orbit_store.elf",
-      "version": "v1.9.5",
-      "last_update": "2026-11-19",
+      "url": "https://github.com/saawant12/orbit-store-ps5/releases/download/v1.9.6/orbit_store.elf",
+      "version": "v1.9.6",
+      "last_update": "2026-11-21",
       "description": "A modern PS5 download manager with a native TV app, phone controls and Orbit Zero for Mac, Windows and Linux.",
       "category": "Homebrew",
-      "checksum": "95da321dcfa054fe355e1d820e50163b3ee4da1410a9a2aa72213d7626b2d3b9",
+      "checksum": "8a73e1265984589b7b8835f8b3c5c786c5edf753964dfc614687cdf57f0c7146",
       "author": "saawant12",
       "source": "https://github.com/saawant12/orbit-store-ps5/releases",
       "details_url": "https://raw.githubusercontent.com/saawant12/orbit-store-ps5/main/README.md",
-      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. Big update: Orbit gets PKG/FPKG support via Kraken Mount and Orbit can now also get a game with all its DLC in one go. Get everything. On a game’s pa…"
+      "release_notes": "🎉 OrbitNet is coming soon: online multiplayer for jailbroken PS5s. From the developer of Orbit. Follow along at getorbitnet.com. Vikingfile downloads work again. Vikingfile fix. Vikingfile moved its download pages to a new address, so Vikingfile games stopped opening on the PS5…"
     },
     {
       "id": "poords4-poords4",
@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.89.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.89.0/PS5_Cooling_System_Center_v1.89.0.elf",
-      "version": "v1.89.0",
-      "last_update": "2026-11-20",
+      "filename": "PS5_Cooling_System_Center_v1.90.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.90.0/PS5_Cooling_System_Center_v1.90.0.elf",
+      "version": "v1.90.0",
+      "last_update": "2026-11-21",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "2cfb09a1d2f71f7de8f51d919edda484f60d8f61cbafa0fac873807852b96458",
+      "checksum": "fe1354704a7043fb770a90f07de9c88089037698320cd9aac4974b346f36b7d8",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Pack a game into LZ4 or zstd packs while converting it to an image: In the \"Convert\" window, exFAT and ffpkg now have a \"Packing (AMPR packs)\" choice: Do not pack, LZ4 packs or zstd packs (AMPR EMU NG only). Dump Forge packs the game straight into the image while it w…"
+      "release_notes": "Highlights Ejecting USB drives safely: The console cuts a drive off by force and asks nobody. The app now frees the drive first: everything of the app that reads from it waits or is refused, everything is written to the drive (sync), and only then is ShadowMountPlus asked to eje…"
     },
     {
       "id": "ps5-game-compressor",
