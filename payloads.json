@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.90.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.90.0/PS5_Cooling_System_Center_v1.90.0.elf",
-      "version": "v1.90.0",
-      "last_update": "2026-11-21",
+      "filename": "PS5_Cooling_System_Center_v1.92.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.92.0/PS5_Cooling_System_Center_v1.92.0.elf",
+      "version": "v1.92.0",
+      "last_update": "2026-11-23",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "fe1354704a7043fb770a90f07de9c88089037698320cd9aac4974b346f36b7d8",
+      "checksum": "b5a671e81c42f16cea25a4d4e149b265449a36b4914bef360d7c205bd9fb0f7d",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Ejecting USB drives safely: The console cuts a drive off by force and asks nobody. The app now frees the drive first: everything of the app that reads from it waits or is refused, everything is written to the drive (sync), and only then is ShadowMountPlus asked to eje…"
+      "release_notes": "Highlights A damaged home-screen picture is reported before you convert: The check before converting (browser and fullscreen app, every format) now reads icon0.png, pic0.png, pic1.png and pic2.png from the folder or the image and names a picture that is not a valid PNG, in yello…"
     },
     {
       "id": "ps5-game-compressor",
@@ -514,17 +514,17 @@
     {
       "id": "ps5-webkit-autoloader",
       "name": "ps5-webkit-autoloader",
-      "filename": "webkit-autoloader-installer_v0.8.3.elf",
-      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.3/webkit-autoloader-installer_v0.8.3.elf",
-      "version": "v0.8.3",
-      "last_update": "2026-11-21",
+      "filename": "webkit-autoloader-installer_v0.8.4.elf",
+      "url": "https://github.com/itsPLK/ps5-webkit-autoloader/releases/download/v0.8.4/webkit-autoloader-installer_v0.8.4.elf",
+      "version": "v0.8.4",
+      "last_update": "2026-11-23",
       "description": "An automated payload loader for exploited PS5 consoles",
       "category": "Exploit",
-      "checksum": "f4b0dee9af572ea1cb77aaf1e6fc5bf8ef520fc0a0a30753dd94a5cbdc04dd8e",
+      "checksum": "6224b1d4e221b3dcae1f198883ee998f16c824e518112e64189c5d1d376ed8d6",
       "author": "itsPLK",
       "source": "https://github.com/itsPLK/ps5-webkit-autoloader/releases",
       "details_url": "https://raw.githubusercontent.com/itsPLK/ps5-webkit-autoloader/main/README.md",
-      "release_notes": "Changelog Dependencies Updated Wobkot to 8abe4a9 Updated offsets for FW 5.00, 5.02, 5.10, 5.50, 6.00, 6.02, and 6.50. --- Setup Instructions - see README Discussion thread for this release --- Downloads | Platform | File | |---|---| | PS5 (installer payload) | webkit-autoloader-…"
+      "release_notes": "Changelog Dependencies Updated Wobkot to 452046e Added Relapse support for FW 3.00, 3.10, 3.20, 4.00, 4.02, 4.03, 4.50, and 4.51. This expands supported firmware to 3.00–13.60. Downloads | Platform | File | |---|---| | PS5 (installer payload) | webkit-autoloader-installerv0.8.4.…"
     },
     {
       "id": "ps5library",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.21.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.21/ps5upload-12.6.21.elf",
-      "version": "v12.6.21",
-      "last_update": "2026-11-22",
+      "filename": "ps5upload-12.6.23.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.23/ps5upload-12.6.23.elf",
+      "version": "v12.6.23",
+      "last_update": "2026-11-23",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "a6766a847adcf9b60011b95fa775ec35b58fd32a2fa5c0259019074366de1aae",
+      "checksum": "68a4c2135477aa0d2a9f396565c50cac7d672bbc0f158e718986616a14c6b71b",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.21-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.21-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.21-win-x64.zip) | | Mac | PS5Upload-12.6.21-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.23-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.23-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.23-win-x64.zip) | | Mac | PS5Upload-12.6.23-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "recompstore",
