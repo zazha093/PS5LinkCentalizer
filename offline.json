@@ -46,5 +46,13 @@
     "category": "Media",
     "lastVersion": "v0.1.0-preview.1",
     "offlineSince": "2026-11-14"
+  },
+  {
+    "repo": "soniciso1/poopicker",
+    "name": "poopicker",
+    "description": "Pick a pooP2JB build and your console type",
+    "category": "Exploit",
+    "lastVersion": "host-2026.08.29",
+    "offlineSince": "2026-11-23"
   }
 ]

@@ -18,7 +18,6 @@
   { "repo": "pearlxcore/PS5PKGTool",                       "category": "PC Tool" },
   { "repo": "pegasus-ps5/pegasus-dl",                      "category": "Homebrew" },
   { "repo": "phantomptr/ps5upload",                        "category": "PC Tool" },
-  { "repo": "soniciso1/poopicker",                         "category": "Exploit" },
   { "repo": "StonedModder/PS-DiscordPresence",             "category": "PC Tool" },
   { "repo": "SvenGDK/Prospero-Explorer",                   "category": "Homebrew" },
   { "repo": "SvenGDK/Prospero-Multi-Tools",                "category": "PC Tool", "install": {"zip":"ProsperoMultiTools"} },
