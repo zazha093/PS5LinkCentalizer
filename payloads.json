@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.94.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.94.0/PS5_Cooling_System_Center_v1.94.0.elf",
-      "version": "v1.94.0",
+      "filename": "PS5_Cooling_System_Center_v1.95.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.95.1/PS5_Cooling_System_Center_v1.95.1.elf",
+      "version": "v1.95.1",
       "last_update": "2026-11-24",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "5c23ea42343fbd5bac032fa51f7a68cef682e9a786380c52732c9de59f74c240",
+      "checksum": "12d6cdc22f5b8e2c38158e0cde91c6838fdb48b6e84e3af68d8cbeabb1a4cbe1",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights NTFS drives are much faster: Big folders, many small files and the first write after the app starts no longer crawl. On the console with a slow stick: a small upload takes 0.2 s instead of 2–3.5 s, a folder of 101 files (83 MB) copies in 6 s, 121 files delete in 3 s,…"
+      "release_notes": "Highlights Kraken Mount is no beta any more: The FPKGMount tab (browser and fullscreen app) no longer calls Kraken Mount \"still a beta\", and the manual gives what the Kraken Mount 0.3.2 readme says instead: for large, demanding games, zstd packs run better than a .pkg. What's ne…"
     },
     {
       "id": "ps5-game-compressor",
