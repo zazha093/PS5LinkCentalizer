@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.92.0.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.92.0/PS5_Cooling_System_Center_v1.92.0.elf",
-      "version": "v1.92.0",
-      "last_update": "2026-11-23",
+      "filename": "PS5_Cooling_System_Center_v1.94.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.94.0/PS5_Cooling_System_Center_v1.94.0.elf",
+      "version": "v1.94.0",
+      "last_update": "2026-11-24",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "b5a671e81c42f16cea25a4d4e149b265449a36b4914bef360d7c205bd9fb0f7d",
+      "checksum": "5c23ea42343fbd5bac032fa51f7a68cef682e9a786380c52732c9de59f74c240",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights A damaged home-screen picture is reported before you convert: The check before converting (browser and fullscreen app, every format) now reads icon0.png, pic0.png, pic1.png and pic2.png from the folder or the image and names a picture that is not a valid PNG, in yello…"
+      "release_notes": "Highlights NTFS drives are much faster: Big folders, many small files and the first write after the app starts no longer crawl. On the console with a slow stick: a small upload takes 0.2 s instead of 2–3.5 s, a folder of 101 files (83 MB) copies in 6 s, 121 files delete in 3 s,…"
     },
     {
       "id": "ps5-game-compressor",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.25.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.25/ps5upload-12.6.25.elf",
-      "version": "v12.6.25",
-      "last_update": "2026-11-23",
+      "filename": "ps5upload-12.6.26.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.26/ps5upload-12.6.26.elf",
+      "version": "v12.6.26",
+      "last_update": "2026-11-24",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "ebf636206c7773a7232801923e321bebafef592c26de611980d9f83c8e8e0343",
+      "checksum": "19da4e310383d9152cb96f078ae63e4207dec42ac8793a81719505605253eb13",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.25-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.25-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.25-win-x64.zip) | | Mac | PS5Upload-12.6.25-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.26-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.26-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.26-win-x64.zip) | | Mac | PS5Upload-12.6.26-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "recompstore",
