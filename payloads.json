@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.95.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.95.1/PS5_Cooling_System_Center_v1.95.1.elf",
-      "version": "v1.95.1",
-      "last_update": "2026-11-24",
+      "filename": "PS5_Cooling_System_Center_v1.96.1.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.96.1/PS5_Cooling_System_Center_v1.96.1.elf",
+      "version": "v1.96.1",
+      "last_update": "2026-11-25",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "12d6cdc22f5b8e2c38158e0cde91c6838fdb48b6e84e3af68d8cbeabb1a4cbe1",
+      "checksum": "09339d8259e053344ce673abb82fd04026477c0948613927cad5d007a506901f",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Kraken Mount is no beta any more: The FPKGMount tab (browser and fullscreen app) no longer calls Kraken Mount \"still a beta\", and the manual gives what the Kraken Mount 0.3.2 readme says instead: for large, demanding games, zstd packs run better than a .pkg. What's ne…"
+      "release_notes": "Highlights Old page, new app: When a new app arrives while the web interface is open, the page now says so: \"New version … running\" with a Reload page button. Before, only the version shown was new, while new buttons and fields were missing – one user could not find the file sea…"
     },
     {
       "id": "ps5-game-compressor",

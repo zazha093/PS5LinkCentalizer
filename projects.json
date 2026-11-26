@@ -42,7 +42,6 @@
   { "repo": "ps5xploit/ps5shopappkg",                      "category": "Homebrew" },
   { "repo": "rdiol12/PS5Library",                          "category": "Homebrew" },
   { "repo": "deox1111/ps5-library",                        "category": "Homebrew" },
-  { "repo": "Phoenixx1202/Spectrum-Library",               "category": "Homebrew" },
   { "repo": "ChillQuant/direct-stream-ps5",                "category": "Network", "install": {"zip":"PurePython"} },
   { "repo": "gasb07/ps4mount",                             "category": "Payload" },
   { "repo": "mpereiraesaa/prospero-win",                   "category": "PC Tool" },

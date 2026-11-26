@@ -54,5 +54,13 @@
     "category": "Exploit",
     "lastVersion": "host-2026.08.29",
     "offlineSince": "2026-11-23"
+  },
+  {
+    "repo": "Phoenixx1202/Spectrum-Library",
+    "name": "Spectrum-Library",
+    "description": "",
+    "category": "Homebrew",
+    "lastVersion": "1.4.9",
+    "offlineSince": "2026-11-26"
   }
 ]
