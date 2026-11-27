@@ -530,16 +530,16 @@
       "id": "ps5library",
       "name": "PS5Library",
       "filename": "ps5library-agent.elf",
-      "url": "https://github.com/rdiol12/PS5Library/releases/download/v0.2.91/ps5library-agent.elf",
-      "version": "v0.2.91",
-      "last_update": "2026-10-14",
+      "url": "https://github.com/rdiol12/PS5Library/releases/download/v0.2.92/ps5library-agent.elf",
+      "version": "v0.2.92",
+      "last_update": "2026-11-27",
       "description": "Native PS5Library console storefront. Frontend source and automated ELF builds.",
       "category": "Homebrew",
-      "checksum": "ac78389a628401edba3c081f00156238ad5652b1b7ad241f5ccc7713179f0c82",
+      "checksum": "f2f25588354f0f04945913fa8c9dcd5095a4904f1da2207150fba787fa758176",
       "author": "rdiol12",
       "source": "https://github.com/rdiol12/PS5Library/releases",
       "details_url": "https://raw.githubusercontent.com/rdiol12/PS5Library/main/README.md",
-      "release_notes": "Full Changelog: https://github.com/rdiol12/PS5Library/compare/v0.2.70...v0.2.91"
+      "release_notes": "New Android companion app — a native Jetpack Compose app (library, downloads with live progress, consoles, settings, live updates over WebSocket, encrypted token storage) that connects over a LAN/IP address or Tailscale. Built in CI as an unsigned debug APK. iOS companion — conn…"
     },
     {
       "id": "ps5shopappkg",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.37.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.37/ps5upload-12.6.37.elf",
-      "version": "v12.6.37",
+      "filename": "ps5upload-12.6.42.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.42/ps5upload-12.6.42.elf",
+      "version": "v12.6.42",
       "last_update": "2026-11-27",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "7885fbd9d74a0031e3092d7ba3221f52ddae26b07cac04ddf9ab4beefbb8c9d5",
+      "checksum": "f5aef27e0f605daa4f8e83702ea25c098e46ecf3fc6b51d99e46d27bf49777ac",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.37-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.37-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.37-win-x64.zip) | | Mac | PS5Upload-12.6.37-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.42-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.42-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.42-win-x64.zip) | | Mac | PS5Upload-12.6.42-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "recompstore",
