@@ -349,17 +349,17 @@
     {
       "id": "ps5-cooling-system-center-pro",
       "name": "ps5-cooling-system-center-pro",
-      "filename": "PS5_Cooling_System_Center_v1.96.1.elf",
-      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.96.1/PS5_Cooling_System_Center_v1.96.1.elf",
-      "version": "v1.96.1",
-      "last_update": "2026-11-25",
+      "filename": "PS5_Cooling_System_Center_v1.97.0.elf",
+      "url": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases/download/v1.97.0/PS5_Cooling_System_Center_v1.97.0.elf",
+      "version": "v1.97.0",
+      "last_update": "2026-11-26",
       "description": "Fan control, temperature monitoring and system center for the jailbroken PS5 – payload with a browser app and a fullscreen controller app (DE · EN · IT · ES · FR · RU · SV)",
       "category": "Homebrew",
-      "checksum": "09339d8259e053344ce673abb82fd04026477c0948613927cad5d007a506901f",
+      "checksum": "ac56b97a8857ce86241c3cd01fe12c2d2fbf483a6f426b2de1d7a473d2558271",
       "author": "strongt1me",
       "source": "https://github.com/strongt1me/ps5-cooling-system-center-pro/releases",
       "details_url": "https://raw.githubusercontent.com/strongt1me/ps5-cooling-system-center-pro/main/README.md",
-      "release_notes": "Highlights Old page, new app: When a new app arrives while the web interface is open, the page now says so: \"New version … running\" with a Reload page button. Before, only the version shown was new, while new buttons and fields were missing – one user could not find the file sea…"
+      "release_notes": "Highlights Dump Forge 0.6.0 is built in. It packs LZ4 only with AMPR EMU NG now, so the choice \"Runtime in the game\" is gone from the convert window (web and fullscreen). The bars \"Measuring\" and \"Writing\" take Dump Forge's own numbers instead of an estimate. Saved games: Readin…"
     },
     {
       "id": "ps5-game-compressor",
@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.33.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.33/ps5upload-12.6.33.elf",
-      "version": "v12.6.33",
-      "last_update": "2026-11-26",
+      "filename": "ps5upload-12.6.37.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.37/ps5upload-12.6.37.elf",
+      "version": "v12.6.37",
+      "last_update": "2026-11-27",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "2ad3f7ae4d4b5a05346e4eb22ef80df397dbf4165f2c9b9cd5a2565f73cfa539",
+      "checksum": "7885fbd9d74a0031e3092d7ba3221f52ddae26b07cac04ddf9ab4beefbb8c9d5",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.33-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.33-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.33-win-x64.zip) | | Mac | PS5Upload-12.6.33-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.37-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.37-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.37-win-x64.zip) | | Mac | PS5Upload-12.6.37-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "recompstore",
