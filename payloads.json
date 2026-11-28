@@ -604,17 +604,17 @@
     {
       "id": "ps5upload",
       "name": "ps5upload",
-      "filename": "ps5upload-12.6.42.elf",
-      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.42/ps5upload-12.6.42.elf",
-      "version": "v12.6.42",
+      "filename": "ps5upload-12.6.43.elf",
+      "url": "https://github.com/phantomptr/ps5upload/releases/download/v12.6.43/ps5upload-12.6.43.elf",
+      "version": "v12.6.43",
       "last_update": "2026-11-27",
       "description": "Send games, apps and homebrew to a jailbroken PS5, and manage the console from your computer, phone or browser.",
       "category": "PC Tool",
-      "checksum": "f5aef27e0f605daa4f8e83702ea25c098e46ecf3fc6b51d99e46d27bf49777ac",
+      "checksum": "8b8bfc0fcdf74e92a6a0c1eb934ead27b94a4cb75f0ff09658a3b7d1cc599a7f",
       "author": "phantomptr",
       "source": "https://github.com/phantomptr/ps5upload/releases",
       "details_url": "https://raw.githubusercontent.com/phantomptr/ps5upload/main/README.md",
-      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.42-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.42-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.42-win-x64.zip) | | Mac | PS5Upload-12.6.42-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
+      "release_notes": "Which file do I download? | For | Download | |---|---| | Windows | PS5Upload-12.6.43-win-x64-setup.exe (ARM PCs: PS5Upload-12.6.43-win-arm64-setup.exe; to run without installing: PS5Upload-12.6.43-win-x64.zip) | | Mac | PS5Upload-12.6.43-mac-arm64.dmg (Apple Silicon) or PS5Uploa…"
     },
     {
       "id": "recompstore",
